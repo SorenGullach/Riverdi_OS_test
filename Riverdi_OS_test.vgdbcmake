@@ -1,0 +1,360 @@
+<?xml version="1.0"?>
+<VisualGDBProjectSettings2 xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Project xsi:type="com.visualgdb.project.embedded">
+    <CustomSourceDirectories>
+      <Directories />
+      <PathStyle>MinGWUnixSlash</PathStyle>
+      <LocalDirForAbsolutePaths>$(ToolchainDir)</LocalDirForAbsolutePaths>
+    </CustomSourceDirectories>
+    <AutoProgramSPIFFSPartition>true</AutoProgramSPIFFSPartition>
+    <MainSourceDirectory>$(ProjectDir)</MainSourceDirectory>
+    <ExportAdvancedBuildVariables>false</ExportAdvancedBuildVariables>
+    <SkipImportedProjectChecks>false</SkipImportedProjectChecks>
+    <MemoryListSource>DeviceDefinition</MemoryListSource>
+    <TroubleshootGeneratedConfigurationFiles>false</TroubleshootGeneratedConfigurationFiles>
+  </Project>
+  <Build xsi:type="com.visualgdb.build.cmake">
+    <BuildLogMode xsi:nil="true" />
+    <ToolchainID>
+      <ID>com.visualgdb.arm-eabi</ID>
+      <Version>
+        <GCC>12.3.1</GCC>
+        <GDB>13.2</GDB>
+        <Revision>1</Revision>
+      </Version>
+    </ToolchainID>
+    <RelativeSourceDirectory />
+    <ConfigurationType>DEBUG</ConfigurationType>
+    <BinaryDirectory>build/$(PlatformName)/$(ConfigurationName)</BinaryDirectory>
+    <MakeCommandTemplate>
+      <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>
+      <RemoteHost>
+        <HostName>BuildMachine</HostName>
+        <Transport>BuiltinShortcut</Transport>
+      </RemoteHost>
+      <Command>$(VISUALGDB_DIR)/ninja.exe</Command>
+      <WorkingDirectory>$(BuildDir)</WorkingDirectory>
+      <BackgroundMode xsi:nil="true" />
+    </MakeCommandTemplate>
+    <CMakeCommand>
+      <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>
+      <RemoteHost>
+        <HostName>BuildMachine</HostName>
+        <Transport>BuiltinShortcut</Transport>
+      </RemoteHost>
+      <Command>$(SYSPROGS_CMAKE_PATH)</Command>
+      <BackgroundMode xsi:nil="true" />
+    </CMakeCommand>
+    <UpdateSourcesInCMakeFile>true</UpdateSourcesInCMakeFile>
+    <ExportCompileCommands>false</ExportCompileCommands>
+    <DisableToolchainFile>false</DisableToolchainFile>
+    <CMakeMakefileType>Ninja</CMakeMakefileType>
+    <DeployAsRoot>false</DeployAsRoot>
+    <CMakeCleanMode>RemoveBuildDirectory</CMakeCleanMode>
+    <UseCCache>false</UseCCache>
+    <ProjectModeSettings>
+      <ProjectItemSettings>
+        <GroupSourcesByTypes>true</GroupSourcesByTypes>
+        <GroupSourcesByPaths>true</GroupSourcesByPaths>
+        <GroupTargetsByPaths>true</GroupTargetsByPaths>
+        <FollowCMakeSourceGroups>false</FollowCMakeSourceGroups>
+        <AutoRefreshProject>true</AutoRefreshProject>
+        <AlwaysConsiderOutdated>false</AlwaysConsiderOutdated>
+        <SortTargetsByName>true</SortTargetsByName>
+        <RedundantTargetMode>HideOuterProjectTargets</RedundantTargetMode>
+        <SortSourcesByName>true</SortSourcesByName>
+        <BuildAllTargetsInSubdir>false</BuildAllTargetsInSubdir>
+        <FoldSingleItemPathLevels>true</FoldSingleItemPathLevels>
+      </ProjectItemSettings>
+      <TargetSpecificSettings />
+      <SetLDLibraryPathFromDependentArtifacts>true</SetLDLibraryPathFromDependentArtifacts>
+      <ProjectGUID>979c9b5a-1f2f-4d56-8938-f795d3f02dea</ProjectGUID>
+      <VirtualFolders />
+      <ConfigurationNameCase>Upper</ConfigurationNameCase>
+      <DefaultHeaderDiscoveryMode>None</DefaultHeaderDiscoveryMode>
+      <EnableFastUpToDateCheck>true</EnableFastUpToDateCheck>
+    </ProjectModeSettings>
+  </Build>
+  <CustomBuild>
+    <PreSyncActions />
+    <PreBuildActions />
+    <PostBuildActions />
+    <PreCleanActions />
+    <PostCleanActions />
+  </CustomBuild>
+  <CustomDebug>
+    <PreDebugActions />
+    <PostDebugActions />
+    <DebugStopActions />
+    <BreakMode>Default</BreakMode>
+  </CustomDebug>
+  <CustomShortcuts>
+    <Shortcuts />
+    <ShowMessageAfterExecuting>true</ShowMessageAfterExecuting>
+  </CustomShortcuts>
+  <UserDefinedVariables />
+  <ImportedPropertySheets />
+  <CodeSense>
+    <Enabled>True</Enabled>
+    <ExtraSettings>
+      <HideErrorsInSystemHeaders>true</HideErrorsInSystemHeaders>
+      <SupportLightweightReferenceAnalysis>true</SupportLightweightReferenceAnalysis>
+      <DiscoverySettings>
+        <Mode>Enabled</Mode>
+        <SearchInProjectDir>true</SearchInProjectDir>
+        <SearchInSourceDirs>true</SearchInSourceDirs>
+        <SearchInIncludeSubdirs>true</SearchInIncludeSubdirs>
+        <ExtraSearchDirs>
+          <string>../../../Users/45201/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32H7xxxx/CMSIS_HAL/Device/ST/STM32H7xx/Include</string>
+          <string>C:\Users\45201\AppData\Local\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32\STM32H7xxxx\CMSIS_HAL\Device\ST\STM32H7xx\Include</string>
+        </ExtraSearchDirs>
+      </DiscoverySettings>
+      <CheckForClangFormatFiles>true</CheckForClangFormatFiles>
+      <FormattingEngine xsi:nil="true" />
+    </ExtraSettings>
+    <CodeAnalyzerSettings>
+      <Enabled>true</Enabled>
+      <SelectedAnalyzers>
+        <string>alpha.clone.CloneChecker</string>
+        <string>alpha.core.BoolAssignment</string>
+        <string>alpha.core.C11Lock</string>
+        <string>alpha.core.CastSize</string>
+        <string>alpha.core.CastToStruct</string>
+        <string>alpha.core.Conversion</string>
+        <string>alpha.core.DynamicTypeChecker</string>
+        <string>alpha.core.FixedAddr</string>
+        <string>alpha.core.IdenticalExpr</string>
+        <string>alpha.core.PointerArithm</string>
+        <string>alpha.core.PointerSub</string>
+        <string>alpha.core.PthreadLockBase</string>
+        <string>alpha.core.SizeofPtr</string>
+        <string>alpha.core.StackAddressAsyncEscape</string>
+        <string>alpha.core.TestAfterDivZero</string>
+        <string>alpha.cplusplus.ContainerModeling</string>
+        <string>alpha.cplusplus.DeleteWithNonVirtualDtor</string>
+        <string>alpha.cplusplus.EnumCastOutOfRange</string>
+        <string>alpha.cplusplus.InvalidatedIterator</string>
+        <string>alpha.cplusplus.IteratorModeling</string>
+        <string>alpha.cplusplus.IteratorRange</string>
+        <string>alpha.cplusplus.MismatchedIterator</string>
+        <string>alpha.cplusplus.SmartPtr</string>
+        <string>alpha.cplusplus.STLAlgorithmModeling</string>
+        <string>alpha.deadcode.UnreachableCode</string>
+        <string>alpha.fuchsia.Lock</string>
+        <string>alpha.llvm.Conventions</string>
+        <string>alpha.nondeterminism.PointerIteration</string>
+        <string>alpha.nondeterminism.PointerSorting</string>
+        <string>alpha.security.ArrayBound</string>
+        <string>alpha.security.ArrayBoundV2</string>
+        <string>alpha.security.cert.env.InvalidPtr</string>
+        <string>alpha.security.cert.pos.34c</string>
+        <string>alpha.security.MallocOverflow</string>
+        <string>alpha.security.MmapWriteExec</string>
+        <string>alpha.security.ReturnPtrRange</string>
+        <string>alpha.security.taint.TaintPropagation</string>
+        <string>alpha.unix.BlockInCriticalSection</string>
+        <string>alpha.unix.Chroot</string>
+        <string>alpha.unix.cstring.BufferOverlap</string>
+        <string>alpha.unix.cstring.NotNullTerminated</string>
+        <string>alpha.unix.cstring.OutOfBounds</string>
+        <string>alpha.unix.cstring.UninitializedRead</string>
+        <string>alpha.unix.Errno</string>
+        <string>alpha.unix.PthreadLock</string>
+        <string>alpha.unix.SimpleStream</string>
+        <string>alpha.unix.StdCLibraryFunctionArgs</string>
+        <string>alpha.unix.Stream</string>
+        <string>alpha.webkit.UncountedCallArgsChecker</string>
+        <string>alpha.webkit.UncountedLocalVarsChecker</string>
+        <string>apiModeling.Errno</string>
+        <string>apiModeling.google.GTest</string>
+        <string>apiModeling.llvm.CastValue</string>
+        <string>apiModeling.llvm.ReturnValue</string>
+        <string>apiModeling.StdCLibraryFunctions</string>
+        <string>apiModeling.TrustNonnull</string>
+        <string>apiModeling.TrustReturnsNonnull</string>
+        <string>core.builtin.BuiltinFunctions</string>
+        <string>core.builtin.NoReturnFunctions</string>
+        <string>core.CallAndMessage</string>
+        <string>core.CallAndMessageModeling</string>
+        <string>core.DivideZero</string>
+        <string>core.DynamicTypePropagation</string>
+        <string>core.NonnilStringConstants</string>
+        <string>core.NonNullParamChecker</string>
+        <string>core.NullDereference</string>
+        <string>core.StackAddrEscapeBase</string>
+        <string>core.StackAddressEscape</string>
+        <string>core.UndefinedBinaryOperatorResult</string>
+        <string>core.uninitialized.ArraySubscript</string>
+        <string>core.uninitialized.Assign</string>
+        <string>core.uninitialized.Branch</string>
+        <string>core.uninitialized.CapturedBlockVariable</string>
+        <string>core.uninitialized.NewArraySize</string>
+        <string>core.uninitialized.UndefReturn</string>
+        <string>core.VLASize</string>
+        <string>cplusplus.InnerPointer</string>
+        <string>cplusplus.Move</string>
+        <string>cplusplus.NewDelete</string>
+        <string>cplusplus.NewDeleteLeaks</string>
+        <string>cplusplus.PlacementNew</string>
+        <string>cplusplus.PureVirtualCall</string>
+        <string>cplusplus.SelfAssignment</string>
+        <string>cplusplus.SmartPtrModeling</string>
+        <string>cplusplus.StringChecker</string>
+        <string>cplusplus.VirtualCallModeling</string>
+        <string>deadcode.DeadStores</string>
+        <string>fuchsia.HandleChecker</string>
+        <string>nullability.NullabilityBase</string>
+        <string>nullability.NullableDereferenced</string>
+        <string>nullability.NullablePassedToNonnull</string>
+        <string>nullability.NullableReturnedFromNonnull</string>
+        <string>nullability.NullPassedToNonnull</string>
+        <string>nullability.NullReturnedFromNonnull</string>
+        <string>optin.cplusplus.UninitializedObject</string>
+        <string>optin.cplusplus.VirtualCall</string>
+        <string>optin.mpi.MPI-Checker</string>
+        <string>optin.osx.cocoa.localizability.EmptyLocalizationContextChecker</string>
+        <string>optin.osx.cocoa.localizability.NonLocalizedStringChecker</string>
+        <string>optin.osx.OSObjectCStyleCast</string>
+        <string>optin.performance.GCDAntipattern</string>
+        <string>optin.performance.Padding</string>
+        <string>optin.portability.UnixAPI</string>
+        <string>security.FloatLoopCounter</string>
+        <string>security.insecureAPI.bcmp</string>
+        <string>security.insecureAPI.bcopy</string>
+        <string>security.insecureAPI.bzero</string>
+        <string>security.insecureAPI.decodeValueOfObjCType</string>
+        <string>security.insecureAPI.DeprecatedOrUnsafeBufferHandling</string>
+        <string>security.insecureAPI.getpw</string>
+        <string>security.insecureAPI.gets</string>
+        <string>security.insecureAPI.mkstemp</string>
+        <string>security.insecureAPI.mktemp</string>
+        <string>security.insecureAPI.rand</string>
+        <string>security.insecureAPI.SecuritySyntaxChecker</string>
+        <string>security.insecureAPI.strcpy</string>
+        <string>security.insecureAPI.UncheckedReturn</string>
+        <string>security.insecureAPI.vfork</string>
+        <string>unix.API</string>
+        <string>unix.cstring.BadSizeArg</string>
+        <string>unix.cstring.CStringModeling</string>
+        <string>unix.cstring.NullArg</string>
+        <string>unix.DynamicMemoryModeling</string>
+        <string>unix.Malloc</string>
+        <string>unix.MallocSizeof</string>
+        <string>unix.MismatchedDeallocator</string>
+        <string>unix.Vfork</string>
+        <string>valist.CopyToSelf</string>
+        <string>valist.Uninitialized</string>
+        <string>valist.Unterminated</string>
+        <string>valist.ValistBase</string>
+        <string>webkit.NoUncountedMemberChecker</string>
+        <string>webkit.RefCntblBaseVirtualDtor</string>
+        <string>webkit.UncountedLambdaCapturesChecker</string>
+      </SelectedAnalyzers>
+      <ExtraArguments>
+        <string />
+      </ExtraArguments>
+    </CodeAnalyzerSettings>
+  </CodeSense>
+  <Configurations />
+  <ProgramArgumentsSuggestions />
+  <Debug xsi:type="com.visualgdb.debug.embedded">
+    <AdditionalStartupCommands />
+    <AdditionalGDBSettings>
+      <Features>
+        <DisableAutoDetection>false</DisableAutoDetection>
+        <UseFrameParameter>false</UseFrameParameter>
+        <SimpleValuesFlagSupported>false</SimpleValuesFlagSupported>
+        <ListLocalsSupported>false</ListLocalsSupported>
+        <ByteLevelMemoryCommandsAvailable>false</ByteLevelMemoryCommandsAvailable>
+        <ThreadInfoSupported>false</ThreadInfoSupported>
+        <PendingBreakpointsSupported>false</PendingBreakpointsSupported>
+        <SupportTargetCommand>false</SupportTargetCommand>
+        <ReliableBreakpointNotifications>false</ReliableBreakpointNotifications>
+      </Features>
+      <EnableSmartStepping>false</EnableSmartStepping>
+      <FilterSpuriousStoppedNotifications>false</FilterSpuriousStoppedNotifications>
+      <ForceSingleThreadedMode>false</ForceSingleThreadedMode>
+      <UseAppleExtensions>false</UseAppleExtensions>
+      <CanAcceptCommandsWhileRunning>false</CanAcceptCommandsWhileRunning>
+      <MakeLogFile>false</MakeLogFile>
+      <IgnoreModuleEventsWhileStepping>true</IgnoreModuleEventsWhileStepping>
+      <UseRelativePathsOnly>false</UseRelativePathsOnly>
+      <ExitAction>None</ExitAction>
+      <DisableDisassembly>false</DisableDisassembly>
+      <ExamineMemoryWithXCommand>false</ExamineMemoryWithXCommand>
+      <StepIntoNewInstanceEntry>main</StepIntoNewInstanceEntry>
+      <ExamineRegistersInRawFormat>true</ExamineRegistersInRawFormat>
+      <DisableSignals>false</DisableSignals>
+      <EnableAsyncExecutionMode>false</EnableAsyncExecutionMode>
+      <AsyncModeSupportsBreakpoints>true</AsyncModeSupportsBreakpoints>
+      <TemporaryBreakConsolidationTimeout>0</TemporaryBreakConsolidationTimeout>
+      <EnableNonStopMode>false</EnableNonStopMode>
+      <MaxBreakpointLimit>0</MaxBreakpointLimit>
+      <EnableVerboseMode>true</EnableVerboseMode>
+      <EnablePrettyPrinters>false</EnablePrettyPrinters>
+      <EnableAbsolutePathReporting>true</EnableAbsolutePathReporting>
+    </AdditionalGDBSettings>
+    <DebugMethod>
+      <ID>com.sysprogs.arm.openocd</ID>
+      <InterfaceID>stlink-v3</InterfaceID>
+      <InterfaceSerialNumber>002D00135553501020393256</InterfaceSerialNumber>
+      <Configuration xsi:type="com.visualgdb.edp.openocd.settings">
+        <CommandLine>-f interface/stlink.cfg -c "adapter speed 3300" -f target/stm32h7x.cfg -c init -c "reset init"</CommandLine>
+        <ExtraParameters>
+          <Frequency xsi:nil="true" />
+          <BoostedFrequency xsi:nil="true" />
+          <ConnectUnderReset>false</ConnectUnderReset>
+        </ExtraParameters>
+        <LoadProgressGUIThreshold>131072</LoadProgressGUIThreshold>
+        <ProgramMode>Enabled</ProgramMode>
+        <StartupCommands>
+          <string>set remotetimeout 60</string>
+          <string>target remote :$$SYS:GDB_PORT$$</string>
+          <string>mon halt</string>
+          <string>mon reset init</string>
+          <string>load</string>
+        </StartupCommands>
+        <ProgramFLASHUsingExternalTool>false</ProgramFLASHUsingExternalTool>
+        <PreferredGDBPort>0</PreferredGDBPort>
+        <PreferredTelnetPort>0</PreferredTelnetPort>
+        <AlwaysPassSerialNumber>false</AlwaysPassSerialNumber>
+        <SelectedCoreIndex xsi:nil="true" />
+        <LiveMemoryTimeout>5000</LiveMemoryTimeout>
+      </Configuration>
+    </DebugMethod>
+    <AutoDetectRTOS>true</AutoDetectRTOS>
+    <SemihostingSupport>Auto</SemihostingSupport>
+    <SemihostingPollingDelay>0</SemihostingPollingDelay>
+    <StepIntoEntryPoint>false</StepIntoEntryPoint>
+    <ReloadFirmwareOnReset>false</ReloadFirmwareOnReset>
+    <ValidateEndOfStackAddress>true</ValidateEndOfStackAddress>
+    <StopAtEntryPoint>false</StopAtEntryPoint>
+    <EnableVirtualHalts>false</EnableVirtualHalts>
+    <DynamicAnalysisSettings />
+    <EndOfStackSymbol>_estack</EndOfStackSymbol>
+    <TimestampProviderTicksPerSecond>0</TimestampProviderTicksPerSecond>
+    <KeepConsoleAfterExit>false</KeepConsoleAfterExit>
+    <UnusedStackFillPattern xsi:nil="true" />
+    <SoftwareTracingSettings>
+      <TraceWhileDebugging>true</TraceWhileDebugging>
+      <AutoStart>false</AutoStart>
+      <DynamicProgramAreaSize>0</DynamicProgramAreaSize>
+      <SkipInitiallyDisabledTracepoints>false</SkipInitiallyDisabledTracepoints>
+      <TraceProgramOptimization>Size</TraceProgramOptimization>
+      <OutputMode>NonBlocking</OutputMode>
+      <AssumeFramePointerIsValid>true</AssumeFramePointerIsValid>
+      <InstrumentWithNoFeasibleTracepoints>false</InstrumentWithNoFeasibleTracepoints>
+      <MaximumStringLength>255</MaximumStringLength>
+      <DeferVectorTablePatching>true</DeferVectorTablePatching>
+      <ShowAdvancedConfiguration>false</ShowAdvancedConfiguration>
+      <WorkAreaSize>4096</WorkAreaSize>
+      <DisableLiveCodePatching>false</DisableLiveCodePatching>
+    </SoftwareTracingSettings>
+    <FLASHPatcher>
+      <ID>com.sysprogs.flash.stm32</ID>
+      <Placement>EndOfRAM</Placement>
+      <ExplicitAddress>0</ExplicitAddress>
+    </FLASHPatcher>
+    <CheckInterfaceDrivers>true</CheckInterfaceDrivers>
+  </Debug>
+</VisualGDBProjectSettings2>

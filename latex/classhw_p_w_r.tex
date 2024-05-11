@@ -1,0 +1,83 @@
+\doxysection{hw\+PWR Class Reference}
+\hypertarget{classhw_p_w_r}{}\label{classhw_p_w_r}\index{hwPWR@{hwPWR}}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhw_p_w_r_a612d2ee1a3fc316d272a05384a2a63fc}\label{classhw_p_w_r_a612d2ee1a3fc316d272a05384a2a63fc} 
+enum class {\bfseries e\+Supply\+Configurations} \{ \newline
+{\bfseries C0}
+, {\bfseries C1}
+, {\bfseries C2}
+, {\bfseries C3}
+, \newline
+{\bfseries C4}
+, {\bfseries C5}
+, {\bfseries C6}
+ \}
+\item 
+\Hypertarget{classhw_p_w_r_a2eff67a070f7f8d90a7cf2d75d08bf96}\label{classhw_p_w_r_a2eff67a070f7f8d90a7cf2d75d08bf96} 
+enum class {\bfseries e\+Analog\+Voltage\+Detector\+Level} \{ {\bfseries V1\+\_\+7} = 0x00
+, {\bfseries V2\+\_\+1} = 0x01
+, {\bfseries V2\+\_\+5} = 0x10
+, {\bfseries V2\+\_\+8} = 0x11
+ \}
+\item 
+\Hypertarget{classhw_p_w_r_a8db97067d06294fd72414f33a880abe2}\label{classhw_p_w_r_a8db97067d06294fd72414f33a880abe2} 
+enum class {\bfseries e\+VOSs} \{ \newline
+{\bfseries VOS0}
+, {\bfseries VOS1}
+, {\bfseries VOS2}
+, {\bfseries VOS3}
+, \newline
+{\bfseries LP\+\_\+\+SVOS3}
+, {\bfseries LP\+\_\+\+SVOS4}
+, {\bfseries LP\+\_\+\+SVOS5}
+ \}
+\item 
+\Hypertarget{classhw_p_w_r_ad7926d5063d3587badc41fb55edfaf30}\label{classhw_p_w_r_ad7926d5063d3587badc41fb55edfaf30} 
+enum class {\bfseries e\+Domain\+Power\+Modes} \{ {\bfseries DStop}
+, {\bfseries DStandby}
+ \}
+\item 
+\Hypertarget{classhw_p_w_r_ac0b423a30b5991a6a8b4636e85231a4e}\label{classhw_p_w_r_ac0b423a30b5991a6a8b4636e85231a4e} 
+enum class {\bfseries e\+CPUs} \{ {\bfseries CM7}
+, {\bfseries CM4}
+ \}
+\item 
+\Hypertarget{classhw_p_w_r_ab3ad04a5f42c30022b2da8de85e4fe36}\label{classhw_p_w_r_ab3ad04a5f42c30022b2da8de85e4fe36} 
+enum class {\bfseries e\+Domains} \{ {\bfseries D1}
+, {\bfseries D2}
+, {\bfseries D3}
+ \}
+\item 
+\Hypertarget{classhw_p_w_r_a843b4619f6b7da4d90b44aed0b96d1a8}\label{classhw_p_w_r_a843b4619f6b7da4d90b44aed0b96d1a8} 
+enum class {\bfseries e\+Stop\+Mode\+Entry} \{ {\bfseries WFI}
+, {\bfseries WFE}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhw_p_w_r_ac69789bf95833818f31442a1147a2381}\label{classhw_p_w_r_ac69789bf95833818f31442a1147a2381} 
+bool {\bfseries hw\+Analog\+Voltage\+Detector\+Level\+Selection} (e\+Analog\+Voltage\+Detector\+Level level)
+\item 
+\Hypertarget{classhw_p_w_r_ad16f18d0b1d43b52270008bbf12a5dc8}\label{classhw_p_w_r_ad16f18d0b1d43b52270008bbf12a5dc8} 
+void {\bfseries Power\+Mode} (e\+Domain\+Power\+Modes dm, e\+CPUs CPU, e\+Domains Domain)
+\item 
+\Hypertarget{classhw_p_w_r_a233c9188238f29db5a6165703fd5808a}\label{classhw_p_w_r_a233c9188238f29db5a6165703fd5808a} 
+void {\bfseries Enter\+Low\+Power} (e\+Stop\+Mode\+Entry sme)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhw_p_w_r_aa99c847acf1c55aec8276d036cc6caa1}\label{classhw_p_w_r_aa99c847acf1c55aec8276d036cc6caa1} 
+static void {\bfseries Supply\+Configuration} ()
+\item 
+\Hypertarget{classhw_p_w_r_a2054d5eb48a5473a9859de7f454f3a4c}\label{classhw_p_w_r_a2054d5eb48a5473a9859de7f454f3a4c} 
+static bool {\bfseries VOS} (e\+VOSs vos)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+os\+STM32\+H7xx/PWR.\+h\end{DoxyCompactItemize}

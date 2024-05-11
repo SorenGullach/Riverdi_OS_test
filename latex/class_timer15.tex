@@ -1,0 +1,103 @@
+\doxysection{Timer15 Class Reference}
+\hypertarget{class_timer15}{}\label{class_timer15}\index{Timer15@{Timer15}}
+Inheritance diagram for Timer15\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.424242cm]{class_timer15}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_timer15_aa6150dafe4a779e95505994607f52e69}\label{class_timer15_aa6150dafe4a779e95505994607f52e69} 
+enum class {\bfseries e\+Input\+Clk} \{ {\bfseries Internal}
+, {\bfseries External}
+, {\bfseries Trigger}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_timer15_a21fd25acad00f8e44bf9aa634c0c1e64}\label{class_timer15_a21fd25acad00f8e44bf9aa634c0c1e64} 
+{\bfseries Timer15} (e\+Input\+Clk src)
+\item 
+\Hypertarget{class_timer15_a50b44b20a7445a2503c3b5bcbe5b9472}\label{class_timer15_a50b44b20a7445a2503c3b5bcbe5b9472} 
+uint16\+\_\+t {\bfseries Find\+Prescaler\+Value} (uint32\+\_\+t freq, uint32\+\_\+t clock=0)
+\item 
+\Hypertarget{class_timer15_aa02da70c4241a92ee179c93e0de9f293}\label{class_timer15_aa02da70c4241a92ee179c93e0de9f293} 
+void {\bfseries Mode} (\mbox{\hyperlink{struct_r__t}{R\+\_\+t}}$<$ uint8\+\_\+t, 1, 2 $>$ ccr, e\+Mode mode)
+\item 
+\Hypertarget{class_timer15_a3ad499887a75b7678a86774255fdf654}\label{class_timer15_a3ad499887a75b7678a86774255fdf654} 
+uint16\+\_\+t {\bfseries Compare} (\mbox{\hyperlink{struct_r__t}{R\+\_\+t}}$<$ uint8\+\_\+t, 1, 2 $>$ ccr)
+\item 
+\Hypertarget{class_timer15_ae04b186f7b0a1c7b3c67f8f3e2edc922}\label{class_timer15_ae04b186f7b0a1c7b3c67f8f3e2edc922} 
+void {\bfseries Compare} (\mbox{\hyperlink{struct_r__t}{R\+\_\+t}}$<$ uint8\+\_\+t, 1, 2 $>$ ccr, uint16\+\_\+t value)
+\item 
+\Hypertarget{class_timer15_a11a28210c89be13addf7736155cfb266}\label{class_timer15_a11a28210c89be13addf7736155cfb266} 
+void {\bfseries Start} ()
+\item 
+\Hypertarget{class_timer15_a63c590f0f62f64cb36d2219deed54382}\label{class_timer15_a63c590f0f62f64cb36d2219deed54382} 
+void {\bfseries Stop} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_timer_counter}{Timer\+Counter$<$ uint16\+\_\+t $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries Prescaler} (uint16\+\_\+t div)
+\item 
+uint16\+\_\+t {\bfseries Counter} ()
+\item 
+uint16\+\_\+t {\bfseries Periode} ()
+\item 
+void {\bfseries Periode} (uint16\+\_\+t value)
+\item 
+void {\bfseries Repetion} (uint16\+\_\+t value)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_timer_capture_compare}{Timer\+Capture\+Compare$<$ uint16\+\_\+t, 1 $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t {\bfseries Compare} ()
+\item 
+void {\bfseries Compare} (uint16\+\_\+t value)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_timer_capture_compare}{Timer\+Capture\+Compare$<$ uint16\+\_\+t, 2 $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t {\bfseries Compare} ()
+\item 
+void {\bfseries Compare} (uint16\+\_\+t value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_timer_counter}{Timer\+Counter$<$ uint16\+\_\+t $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Timer\+Counter} (TIM\+\_\+\+Type\+Def \texorpdfstring{$\ast$}{*}timer\+Address)
+\item 
+void {\bfseries Start} ()
+\item 
+void {\bfseries Stop} ()
+\item 
+void {\bfseries Mode} (bool ARPE=false)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_timer_capture_compare}{Timer\+Capture\+Compare$<$ uint16\+\_\+t, 1 $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Timer\+Capture\+Compare} (TIM\+\_\+\+Type\+Def \texorpdfstring{$\ast$}{*}timer\+Address)
+\item 
+void {\bfseries Mode} (e\+Mode mode, bool OCxE=true, bool OCx\+NE=false, bool OCxP=false)
+\item 
+void {\bfseries Output} (bool enable, bool disable\+High=false)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_timer_capture_compare}{Timer\+Capture\+Compare$<$ uint16\+\_\+t, 2 $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Timer\+Capture\+Compare} (TIM\+\_\+\+Type\+Def \texorpdfstring{$\ast$}{*}timer\+Address)
+\item 
+void {\bfseries Mode} (e\+Mode mode, bool OCxE=true, bool OCx\+NE=false, bool OCxP=false)
+\item 
+void {\bfseries Output} (bool enable, bool disable\+High=false)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+os\+STM32\+H7xx/Timers.\+h\end{DoxyCompactItemize}

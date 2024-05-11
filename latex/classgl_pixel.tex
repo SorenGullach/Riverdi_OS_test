@@ -1,0 +1,113 @@
+\doxysection{gl\+Pixel Class Reference}
+\hypertarget{classgl_pixel}{}\label{classgl_pixel}\index{glPixel@{glPixel}}
+Inheritance diagram for gl\+Pixel\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classgl_pixel}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgl_pixel_a800f048f793f75fef283522f664efd78}\label{classgl_pixel_a800f048f793f75fef283522f664efd78} 
+{\bfseries gl\+Pixel} (P\+\_\+t x, P\+\_\+t y, \mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}} \&color)
+\item 
+\Hypertarget{classgl_pixel_ad07d9f49a937c534c9777436839af7e2}\label{classgl_pixel_ad07d9f49a937c534c9777436839af7e2} 
+{\bfseries gl\+Pixel} (P\+\_\+t x, P\+\_\+t y, gl\+Colors color)
+\item 
+\Hypertarget{classgl_pixel_a3ce4949e83766e70226d83d9f6160749}\label{classgl_pixel_a3ce4949e83766e70226d83d9f6160749} 
+{\bfseries gl\+Pixel} (\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&point, \mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}} \&color)
+\item 
+\Hypertarget{classgl_pixel_a0004df1ed0ca0f698752c571446e74c0}\label{classgl_pixel_a0004df1ed0ca0f698752c571446e74c0} 
+{\bfseries gl\+Pixel} (\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&point, gl\+Colors color)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_object}{gl\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries gl\+Object} (char const \texorpdfstring{$\ast$}{*}name, \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} position, \mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}} color)
+\item 
+void {\bfseries Add} (\mbox{\hyperlink{classgl_object}{gl\+Object}} \texorpdfstring{$\ast$}{*}child)
+\item 
+void \mbox{\hyperlink{classgl_object_ab8a7f15f5ca399bb7bc9d3391f7371e8}{Update\+Look}} ()
+\item 
+void \mbox{\hyperlink{classgl_object_af62fd0281f895935bb1b29820deafd3c}{Update\+State}} (\mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point)
+\item 
+void \mbox{\hyperlink{classgl_object_a9a626f3cdd6afe3631b2163f2b1e05aa}{Invalidate}} ()
+\item 
+bool \mbox{\hyperlink{classgl_object_a03b4a8f29f17d2217423f2112559adbf}{Is\+Invalidated}} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&invalid\+Region)
+\item 
+void \mbox{\hyperlink{classgl_object_ab6aa600a4c9ef329bb28880aee67d824}{Event}} (\mbox{\hyperlink{classgl_event}{gl\+Event}} event)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_object_attributes}{gl\+Object\+Attributes}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries gl\+Object\+Attributes} (char const \texorpdfstring{$\ast$}{*}name, \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} position, \mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}} color)
+\item 
+virtual \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Invalid\+Region} ()
+\item 
+void {\bfseries Move} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} pos)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_link}{gl\+Link}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgl_link}{gl\+Link}} \texorpdfstring{$\ast$}{*} {\bfseries Prev} ()
+\item 
+\mbox{\hyperlink{classgl_link}{gl\+Link}} \texorpdfstring{$\ast$}{*} {\bfseries Next} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classgl_pixel_a3ea3386346aae65a3b5b906ee9ac018c}{Redraw}} () override
+\item 
+void \mbox{\hyperlink{classgl_pixel_abdf1a9f970311f6a35b7fb6d8ba33860}{Touch}} (const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classgl_object_attributes}{gl\+Object\+Attributes}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries Im\+Invalidated} = true
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classgl_object_attributes}{gl\+Object\+Attributes}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}} {\bfseries \+\_\+\+Color}
+\item 
+char const  \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+\+Name} = "{}gl\+Object"{}
+\item 
+\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries \+\_\+\+Position}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classgl_link}{gl\+Link}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgl_link}{gl\+Link}} \texorpdfstring{$\ast$}{*} {\bfseries p\+Next} = nullptr
+\item 
+\mbox{\hyperlink{classgl_link}{gl\+Link}} \texorpdfstring{$\ast$}{*} {\bfseries p\+Prev} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgl_pixel_a3ea3386346aae65a3b5b906ee9ac018c}\label{classgl_pixel_a3ea3386346aae65a3b5b906ee9ac018c} 
+\index{glPixel@{glPixel}!Redraw@{Redraw}}
+\index{Redraw@{Redraw}!glPixel@{glPixel}}
+\doxysubsubsection{\texorpdfstring{Redraw()}{Redraw()}}
+{\footnotesize\ttfamily virtual void gl\+Pixel\+::\+Redraw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classgl_object_attributes}{gl\+Object\+Attributes}}.
+
+\Hypertarget{classgl_pixel_abdf1a9f970311f6a35b7fb6d8ba33860}\label{classgl_pixel_abdf1a9f970311f6a35b7fb6d8ba33860} 
+\index{glPixel@{glPixel}!Touch@{Touch}}
+\index{Touch@{Touch}!glPixel@{glPixel}}
+\doxysubsubsection{\texorpdfstring{Touch()}{Touch()}}
+{\footnotesize\ttfamily void gl\+Pixel\+::\+Touch (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classgl_object_attributes}{gl\+Object\+Attributes}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gl\+STM32\+H7xx/gl\+Primitives.\+h\end{DoxyCompactItemize}

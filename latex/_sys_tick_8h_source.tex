@@ -1,0 +1,47 @@
+\doxysection{Sys\+Tick.\+h}
+\hypertarget{_sys_tick_8h_source}{}\label{_sys_tick_8h_source}\index{osSTM32H7xx/SysTick.h@{osSTM32H7xx/SysTick.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ 2024\ Søren Gullach}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ You\ must\ include\ the\ following\ attribution\ in\ all\ copies\ or\ substantial\ portions\ of\ the\ Software:}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ "{}Søren Gullach\ <STM32\_R7\_OS@toolsbox.dk>"{}}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}stm32h7xx.h"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhw_sys_tick}{hwSysTick}}}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Init();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Delay(uint32\_t\ Delay\_ms);}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#ifdef\ DEBUG}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ UnitTest();}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ UnitTest()\ \{\};}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00035\ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ Ticks;}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ osDelay(ms)\ hwSysTick::Delay(ms)}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ osTicks\_ms\ hwSysTick::Ticks}}
+\DoxyCodeLine{00041\ }
+
+\end{DoxyCode}

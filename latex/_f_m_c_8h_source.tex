@@ -1,0 +1,279 @@
+\doxysection{FMC.\+h}
+\hypertarget{_f_m_c_8h_source}{}\label{_f_m_c_8h_source}\index{osSTM32H7xx/FMC.h@{osSTM32H7xx/FMC.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ 2024\ Søren\ Gullach}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ You\ must\ include\ the\ following\ attribution\ in\ all\ copies\ or\ substantial\ portions\ of\ the\ Software:}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ "{}Søren\ Gullach\ <STM32\_R7\_OS@toolsbox.dk>"{}}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}stm32h7xx.h"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <GPIO.h>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <SysTick.h>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <Utils.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <MemoryDefs.h>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhw_f_m_c_s_d_r_a_m}{hwFMCSDRAM}}}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ Init();}
+\DoxyCodeLine{00033\ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ UnitTest()}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}UnitTest\ SDRAM\ start\(\backslash\)n"{}});}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ uint32\_t\ test\ =\ 0x10101010;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ uint32\_t\ *pData\ =\ (uint32\_t\ *)SDRAM\_START;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ uint32\_t\ SizeW\ =\ (uint32\_t)SDRAM\_SIZE\ /\ \textcolor{keyword}{sizeof}(uint32\_t);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}\ \ \ start\ write\(\backslash\)n"{}});}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ uint32\_t\ t\ =\ osTicks\_ms;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ i\ =\ 0;\ i\ <\ SizeW;\ i++)}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ pData[i]\ =\ test;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ t\ =\ osTicks\_ms\ -\/\ t;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}\ \ \ write\ time\ \%d\ \%d\ W/ms\(\backslash\)n"{}},\ t,\ SizeW\ /\ t);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}\ \ \ start\ read\(\backslash\)n"{}});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ t\ =\ osTicks\_ms;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ i\ =\ 0;\ i\ <\ SizeW;\ i++)}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (test\ !=\ pData[i])}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}\ \ \ read\ error\ \%d\(\backslash\)n"{}},\ i);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}\ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}\ \ \ read\ time\ \%d\(\backslash\)n"{}},\ osTicks\_ms\ -\/\ t);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}UnitTest\ SDRAM\ end\(\backslash\)n"{}});}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{const}\ uint32\_t\ REFRESH\_COUNT\ =\ ((uint32\_t)0x0603);\ \textcolor{comment}{/*\ SDRAM\ refresh\ counter\ (100Mhz\ SD\ clock)\ */}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//const\ uint32\_t\ SDRAM\_DEVICE\_ADDR\ =\ SDRAM\_START;}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//const\ uint32\_t\ SDRAM\_DEVICE\_SIZE\ =\ SDRAM\_SIZE;}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eBurstLength\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ LENGTH\_1\ \ \ \ =\ 0U,}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ LENGTH\_2\ \ \ \ =\ 1U,}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ LENGTH\_4\ \ \ \ =\ 2U,}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ LENGTH\_8\ \ \ \ =\ 3U,}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ LENGTH\_FULL\ =\ 7U}
+\DoxyCodeLine{00076\ \ \ \ \ \};}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eBurstType\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ SEQUENTIAL\ \ =\ 0U,}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ INTERLEAVED\ =\ 1U}
+\DoxyCodeLine{00080\ \ \ \ \ \};}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eCAS\_Latency\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ LATENCY\_2\ =\ 2U,}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ LATENCY\_3\ =\ 3U}
+\DoxyCodeLine{00084\ \ \ \ \ \};}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eOperatingMode\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ STANDARD\ =\ 0U}
+\DoxyCodeLine{00087\ \ \ \ \ \};}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eWriteBurstMode\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ PROGRAMMED\ =\ 0U,}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ SINGLE\ \ \ \ \ =\ 1U}
+\DoxyCodeLine{00091\ \ \ \ \ \};}
+\DoxyCodeLine{00092\ \ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eReadPipe}
+\DoxyCodeLine{00094\ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ No\ \ =\ 0B00\ \textcolor{comment}{/*\ fmc\_ker\_ck\ clock\ cycle\ delay\ */},}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ One\ =\ 0B01,}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ Two\ =\ 0B10,}
+\DoxyCodeLine{00098\ \ \ \ \ \};}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eClkConfiguration}
+\DoxyCodeLine{00100\ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ Disabled\ =\ 0B00\ \textcolor{comment}{/*\ Disabled\ */},}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ Periods2\ =\ 0B10\ \textcolor{comment}{/*\ SDCLK\ period\ =\ 2\ x\ fmc\_ker\_ck\ periods\ */},}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ Periods3\ =\ 0B11\ \textcolor{comment}{/*\ SDCLK\ period\ =\ 3\ x\ fmc\_ker\_ck\ periods\ */}}
+\DoxyCodeLine{00104\ \ \ \ \ \};}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eDataBusWidth}
+\DoxyCodeLine{00106\ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ Bits8\ \ =\ 0B00,}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ Bits16\ =\ 0B01,}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ Bits32\ =\ 0B10,}
+\DoxyCodeLine{00110\ \ \ \ \ \};}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eNumberRowAddressBits}
+\DoxyCodeLine{00112\ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ Bits11\ =\ 0b00,}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ Bits12\ =\ 0b01,}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ Bits13\ =\ 0b10}
+\DoxyCodeLine{00116\ \ \ \ \ \};}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eNumberColumnAddressBits}
+\DoxyCodeLine{00118\ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ Bits8\ \ =\ 0b00,}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ Bits9\ \ =\ 0b01,}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ Bits10\ =\ 0b10,}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ Bits11\ =\ 0b11}
+\DoxyCodeLine{00123\ \ \ \ \ \};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ SDBank1\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ SDBank2\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{const}\ eClkConfiguration\ ClkConfiguration\ =\ eClkConfiguration::Periods2;}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ BurstRead\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{const}\ eReadPipe\ ReadPipe\ =\ eReadPipe::No;}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ WriteProtection\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{const}\ eCAS\_Latency\ CASLatency\ =\ eCAS\_Latency::LATENCY\_3;}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ NumberInternalBanks4\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{const}\ eDataBusWidth\ DataBusWidth\ =\ eDataBusWidth::Bits32;}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{const}\ eNumberRowAddressBits\ NumberRowAddressBits\ \ =\ eNumberRowAddressBits::Bits11;}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{const}\ eNumberColumnAddressBits\ NumberColumnAddressBits\ =\ eNumberColumnAddressBits::Bits8;}
+\DoxyCodeLine{00136\ \ \ \ \ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{/*\ SdramTiming\ */}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ RowColumnDelay\ =\ 3;}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ RowPrechargeDelay\ =\ 3;}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ RecoveryDelay\ =\ 4;}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ RowCycleDelay\ =\ 7;}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ SelfRefresTime\ =\ 4;}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ ExitSelfRefreshDelay\ =\ 7;}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ LoadModeRegisterActive\ =\ 3;}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{void}\ Init\_SDRAMDevice();}
+\DoxyCodeLine{00147\ \ \ \ \ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eMemoryModes\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ Normal\_Mode\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0b000,}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ Clock\_Configuration\_Enable\ =\ 0b001,}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ PALL\_Command\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0b010,}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ Auto\_Refresh\_Command\ \ \ \ \ \ \ =\ 0b011,}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ Load\_Mode\_Register\ \ \ \ \ \ \ \ \ =\ 0b100,}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ Self\_Refresh\_Command\ \ \ \ \ \ \ =\ 0b101,}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ Power\_Down\_Command\ \ \ \ \ \ \ \ \ =\ 0b110}
+\DoxyCodeLine{00156\ \ \ \ \ \};}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{void}\ SendCommand(eMemoryModes\ mode,\ \textcolor{keywordtype}{bool}\ bank1,\ \textcolor{keywordtype}{bool}\ bank2,\ uint8\_t\ autoRefreshCycles,\ uint16\_t\ registerDefinition);}
+\DoxyCodeLine{00158\ \ \ \ \ }
+\DoxyCodeLine{00159\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ SDCLK\ \{GPIOG,\ 8,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \ \}}
+\DoxyCodeLine{00160\ \ \ \ \ ;}
+\DoxyCodeLine{00161\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ SDCKE1\ \{GPIOH,\ 7,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \ \}}
+\DoxyCodeLine{00162\ \ \ \ \ ;}
+\DoxyCodeLine{00163\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ SDNE1\ \{GPIOH,\ 6,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ ;}
+\DoxyCodeLine{00165\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ SDNRAS\ \{GPIOF,\ 11,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \ \}}
+\DoxyCodeLine{00166\ \ \ \ \ ;}
+\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ SDNCAS\ \{GPIOG,\ 15,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ ;}
+\DoxyCodeLine{00169\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ SDNWE\ \{GPIOH,\ 5,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ ;}
+\DoxyCodeLine{00171\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ SDNBL0\ \{GPIOE,\ 0,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \ \}}
+\DoxyCodeLine{00172\ \ \ \ \ ;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00173\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ SDNBL1\ \{GPIOE,\ 1,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ ;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00175\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ SDNBL2\ \{GPIOI,\ 4,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \ \}}
+\DoxyCodeLine{00176\ \ \ \ \ ;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00177\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ SDNBL3\ \{GPIOI,\ 5,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ ;}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ SDA[13]\ =\ }
+\DoxyCodeLine{00181\ \ \ \ \ \{\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \{\ GPIOF,\ 0,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ A0\ */},}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \{\ GPIOF,\ 1,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ A1\ */},\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \{\ GPIOF,\ 2,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ A2\ */},\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \{\ GPIOF,\ 3,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ A3\ */},}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \{\ GPIOF,\ 4,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ A4\ */},}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \{\ GPIOF,\ 5,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ A5\ */},}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \{\ GPIOF,\ 12,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ A6\ */},}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \{\ GPIOF,\ 13,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ A7\ */},}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \{\ GPIOF,\ 14,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ A8\ */},}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \{\ GPIOF,\ 15,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ A9\ */},}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \{\ GPIOG,\ 0,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ A10*/},}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \{\ GPIOG,\ 1,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ A11*/},}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \{\ GPIOG,\ 2,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ A12*/}}
+\DoxyCodeLine{00195\ \ \ \ \ \}}
+\DoxyCodeLine{00196\ ;}
+\DoxyCodeLine{00197\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ SDBA[2]\ =\ }
+\DoxyCodeLine{00198\ \ \ \ \ \{\ }
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \{\ GPIOG,\ 4,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ A14\ */},}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \{\ GPIOG,\ 5,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ A15\ */},}
+\DoxyCodeLine{00201\ \ \ \ \ \};}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ SDD[32]\ =\ }
+\DoxyCodeLine{00204\ \ \ \ \ \{\ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \{\ GPIOD,\ 14,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ D0\ */},}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \{\ GPIOD,\ 15,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ D1\ */},}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \{\ GPIOD,\ 0,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ D2\ */},}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \{\ GPIOD,\ 1,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ D3\ */},}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \{\ GPIOE,\ 7,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ D4\ */},}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \{\ GPIOE,\ 8,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ D5\ */},}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \{\ GPIOE,\ 9,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ D6\ */},}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \{\ GPIOE,\ 10,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ D7\ */},}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \{\ GPIOE,\ 11,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ D8\ */},}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \{\ GPIOE,\ 12,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ D9\ */},}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \{\ GPIOE,\ 13,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ D10\ */},}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \{\ GPIOE,\ 14,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ D11\ */},}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \{\ GPIOE,\ 15,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ D12\ */},}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \{\ GPIOD,\ 8,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ D13\ */},}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \{\ GPIOD,\ 9,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ D14\ */},}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \{\ GPIOD,\ 10,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ D15\ */},}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \{\ GPIOH,\ 8,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ D16\ */},}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \{\ GPIOH,\ 9,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ D17\ */},}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \{\ GPIOH,\ 10,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ D18\ */},}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \{\ GPIOH,\ 11,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ D19\ */},}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \{\ GPIOH,\ 12,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ D20\ */},}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \{\ GPIOH,\ 13,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ D21\ */},}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \{\ GPIOH,\ 14,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ D22\ */},}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \{\ GPIOH,\ 15,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ D23\ */},}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \{\ GPIOI,\ 0,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ D24\ */},}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \{\ GPIOI,\ 1,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ D25\ */},}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \{\ GPIOI,\ 2,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ D26\ */},}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \{\ GPIOI,\ 3,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ D27\ */},}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \{\ GPIOI,\ 6,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ D28\ */},}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \{\ GPIOI,\ 7,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ D29\ */},}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \{\ GPIOI,\ 9,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \ \textcolor{comment}{/*\ D30\ */},}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \{\ GPIOI,\ 10,\ 12,\ hwGPIO::ePP::PushPull,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \}\ \ \ \textcolor{comment}{/*\ D31\ */},}
+\DoxyCodeLine{00237\ \ \ \ \ \};}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \};}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhw_f_m_c}{hwFMC}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classhw_f_m_c_s_d_r_a_m}{hwFMCSDRAM}}}
+\DoxyCodeLine{00242\ \{}
+\DoxyCodeLine{00243\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00244\ \ \ \ \ \mbox{\hyperlink{classhw_f_m_c}{hwFMC}}()}
+\DoxyCodeLine{00245\ \ \ \ \ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \}}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordtype}{void}\ Init()}
+\DoxyCodeLine{00248\ \ \ \ \ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Enable\ the\ fmc\ clock}}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ RCC-\/>AHB3ENR\ |=\ RCC\_AHB3ENR\_FMCEN;}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ RCC-\/>AHB3RSTR\ |=\ RCC\_AHB3RSTR\_FMCRST;}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ RCC-\/>AHB3RSTR\ \&=\ \string~RCC\_AHB3RSTR\_FMCRST;}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ select\ PLL\ r2,\ see\ also\ RCC\ Setup}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ ModifyReg(RCC-\/>D1CCIPR,\ RCC\_D1CCIPR\_FMCSEL\_Msk,\ 0B10\ <<\ RCC\_D1CCIPR\_FMCSEL\_Pos);}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ disable\ FMC}}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ ModifyReg(FMC\_Bank1\_R-\/>BTCR[0],\ }
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ FMC\_BCR1\_FMCEN\_Msk\ |}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ FMC\_BCR1\_BMAP\_Msk,}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ 0);}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ hwFMCSDRAM::Init();}
+\DoxyCodeLine{00264\ \ \ \ \ \}}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{keywordtype}{void}\ UnitTest()}
+\DoxyCodeLine{00267\ \ \ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ hwFMCSDRAM::UnitTest();}
+\DoxyCodeLine{00269\ \ \ \ \ \}}
+\DoxyCodeLine{00270\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00271\ \ \ \ \ }
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,124 @@
+\doxysection{gl\+Main.\+h}
+\hypertarget{gl_main_8h_source}{}\label{gl_main_8h_source}\index{glSTM32H7xx/glMain.h@{glSTM32H7xx/glMain.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ 2024\ Søren\ Gullach}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ You\ must\ include\ the\ following\ attribution\ in\ all\ copies\ or\ substantial\ portions\ of\ the\ Software:}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ "{}Søren\ Gullach\ <STM32\_R7\_OS@toolsbox.dk>"{}}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}glPrimitives.h"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}glButton.h"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}TFTDisplay.h"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}TPDisplay.h"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}glPage.h"{}}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_main}{glMain}}\ :\ \textcolor{keyword}{protected}\ \mbox{\hyperlink{classgl_video_memory}{glVideoMemory}},\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classcb_display}{cbDisplay}}}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ Init()}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ Display.Init(\textcolor{keyword}{this});\ \textcolor{comment}{//\ the\ display}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ Touch.Init(\textcolor{keyword}{this});\ \textcolor{comment}{//\ for\ touch\ control}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ size\ of\ the\ display\ +\ Display\ buffer}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ glVideoMemory::Init(Display.Width(),\ Display.Height(),\ (\mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ *)SDRAM\_START);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ back\ color\ for\ background}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ bg\ =\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(glColors::GREEN);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ Display.BackgroundColor(bg.R,\ bg.G,\ bg.B);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ layer}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ Display.Layer(1,\ pVM,\ 0,\ 0,\ 0\ +\ Width,\ 0\ +\ Height);}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ blending}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ Display.BlendingFactors(1,\ eBlendingFactor1::F1\_CA,\ eBlendingFactor2::F2\_CA,\ 255);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ df\ =\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(glColors::RED);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ Display.DefaultColor(1,\ df.A,\ df.R,\ df.G,\ df.B);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ ck\ =\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(glColors::BLACK);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ Display.ColorKey(1,\ ck.R,\ ck.G,\ ck.B);}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ AddPage(\mbox{\hyperlink{classgl_page}{glPage}}\ *page)}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ page-\/>PosSize(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ Display.Width()\ -\/\ 1,\ Display.Height()\ -\/\ 1));}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ ChainPages.Add(page);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//page-\/>Init();}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrentPage\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ pCurrentPage\ =\ ChainPages.Head();}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ Display\ to\ draw\ on}}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{class_t_f_t_display}{TFTDisplay}}\ Display;}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ Touch\ control}}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{class_c_t_p_display}{CTPDisplay}}\ Touch;}
+\DoxyCodeLine{00070\ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{classgl_chain}{glChain<glPage>}}\ ChainPages;}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classgl_page}{glPage}}\ *pCurrentPage\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00073\ \ \ \ \ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ cbTouch(\mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&point)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00076\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrentPage\ ==\ \textcolor{keyword}{nullptr})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ pCurrentPage-\/>UpdateState(point);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (pCurrentPage-\/>EventAction.EventType)}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ glEvent::eEventType::Click:}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ glEvent::eEventType::Slide:}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrentPage-\/>EventAction.U.Slide.Action\ ==\ glTouchPoint\_t::Right\ \&\&\ pCurrentPage-\/>Prev()\ !=\ \textcolor{keyword}{nullptr})\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{classgl_page}{glPage}}\ *)pCurrentPage-\/>Prev())-\/>Invalidate();}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pCurrentPage-\/>EventAction.U.Slide.Action\ =\ glTouchPoint\_t::None;\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pCurrentPage\ =\ (\mbox{\hyperlink{classgl_page}{glPage}}\ *)(pCurrentPage-\/>Prev());}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Printf("{}\%s\ Currentpage\(\backslash\)n"{},\ pCurrentPage-\/>Name);}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrentPage-\/>EventAction.U.Slide.Action\ ==\ glTouchPoint\_t::Left\ \&\&\ pCurrentPage-\/>Next()\ !=\ \textcolor{keyword}{nullptr})\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{classgl_page}{glPage}}\ *)pCurrentPage-\/>Next())-\/>Invalidate();}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pCurrentPage-\/>EventAction.U.Slide.Action\ =\ glTouchPoint\_t::None;\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pCurrentPage\ =\ (\mbox{\hyperlink{classgl_page}{glPage}}\ *)(pCurrentPage-\/>Next());}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Printf("{}\%s\ Currentpage\(\backslash\)n"{},\ pCurrentPage-\/>Name);}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ glEvent::eEventType::None:}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ pCurrentPage-\/>EventAction.EventType\ =\ glEvent::eEventType::None;}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ cbBlanking()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00107\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrentPage\ ==\ \textcolor{keyword}{nullptr})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!pCurrentPage-\/>IsInvalidated(glVideoMemory::Region))\ \textcolor{comment}{//\ returns\ an\ invalidated\ region}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ glVideoMemory::LimitRegion();}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ pCurrentPage-\/>UpdateLook();}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ glVideoMemory::NextRegion();}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \};}
+\DoxyCodeLine{00118\ }
+
+\end{DoxyCode}

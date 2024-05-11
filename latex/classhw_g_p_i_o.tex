@@ -1,0 +1,97 @@
+\doxysection{hw\+GPIO Class Reference}
+\hypertarget{classhw_g_p_i_o}{}\label{classhw_g_p_i_o}\index{hwGPIO@{hwGPIO}}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhw_g_p_i_o_a1f9adc845e5da8ad2cc11dcc439eafde}\label{classhw_g_p_i_o_a1f9adc845e5da8ad2cc11dcc439eafde} 
+enum class {\bfseries e\+Mode} \{ \newline
+{\bfseries Input} = 0b00
+, {\bfseries Output} = 0b01
+, {\bfseries Analog} = 0b11
+, {\bfseries Int\+\_\+\+Falling} = 0b0100
+, \newline
+{\bfseries Int\+\_\+\+Rising} = 0b1000
+, {\bfseries Int\+\_\+\+Both} = 0b1100
+ \}
+\item 
+\Hypertarget{classhw_g_p_i_o_a4ac8e33c7505c8b1e5ddb809b7bf48ae}\label{classhw_g_p_i_o_a4ac8e33c7505c8b1e5ddb809b7bf48ae} 
+enum class {\bfseries e\+PP} \{ {\bfseries Float} = 0b0
+, {\bfseries Push\+Pull} = 0b0
+, {\bfseries Open\+Drian} = 0b1
+ \}
+\item 
+\Hypertarget{classhw_g_p_i_o_a948f9ad1326d52abfbae3863f34b4c69}\label{classhw_g_p_i_o_a948f9ad1326d52abfbae3863f34b4c69} 
+enum class {\bfseries e\+PUPD} \{ {\bfseries None} = 0b00
+, {\bfseries Pull\+Up} = 0b01
+, {\bfseries Pull\+Down} = 0b10
+ \}
+\item 
+\Hypertarget{classhw_g_p_i_o_acd8891d37fa3ecf6ec6e01fb5e527adc}\label{classhw_g_p_i_o_acd8891d37fa3ecf6ec6e01fb5e527adc} 
+enum class {\bfseries e\+Speed} \{ {\bfseries Low} = 0b00
+, {\bfseries Medium} = 0b01
+, {\bfseries High} = 0b10
+, {\bfseries Very\+High} = 0b11
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhw_g_p_i_o_ac7152966bd0284fe4570ae92c38a9224}\label{classhw_g_p_i_o_ac7152966bd0284fe4570ae92c38a9224} 
+{\bfseries hw\+GPIO} (GPIO\+\_\+\+Type\+Def \texorpdfstring{$\ast$}{*}pgpio, \mbox{\hyperlink{struct_r__t}{R\+\_\+t}}$<$ uint8\+\_\+t, 0, 15 $>$pin)
+\item 
+\Hypertarget{classhw_g_p_i_o_adb9a5c22bb2925869a71222c0c4273a6}\label{classhw_g_p_i_o_adb9a5c22bb2925869a71222c0c4273a6} 
+{\bfseries hw\+GPIO} (GPIO\+\_\+\+Type\+Def \texorpdfstring{$\ast$}{*}pgpio, \mbox{\hyperlink{struct_r__t}{R\+\_\+t}}$<$ uint8\+\_\+t, 0, 15 $>$pin, e\+Mode mode, e\+PP pp=e\+PP\+::\+Float, e\+PUPD pupd=e\+PUPD\+::\+None, e\+Speed speed=e\+Speed\+::\+High)
+\item 
+\Hypertarget{classhw_g_p_i_o_a90dd84ab348843bbd24326f7be2187bf}\label{classhw_g_p_i_o_a90dd84ab348843bbd24326f7be2187bf} 
+{\bfseries hw\+GPIO} (GPIO\+\_\+\+Type\+Def \texorpdfstring{$\ast$}{*}pgpio, \mbox{\hyperlink{struct_r__t}{R\+\_\+t}}$<$ uint8\+\_\+t, 0, 15 $>$pin, \mbox{\hyperlink{struct_r__t}{R\+\_\+t}}$<$ uint8\+\_\+t, 0, 15 $>$af, e\+PP pp=e\+PP\+::\+Float, e\+PUPD pupd=e\+PUPD\+::\+None, e\+Speed speed=e\+Speed\+::\+High)
+\item 
+\Hypertarget{classhw_g_p_i_o_a918b6d5a5e1210fea689ca8f60ea30d3}\label{classhw_g_p_i_o_a918b6d5a5e1210fea689ca8f60ea30d3} 
+void {\bfseries Init} (GPIO\+\_\+\+Type\+Def \texorpdfstring{$\ast$}{*}pgpio, \mbox{\hyperlink{struct_r__t}{R\+\_\+t}}$<$ uint8\+\_\+t, 0, 15 $>$pin, e\+Mode mode, e\+PP pp=e\+PP\+::\+Float, e\+PUPD pupd=e\+PUPD\+::\+None, e\+Speed speed=e\+Speed\+::\+High)
+\item 
+\Hypertarget{classhw_g_p_i_o_adbadb20e1be0bc28df231a351f090f10}\label{classhw_g_p_i_o_adbadb20e1be0bc28df231a351f090f10} 
+void {\bfseries Init} (GPIO\+\_\+\+Type\+Def \texorpdfstring{$\ast$}{*}pgpio, \mbox{\hyperlink{struct_r__t}{R\+\_\+t}}$<$ uint8\+\_\+t, 0, 15 $>$pin, \mbox{\hyperlink{struct_r__t}{R\+\_\+t}}$<$ uint8\+\_\+t, 0, 15 $>$af, e\+PP pp=e\+PP\+::\+Float, e\+PUPD pupd=e\+PUPD\+::\+None, e\+Speed speed=e\+Speed\+::\+High)
+\item 
+\Hypertarget{classhw_g_p_i_o_a5e52e44d94d563ff688395b21081c5b0}\label{classhw_g_p_i_o_a5e52e44d94d563ff688395b21081c5b0} 
+void {\bfseries On} ()
+\item 
+\Hypertarget{classhw_g_p_i_o_a54062e9fcd36aef4318d5f21076f87fb}\label{classhw_g_p_i_o_a54062e9fcd36aef4318d5f21076f87fb} 
+void {\bfseries Off} ()
+\item 
+\Hypertarget{classhw_g_p_i_o_acc8b90e21ef35afac4090ea3cb973839}\label{classhw_g_p_i_o_acc8b90e21ef35afac4090ea3cb973839} 
+void {\bfseries High} ()
+\item 
+\Hypertarget{classhw_g_p_i_o_a6aa7630de36e58e8679d9ae49facd69a}\label{classhw_g_p_i_o_a6aa7630de36e58e8679d9ae49facd69a} 
+void {\bfseries Low} ()
+\item 
+\Hypertarget{classhw_g_p_i_o_a4389b5c4c865d65a33fe14361524e611}\label{classhw_g_p_i_o_a4389b5c4c865d65a33fe14361524e611} 
+void {\bfseries Set} ()
+\item 
+\Hypertarget{classhw_g_p_i_o_a549b9209a8203ae379c5f817378c2328}\label{classhw_g_p_i_o_a549b9209a8203ae379c5f817378c2328} 
+void {\bfseries Reset} ()
+\item 
+\Hypertarget{classhw_g_p_i_o_a6eaf968906b094dbfa372c044eca7e11}\label{classhw_g_p_i_o_a6eaf968906b094dbfa372c044eca7e11} 
+void {\bfseries Toggle} ()
+\item 
+\Hypertarget{classhw_g_p_i_o_a0efa4d50bf5889e32ecaa3d65020eb44}\label{classhw_g_p_i_o_a0efa4d50bf5889e32ecaa3d65020eb44} 
+bool {\bfseries Level} ()
+\item 
+\Hypertarget{classhw_g_p_i_o_a0ed7c4cfd239e444e35eaa347114c756}\label{classhw_g_p_i_o_a0ed7c4cfd239e444e35eaa347114c756} 
+void {\bfseries Level} (bool l)
+\item 
+\Hypertarget{classhw_g_p_i_o_aeb720600f49ed1debde1712ed51b6fc4}\label{classhw_g_p_i_o_aeb720600f49ed1debde1712ed51b6fc4} 
+bool {\bfseries Is\+High} ()
+\item 
+\Hypertarget{classhw_g_p_i_o_a72d5d80fd7592a23f21c3bba12e285a8}\label{classhw_g_p_i_o_a72d5d80fd7592a23f21c3bba12e285a8} 
+bool {\bfseries Is\+Low} ()
+\item 
+\Hypertarget{classhw_g_p_i_o_a6b1e253f3d6f63a4d1816a75b6daa912}\label{classhw_g_p_i_o_a6b1e253f3d6f63a4d1816a75b6daa912} 
+bool {\bfseries Is\+On} ()
+\item 
+\Hypertarget{classhw_g_p_i_o_a5d934b934a82a53d75279410619e4195}\label{classhw_g_p_i_o_a5d934b934a82a53d75279410619e4195} 
+bool {\bfseries Is\+Off} ()
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+os\+STM32\+H7xx/GPIO.\+h\end{DoxyCompactItemize}

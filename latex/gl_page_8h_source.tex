@@ -1,0 +1,143 @@
+\doxysection{gl\+Page.\+h}
+\hypertarget{gl_page_8h_source}{}\label{gl_page_8h_source}\index{glSTM32H7xx/glPage.h@{glSTM32H7xx/glPage.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ 2024\ Søren\ Gullach}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ You\ must\ include\ the\ following\ attribution\ in\ all\ copies\ or\ substantial\ portions\ of\ the\ Software:}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ "{}Søren\ Gullach\ <STM32\_R7\_OS@toolsbox.dk>"{}}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}glPrimitives.h"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ a\ GUI\ consists\ of\ pages}}
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_page}{glPage}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_object_attributes}{glObjectAttributes}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_link}{glLink}}}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classgl_page}{glPage}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name)}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object_attributes}{glObjectAttributes}}(name,\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}())}
+\DoxyCodeLine{00030\ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ \ virtual\ void\ Init()\ override}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ \ \{}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ \ \}}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ Add\ a\ object\ to\ the\ page}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ Add(\mbox{\hyperlink{classgl_object}{glObject}}\ *page)}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ ChainObjects.Add(page);}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ PosSize(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ pos)}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \_Position\ =\ pos;}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ called\ down\ link\ to\ redraw}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateLook()}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ Redraw();\ \textcolor{comment}{//\ draw\ this\ object}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ objects}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ChainObjects.Head()\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ ChainObjects.Head()-\/>UpdateLook();}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ called\ down\ link\ to\ update\ state}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateState(\mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&point)}
+\DoxyCodeLine{00058\ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ Touch(point);\ \textcolor{comment}{//\ send\ touch}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ objects}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ChainObjects.Head()\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ ChainObjects.Head()-\/>UpdateState(point);}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ Invalidate()}
+\DoxyCodeLine{00067\ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Printf("{}\%s\ Invalidate\(\backslash\)n"{},\ Name);}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ ImInvalidated\ =\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ this\ page}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ChainObjects.Head()\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ ChainObjects.Head()-\/>Invalidate();\ \textcolor{comment}{//\ a\ all\ objects}}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsInvalidated(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ \&invalidRegion)}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Invalid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ImInvalidated)}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ invalidRegion\ =\ invalidRegion.Union(InvalidRegion());}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ Invalid\ =\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ all\ childern\ is\ also\ invalid}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (ChainObjects.Head()\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ask\ all\ objs}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ Invalid\ =\ ChainObjects.Head()-\/>IsInvalidated(invalidRegion);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Invalid;}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Redraw()\ \textcolor{keyword}{final}}
+\DoxyCodeLine{00091\ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ImInvalidated)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(\_Position.Intersection(glVideoMemory::Region),\ \_Color).Draw();}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(glVideoMemory::lastBand())\ ImInvalidated\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Touch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&point)\ \textcolor{keyword}{final}}
+\DoxyCodeLine{00099\ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (InSlide)}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (point.TipAction\ ==\ glTouchPoint\_t::eTipAction::Up)}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InSlide\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}\%s\ \%s\(\backslash\)n"{}},\ \_Name,\ InSlide\ ?\ \textcolor{stringliteral}{"{}InSlide"{}}\ :\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (point.SlideAction\ ==\ glTouchPoint\_t::eSlideAction::Right\ \&\&\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ EventAction.U.Slide.Action\ !=\ glTouchPoint\_t::Right)\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ InSlide\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}\%s\ slide\ right\(\backslash\)n"{}},\ \_Name);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ EventAction.EventType\ =\ glEvent::eEventType::Slide;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ EventAction.U.Slide.Action\ =\ glTouchPoint\_t::Right;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ Event(EventAction);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (point.SlideAction\ ==\ glTouchPoint\_t::eSlideAction::Left\ \&\&\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ EventAction.U.Slide.Action\ !=\ glTouchPoint\_t::Left)\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ InSlide\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}\%s\ slide\ left\(\backslash\)n"{}},\ \_Name);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ EventAction.EventType\ =\ glEvent::eEventType::Slide;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ EventAction.U.Slide.Action\ =\ glTouchPoint\_t::Left;}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ Event(EventAction);}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{comment}{//\ buble\ event\ to\ top}}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{void}\ Event(\mbox{\hyperlink{classgl_event}{glEvent}}\ event)}
+\DoxyCodeLine{00128\ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}\%s\ Event\(\backslash\)n"{}},\ \_Name);}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ EventAction\ =\ event;}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \mbox{\hyperlink{classgl_event}{glEvent}}\ EventAction;}
+\DoxyCodeLine{00134\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00135\ \ \ \ \ \mbox{\hyperlink{classgl_chain}{glChain<glObject>}}\ ChainObjects;}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{bool}\ InSlide\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00137\ \};}
+
+\end{DoxyCode}

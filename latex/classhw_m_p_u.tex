@@ -1,0 +1,90 @@
+\doxysection{hw\+MPU Class Reference}
+\hypertarget{classhw_m_p_u}{}\label{classhw_m_p_u}\index{hwMPU@{hwMPU}}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhw_m_p_u_a6fb488b1d37b6370ca991f845bfd294c}\label{classhw_m_p_u_a6fb488b1d37b6370ca991f845bfd294c} 
+enum class {\bfseries e\+Access\+Permission} \{ \newline
+{\bfseries No\+Access} = 0
+, {\bfseries PRW} = 1
+, {\bfseries PRW\+\_\+\+URO} = 2
+, {\bfseries PRW\+\_\+\+URW} = 3
+, \newline
+{\bfseries PRO} = 5
+, {\bfseries PRO\+\_\+\+URO} = 6
+ \}
+\item 
+\Hypertarget{classhw_m_p_u_a0463ae3a8f1fe2ed23c0910532bc30c9}\label{classhw_m_p_u_a0463ae3a8f1fe2ed23c0910532bc30c9} 
+enum class {\bfseries e\+Tex\+Level} \{ {\bfseries Level0} = 0
+, {\bfseries Level1} = 1
+, {\bfseries Level2} = 2
+ \}
+\item 
+\Hypertarget{classhw_m_p_u_ad481eb038fa892b3648b9d1ee9149eb4}\label{classhw_m_p_u_ad481eb038fa892b3648b9d1ee9149eb4} 
+enum class {\bfseries e\+Size} \{ \newline
+{\bfseries S32B} = 0x04
+, {\bfseries S64B} = 0x05
+, {\bfseries S128B} = 0x06
+, {\bfseries S256B} = 0x07
+, \newline
+{\bfseries S512B} = 0x08
+, {\bfseries S1\+KB} = 0x09
+, {\bfseries S2\+KB} = 0x0A
+, {\bfseries S4\+KB} = 0x0B
+, \newline
+{\bfseries S8\+KB} = 0x0C
+, {\bfseries S16\+KB} = 0x0D
+, {\bfseries S32\+KB} = 0x0E
+, {\bfseries S64\+KB} = 0x0F
+, \newline
+{\bfseries S128\+KB} = 0x10
+, {\bfseries S256\+KB} = 0x11
+, {\bfseries S512\+KB} = 0x12
+, {\bfseries S1\+MB} = 0x13
+, \newline
+{\bfseries S2\+MB} = 0x14
+, {\bfseries S4\+MB} = 0x15
+, {\bfseries S8\+MB} = 0x16
+, {\bfseries S16\+MB} = 0x17
+, \newline
+{\bfseries S32\+MB} = 0x18
+, {\bfseries S64\+MB} = 0x19
+, {\bfseries S128\+MB} = 0x1A
+, {\bfseries S256\+MB} = 0x1B
+, \newline
+{\bfseries S512\+MB} = 0x1C
+, {\bfseries S1\+GB} = 0x1D
+, {\bfseries S2\+GB} = 0x1E
+, {\bfseries S4\+GB} = 0x1F
+ \}
+\item 
+\Hypertarget{classhw_m_p_u_a6991f500b5b0e9f0ae038a90e55b7800}\label{classhw_m_p_u_a6991f500b5b0e9f0ae038a90e55b7800} 
+enum class {\bfseries e\+Control\+Mode\+\_\+\+Hartfault} \{ {\bfseries None} = 0
+, {\bfseries Hart\+Fault\+\_\+\+NMI} = 1
+ \}
+\item 
+\Hypertarget{classhw_m_p_u_ac4579b4afa90d4da42f9c0e96aa4b62f}\label{classhw_m_p_u_ac4579b4afa90d4da42f9c0e96aa4b62f} 
+enum class {\bfseries e\+Control\+Mode\+\_\+\+Privileged} \{ {\bfseries None} = 0
+, {\bfseries Privileged\+\_\+default} = 1
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhw_m_p_u_a21edc3683b4f1ac0365dc40f990bf8c5}\label{classhw_m_p_u_a21edc3683b4f1ac0365dc40f990bf8c5} 
+static void {\bfseries Disable\+Region} (uint8\+\_\+t no, uint32\+\_\+t address)
+\item 
+\Hypertarget{classhw_m_p_u_acd5482d248c425ef4b62e8e38dd50665}\label{classhw_m_p_u_acd5482d248c425ef4b62e8e38dd50665} 
+static void {\bfseries Enable\+Region} (uint8\+\_\+t no, uint32\+\_\+t address, e\+Size size, bool execute\+Never, bool shareable, bool cacheable, bool bufferable, e\+Access\+Permission access\+Permission, e\+Tex\+Level tex\+Level)
+\item 
+\Hypertarget{classhw_m_p_u_accdae3cb2975d530146406da5be19bcc}\label{classhw_m_p_u_accdae3cb2975d530146406da5be19bcc} 
+static void {\bfseries Enable} (e\+Control\+Mode\+\_\+\+Hartfault hartfault, e\+Control\+Mode\+\_\+\+Privileged privileged)
+\item 
+\Hypertarget{classhw_m_p_u_a7cb82c6ae4ff22b62f56793f5e7ca41f}\label{classhw_m_p_u_a7cb82c6ae4ff22b62f56793f5e7ca41f} 
+static void {\bfseries Disable} ()
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+os\+STM32\+H7xx/MPU.\+h\end{DoxyCompactItemize}

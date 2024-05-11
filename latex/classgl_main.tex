@@ -1,0 +1,80 @@
+\doxysection{gl\+Main Class Reference}
+\hypertarget{classgl_main}{}\label{classgl_main}\index{glMain@{glMain}}
+Inheritance diagram for gl\+Main\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classgl_main}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgl_main_a5b990ce123dc179bcb527c76787dacfa}\label{classgl_main_a5b990ce123dc179bcb527c76787dacfa} 
+void {\bfseries Init} ()
+\item 
+\Hypertarget{classgl_main_aef8f3d6c0367ddd0382e367f4f6b0439}\label{classgl_main_aef8f3d6c0367ddd0382e367f4f6b0439} 
+void {\bfseries Add\+Page} (\mbox{\hyperlink{classgl_page}{gl\+Page}} \texorpdfstring{$\ast$}{*}page)
+\item 
+void \mbox{\hyperlink{classgl_main_ab86832b66f825b77d86d114213373be3}{cb\+Touch}} (\mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point) override
+\item 
+void \mbox{\hyperlink{classgl_main_aa3bbbd92f5f8500d8f81224270a42fbf}{cb\+Blanking}} () override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Protected Member Functions inherited from \mbox{\hyperlink{classgl_video_memory}{gl\+Video\+Memory}}}
+\begin{DoxyCompactItemize}
+\item 
+static bool {\bfseries last\+Band} ()
+\item 
+static void {\bfseries Limit\+Region} ()
+\item 
+static void {\bfseries Next\+Region} ()
+\item 
+static void {\bfseries Init} (const P\+\_\+t w, const P\+\_\+t h, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*}pvm)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classgl_video_memory}{gl\+Video\+Memory}}}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*} {\bfseries p\+VM}
+\item 
+static P\+\_\+t {\bfseries Width}
+\item 
+static P\+\_\+t {\bfseries Height}
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+static P\+\_\+t {\bfseries ls}
+\item 
+static P\+\_\+t {\bfseries y\+Start}
+\item 
+static P\+\_\+t {\bfseries y\+End}
+\item 
+static \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Region}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgl_main_aa3bbbd92f5f8500d8f81224270a42fbf}\label{classgl_main_aa3bbbd92f5f8500d8f81224270a42fbf} 
+\index{glMain@{glMain}!cbBlanking@{cbBlanking}}
+\index{cbBlanking@{cbBlanking}!glMain@{glMain}}
+\doxysubsubsection{\texorpdfstring{cbBlanking()}{cbBlanking()}}
+{\footnotesize\ttfamily void gl\+Main\+::cb\+Blanking (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcb_display}{cb\+Display}}.
+
+\Hypertarget{classgl_main_ab86832b66f825b77d86d114213373be3}\label{classgl_main_ab86832b66f825b77d86d114213373be3} 
+\index{glMain@{glMain}!cbTouch@{cbTouch}}
+\index{cbTouch@{cbTouch}!glMain@{glMain}}
+\doxysubsubsection{\texorpdfstring{cbTouch()}{cbTouch()}}
+{\footnotesize\ttfamily void gl\+Main\+::cb\+Touch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&}]{point }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcb_display}{cb\+Display}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gl\+STM32\+H7xx/gl\+Main.\+h\end{DoxyCompactItemize}

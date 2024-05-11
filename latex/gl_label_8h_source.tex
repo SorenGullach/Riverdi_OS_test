@@ -1,0 +1,81 @@
+\doxysection{gl\+Label.\+h}
+\hypertarget{gl_label_8h_source}{}\label{gl_label_8h_source}\index{glSTM32H7xx/glLabel.h@{glSTM32H7xx/glLabel.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ 2024\ Søren Gullach}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ You\ must\ include\ the\ following\ attribution\ in\ all\ copies\ or\ substantial\ portions\ of\ the\ Software:}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ "{}Søren Gullach\ <STM32\_R7\_OS@toolsbox.dk>"{}}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}glPrimitives.h"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_label}{glLabel}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_object}{glObject}}}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classgl_label}{glLabel}}()}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Label"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}())\ \{\}}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classgl_label}{glLabel}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ pos,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ backColor\ =\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(glColors::BLUE))}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Label"{}},\ pos,\ backColor)\ }
+\DoxyCodeLine{00031\ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ BorderWidth\ =\ std::min(pos.Width(),\ pos.Height())\ /\ 10;}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classgl_label}{glLabel}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ pos,\ P\_t\ borderWidth,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ backColor\ =\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(glColors::BLUE))}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Label"{}},\ pos,\ backColor)\ }
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ assert(borderWidth\ <\ pos.Height()\ /\ 2);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ assert(borderWidth\ <\ pos.Width()\ /\ 2);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ BorderWidth\ =\ borderWidth;}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ BackColor(\mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ color)\ \ \ \ \{\ \_Color\ =\ color;\ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ Called\ upon\ touch\ change}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Touch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00046\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ redraw\ your\ self}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ return\ true\ if\ anything\ done}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Redraw()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00052\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ImInvalidated)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(\_Position.Inflate(-\/BorderWidth),\ glColors::CYAN).Draw();}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ \ \ \ \ \ glRectangleFill(\_Position.Inflate(-\/BorderWidth),\ \_Color).Draw(invalidRegion);}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (P\_t\ i\ =\ 0;\ i\ <\ BorderWidth;\ i++)}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round}{glRectangleRound}}(\_Position.Inflate(-\/i),\ 2*BorderWidth\ -\/\ i,\ BorderColor).Draw();}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (glVideoMemory::lastBand())\ ImInvalidated\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ InvalidRegion()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_Position.Inflate(-\/BorderWidth);}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00071\ \ \ \ \ P\_t\ BorderWidth\ =\ 0;}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ BorderColor\ =\ \{\ 255,\ 255,\ 255\ \};}
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ ;}
+\DoxyCodeLine{00075\ }
+
+\end{DoxyCode}

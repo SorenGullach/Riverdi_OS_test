@@ -1,0 +1,943 @@
+
+#include "GUIFont.h"
+
+extern const uint8_t Arial_18_1_Pixels[];
+
+// Font index for Arial_18_1
+const FontItem Arial_18_1[] = {
+	{ // Char "!" 
+		'!', 		// This char
+		5,20, 		// Width and height of the image
+		1,4,3,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+0), // Data offset
+	},
+	{ // Char """ 
+		'"', 		// This char
+		6,20, 		// Width and height of the image
+		0,4,5,8, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,5, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+13), // Data offset
+	},
+	{ // Char "#" 
+		'#', 		// This char
+		10,20, 		// Width and height of the image
+		0,4,9,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+18), // Data offset
+	},
+	{ // Char "$" 
+		'$', 		// This char
+		10,20, 		// Width and height of the image
+		0,3,9,18, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,16, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+44), // Data offset
+	},
+	{ // Char "%" 
+		'%', 		// This char
+		16,20, 		// Width and height of the image
+		1,4,14,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+76), // Data offset
+	},
+	{ // Char "&" 
+		'&', 		// This char
+		12,20, 		// Width and height of the image
+		0,4,10,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+102), // Data offset
+	},
+	{ // Char "'" 
+		'\'', 		// This char
+		3,20, 		// Width and height of the image
+		0,4,2,8, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,5, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+128), // Data offset
+	},
+	{ // Char "(" 
+		'(', 		// This char
+		5,20, 		// Width and height of the image
+		1,4,4,19, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,16, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+133), // Data offset
+	},
+	{ // Char ")" 
+		')', 		// This char
+		5,20, 		// Width and height of the image
+		1,4,4,19, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,16, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+149), // Data offset
+	},
+	{ // Char "*" 
+		'*', 		// This char
+		7,20, 		// Width and height of the image
+		0,4,6,8, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,5, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+165), // Data offset
+	},
+	{ // Char "+" 
+		'+', 		// This char
+		10,20, 		// Width and height of the image
+		1,7,9,14, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,8, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+170), // Data offset
+	},
+	{ // Char "," 
+		',', 		// This char
+		5,20, 		// Width and height of the image
+		1,15,3,19, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,5, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+186), // Data offset
+	},
+	{ // Char "-" 
+		'-', 		// This char
+		5,20, 		// Width and height of the image
+		0,12,4,13, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,2, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+191), // Data offset
+	},
+	{ // Char "." 
+		'.', 		// This char
+		5,20, 		// Width and height of the image
+		1,15,3,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,2, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+193), // Data offset
+	},
+	{ // Char "/" 
+		'/', 		// This char
+		5,20, 		// Width and height of the image
+		0,4,4,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+195), // Data offset
+	},
+	{ // Char "0" 
+		'0', 		// This char
+		10,20, 		// Width and height of the image
+		0,4,9,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+208), // Data offset
+	},
+	{ // Char "1" 
+		'1', 		// This char
+		10,20, 		// Width and height of the image
+		2,4,6,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+234), // Data offset
+	},
+	{ // Char "2" 
+		'2', 		// This char
+		10,20, 		// Width and height of the image
+		0,4,8,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+260), // Data offset
+	},
+	{ // Char "3" 
+		'3', 		// This char
+		10,20, 		// Width and height of the image
+		0,4,9,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+286), // Data offset
+	},
+	{ // Char "4" 
+		'4', 		// This char
+		10,20, 		// Width and height of the image
+		0,4,9,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+312), // Data offset
+	},
+	{ // Char "5" 
+		'5', 		// This char
+		10,20, 		// Width and height of the image
+		0,4,9,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+338), // Data offset
+	},
+	{ // Char "6" 
+		'6', 		// This char
+		10,20, 		// Width and height of the image
+		0,4,9,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+364), // Data offset
+	},
+	{ // Char "7" 
+		'7', 		// This char
+		10,20, 		// Width and height of the image
+		0,4,9,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+390), // Data offset
+	},
+	{ // Char "8" 
+		'8', 		// This char
+		10,20, 		// Width and height of the image
+		0,4,9,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+416), // Data offset
+	},
+	{ // Char "9" 
+		'9', 		// This char
+		10,20, 		// Width and height of the image
+		0,4,9,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+442), // Data offset
+	},
+	{ // Char ":" 
+		':', 		// This char
+		5,20, 		// Width and height of the image
+		1,8,3,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,9, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+468), // Data offset
+	},
+	{ // Char ";" 
+		';', 		// This char
+		5,20, 		// Width and height of the image
+		1,8,3,19, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,12, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+477), // Data offset
+	},
+	{ // Char "<" 
+		'<', 		// This char
+		10,20, 		// Width and height of the image
+		1,6,9,14, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,9, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+489), // Data offset
+	},
+	{ // Char "=" 
+		'=', 		// This char
+		10,20, 		// Width and height of the image
+		1,8,9,13, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,6, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+507), // Data offset
+	},
+	{ // Char ">" 
+		'>', 		// This char
+		10,20, 		// Width and height of the image
+		1,6,9,14, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,9, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+519), // Data offset
+	},
+	{ // Char "?" 
+		'?', 		// This char
+		10,20, 		// Width and height of the image
+		1,4,9,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+537), // Data offset
+	},
+	{ // Char "@" 
+		'@', 		// This char
+		18,20, 		// Width and height of the image
+		1,4,17,19, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		3,16, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+563), // Data offset
+	},
+	{ // Char "A" 
+		'A', 		// This char
+		12,20, 		// Width and height of the image
+		0,4,11,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+611), // Data offset
+	},
+	{ // Char "B" 
+		'B', 		// This char
+		12,20, 		// Width and height of the image
+		1,4,10,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+637), // Data offset
+	},
+	{ // Char "C" 
+		'C', 		// This char
+		13,20, 		// Width and height of the image
+		0,4,12,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+663), // Data offset
+	},
+	{ // Char "D" 
+		'D', 		// This char
+		13,20, 		// Width and height of the image
+		1,4,11,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+689), // Data offset
+	},
+	{ // Char "E" 
+		'E', 		// This char
+		12,20, 		// Width and height of the image
+		1,4,10,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+715), // Data offset
+	},
+	{ // Char "F" 
+		'F', 		// This char
+		10,20, 		// Width and height of the image
+		1,4,9,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+741), // Data offset
+	},
+	{ // Char "G" 
+		'G', 		// This char
+		14,20, 		// Width and height of the image
+		1,4,12,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+767), // Data offset
+	},
+	{ // Char "H" 
+		'H', 		// This char
+		13,20, 		// Width and height of the image
+		1,4,11,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+793), // Data offset
+	},
+	{ // Char "I" 
+		'I', 		// This char
+		5,20, 		// Width and height of the image
+		1,4,3,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+819), // Data offset
+	},
+	{ // Char "J" 
+		'J', 		// This char
+		9,20, 		// Width and height of the image
+		0,4,7,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+832), // Data offset
+	},
+	{ // Char "K" 
+		'K', 		// This char
+		12,20, 		// Width and height of the image
+		1,4,11,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+858), // Data offset
+	},
+	{ // Char "L" 
+		'L', 		// This char
+		10,20, 		// Width and height of the image
+		1,4,9,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+884), // Data offset
+	},
+	{ // Char "M" 
+		'M', 		// This char
+		14,20, 		// Width and height of the image
+		1,4,13,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+910), // Data offset
+	},
+	{ // Char "N" 
+		'N', 		// This char
+		13,20, 		// Width and height of the image
+		1,4,11,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+936), // Data offset
+	},
+	{ // Char "O" 
+		'O', 		// This char
+		14,20, 		// Width and height of the image
+		0,4,13,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+962), // Data offset
+	},
+	{ // Char "P" 
+		'P', 		// This char
+		12,20, 		// Width and height of the image
+		1,4,11,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+988), // Data offset
+	},
+	{ // Char "Q" 
+		'Q', 		// This char
+		14,20, 		// Width and height of the image
+		0,4,13,17, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,14, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1014), // Data offset
+	},
+	{ // Char "R" 
+		'R', 		// This char
+		13,20, 		// Width and height of the image
+		1,4,12,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1042), // Data offset
+	},
+	{ // Char "S" 
+		'S', 		// This char
+		12,20, 		// Width and height of the image
+		0,4,10,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1068), // Data offset
+	},
+	{ // Char "T" 
+		'T', 		// This char
+		10,20, 		// Width and height of the image
+		0,4,9,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1094), // Data offset
+	},
+	{ // Char "U" 
+		'U', 		// This char
+		13,20, 		// Width and height of the image
+		1,4,11,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1120), // Data offset
+	},
+	{ // Char "V" 
+		'V', 		// This char
+		12,20, 		// Width and height of the image
+		0,4,11,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1146), // Data offset
+	},
+	{ // Char "W" 
+		'W', 		// This char
+		16,20, 		// Width and height of the image
+		0,4,15,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1172), // Data offset
+	},
+	{ // Char "X" 
+		'X', 		// This char
+		12,20, 		// Width and height of the image
+		0,4,11,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1198), // Data offset
+	},
+	{ // Char "Y" 
+		'Y', 		// This char
+		12,20, 		// Width and height of the image
+		0,4,11,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1224), // Data offset
+	},
+	{ // Char "Z" 
+		'Z', 		// This char
+		10,20, 		// Width and height of the image
+		0,4,9,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1250), // Data offset
+	},
+	{ // Char "[" 
+		'[', 		// This char
+		5,20, 		// Width and height of the image
+		1,4,4,19, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,16, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1276), // Data offset
+	},
+	{ // Char "\" 
+		'\\', 		// This char
+		5,20, 		// Width and height of the image
+		0,4,4,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1292), // Data offset
+	},
+	{ // Char "]" 
+		']', 		// This char
+		5,20, 		// Width and height of the image
+		0,4,3,19, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,16, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1305), // Data offset
+	},
+	{ // Char "^" 
+		'^', 		// This char
+		8,20, 		// Width and height of the image
+		0,4,7,10, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,7, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1321), // Data offset
+	},
+	{ // Char "_" 
+		'_', 		// This char
+		10,20, 		// Width and height of the image
+		0,19,9,19, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,1, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1328), // Data offset
+	},
+	{ // Char "`" 
+		'`', 		// This char
+		5,20, 		// Width and height of the image
+		1,4,3,5, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,2, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1330), // Data offset
+	},
+	{ // Char "a" 
+		'a', 		// This char
+		10,20, 		// Width and height of the image
+		0,7,8,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,10, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1332), // Data offset
+	},
+	{ // Char "b" 
+		'b', 		// This char
+		10,20, 		// Width and height of the image
+		1,4,9,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1352), // Data offset
+	},
+	{ // Char "c" 
+		'c', 		// This char
+		9,20, 		// Width and height of the image
+		0,7,8,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,10, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1378), // Data offset
+	},
+	{ // Char "d" 
+		'd', 		// This char
+		10,20, 		// Width and height of the image
+		0,4,8,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1398), // Data offset
+	},
+	{ // Char "e" 
+		'e', 		// This char
+		10,20, 		// Width and height of the image
+		0,7,9,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,10, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1424), // Data offset
+	},
+	{ // Char "f" 
+		'f', 		// This char
+		5,20, 		// Width and height of the image
+		0,4,4,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1444), // Data offset
+	},
+	{ // Char "g" 
+		'g', 		// This char
+		10,20, 		// Width and height of the image
+		0,7,8,19, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1457), // Data offset
+	},
+	{ // Char "h" 
+		'h', 		// This char
+		10,20, 		// Width and height of the image
+		1,4,8,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1483), // Data offset
+	},
+	{ // Char "i" 
+		'i', 		// This char
+		4,20, 		// Width and height of the image
+		1,4,2,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1509), // Data offset
+	},
+	{ // Char "j" 
+		'j', 		// This char
+		4,20, 		// Width and height of the image
+		0,4,2,19, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,16, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1522), // Data offset
+	},
+	{ // Char "k" 
+		'k', 		// This char
+		9,20, 		// Width and height of the image
+		1,4,8,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1538), // Data offset
+	},
+	{ // Char "l" 
+		'l', 		// This char
+		4,20, 		// Width and height of the image
+		1,4,2,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1564), // Data offset
+	},
+	{ // Char "m" 
+		'm', 		// This char
+		14,20, 		// Width and height of the image
+		1,7,13,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,10, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1577), // Data offset
+	},
+	{ // Char "n" 
+		'n', 		// This char
+		10,20, 		// Width and height of the image
+		1,7,8,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,10, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1597), // Data offset
+	},
+	{ // Char "o" 
+		'o', 		// This char
+		10,20, 		// Width and height of the image
+		0,7,9,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,10, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1617), // Data offset
+	},
+	{ // Char "p" 
+		'p', 		// This char
+		10,20, 		// Width and height of the image
+		1,7,9,19, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1637), // Data offset
+	},
+	{ // Char "q" 
+		'q', 		// This char
+		10,20, 		// Width and height of the image
+		0,7,8,19, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1663), // Data offset
+	},
+	{ // Char "r" 
+		'r', 		// This char
+		5,20, 		// Width and height of the image
+		1,7,4,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,10, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1689), // Data offset
+	},
+	{ // Char "s" 
+		's', 		// This char
+		9,20, 		// Width and height of the image
+		0,7,8,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,10, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1699), // Data offset
+	},
+	{ // Char "t" 
+		't', 		// This char
+		5,20, 		// Width and height of the image
+		0,4,4,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1719), // Data offset
+	},
+	{ // Char "u" 
+		'u', 		// This char
+		10,20, 		// Width and height of the image
+		1,7,8,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,10, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1732), // Data offset
+	},
+	{ // Char "v" 
+		'v', 		// This char
+		9,20, 		// Width and height of the image
+		0,7,8,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,10, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1752), // Data offset
+	},
+	{ // Char "w" 
+		'w', 		// This char
+		13,20, 		// Width and height of the image
+		0,7,12,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,10, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1772), // Data offset
+	},
+	{ // Char "x" 
+		'x', 		// This char
+		9,20, 		// Width and height of the image
+		0,7,8,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,10, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1792), // Data offset
+	},
+	{ // Char "y" 
+		'y', 		// This char
+		9,20, 		// Width and height of the image
+		0,7,8,19, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,13, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1812), // Data offset
+	},
+	{ // Char "z" 
+		'z', 		// This char
+		9,20, 		// Width and height of the image
+		0,7,8,16, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,10, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1838), // Data offset
+	},
+	{ // Char "{" 
+		'{', 		// This char
+		6,20, 		// Width and height of the image
+		0,4,5,19, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,16, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1858), // Data offset
+	},
+	{ // Char "|" 
+		'|', 		// This char
+		4,20, 		// Width and height of the image
+		1,4,2,19, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,16, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1874), // Data offset
+	},
+	{ // Char "}" 
+		'}', 		// This char
+		6,20, 		// Width and height of the image
+		0,4,5,19, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		1,16, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_18_1_Pixels+1890), // Data offset
+	},
+};
+
+// Font data for Arial_18_1 
+const uint8_t Arial_18_1_Pixels[] = {
+	// Char "!" offset 0
+	0x70,0x70,0x70,0x30,0x20,0x20,0x20,0x20,0x20,0x20,0x00,0x30,0x30,
+	// Char """ offset 13
+	0x6C,0x6C,0x6C,0x68,0x48,
+	// Char "#" offset 18
+	0x18,0x80,0x19,0x80,0x19,0x80,0x11,0x00,0xFF,0xC0,0x33,0x00,0x33,0x00,0x23,0x00,0xFF,0xC0,0x66,0x00,0x66,0x00,0x66,0x00,0x46,0x00,
+	// Char "$" offset 44
+	0x0C,0x00,0x1E,0x00,0x7F,0x00,0x6D,0x80,0x6C,0x00,0x6C,0x00,0x7E,0x00,0x1F,0x00,0x0F,0x80,0x0D,0x80,0x4D,0x80,0x6D,0x80,0x7F,0x00,0x3E,0x00,0x0C,0x00,0x0C,0x00,
+	// Char "%" offset 76
+	0x38,0x10,0x64,0x20,0x66,0x60,0x66,0x40,0x66,0xC0,0x64,0x80,0x39,0xBC,0x01,0x26,0x03,0x66,0x02,0x66,0x06,0x66,0x04,0x26,0x08,0x3C,
+	// Char "&" offset 102
+	0x0E,0x00,0x1B,0x00,0x31,0x80,0x31,0x80,0x1B,0x00,0x1E,0x00,0x3E,0x00,0x67,0x60,0x63,0xC0,0x61,0xC0,0x61,0xC0,0x7F,0xE0,0x1E,0x20,
+	// Char "'" offset 128
+	0x60,0x60,0x60,0x40,0x40,
+	// Char "(" offset 133
+	0x08,0x18,0x10,0x30,0x20,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x20,0x30,0x10,0x18,
+	// Char ")" offset 149
+	0x60,0x20,0x30,0x10,0x18,0x18,0x18,0x08,0x08,0x08,0x18,0x18,0x18,0x10,0x30,0x20,
+	// Char "*" offset 165
+	0x10,0x5C,0x38,0x38,0x28,
+	// Char "+" offset 170
+	0x0C,0x00,0x0C,0x00,0x0C,0x00,0x7F,0xC0,0x7F,0x80,0x0C,0x00,0x0C,0x00,0x0C,0x00,
+	// Char "," offset 186
+	0x20,0x20,0x20,0x20,0x20,
+	// Char "-" offset 191
+	0xF8,0xF8,
+	// Char "." offset 193
+	0x30,0x30,
+	// Char "/" offset 195
+	0x08,0x18,0x10,0x10,0x30,0x30,0x20,0x60,0x60,0x40,0x40,0xC0,0xC0,
+	// Char "0" offset 208
+	0x1E,0x00,0x3F,0x00,0x61,0x80,0x61,0x80,0x61,0x80,0x41,0x80,0x41,0x80,0x41,0x80,0x61,0x80,0x61,0x80,0x61,0x80,0x3F,0x00,0x1E,0x00,
+	// Char "1" offset 234
+	0x06,0x00,0x0E,0x00,0x1E,0x00,0x3E,0x00,0x26,0x00,0x06,0x00,0x06,0x00,0x06,0x00,0x06,0x00,0x06,0x00,0x06,0x00,0x06,0x00,0x06,0x00,
+	// Char "2" offset 260
+	0x1E,0x00,0x3F,0x00,0x61,0x80,0x61,0x80,0x01,0x80,0x01,0x80,0x03,0x00,0x06,0x00,0x1C,0x00,0x38,0x00,0x70,0x00,0x7F,0x80,0xFF,0x80,
+	// Char "3" offset 286
+	0x1E,0x00,0x3F,0x00,0x61,0x80,0x61,0x80,0x03,0x00,0x0E,0x00,0x0F,0x00,0x01,0x80,0x01,0x80,0x61,0x80,0x61,0x80,0x3F,0x00,0x1E,0x00,
+	// Char "4" offset 312
+	0x02,0x00,0x06,0x00,0x0E,0x00,0x1A,0x00,0x12,0x00,0x32,0x00,0x62,0x00,0x42,0x00,0xFF,0x80,0x07,0x00,0x02,0x00,0x02,0x00,0x02,0x00,
+	// Char "5" offset 338
+	0x3F,0x80,0x3F,0x80,0x20,0x00,0x20,0x00,0x6E,0x00,0x7F,0x00,0x61,0x80,0x01,0x80,0x00,0x80,0x61,0x80,0x61,0x80,0x3F,0x00,0x1E,0x00,
+	// Char "6" offset 364
+	0x1E,0x00,0x3B,0x80,0x61,0x80,0x60,0x00,0x5E,0x00,0x7F,0x00,0x61,0x80,0x61,0x80,0x61,0x80,0x61,0x80,0x61,0x80,0x3F,0x00,0x1E,0x00,
+	// Char "7" offset 390
+	0x7F,0x80,0x7F,0x80,0x03,0x00,0x03,0x00,0x06,0x00,0x04,0x00,0x0C,0x00,0x0C,0x00,0x18,0x00,0x18,0x00,0x18,0x00,0x18,0x00,0x10,0x00,
+	// Char "8" offset 416
+	0x1E,0x00,0x3F,0x00,0x61,0x80,0x61,0x80,0x33,0x00,0x1E,0x00,0x3F,0x00,0x61,0x80,0x41,0x80,0x41,0x80,0x61,0x80,0x3F,0x00,0x1E,0x00,
+	// Char "9" offset 442
+	0x1E,0x00,0x7F,0x00,0x61,0x80,0x61,0x80,0x41,0x80,0x61,0x80,0x7F,0x80,0x1C,0x80,0x01,0x80,0x61,0x80,0x61,0x80,0x37,0x00,0x1E,0x00,
+	// Char ":" offset 468
+	0x30,0x30,0x00,0x00,0x00,0x00,0x00,0x30,0x30,
+	// Char ";" offset 477
+	0x20,0x20,0x00,0x00,0x00,0x00,0x00,0x20,0x20,0x20,0x20,0x20,
+	// Char "<" offset 489
+	0x00,0xC0,0x03,0xC0,0x0F,0x00,0x3C,0x00,0x60,0x00,0x3C,0x00,0x0F,0x00,0x03,0xC0,0x00,0xC0,
+	// Char "=" offset 507
+	0x7F,0xC0,0x7F,0x80,0x00,0x00,0x00,0x00,0x7F,0xC0,0x7F,0x80,
+	// Char ">" offset 519
+	0x40,0x00,0x70,0x00,0x3C,0x00,0x07,0x80,0x01,0xC0,0x07,0x80,0x3C,0x00,0x70,0x00,0x40,0x00,
+	// Char "?" offset 537
+	0x1E,0x00,0x3F,0x00,0x61,0x80,0x61,0x80,0x01,0x80,0x03,0x80,0x07,0x00,0x06,0x00,0x0C,0x00,0x0C,0x00,0x00,0x00,0x0C,0x00,0x0C,0x00,
+	// Char "@" offset 563
+	0x03,0xF8,0x00,0x0F,0x1E,0x00,0x1C,0x03,0x00,0x10,0x01,0x00,0x31,0xE9,0x80,0x23,0xF8,0x80,0x66,0x18,0x80,0x44,0x18,0x80,0x4C,0x10,0x80,0x4C,0x11,0x80,0x6C,0x33,0x00,0x66,0xFE,0x00,0x23,0xBC,0x00,0x30,0x00,0x80,0x18,0x03,0x80,0x0F,0x0E,0x00,
+	// Char "A" offset 611
+	0x06,0x00,0x0E,0x00,0x0F,0x00,0x0B,0x00,0x19,0x80,0x19,0x80,0x31,0x80,0x30,0xC0,0x3F,0xC0,0x70,0xE0,0x60,0x60,0xC0,0x70,0xC0,0x30,
+	// Char "B" offset 637
+	0x7F,0x80,0x7F,0xC0,0x60,0xC0,0x60,0x40,0x60,0xC0,0x7F,0x80,0x7F,0xC0,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x7F,0xC0,0x7F,0x80,
+	// Char "C" offset 663
+	0x0F,0xC0,0x1D,0xE0,0x30,0x70,0x60,0x30,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x30,0x60,0x30,0x30,0x70,0x1D,0xE0,0x0F,0x80,
+	// Char "D" offset 689
+	0x7F,0x80,0x7F,0xC0,0x60,0x60,0x60,0x30,0x60,0x30,0x60,0x30,0x60,0x30,0x60,0x30,0x60,0x30,0x60,0x30,0x60,0x60,0x7F,0xC0,0x7F,0x80,
+	// Char "E" offset 715
+	0x7F,0xE0,0x7F,0xE0,0x60,0x00,0x60,0x00,0x60,0x00,0x7F,0xC0,0x7F,0xC0,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x7F,0xE0,0x7F,0xE0,
+	// Char "F" offset 741
+	0x7F,0xC0,0x7F,0xC0,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x7F,0x80,0x7F,0x80,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,
+	// Char "G" offset 767
+	0x0F,0xC0,0x1E,0xF0,0x30,0x30,0x70,0x18,0x60,0x00,0x60,0x00,0x61,0xF8,0x60,0xF8,0x60,0x18,0x60,0x18,0x30,0x38,0x1E,0xF0,0x07,0xE0,
+	// Char "H" offset 793
+	0x60,0x30,0x60,0x30,0x60,0x30,0x60,0x30,0x60,0x30,0x7F,0xF0,0x7F,0xF0,0x60,0x30,0x60,0x30,0x60,0x30,0x60,0x30,0x60,0x30,0x60,0x30,
+	// Char "I" offset 819
+	0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,
+	// Char "J" offset 832
+	0x03,0x00,0x03,0x00,0x03,0x00,0x03,0x00,0x03,0x00,0x03,0x00,0x03,0x00,0x03,0x00,0x03,0x00,0xC3,0x00,0x43,0x00,0x7E,0x00,0x3C,0x00,
+	// Char "K" offset 858
+	0x60,0x60,0x60,0xC0,0x61,0x80,0x63,0x00,0x66,0x00,0x7E,0x00,0x7E,0x00,0x73,0x00,0x61,0x80,0x61,0xC0,0x60,0xC0,0x60,0x60,0x60,0x70,
+	// Char "L" offset 884
+	0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x7F,0x80,0x7F,0x80,
+	// Char "M" offset 910
+	0x70,0x1C,0x70,0x1C,0x78,0x3C,0x78,0x3C,0x68,0x2C,0x6C,0x6C,0x6C,0x6C,0x64,0x4C,0x66,0xCC,0x66,0xCC,0x63,0x8C,0x63,0x8C,0x63,0x8C,
+	// Char "N" offset 936
+	0x70,0x30,0x70,0x30,0x78,0x30,0x7C,0x30,0x6C,0x30,0x66,0x30,0x67,0x30,0x63,0x30,0x61,0xB0,0x61,0xF0,0x60,0xF0,0x60,0x70,0x60,0x70,
+	// Char "O" offset 962
+	0x0F,0xC0,0x1C,0xE0,0x30,0x30,0x60,0x18,0x60,0x18,0x60,0x18,0x60,0x18,0x60,0x18,0x60,0x18,0x60,0x18,0x30,0x30,0x1C,0xE0,0x0F,0xC0,
+	// Char "P" offset 988
+	0x7F,0xC0,0x7F,0xE0,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0xE0,0x7F,0xC0,0x7F,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,
+	// Char "Q" offset 1014
+	0x0F,0xC0,0x1D,0xE0,0x30,0x30,0x60,0x18,0x60,0x18,0x60,0x18,0x60,0x18,0x60,0x18,0x60,0x18,0x61,0x98,0x30,0xF0,0x1D,0xE0,0x0F,0xF8,0x00,0x08,
+	// Char "R" offset 1042
+	0x7F,0xC0,0x70,0xE0,0x60,0x30,0x60,0x30,0x60,0x30,0x60,0x60,0x7F,0xC0,0x73,0x80,0x61,0xC0,0x60,0xE0,0x60,0x60,0x60,0x30,0x60,0x38,
+	// Char "S" offset 1068
+	0x1F,0x80,0x3F,0xC0,0x60,0xC0,0x60,0x60,0x70,0x00,0x3E,0x00,0x0F,0x80,0x00,0xE0,0x00,0x60,0x60,0x60,0x60,0x60,0x3F,0xC0,0x1F,0x80,
+	// Char "T" offset 1094
+	0xFF,0xC0,0x7F,0xC0,0x04,0x00,0x04,0x00,0x04,0x00,0x04,0x00,0x04,0x00,0x04,0x00,0x04,0x00,0x04,0x00,0x04,0x00,0x04,0x00,0x04,0x00,
+	// Char "U" offset 1120
+	0x60,0x30,0x60,0x30,0x60,0x30,0x60,0x30,0x60,0x30,0x60,0x30,0x60,0x30,0x60,0x30,0x60,0x30,0x20,0x20,0x30,0x60,0x3F,0xE0,0x0F,0x80,
+	// Char "V" offset 1146
+	0xC0,0x30,0x60,0x60,0x60,0x60,0x60,0x60,0x30,0xC0,0x30,0xC0,0x30,0x80,0x19,0x80,0x19,0x80,0x09,0x00,0x0F,0x00,0x0E,0x00,0x06,0x00,
+	// Char "W" offset 1172
+	0xC1,0xC1,0x41,0xC1,0x61,0xC3,0x63,0x63,0x63,0x63,0x23,0x62,0x32,0x26,0x36,0x36,0x36,0x36,0x14,0x14,0x1C,0x1C,0x1C,0x1C,0x1C,0x18,
+	// Char "X" offset 1198
+	0x60,0x60,0x30,0xE0,0x38,0xC0,0x19,0x80,0x0F,0x00,0x0F,0x00,0x06,0x00,0x0F,0x00,0x19,0x80,0x19,0x80,0x30,0xC0,0x60,0x60,0xE0,0x70,
+	// Char "Y" offset 1224
+	0xE0,0x70,0x60,0x60,0x30,0xC0,0x39,0x80,0x19,0x80,0x0F,0x00,0x06,0x00,0x06,0x00,0x06,0x00,0x06,0x00,0x06,0x00,0x06,0x00,0x06,0x00,
+	// Char "Z" offset 1250
+	0x7F,0xC0,0x7F,0xC0,0x01,0xC0,0x01,0x80,0x03,0x00,0x06,0x00,0x0C,0x00,0x1C,0x00,0x18,0x00,0x30,0x00,0x60,0x00,0xFF,0xC0,0xFF,0xC0,
+	// Char "[" offset 1276
+	0x78,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,
+	// Char "\" offset 1292
+	0xC0,0xC0,0x40,0x40,0x60,0x60,0x20,0x30,0x30,0x10,0x10,0x18,0x08,
+	// Char "]" offset 1305
+	0xF0,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,
+	// Char "^" offset 1321
+	0x18,0x1C,0x3C,0x34,0x66,0x62,0x43,
+	// Char "_" offset 1328
+	0xFF,0xC0,
+	// Char "`" offset 1330
+	0x60,0x30,
+	// Char "a" offset 1332
+	0x3F,0x00,0x77,0x80,0x61,0x80,0x01,0x80,0x07,0x80,0x7F,0x80,0x61,0x80,0x41,0x80,0x77,0x80,0x3D,0x80,
+	// Char "b" offset 1352
+	0x60,0x00,0x60,0x00,0x60,0x00,0x6E,0x00,0x7F,0x00,0x61,0x80,0x61,0x80,0x60,0x80,0x60,0x80,0x61,0x80,0x61,0x80,0x7F,0x00,0x7E,0x00,
+	// Char "c" offset 1378
+	0x1E,0x00,0x3F,0x00,0x61,0x80,0x60,0x00,0x40,0x00,0x40,0x00,0x61,0x80,0x61,0x80,0x3F,0x00,0x1E,0x00,
+	// Char "d" offset 1398
+	0x01,0x80,0x01,0x80,0x01,0x80,0x1D,0x80,0x77,0x80,0x61,0x80,0x41,0x80,0x41,0x80,0x41,0x80,0x41,0x80,0x61,0x80,0x3F,0x80,0x1F,0x80,
+	// Char "e" offset 1424
+	0x1E,0x00,0x3F,0x00,0x61,0x80,0x61,0x80,0x7F,0x80,0x40,0x00,0x60,0x00,0x61,0x80,0x3F,0x80,0x1E,0x00,
+	// Char "f" offset 1444
+	0x38,0x30,0x60,0xF8,0x70,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,
+	// Char "g" offset 1457
+	0x1D,0x80,0x3F,0x80,0x61,0x80,0x41,0x80,0x41,0x80,0x41,0x80,0x41,0x80,0x61,0x80,0x3F,0x80,0x1D,0x80,0x01,0x80,0x61,0x80,0x77,0x00,
+	// Char "h" offset 1483
+	0x60,0x00,0x60,0x00,0x60,0x00,0x6F,0x00,0x7B,0x00,0x61,0x80,0x61,0x80,0x61,0x80,0x61,0x80,0x61,0x80,0x61,0x80,0x61,0x80,0x61,0x80,
+	// Char "i" offset 1509
+	0x60,0x60,0x00,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,
+	// Char "j" offset 1522
+	0x60,0x60,0x00,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0xE0,
+	// Char "k" offset 1538
+	0x60,0x00,0x60,0x00,0x60,0x00,0x63,0x00,0x66,0x00,0x6C,0x00,0x78,0x00,0x7C,0x00,0x6C,0x00,0x66,0x00,0x66,0x00,0x63,0x00,0x61,0x80,
+	// Char "l" offset 1564
+	0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,
+	// Char "m" offset 1577
+	0x6E,0x78,0x7F,0xDC,0x61,0x8C,0x61,0x0C,0x61,0x0C,0x61,0x0C,0x61,0x0C,0x61,0x0C,0x61,0x0C,0x61,0x0C,
+	// Char "n" offset 1597
+	0x6F,0x00,0x7F,0x00,0x61,0x80,0x61,0x80,0x61,0x80,0x61,0x80,0x61,0x80,0x61,0x80,0x61,0x80,0x61,0x80,
+	// Char "o" offset 1617
+	0x1E,0x00,0x3F,0x00,0x61,0x80,0x41,0x80,0x40,0x80,0x40,0x80,0x41,0x80,0x61,0x80,0x3F,0x00,0x1E,0x00,
+	// Char "p" offset 1637
+	0x6E,0x00,0x7F,0x00,0x61,0x80,0x61,0x80,0x60,0x80,0x60,0x80,0x61,0x80,0x61,0x80,0x7F,0x00,0x7E,0x00,0x60,0x00,0x60,0x00,0x60,0x00,
+	// Char "q" offset 1663
+	0x1D,0x80,0x37,0x80,0x61,0x80,0x61,0x80,0x41,0x80,0x41,0x80,0x61,0x80,0x61,0x80,0x3F,0x80,0x1D,0x80,0x01,0x80,0x01,0x80,0x01,0x80,
+	// Char "r" offset 1689
+	0x78,0x70,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,
+	// Char "s" offset 1699
+	0x3E,0x00,0x77,0x00,0x43,0x00,0x60,0x00,0x7C,0x00,0x0F,0x00,0x03,0x00,0x43,0x00,0x77,0x00,0x3E,0x00,
+	// Char "t" offset 1719
+	0x20,0x60,0x60,0xF8,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x70,0x38,
+	// Char "u" offset 1732
+	0x61,0x80,0x61,0x80,0x61,0x80,0x61,0x80,0x61,0x80,0x61,0x80,0x61,0x80,0x61,0x80,0x77,0x80,0x3D,0x80,
+	// Char "v" offset 1752
+	0xC1,0x80,0x41,0x00,0x63,0x00,0x63,0x00,0x22,0x00,0x36,0x00,0x36,0x00,0x1C,0x00,0x1C,0x00,0x0C,0x00,
+	// Char "w" offset 1772
+	0xC7,0x18,0xC7,0x18,0x47,0x10,0x67,0x30,0x65,0x30,0x2D,0xA0,0x2D,0xE0,0x38,0xE0,0x38,0xC0,0x18,0xC0,
+	// Char "x" offset 1792
+	0x63,0x00,0x63,0x00,0x36,0x00,0x1C,0x00,0x1C,0x00,0x1C,0x00,0x3E,0x00,0x36,0x00,0x63,0x00,0xC1,0x80,
+	// Char "y" offset 1812
+	0xC1,0x80,0x61,0x00,0x63,0x00,0x63,0x00,0x32,0x00,0x36,0x00,0x16,0x00,0x1C,0x00,0x1C,0x00,0x0C,0x00,0x08,0x00,0x18,0x00,0x70,0x00,
+	// Char "z" offset 1838
+	0x7F,0x00,0x03,0x00,0x06,0x00,0x0C,0x00,0x0C,0x00,0x18,0x00,0x30,0x00,0x60,0x00,0xE0,0x00,0xFF,0x80,
+	// Char "{" offset 1858
+	0x1C,0x30,0x30,0x30,0x30,0x30,0x30,0x20,0xC0,0x20,0x30,0x30,0x30,0x30,0x30,0x30,
+	// Char "|" offset 1874
+	0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,
+	// Char "}" offset 1890
+	0xE0,0x30,0x30,0x30,0x30,0x30,0x30,0x10,0x0C,0x10,0x30,0x30,0x30,0x30,0x30,0x30,
+
+};

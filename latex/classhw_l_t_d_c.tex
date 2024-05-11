@@ -1,0 +1,60 @@
+\doxysection{hw\+LTDC Class Reference}
+\hypertarget{classhw_l_t_d_c}{}\label{classhw_l_t_d_c}\index{hwLTDC@{hwLTDC}}
+Inheritance diagram for hw\+LTDC\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classhw_l_t_d_c}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhw_l_t_d_c_afa0f828b407143ff4c10c2f32b1be7bf}\label{classhw_l_t_d_c_afa0f828b407143ff4c10c2f32b1be7bf} 
+void {\bfseries Init} ()
+\item 
+\Hypertarget{classhw_l_t_d_c_a79cb001d6a531e893b04758a20ec9abb}\label{classhw_l_t_d_c_a79cb001d6a531e893b04758a20ec9abb} 
+void {\bfseries Background\+Color} (uint8\+\_\+t red, uint8\+\_\+t green, uint8\+\_\+t blue)
+\item 
+\Hypertarget{classhw_l_t_d_c_af6d884cce4ec736d4bbc4b197a36648d}\label{classhw_l_t_d_c_af6d884cce4ec736d4bbc4b197a36648d} 
+void {\bfseries Default\+Color} (\mbox{\hyperlink{struct_r__t}{R\+\_\+t}}$<$ uint8\+\_\+t, 1, 2 $>$ l, uint8\+\_\+t red, uint8\+\_\+t green, uint8\+\_\+t blue, uint8\+\_\+t alpha)
+\item 
+\Hypertarget{classhw_l_t_d_c_ae90ad8845c52df935eb35c5cd4867b2c}\label{classhw_l_t_d_c_ae90ad8845c52df935eb35c5cd4867b2c} 
+void {\bfseries Color\+Key} (\mbox{\hyperlink{struct_r__t}{R\+\_\+t}}$<$ uint8\+\_\+t, 1, 2 $>$ layer, uint8\+\_\+t red, uint8\+\_\+t green, uint8\+\_\+t blue)
+\item 
+\Hypertarget{classhw_l_t_d_c_a353e53382fb3707fee2b29e46a0d10f2}\label{classhw_l_t_d_c_a353e53382fb3707fee2b29e46a0d10f2} 
+void {\bfseries Blending\+Factors} (\mbox{\hyperlink{struct_r__t}{R\+\_\+t}}$<$ uint8\+\_\+t, 1, 2 $>$ l, e\+Blending\+Factor1 BF1, e\+Blending\+Factor2 BF2, uint8\+\_\+t constant\+Alpha)
+\item 
+\Hypertarget{classhw_l_t_d_c_a6877bea14f7692c3642398221d042d70}\label{classhw_l_t_d_c_a6877bea14f7692c3642398221d042d70} 
+void {\bfseries Layer} (\mbox{\hyperlink{struct_r__t}{R\+\_\+t}}$<$ uint8\+\_\+t, 1, 2 $>$ l, void \texorpdfstring{$\ast$}{*}p\+RGBData, uint16\+\_\+t x0, uint16\+\_\+t y0, uint16\+\_\+t x1, uint16\+\_\+t y1)
+\item 
+\Hypertarget{classhw_l_t_d_c_a664703d2940a4d5b4abb24028411cc91}\label{classhw_l_t_d_c_a664703d2940a4d5b4abb24028411cc91} 
+uint16\+\_\+t {\bfseries Width} (uint16\+\_\+t w)
+\item 
+\Hypertarget{classhw_l_t_d_c_ad6f2f9339c1f67b7061f0e10aeb362b0}\label{classhw_l_t_d_c_ad6f2f9339c1f67b7061f0e10aeb362b0} 
+void {\bfseries Current\+Pos} (uint16\+\_\+t \&x, uint16\+\_\+t \&y)
+\item 
+\Hypertarget{classhw_l_t_d_c_a9390c7852bb18dc78f4200f112902552}\label{classhw_l_t_d_c_a9390c7852bb18dc78f4200f112902552} 
+bool {\bfseries Blanking\+Overrun} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classhw_d_s_i}{hw\+DSI}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries Init} ()
+\item 
+void {\bfseries Unit\+Test} (bool on)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhw_l_t_d_c_a6a713dfead48a0ae8183bd0123c431c4}\label{classhw_l_t_d_c_a6a713dfead48a0ae8183bd0123c431c4} 
+static uint16\+\_\+t {\bfseries Height} ()
+\item 
+\Hypertarget{classhw_l_t_d_c_a9800a6805cbff0b7dd5642e7a3af746d}\label{classhw_l_t_d_c_a9800a6805cbff0b7dd5642e7a3af746d} 
+static uint16\+\_\+t {\bfseries Width} ()
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+os\+STM32\+H7xx/LTDC.\+h\item 
+os\+STM32\+H7xx/LTDC.\+cpp\end{DoxyCompactItemize}

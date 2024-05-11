@@ -1,0 +1,126 @@
+\doxysection{gl\+Label Class Reference}
+\hypertarget{classgl_label}{}\label{classgl_label}\index{glLabel@{glLabel}}
+Inheritance diagram for gl\+Label\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classgl_label}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgl_label_a938bfe7d110039507743d0b99ad069bc}\label{classgl_label_a938bfe7d110039507743d0b99ad069bc} 
+{\bfseries gl\+Label} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} pos, \mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}} back\+Color=\mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}}(gl\+Colors\+::\+BLUE))
+\item 
+\Hypertarget{classgl_label_a22d9f2dfaae9416fecb1734ff224a636}\label{classgl_label_a22d9f2dfaae9416fecb1734ff224a636} 
+{\bfseries gl\+Label} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} pos, P\+\_\+t border\+Width, \mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}} back\+Color=\mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}}(gl\+Colors\+::\+BLUE))
+\item 
+\Hypertarget{classgl_label_a461668c764279b55b8133d1a02af4f7b}\label{classgl_label_a461668c764279b55b8133d1a02af4f7b} 
+void {\bfseries Back\+Color} (\mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}} color)
+\item 
+virtual void \mbox{\hyperlink{classgl_label_a24ea15e1a1849ffb57ccb4e699177abf}{Touch}} (const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&) override
+\item 
+virtual void \mbox{\hyperlink{classgl_label_a433a95e14ec0de40eddf25acb0bda244}{Redraw}} () override
+\item 
+\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \mbox{\hyperlink{classgl_label_a8a4592aee6cf1bc4a475a38fd9a6f0b8}{Invalid\+Region}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_object}{gl\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries gl\+Object} (char const \texorpdfstring{$\ast$}{*}name, \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} position, \mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}} color)
+\item 
+void {\bfseries Add} (\mbox{\hyperlink{classgl_object}{gl\+Object}} \texorpdfstring{$\ast$}{*}child)
+\item 
+void \mbox{\hyperlink{classgl_object_ab8a7f15f5ca399bb7bc9d3391f7371e8}{Update\+Look}} ()
+\item 
+void \mbox{\hyperlink{classgl_object_af62fd0281f895935bb1b29820deafd3c}{Update\+State}} (\mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point)
+\item 
+void \mbox{\hyperlink{classgl_object_a9a626f3cdd6afe3631b2163f2b1e05aa}{Invalidate}} ()
+\item 
+bool \mbox{\hyperlink{classgl_object_a03b4a8f29f17d2217423f2112559adbf}{Is\+Invalidated}} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&invalid\+Region)
+\item 
+void \mbox{\hyperlink{classgl_object_ab6aa600a4c9ef329bb28880aee67d824}{Event}} (\mbox{\hyperlink{classgl_event}{gl\+Event}} event)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_object_attributes}{gl\+Object\+Attributes}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries gl\+Object\+Attributes} (char const \texorpdfstring{$\ast$}{*}name, \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} position, \mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}} color)
+\item 
+void {\bfseries Move} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} pos)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_link}{gl\+Link}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgl_link}{gl\+Link}} \texorpdfstring{$\ast$}{*} {\bfseries Prev} ()
+\item 
+\mbox{\hyperlink{classgl_link}{gl\+Link}} \texorpdfstring{$\ast$}{*} {\bfseries Next} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgl_label_a3685583aedd33a1ebcd38c62b69baa70}\label{classgl_label_a3685583aedd33a1ebcd38c62b69baa70} 
+P\+\_\+t {\bfseries Border\+Width} = 0
+\item 
+\Hypertarget{classgl_label_a98b8c95ca46627defeaa05b33caa7e33}\label{classgl_label_a98b8c95ca46627defeaa05b33caa7e33} 
+\mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Border\+Color} = \{ 255, 255, 255 \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classgl_object_attributes}{gl\+Object\+Attributes}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}} {\bfseries \+\_\+\+Color}
+\item 
+char const  \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+\+Name} = "{}gl\+Object"{}
+\item 
+\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries \+\_\+\+Position}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classgl_link}{gl\+Link}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgl_link}{gl\+Link}} \texorpdfstring{$\ast$}{*} {\bfseries p\+Next} = nullptr
+\item 
+\mbox{\hyperlink{classgl_link}{gl\+Link}} \texorpdfstring{$\ast$}{*} {\bfseries p\+Prev} = nullptr
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classgl_object_attributes}{gl\+Object\+Attributes}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries Im\+Invalidated} = true
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgl_label_a8a4592aee6cf1bc4a475a38fd9a6f0b8}\label{classgl_label_a8a4592aee6cf1bc4a475a38fd9a6f0b8} 
+\index{glLabel@{glLabel}!InvalidRegion@{InvalidRegion}}
+\index{InvalidRegion@{InvalidRegion}!glLabel@{glLabel}}
+\doxysubsubsection{\texorpdfstring{InvalidRegion()}{InvalidRegion()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} gl\+Label\+::\+Invalid\+Region (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classgl_object_attributes}{gl\+Object\+Attributes}}.
+
+\Hypertarget{classgl_label_a433a95e14ec0de40eddf25acb0bda244}\label{classgl_label_a433a95e14ec0de40eddf25acb0bda244} 
+\index{glLabel@{glLabel}!Redraw@{Redraw}}
+\index{Redraw@{Redraw}!glLabel@{glLabel}}
+\doxysubsubsection{\texorpdfstring{Redraw()}{Redraw()}}
+{\footnotesize\ttfamily virtual void gl\+Label\+::\+Redraw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classgl_object_attributes}{gl\+Object\+Attributes}}.
+
+\Hypertarget{classgl_label_a24ea15e1a1849ffb57ccb4e699177abf}\label{classgl_label_a24ea15e1a1849ffb57ccb4e699177abf} 
+\index{glLabel@{glLabel}!Touch@{Touch}}
+\index{Touch@{Touch}!glLabel@{glLabel}}
+\doxysubsubsection{\texorpdfstring{Touch()}{Touch()}}
+{\footnotesize\ttfamily virtual void gl\+Label\+::\+Touch (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classgl_object_attributes}{gl\+Object\+Attributes}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gl\+STM32\+H7xx/gl\+Label.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,73 @@
+\doxysection{DSI.\+h}
+\hypertarget{_d_s_i_8h_source}{}\label{_d_s_i_8h_source}\index{osSTM32H7xx/DSI.h@{osSTM32H7xx/DSI.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ 2024\ Søren\ Gullach}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ You\ must\ include\ the\ following\ attribution\ in\ all\ copies\ or\ substantial\ portions\ of\ the\ Software:}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ "{}Søren\ Gullach\ <STM32\_R7\_OS@toolsbox.dk>"{}}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}stm32h7xx.h"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <GPIO.h>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <SysTick.h>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <TFT\_Setup.h>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ https://www.st.com/resource/en/application\_note/an4860-\/introduction-\/to-\/dsi-\/host-\/on-\/stm32-\/mcus-\/and-\/mpus-\/stmicroelectronics.pdf}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhw_d_s_i}{hwDSI}}}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classhw_d_s_i}{hwDSI}}()}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ Init();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ UnitTest(\textcolor{keywordtype}{bool}\ on)}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!on)}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ DSI-\/>VMCR\ \&=\ \string~(DSI\_VMCR\_PGE\ |\ DSI\_VMCR\_PGO);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ DSI-\/>WCR\ |=\ DSI\_WCR\_LTDCEN;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ DSI-\/>WCR\ |=\ DSI\_WCR\_DSIEN;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ DSI-\/>WCR\ \&=\ \string~DSI\_WCR\_LTDCEN;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (DSI-\/>VMCR\ \&\ DSI\_VMCR\_PGO)}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ DSI-\/>VMCR\ \&=\ \string~DSI\_VMCR\_PGO;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ DSI-\/>VMCR\ |=\ DSI\_VMCR\_PGO;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ DSI-\/>VMCR\ |=\ DSI\_VMCR\_PGE;}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ Regulator(\textcolor{keywordtype}{bool}\ on);}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ PLL(\textcolor{keywordtype}{bool}\ on);}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ HostWrapper();}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ HostTiming();}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ HostFlowControl();}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ HostLTDC();}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ VideoMode();}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ ShortWrite(uint32\_t\ ChannelID,\ uint32\_t\ Mode,\ uint32\_t\ Param1,\ uint32\_t\ Param2);}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ SendDCSCommands();}
+\DoxyCodeLine{00064\ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ uint32\_t\ laneByteClk\_KHz\ =\ 62000;\ \textcolor{comment}{//\ see\ RCC\ clock\ tree\ (PLL\ setup)}}
+\DoxyCodeLine{00066\ \ \ \ \ uint32\_t\ unitIntervalx4\ =\ 8;}
+\DoxyCodeLine{00067\ \};}
+
+\end{DoxyCode}

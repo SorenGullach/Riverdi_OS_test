@@ -1,0 +1,199 @@
+\doxysection{TPDisplay.\+h}
+\hypertarget{_t_p_display_8h_source}{}\label{_t_p_display_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ 2024\ Søren\ Gullach}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ You\ must\ include\ the\ following\ attribution\ in\ all\ copies\ or\ substantial\ portions\ of\ the\ Software:}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ "{}Søren\ Gullach\ <STM32\_R7\_OS@toolsbox.dk>"{}}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}I2C.h"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}glTypes.h"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhw_e_x_t_i3___i_r_qs}{hwEXTI3\_IRQs}};}
+\DoxyCodeLine{00027\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{classhw_e_x_t_i3___i_r_qs}{hwEXTI3\_IRQs}}\ *phwEXTI3\_IRQs;}
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhw_e_x_t_i3___i_r_qs}{hwEXTI3\_IRQs}}}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classhw_e_x_t_i3___i_r_qs}{hwEXTI3\_IRQs}}()}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ phwEXTI3\_IRQs\ =\ \textcolor{keyword}{this};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ Init()}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ EXTI-\/>IMR1\ =\ 1U\ <<\ 3;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ Enable();}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ Enable()}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ NVIC\_SetPriority(EXTI3\_IRQn,\ (7UL\ <<\ \_\_NVIC\_PRIO\_BITS)\ -\/\ 1UL);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ NVIC\_EnableIRQ(EXTI3\_IRQn);}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ Disable()}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ NVIC\_DisableIRQ(EXTI3\_IRQn);}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ cbInterrupt()}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((EXTI-\/>PR1\ \&\ EXTI\_PR1\_PR3)\ !=\ 0)}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ clear\ interrupt}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>PR1\ =\ EXTI\_PR1\_PR3;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ cbEXTI\_3();}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ cbEXTI\_3()\ =\ 0;\ \textcolor{comment}{//\ this\ function\ is\ called\ from\ the\ GPIO\ interrupt}}
+\DoxyCodeLine{00063\ \};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_c_t_p_display}{CTPDisplay}}\ :\ \ \ \ \mbox{\hyperlink{classhw_i2_c1}{hwI2C1}},\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classhw_e_x_t_i3___i_r_qs}{hwEXTI3\_IRQs}}}
+\DoxyCodeLine{00066\ \{}
+\DoxyCodeLine{00067\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ Init(\mbox{\hyperlink{classcb_display}{cbDisplay}}\ *cb)}
+\DoxyCodeLine{00069\ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ cbClass\ =\ cb;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ hwI2C1::Init();}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ hwEXTI3\_IRQs::Init();}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ reset\ touchscreen\ controler}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ Reset();}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ TPPoint,\ TPPointOld;}
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{classcb_display}{cbDisplay}}\ *cbClass\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ CPTInterrupt\ \{GPIOH,\ 3,\ hwGPIO::eMode::Int\_Falling,\ hwGPIO::ePP::Float,\ hwGPIO::ePUPD::PullUp\ \}}
+\DoxyCodeLine{00083\ \ \ \ \ ;}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ CPTReset\ \{GPIOC,\ 14,\ hwGPIO::eMode::Output,\ hwGPIO::ePP::PushPull\ \}\ }
+\DoxyCodeLine{00085\ \ \ \ \ ;}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ reset\ touchscreen\ controler}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ Reset()}
+\DoxyCodeLine{00089\ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ CPTReset.High();}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ osDelay(10);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ CPTReset.Low();}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ osDelay(10);}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ CPTReset.High();}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ osDelay(10);}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{struct\ }PanelInformation}
+\DoxyCodeLine{00099\ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ uint16\_t\ Xmax;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ uint16\_t\ Ymax;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ uint16\_t\ RxChannel;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ uint16\_t\ TxChannel;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ uint8\_t\ TouchNumber;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ uint8\_t\ KeyBumber;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ uint8\_t\ TotalICNumber;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ uint8\_t\ ModeNumber;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ uint8\_t\ ReportFormat;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ uint8\_t\ DieNum;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ uint8\_t\ FlashBlock;}
+\DoxyCodeLine{00111\ \ \ \ \ \}\ \_\_PACKED;}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(PanelInformation)\ ==\ 15,\ \textcolor{stringliteral}{"{}Wrong\ size"{}});}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ PanelInformation\ Information;}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{void}\ ReadPanelInformation()}
+\DoxyCodeLine{00116\ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hwI2C::SendCmd(0x41,\ 0x20))\ \textcolor{comment}{//\ Panel\ information}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}Touch\ send\(\backslash\)n"{}});}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ NData\ =\ hwI2C::Read(0x41,\ (uint8\_t*)\&Information,\ \textcolor{keyword}{sizeof}(Information));}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (NData\ ==\ \textcolor{keyword}{sizeof}(Information))}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}\ \ \ Touch\ information\(\backslash\)n"{}});}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}\ \ \ XMax,YMax\ \%d,\%d\(\backslash\)n"{}},\ Information.Xmax,\ Information.Ymax);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}\ \ \ TouchNumber\ \%d\ KeyBumber\ \%d\(\backslash\)n"{}},\ Information.TouchNumber,\ Information.KeyBumber);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}\ \ \ Touch\ information\ failed\(\backslash\)n"{}});}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{struct\ }ReportIDFormat}
+\DoxyCodeLine{00135\ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ uint8\_t\ PointId\ :\ 6;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ uint8\_t\ Tip\ :\ 1;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ uint8\_t\ R1\ :\ 1;\ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ uint16\_t\ X,\ Y;}
+\DoxyCodeLine{00140\ \ \ \ \ \}\ \_\_PACKED;}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(ReportIDFormat)\ ==\ 5,\ \textcolor{stringliteral}{"{}Wrong\ size"{}});}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{struct\ }PacketFormat}
+\DoxyCodeLine{00144\ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ uint8\_t\ Id;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ ReportIDFormat\ Points[10];}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ uint8\_t\ R1[10];\ \ \ \ \ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ uint8\_t\ ContactCounts;\ \ \ \ \ \ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ uint8\_t\ R2;\ \ \ \ \ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ uint8\_t\ Crc;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00151\ \ \ \ \ \}\ \_\_PACKED;}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(PacketFormat)\ ==\ 64,\ \textcolor{stringliteral}{"{}Wrong\ size"{}});}
+\DoxyCodeLine{00153\ \ \ \ \ }
+\DoxyCodeLine{00154\ \ \ \ \ PacketFormat\ Packet;}
+\DoxyCodeLine{00155\ \ \ \ \ int16\_t\ SX,\ SY;}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ cbEXTI\_3()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00157\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00158\ \textcolor{comment}{//\ \ \ \ \ \ if\ (Information.DieNum\ ==\ 0)}}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ ReadPanelInformation();}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ Printf("{}Touch\(\backslash\)n"{});}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hwI2C::SendCmd(0x41,\ 0x10))}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ Printf("{}Touch\ send\(\backslash\)n"{});}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ NData\ =\ hwI2C::Read(0x41,\ (uint8\_t*)\&Packet,\ \textcolor{keyword}{sizeof}(Packet));}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (NData\ ==\ \textcolor{keyword}{sizeof}(Packet))}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ Printf("{}Touch\ read\ \%d\ Points\ \%d\(\backslash\)n"{},NData,\ Packet.ContactCounts\ );}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ \ for\ (int\ i\ =\ 0;\ i\ <\ Packet.ContactCounts;\ i++)}}
+\DoxyCodeLine{00170\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00171\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Printf("{}\%d\ \%s\ \%d,\%d\(\backslash\)n"{},}}
+\DoxyCodeLine{00172\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i,}}
+\DoxyCodeLine{00173\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Packet.Points[i].Tip\ ?\ "{}Tip"{}:"{}Up\ "{},}}
+\DoxyCodeLine{00174\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Packet.Points[i].X,}}
+\DoxyCodeLine{00175\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Packet.Points[i].Y);}}
+\DoxyCodeLine{00176\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}*/}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ figure\ out\ how\ there\ was\ pressed}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(Packet.ContactCounts>0)}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UpdateState();}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ reset\ touchscreen\ controler}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ CPTReset.Low();}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ CPTReset.Low();}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ CPTReset.Low();}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ CPTReset.High();}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00190\ \ \ \ \ \}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{comment}{//\ figure\ out\ how\ there\ was\ pressed}}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateState();}
+\DoxyCodeLine{00194\ \};}
+
+\end{DoxyCode}

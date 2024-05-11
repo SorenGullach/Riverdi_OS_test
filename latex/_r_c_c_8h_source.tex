@@ -1,0 +1,315 @@
+\doxysection{RCC.\+h}
+\hypertarget{_r_c_c_8h_source}{}\label{_r_c_c_8h_source}\index{osSTM32H7xx/RCC.h@{osSTM32H7xx/RCC.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ 2024\ Søren\ Gullach}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ You\ must\ include\ the\ following\ attribution\ in\ all\ copies\ or\ substantial\ portions\ of\ the\ Software:}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ "{}Søren\ Gullach\ <STM32\_R7\_OS@toolsbox.dk>"{}}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <stm32h7xx.h>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <Utils.h>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <assert.h>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <Registers.h>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#if\ !defined\ \ (HSI\_VALUE)}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ HSI\_VALUE\ \ \ \ 64'000'000UL\ }}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ HSI\_VALUE\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#if\ !defined\ \ (HSE\_VALUE)}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ HSE\_VALUE\ \ \ \ 16'000'000UL\ }}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ HSE\_VALUE\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#if\ !defined\ \ (LSE\_VALUE)}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ LSE\_VALUE\ \ \ \ 32'000UL\ }}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ LSE\_VALUE\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#if\ !defined\ \ (LSI\_VALUE)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ LSI\_VALUE\ \ \ \ 32'000UL\ }}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ LSI\_VALUE\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#if\ !defined\ \ (CSI\_VALUE)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ CSI\_VALUE\ \ \ \ 4'000'000UL\ }}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ CSI\_VALUE\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ forward\ declear}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhw_sys_clock}{hwSysClock}};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhw_c_c}{hwCC}}}
+\DoxyCodeLine{00052\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ forward\ declear}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{int}\ Idx>}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }PLL;}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{class\ }hwSCGU;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ Friends}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classhw_sys_clock}{hwSysClock}};}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{friend}\ PLL<1>;}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{friend}\ PLL<2>;}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{friend}\ PLL<3>;}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{friend}\ hwSCGU;}
+\DoxyCodeLine{00064\ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ Dumps\ the\ current\ settings}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ DumpClocks();}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ Find\ the\ clocks}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ SystemCoreClockUpdate();}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ uint32\_t\ SYS\_clk,\ LSI\_clk,\ LSE\_clk,\ RTC\_clk,\ HSE\_1M\_clk,\ HSE\_clk,\ HSI\_clk,\ CSI\_clk,\ HSI48\_clk,\ PER\_clk;}
+\DoxyCodeLine{00071\ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//\ As\ shown\ in\ the\ Figure\ 51,\ the\ RCC\ offers\ 2\ clock\ outputs(MCO1\ and\ MCO2),\ with\ a\ great}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//\ flexibility\ on\ the\ clock\ selection\ and\ frequency\ adjustment.}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eMCOSEL}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ sys\_ck,}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ pll2\_p\_ck,}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ hse\_ck,}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ pll1\_p\_ck,}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ csi\_ck,}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ lsi\_ck}
+\DoxyCodeLine{00082\ \ \ \ \ \};}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00084\ \textcolor{comment}{\ \ \ \ \ \ \ \ static\ CGPIO*\ MCO(R\_t<uint8\_t,\ 1,\ 2>MCO\_Pin,\ eMCOSEL\ MCOSEL,\ R\_t<uint8\_t,\ 0,\ 15>\ div)}}
+\DoxyCodeLine{00085\ \textcolor{comment}{\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00086\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ static\ CGPIO\ MCOPin;}}
+\DoxyCodeLine{00087\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ if\ (MCO\_Pin\ ==\ 1)}}
+\DoxyCodeLine{00088\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00089\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MCOPin.Init(GPIOA,\ 8,\ GPIO\_AF0\_MCO,\ CGPIO::ePP::PushPull,\ CGPIO::ePUPD::None);}}
+\DoxyCodeLine{00090\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(RCC-\/>CFGR,}}
+\DoxyCodeLine{00091\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RCC\_CFGR\_MCO1\_Msk\ |\ RCC\_CFGR\_MCO1PRE\_Msk,\ //\ clear}}
+\DoxyCodeLine{00092\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((uint32\_t)MCOSEL\ <<\ RCC\_CFGR\_MCO1\_Pos)\ |\ ((uint32\_t)div\ <<\ RCC\_CFGR\_MCO1PRE\_Pos));\ //\ Set}}
+\DoxyCodeLine{00093\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00094\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ else}}
+\DoxyCodeLine{00095\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00096\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MCOPin.Init(GPIOC,\ 9,\ GPIO\_AF0\_MCO,\ CGPIO::ePP::PushPull,\ CGPIO::ePUPD::None);}}
+\DoxyCodeLine{00097\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(RCC-\/>CFGR,}}
+\DoxyCodeLine{00098\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RCC\_CFGR\_MCO2\_Msk\ |\ RCC\_CFGR\_MCO2PRE\_Msk,\ //\ clear}}
+\DoxyCodeLine{00099\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((uint32\_t)MCOSEL\ <<\ RCC\_CFGR\_MCO2\_Pos)\ |\ ((uint32\_t)div\ <<\ RCC\_CFGR\_MCO2PRE\_Pos));\ //\ Set}}
+\DoxyCodeLine{00100\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00101\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ return\ \&MCOPin;}}
+\DoxyCodeLine{00102\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00103\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eHSE}
+\DoxyCodeLine{00106\ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ Off,}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ Bypass,}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ External}
+\DoxyCodeLine{00110\ \ \ \ \ \};}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00112\ \textcolor{comment}{\ \ \ \ *\ The\ HSE\ block\ can\ generate\ a\ clock\ from\ two\ possible\ sources:}}
+\DoxyCodeLine{00113\ \textcolor{comment}{\ \ \ \ •\ External\ crystal/ceramic\ resonator}}
+\DoxyCodeLine{00114\ \textcolor{comment}{\ \ \ \ •\ External\ clock\ source}}
+\DoxyCodeLine{00115\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{void}\ HSE(hwCC::eHSE\ hse,\ uint32\_t\ clk\ =\ HSE\_VALUE);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00119\ \textcolor{comment}{\ \ \ \ *\ The\ LSE\ block\ can\ generate\ a\ clock\ from\ two\ possible\ sources:}}
+\DoxyCodeLine{00120\ \textcolor{comment}{\ \ \ \ •\ External\ crystal/ceramic\ resonator}}
+\DoxyCodeLine{00121\ \textcolor{comment}{\ \ \ \ •\ External\ user\ clock}}
+\DoxyCodeLine{00122\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{void}\ LSE(eHSE\ hse,\ uint32\_t\ clk\ =\ LSE\_VALUE);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eHSI}
+\DoxyCodeLine{00126\ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ Off,}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ Mhz8,}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ Mhz16,}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ Mhz32,}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ Mhz64}
+\DoxyCodeLine{00132\ \ \ \ \ \};}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00134\ \textcolor{comment}{\ \ \ \ The\ HSI\ is\ a\ high-\/speed\ internal\ RC\ oscillator\ which\ can\ be\ used\ directly\ as\ system\ clock,}}
+\DoxyCodeLine{00135\ \textcolor{comment}{\ \ \ \ peripheral\ clock,\ or\ as\ PLL\ input.\ A\ predivider\ allows\ the\ application\ to\ select\ an\ HSI\ output}}
+\DoxyCodeLine{00136\ \textcolor{comment}{\ \ \ \ frequency\ of\ 8,\ 16,\ 32\ or\ 64\ MHz.\ This\ predivider\ is\ controlled\ by\ the\ HSIDIV.}}
+\DoxyCodeLine{00137\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{void}\ HSI(eHSI\ hsi);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00141\ \textcolor{comment}{\ \ \ \ The\ CSI\ is\ a\ low-\/power\ RC\ oscillator\ which\ can\ be\ used\ directly\ as\ system\ clock,\ peripheral}}
+\DoxyCodeLine{00142\ \textcolor{comment}{\ \ \ \ clock,\ or\ PLL\ input.}}
+\DoxyCodeLine{00143\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordtype}{void}\ CSI(eHSE\ hse);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00147\ \textcolor{comment}{\ \ \ \ The\ HSI48\ is\ an\ RC\ oscillator\ that\ delivers\ a\ 48\ MHz\ clock\ that\ can\ be\ used\ directly\ as}}
+\DoxyCodeLine{00148\ \textcolor{comment}{\ \ \ \ kernel\ clock\ for\ some\ peripherals}}
+\DoxyCodeLine{00149\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordtype}{void}\ HSI48(\textcolor{keywordtype}{bool}\ on);}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00153\ \textcolor{comment}{\ \ \ \ The\ LSI\ acts\ as\ a\ low-\/power\ clock\ source\ that\ can\ be\ kept\ running\ when\ the\ system\ is\ in}}
+\DoxyCodeLine{00154\ \textcolor{comment}{\ \ \ \ Stop\ or\ Standby\ mode\ for\ the\ independent\ watchdog\ (IWDG)\ and\ Auto-\/Wakeup\ Unit}}
+\DoxyCodeLine{00155\ \textcolor{comment}{\ \ \ \ (AWU).\ The\ clock\ frequency\ is\ around\ 32\ kHz.}}
+\DoxyCodeLine{00156\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{void}\ LSI(\textcolor{keywordtype}{bool}\ on);}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keyword}{enum\ class}\ ePLL\_SRC}
+\DoxyCodeLine{00160\ \ \ \ \ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ None,}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ HSI,}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ CSI,}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ HSE}
+\DoxyCodeLine{00165\ \ \ \ \ \};}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordtype}{void}\ PLLSource(ePLL\_SRC\ src);}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00170\ \textcolor{comment}{\ \ \ \ The\ RCC\ features\ three\ PLLs\ :}}
+\DoxyCodeLine{00171\ \textcolor{comment}{\ \ \ \ •\ A\ main\ PLL,\ PLL1,\ which\ is\ generally\ used\ to\ provide\ clocks\ to\ the\ CPUs\ and\ to\ some\ peripherals.}}
+\DoxyCodeLine{00172\ \textcolor{comment}{\ \ \ \ •\ Two\ dedicated\ PLLs,\ PLL2\ and\ PLL3,\ which\ are\ used\ to\ generate\ the\ kernel\ clock\ for\ peripherals.}}
+\DoxyCodeLine{00173\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{int}\ Idx>}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }PLL}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classhw_sys_clock}{hwSysClock}};}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classhw_c_c}{hwCC}};}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dumps\ the\ current\ settings}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ DumpClocks();}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ clocks}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ ClockUpdate();}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ IsEnabled()}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ on\ =\ (((Idx\ ==\ 1)\ *\ RCC\_CR\_PLL1ON)\ |\ ((Idx\ ==\ 2)\ *\ RCC\_CR\_PLL2ON)\ |\ ((Idx\ ==\ 3)\ *\ RCC\_CR\_PLL3ON));}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (RCC-\/>CR\ \&\ on)\ !=\ 0;}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Enable()}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ on\ =\ (((Idx\ ==\ 1)\ *\ RCC\_CR\_PLL1ON)\ |\ ((Idx\ ==\ 2)\ *\ RCC\_CR\_PLL2ON)\ |\ ((Idx\ ==\ 3)\ *\ RCC\_CR\_PLL3ON));}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RCC-\/>CR\ |=\ on;\ \textcolor{comment}{//\ Enable\ PLL}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!IsEnabled())\ \_\_asm(\textcolor{stringliteral}{"{}"{}});\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00198\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ The\ frequency\ of\ the\ reference\ clock\ provided\ to\ the\ PLLs\ (refx\_ck)\ must\ range\ from\ 1\ to}}
+\DoxyCodeLine{00199\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ 16\ MHz.\ The\ user\ application\ has\ to\ program\ properly\ the\ DIVMx\ dividers\ of\ the\ RCC\ PLLs}}
+\DoxyCodeLine{00200\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ \ PllInClk(\mbox{\hyperlink{struct_r__t}{R\_t}}<uint32\_t,\ 1'000'000,\ 16'000'000>\ clk);}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ DivM(\mbox{\hyperlink{struct_r__t}{R\_t<uint8\_t,\ 0,\ 63>}}\ divMx);}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ SetupInteger(\mbox{\hyperlink{struct_r__t}{R\_t<uint16\_t,\ 4,\ 512>}}\ mulNx,\ \mbox{\hyperlink{struct_r__t}{R\_t<uint8\_t,\ 1,\ 128>}}\ divPx,\ \mbox{\hyperlink{struct_r__t}{R\_t<uint8\_t,\ 1,\ 128>}}\ divQx,\ \mbox{\hyperlink{struct_r__t}{R\_t<uint8\_t,\ 1,\ 128>}}\ divRx);}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ P\_clk,\ Q\_clk,\ R\_clk;}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ Src\_clk;}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ Ref\_clk,\ VCO\_clk;}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00212\ \ \ \ \ }
+\DoxyCodeLine{00213\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keyword}{static}\ PLL\ <1>PLL1;}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keyword}{static}\ PLL\ <2>PLL2;}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{static}\ PLL\ <3>PLL3;}
+\DoxyCodeLine{00217\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eSysClkSource}
+\DoxyCodeLine{00219\ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ HSI,}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ CSI,}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ HSE,}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ PLL1}
+\DoxyCodeLine{00224\ \ \ \ \ \};}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordtype}{void}\ SYSClkSource(eSysClkSource\ src);}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{comment}{//\ The\ SCGU\ block(System\ Clock\ Generation\ Unit)\ contains\ several\ prescalers\ used\ to}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ configure\ the\ CPU\ and\ bus\ matrix\ clock\ frequencies.}}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{class\ }hwSCGU}
+\DoxyCodeLine{00230\ \ \ \ \ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classhw_sys_clock}{hwSysClock}};}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classhw_c_c}{hwCC}};}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dumps\ the\ current\ settings}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ DumpClocks();}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ clocks}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ ClockUpdate();}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ C1Clk(uint32\_t\ freq\ =\ 480'000'000);}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ C2Clk(uint32\_t\ freq\ =\ 240'000'000);}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ ePDivisor}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ P\_1,}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ P\_2,}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ P\_4,}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ P\_8,}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ P\_16,}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ P1Clk(ePDivisor\ pDivisor\ =\ ePDivisor::P\_2,\ \textcolor{keywordtype}{bool}\ setTimerBit\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ P2Clk(ePDivisor\ pDivisor\ =\ ePDivisor::P\_2,\ \textcolor{keywordtype}{bool}\ HRTIMSEL\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ P3Clk(ePDivisor\ pDivisor\ =\ ePDivisor::P\_2);}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ P4Clk(ePDivisor\ pDivisor\ =\ ePDivisor::P\_2);}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ uint32\_t\ C1\_clk,\ C2\_clk,\ P3\_clk,\ P1\_clk,\ P2\_clk,\ P4\_clk,\ P1T\_clk,\ P2T\_clk,\ P2HRT\_clk;}
+\DoxyCodeLine{00256\ \ \ \ \ \};}
+\DoxyCodeLine{00257\ \ \ \ \ }
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keyword}{static}\ hwSCGU\ SCGU;}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \};}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhw_sys_clock}{hwSysClock}}}
+\DoxyCodeLine{00263\ \{}
+\DoxyCodeLine{00264\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{comment}{//\ Dumps\ the\ current\ settings}}
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ DumpClocks()}
+\DoxyCodeLine{00267\ \ \ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}UnitTest\ of\ SysClock\ start\(\backslash\)n"{}});}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ CC.DumpClocks();}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}UnitTest\ of\ SysClock\ end\(\backslash\)n"{}});}
+\DoxyCodeLine{00271\ \ \ \ \ \}}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{comment}{//\ Find\ the\ clocks}}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SystemCoreClockUpdate()}
+\DoxyCodeLine{00274\ \ \ \ \ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ CC.SystemCoreClockUpdate();}
+\DoxyCodeLine{00276\ \ \ \ \ \}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{comment}{//\ reset\ RCC}}
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Reset();}
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{comment}{//\ Setup\ clocks}}
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Setup();}
+\DoxyCodeLine{00282\ \ \ \ \ }
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ SYSTickClk}}
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ SysTickClk();}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ C1Clk}}
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ C1Clk();}
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ C2Clk}}
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ C2Clk();}
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ CPUClk}}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ CPUClk();}
+\DoxyCodeLine{00291\ \ \ \ \ }
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ AXIClk}}
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ AXIClk();}
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ AHB3Clk}}
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ AHB3Clk();}
+\DoxyCodeLine{00296\ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ APB1Clk}}
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ APB1Clk();}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ APB1TClk();}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ APB2Clk}}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ APB2Clk();}
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ APB2TClk();}
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ APB3Clk}}
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ APB3Clk();}
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ APB4Clk}}
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ APB4Clk();}
+\DoxyCodeLine{00306\ \ \ \ \ }
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classhw_c_c}{hwCC}}\ CC;\ }
+\DoxyCodeLine{00308\ \};}
+\DoxyCodeLine{00309\ }
+
+\end{DoxyCode}

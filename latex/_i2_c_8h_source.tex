@@ -1,0 +1,221 @@
+\doxysection{I2\+C.\+h}
+\hypertarget{_i2_c_8h_source}{}\label{_i2_c_8h_source}\index{osSTM32H7xx/I2C.h@{osSTM32H7xx/I2C.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ 2024\ Søren\ Gullach}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ You\ must\ include\ the\ following\ attribution\ in\ all\ copies\ or\ substantial\ portions\ of\ the\ Software:}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ "{}Søren\ Gullach\ <STM32\_R7\_OS@toolsbox.dk>"{}}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}stm32h7xx.h"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <GPIO.h>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <SysTick.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <Utils.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <MemoryDefs.h>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ ch>}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhw_i2_c}{hwI2C}}}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Init()}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (ch)}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pI2C\ =\ I2C1;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pI2C\ =\ I2C2;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pI2C\ =\ I2C3;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 4:}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pI2C\ =\ I2C4;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ select\ clock\ source}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ch\ ==\ 4)}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(RCC-\/>D3CCIPR,\ RCC\_D3CCIPR\_I2C4SEL\_Msk,\ (uint32\_t)I2C4ClockSource::RCC\_PCLK4\ <<\ RCC\_D3CCIPR\_I2C4SEL\_Pos);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(RCC-\/>D2CCIP2R,\ RCC\_D2CCIP2R\_I2C123SEL\_Msk,\ (uint32\_t)I2C123ClockSource::RCC\_PCLK1\ <<\ RCC\_D2CCIP2R\_I2C123SEL\_Pos);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ enable\ clock}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ RCC-\/>APB1LENR\ |=\ RCC\_APB1LENR\_I2C1EN;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ disable\ }}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR1\ \&=\ \string~I2C\_CR1\_PE;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Select\ analog\ filter}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//pI2C-\/>CR1\ |=\ I2C\_CR1\_ANFOFF;}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(pI2C-\/>CR1,\ I2C\_CR1\_DNF\_Msk,\ 0);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ I2C\ timings}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0x0\ 0\ B\ 0\ 3FDB}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(pI2C-\/>TIMINGR,\ I2C\_TIMINGR\_PRESC\_Msk,\ 0\ <<\ I2C\_TIMINGR\_PRESC\_Pos);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(pI2C-\/>TIMINGR,\ I2C\_TIMINGR\_SCLDEL\_Msk,\ 0xB\ <<\ I2C\_TIMINGR\_SCLDEL\_Pos);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(pI2C-\/>TIMINGR,\ I2C\_TIMINGR\_SDADEL\_Msk,\ 0\ <<\ I2C\_TIMINGR\_SDADEL\_Pos);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(pI2C-\/>TIMINGR,\ I2C\_TIMINGR\_SCLH\_Msk,\ 0x3F\ <<\ I2C\_TIMINGR\_SCLH\_Pos);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(pI2C-\/>TIMINGR,\ I2C\_TIMINGR\_SCLL\_Msk,\ 0xDB\ <<\ I2C\_TIMINGR\_SCLL\_Pos);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Own\ address}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Enable\ the\ AUTOEND\ by\ default,\ and\ enable\ NACK\ (should\ be\ disable\ only\ during\ Slave\ process\ }}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR2\ =\ (I2C\_CR2\_AUTOEND\ |\ I2C\_CR2\_NACK);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Enable}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR1\ |=\ I2C\_CR1\_PE;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Reset()}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR1\ \&=\ \string~I2C\_CR1\_PE;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR1\ \&=\ \string~I2C\_CR1\_PE;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR1\ \&=\ \string~I2C\_CR1\_PE;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR1\ \&=\ \string~I2C\_CR1\_PE;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR1\ |=\ I2C\_CR1\_PE;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ WaitOnReady()}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cnt\ =\ 100000;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (-\/-\/cnt\ >\ 0\ \&\&\ (pI2C-\/>ISR\ \&\ I2C\_ISR\_BUSY)\ !=\ 0)\ \_\_asm(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cnt\ ==\ 0;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ WaitOnTransmitReady()}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cnt\ =\ 10000;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (-\/-\/cnt\ >\ 0\ \&\&\ (pI2C-\/>ISR\ \&\ I2C\_ISR\_TXIS)\ ==\ 0)\_\_asm(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cnt\ ==\ 0;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ WaitOnTransferComplete()}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cnt\ =\ 10000;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (-\/-\/cnt\ >\ 0\ \&\&\ (pI2C-\/>ISR\ \&\ I2C\_ISR\_TC)\ ==\ 0)\ \_\_asm(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cnt\ ==\ 0;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ IsTransferComplete()}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (pI2C-\/>ISR\ \&\ I2C\_ISR\_TC)>0;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ WaitOnReceiveDataReady()}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cnt\ =\ 10000;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (-\/-\/cnt\ >\ 0\ \&\&\ (pI2C-\/>ISR\ \&\ I2C\_ISR\_RXNE)\ ==\ 0)\ \_\_asm(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cnt\ ==\ 0;}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ SendCmd(uint8\_t\ adr,\ uint8\_t\ cmd,\ \textcolor{keywordtype}{bool}\ stop=\textcolor{keyword}{false})}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (WaitOnReady())}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ Printf("{}I2C\ Not\ ready\ \(\backslash\)n"{});}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Reset();}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR2\ =\ 0;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>ISR\ |=\ I2C\_ISR\_TXE;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR2\ =\ (adr\ <<\ 1)\ <<\ I2C\_CR2\_SADD\_Pos;}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR2\ |=\ 1\ <<\ I2C\_CR2\_NBYTES\_Pos;}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR2\ |=\ I2C\_CR2\_AUTOEND\ |\ I2C\_CR2\_NACK;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR2\ |=\ I2C\_CR2\_START;}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (WaitOnTransmitReady())}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ Printf("{}I2C\ No\ transmit\ ready\(\backslash\)n"{});}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ pI2C-\/>CR2\ |=\ I2C\_CR2\_STOP;}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>TXDR\ =\ cmd;}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//WaitOnTransferComplete();}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (stop)}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR2\ |=\ I2C\_CR2\_STOP;}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ uint8\_t\ Read(int8\_t\ adr,\ uint8\_t\ *data,\ uint8\_t\ nbytes)}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (WaitOnReady())}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}I2C\ Read\ not\ ready\ \(\backslash\)n"{}});}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ *data\ =\ (uint8\_t)pI2C-\/>RXDR;}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR2\ =\ (adr\ <<\ 1)\ <<\ I2C\_CR2\_SADD\_Pos;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR2\ |=\ I2C\_CR2\_RD\_WRN;}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR2\ |=\ nbytes\ <<\ I2C\_CR2\_NBYTES\_Pos;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR2\ |=\ I2C\_CR2\_AUTOEND\ |\ I2C\_CR2\_NACK;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR2\ |=\ I2C\_CR2\_START;}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ n\ =\ 0;}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (nbytes\ >\ 0\ \&\&\ !IsTransferComplete())}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (WaitOnReceiveDataReady())}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}I2C\ No\ receive\ ready\ \%d\(\backslash\)n"{}},\ n);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *data\ =\ (uint8\_t)pI2C-\/>RXDR;}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ Printf("{}\%d\ 0x\%02X\(\backslash\)n"{},n,*data);}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data++;\ nbytes-\/-\/;\ n++;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ pI2C-\/>CR2\ |=\ I2C\_CR2\_STOP;}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ WaitOnTransferComplete();}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ n;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00189\ \ \ \ \ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ I2C123ClockSource\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ RCC\_PCLK1\ =\ 0,\ \textcolor{comment}{//\ rcc\_pclk1\ clock\ is\ selected\ as\ kernel\ clock\ (default\ after\ reset)}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ PLL3\_R\_CK\ =\ 1,\ \textcolor{comment}{//\ pll3\_r\_ck\ clock\ is\ selected\ as\ kernel\ clock}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ HSI\_KER\_CK\ =\ 2,\ \textcolor{comment}{//\ hsi\_ker\_ck\ clock\ is\ selected\ as\ kernel\ clock}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ CSI\_KER\_CK\ =\ 3\ \ \ \ \ \ \textcolor{comment}{//\ csi\_ker\_ck\ clock\ is\ selected\ as\ kernel\ clock}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ I2C4ClockSource\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ RCC\_PCLK4\ =\ 0,\ \textcolor{comment}{//\ rcc\_pclk4\ clock\ selected\ as\ kernel\ peripheral\ clock\ (default\ after\ reset)}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ PLL3\_R\_CK\ =\ 1,\ \textcolor{comment}{//\ pll3\_r\_ck\ clock\ selected\ as\ kernel\ peripheral\ clock}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ HSI\_KER\_CK\ =\ 2,\ \textcolor{comment}{//\ hsi\_ker\_ck\ clock\ selected\ as\ kernel\ peripheral\ clock}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ CSI\_KER\_CK\ =\ 3\ \ \ \ \ \ \textcolor{comment}{//\ csi\_ker\_ck\ clock\ selected\ as\ kernel\ peripheral\ clock}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ I2C\_TypeDef\ *pI2C;}
+\DoxyCodeLine{00205\ \ \ \ \ \};}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhw_i2_c1}{hwI2C1}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classhw_i2_c}{hwI2C}}<1>}
+\DoxyCodeLine{00208\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ }
+\DoxyCodeLine{00210\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00211\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ SDA\ \{GPIOB,\ 7,\ 4,\ hwGPIO::ePP::OpenDrian,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \ \}}
+\DoxyCodeLine{00212\ \ \ \ \ ;}
+\DoxyCodeLine{00213\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ SCL\ \{GPIOB,\ 6,\ 4,\ hwGPIO::ePP::OpenDrian,\ hwGPIO::ePUPD::PullUp,\ hwGPIO::eSpeed::VeryHigh\ \ \}}
+\DoxyCodeLine{00214\ \ \ \ \ ;}
+\DoxyCodeLine{00215\ \};}
+
+\end{DoxyCode}

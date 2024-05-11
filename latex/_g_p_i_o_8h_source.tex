@@ -1,0 +1,278 @@
+\doxysection{GPIO.\+h}
+\hypertarget{_g_p_i_o_8h_source}{}\label{_g_p_i_o_8h_source}\index{osSTM32H7xx/GPIO.h@{osSTM32H7xx/GPIO.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ 2024\ Søren Gullach}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ You\ must\ include\ the\ following\ attribution\ in\ all\ copies\ or\ substantial\ portions\ of\ the\ Software:}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ "{}Søren Gullach\ <STM32\_R7\_OS@toolsbox.dk>"{}}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <assert.h>}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}stm32h7xx.h"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <Registers.h>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eMode}
+\DoxyCodeLine{00030\ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ Input\ =\ 0b00,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ Output\ =\ 0b01,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ Alternate\ =\ 0b10,\ //\ set\ by\ alt\ function}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ Analog\ =\ 0b11,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ Int\_Falling\ =\ 0b0100,}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ Int\_Rising\ =\ 0b1000,}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ Int\_Both\ =\ 0b1100,}
+\DoxyCodeLine{00038\ \ \ \ \ \};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{enum\ class}\ ePP}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ Float\ \ \ \ \ =\ 0b0,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ PushPull\ \ =\ 0b0,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ OpenDrian\ =\ 0b1,}
+\DoxyCodeLine{00044\ \ \ \ \ \};}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{enum\ class}\ ePUPD}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ None\ \ \ \ \ =\ 0b00,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ PullUp\ \ \ =\ 0b01,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ PullDown\ =\ 0b10,}
+\DoxyCodeLine{00050\ \ \ \ \ \};}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eSpeed}
+\DoxyCodeLine{00052\ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ Low\ \ \ \ \ \ =\ 0b00,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ Medium\ \ \ =\ 0b01,}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ High\ \ \ \ \ =\ 0b10,}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ VeryHigh\ =\ 0b11}
+\DoxyCodeLine{00057\ \ \ \ \ \};}
+\DoxyCodeLine{00058\ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ Make\ GPIO\ Pin\ initialized\ elsewhere}}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}()}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ Make\ GPIO\ Pin\ initialized\ elsewhere}}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}(GPIO\_TypeDef\ *pgpio,\ \mbox{\hyperlink{struct_r__t}{R\_t<uint8\_t,\ 0,\ 15>}}pin)}
+\DoxyCodeLine{00065\ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ assert(pgpio\ !=\ \textcolor{keyword}{nullptr});\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ pGPIO\ =\ pgpio;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ Pin\ =\ pin;}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//\ Make\ GPIO\ pin\ initialized}}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}(GPIO\_TypeDef\ *pgpio,\ \mbox{\hyperlink{struct_r__t}{R\_t<uint8\_t,\ 0,\ 15>}}pin,\ eMode\ mode,\ ePP\ pp\ =\ ePP::Float,\ ePUPD\ pupd\ =\ ePUPD::None,\ eSpeed\ speed\ =\ eSpeed::High)}
+\DoxyCodeLine{00072\ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ Init(pgpio,\ pin,\ mode,\ pp,\ pupd,\ speed);}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}(GPIO\_TypeDef\ *pgpio,\ \mbox{\hyperlink{struct_r__t}{R\_t<uint8\_t,\ 0,\ 15>}}pin,\ \mbox{\hyperlink{struct_r__t}{R\_t<uint8\_t,\ 0,\ 15>}}af,\ ePP\ pp\ =\ ePP::Float,\ ePUPD\ pupd\ =\ ePUPD::None,\ eSpeed\ speed\ =\ eSpeed::High)}
+\DoxyCodeLine{00076\ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ Init(pgpio,\ pin,\ af,\ pp,\ pupd,\ speed);}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ Init(GPIO\_TypeDef\ *pgpio,\ \mbox{\hyperlink{struct_r__t}{R\_t<uint8\_t,\ 0,\ 15>}}pin,\ eMode\ mode,\ ePP\ pp\ =\ ePP::Float,\ ePUPD\ pupd\ =\ ePUPD::None,\ eSpeed\ speed\ =\ eSpeed::High)}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ assert(pgpio\ !=\ \textcolor{keyword}{nullptr});\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ pGPIO\ =\ pgpio;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ Pin\ =\ pin;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ EnableClk();}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ SetMode(mode);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ SetDriver(pp);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ SetPuPD(pupd);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ SetSpeed(speed);}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ Init(GPIO\_TypeDef\ *pgpio,\ \mbox{\hyperlink{struct_r__t}{R\_t<uint8\_t,\ 0,\ 15>}}pin,\ \mbox{\hyperlink{struct_r__t}{R\_t<uint8\_t,\ 0,\ 15>}}af,\ ePP\ pp\ =\ ePP::Float,\ ePUPD\ pupd\ =\ ePUPD::None,\ eSpeed\ speed\ =\ eSpeed::High)}
+\DoxyCodeLine{00091\ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ assert(pgpio\ !=\ \textcolor{keyword}{nullptr});\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ assert(pin\ <=\ 15);}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ pGPIO\ =\ pgpio;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ Pin\ =\ pin;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ EnableClk();}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ SetMode(af);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ SetDriver(pp);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ SetPuPD(pupd);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ SetSpeed(speed);}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ On()\ \ \ \{\ Set();\ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{void}\ Off()\ \ \{\ Reset();\ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ High()\ \{\ Set();\ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ Low()\ \ \{\ Reset();\ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ Set()\ \{\ assert(pGPIO\ !=\ \textcolor{keyword}{nullptr});\ pGPIO-\/>BSRR\ =\ 1\ <<\ Pin;\ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{void}\ Reset()\ \{\ assert(pGPIO\ !=\ \textcolor{keyword}{nullptr});\ pGPIO-\/>BSRR\ =\ 1\ <<\ (Pin\ +\ 16);\ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ Toggle()\ \{\ Level()\ ?\ Reset()\ :\ Set();\ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{bool}\ Level()\ \{\ assert(pGPIO\ !=\ \textcolor{keyword}{nullptr});\ \textcolor{keywordflow}{return}\ pGPIO-\/>IDR\ \&\ (1\ <<\ Pin);\ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{void}\ Level(\textcolor{keywordtype}{bool}\ l)\ \{\ l\ ?\ Set()\ :\ Reset();\ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsHigh()\ \{\textcolor{keywordflow}{return}\ Level();\ \}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsLow()\ \{\textcolor{keywordflow}{return}\ !Level();\ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsOn()\ \{\textcolor{keywordflow}{return}\ Level();\ \}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsOff()\ \{\textcolor{keywordflow}{return}\ !Level();\ \}}
+\DoxyCodeLine{00116\ \ \ \ \ }
+\DoxyCodeLine{00117\ \ \ \ \ }
+\DoxyCodeLine{00118\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00119\ \ \ \ \ GPIO\_TypeDef\ *pGPIO\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00120\ \ \ \ \ \mbox{\hyperlink{struct_r__t}{R\_t<uint8\_t,\ 0,\ 15>}}Pin\ =\ 0;}
+\DoxyCodeLine{00121\ \ \ \ \ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ EnableClk()}
+\DoxyCodeLine{00123\ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOA)}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ RCC-\/>AHB4ENR\ |=\ RCC\_AHB4ENR\_GPIOAEN;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOB)}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ RCC-\/>AHB4ENR\ |=\ RCC\_AHB4ENR\_GPIOBEN;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOC)}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ RCC-\/>AHB4ENR\ |=\ RCC\_AHB4ENR\_GPIOCEN;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOD)}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ RCC-\/>AHB4ENR\ |=\ RCC\_AHB4ENR\_GPIODEN;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOE)}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ RCC-\/>AHB4ENR\ |=\ RCC\_AHB4ENR\_GPIOEEN;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOF)}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ RCC-\/>AHB4ENR\ |=\ RCC\_AHB4ENR\_GPIOFEN;}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOG)}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ RCC-\/>AHB4ENR\ |=\ RCC\_AHB4ENR\_GPIOGEN;}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOH)}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ RCC-\/>AHB4ENR\ |=\ RCC\_AHB4ENR\_GPIOHEN;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOI)}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ RCC-\/>AHB4ENR\ |=\ RCC\_AHB4ENR\_GPIOIEN;}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOJ)}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ RCC-\/>AHB4ENR\ |=\ RCC\_AHB4ENR\_GPIOJEN;}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#ifdef\ GPIOK}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOK)}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ RCC-\/>AHB4ENR\ |=\ RCC\_AHB4ENR\_GPIOKEN;}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GPIOK}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ assert(\textcolor{stringliteral}{"{}Wrong\ port"{}});}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{void}\ SetMode(\mbox{\hyperlink{struct_r__t}{R\_t<uint8\_t,\ 0,\ 15>}}af)}
+\DoxyCodeLine{00153\ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ pGPIO-\/>MODER\ \&=\ \string~(0b11UL\ <<\ 2*Pin);\ \textcolor{comment}{//\ 00}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ pGPIO-\/>MODER\ |=\ 0b10UL\ <<\ 2*Pin;\ \textcolor{comment}{//\ AF}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Pin\ <\ 8)}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ pGPIO-\/>AFR[0]\ \&=\ \string~(0xFUL\ <<\ 4*Pin);}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ pGPIO-\/>AFR[0]\ |=\ (uint32\_t)af\ <<\ 4*Pin;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ pGPIO-\/>AFR[1]\ \&=\ \string~(0xFUL\ <<\ 4*(Pin\ -\/\ 8));}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ pGPIO-\/>AFR[1]\ |=\ (uint32\_t)af\ <<\ 4*(Pin\ -\/\ 8);}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00166\ \ \ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordtype}{void}\ SetMode(eMode\ mode)}
+\DoxyCodeLine{00169\ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ pGPIO-\/>MODER\ \&=\ \string~(0b11UL\ <<\ 2*Pin);\ \textcolor{comment}{//\ 00}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (((uint32\_t)mode\ \&\ 0B1100)\ !=\ 0)\ \textcolor{comment}{//\ interrupt}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ RCC-\/>APB4ENR\ |=\ RCC\_APB4ENR\_SYSCFGEN;}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{volatile}\ uint32\_t\ *pEXTICR;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{comment}{/*Pin\ >=\ 0\ \&\&\ */}Pin\ <=\ 3)}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pEXTICR\ =\ \&(SYSCFG-\/>EXTICR[0]);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (Pin\ >=\ 4\ \&\&\ Pin\ <=\ 7)}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pEXTICR\ =\ \&(SYSCFG-\/>EXTICR[1]);}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (Pin\ >=\ 8\ \&\&\ Pin\ <=\ 11)}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pEXTICR\ =\ \&(SYSCFG-\/>EXTICR[2]);}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (Pin\ >=\ 12\ \&\&\ Pin\ <=\ 15)}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pEXTICR\ =\ \&(SYSCFG-\/>EXTICR[3]);}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assert(\textcolor{keyword}{false}\ \&\&\ \textcolor{stringliteral}{"{}More\ code"{}});}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOA)\ \{\}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOB)\ \{\}\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOC)\ \{\}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOD)\ \{\}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOE)\ \{\}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOF)\ \{\}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOG)\ \{\}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOH)\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pEXTICR\ \&=\ \string~(0B1111\ <<\ (Pin\ *\ 4));}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pEXTICR\ |=\ (0B0111\ <<\ (Pin\ *\ 4));}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOI)\ \{\}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOJ)\ \{\}}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#ifdef\ GPIOK}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGPIO\ ==\ GPIOK)\ \{\}}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GPIOK}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assert(\textcolor{stringliteral}{"{}Wrong\ port"{}});}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ Falling\ =\ ((uint32\_t)mode\ \&\ (uint32\_t)eMode::Int\_Falling)\ ?\ 1:0;}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ Rising\ =\ ((uint32\_t)mode\ \&\ (uint32\_t)eMode::Int\_Rising)\ ?\ 1\ :\ 0;}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{comment}{/*Pin\ >=\ 0\ \&\&\ */}Pin\ <=\ 21)}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>RTSR1\ \&=\ \string~(1U\ <<\ Pin);}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>RTSR1\ |=\ (Rising\ <<\ Pin);}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>FTSR1\ \&=\ \string~(1U\ <<\ Pin);}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>FTSR1\ |=\ (Falling\ <<\ Pin);}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (Pin\ ==\ 49)}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>RTSR2\ \&=\ \string~(1U\ <<\ 17);}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>RTSR2\ |=\ (Rising\ <<\ 17);}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>FTSR2\ \&=\ \string~(1U\ <<\ 17);}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>FTSR2\ |=\ (Falling\ <<\ 17);}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (Pin\ ==\ 51)}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>RTSR2\ \&=\ \string~(1U\ <<\ 19);}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>RTSR2\ |=\ (Rising\ <<\ 19);}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>FTSR2\ \&=\ \string~(1U\ <<\ 19);}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>FTSR2\ |=\ (Falling\ <<\ 19);}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (Pin\ ==\ 82)}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>RTSR3\ \&=\ \string~(1U\ <<\ 19);}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>RTSR3\ |=\ (Rising\ <<\ 19);}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>FTSR3\ \&=\ \string~(1U\ <<\ 19);}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>FTSR3\ |=\ (Falling\ <<\ 19);}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (Pin\ >=\ 84\ \&\&\ Pin\ <=\ 86)}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>RTSR3\ \&=\ \string~(1U\ <<\ (20\ +\ (Pin\ -\/\ 84)));}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>RTSR3\ |=\ (Rising\ <<\ (20\ +\ (Pin\ -\/\ 84)));}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>FTSR3\ \&=\ \string~(1U\ <<\ (20\ +\ (Pin\ -\/\ 84)));}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EXTI-\/>FTSR3\ |=\ (Falling\ <<\ (20\ +\ (Pin\ -\/\ 84)));}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assert(\textcolor{keyword}{false}\ \&\&\ \textcolor{stringliteral}{"{}More\ code"{}});}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ pGPIO-\/>MODER\ |=\ (((uint32\_t)mode)\ \&\ 0B0011)\ <<\ 2*Pin;\ }
+\DoxyCodeLine{00253\ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordtype}{void}\ SetDriver(ePP\ pp)}
+\DoxyCodeLine{00255\ \ \ \ \ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pp\ ==\ ePP::OpenDrian)}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ pGPIO-\/>OTYPER\ |=\ 1UL\ <<\ Pin;}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ pGPIO-\/>OTYPER\ \&=\ \string~(1UL\ <<\ Pin);}
+\DoxyCodeLine{00260\ \ \ \ \ \}}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordtype}{void}\ SetPuPD(ePUPD\ pupd)}
+\DoxyCodeLine{00262\ \ \ \ \ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ pGPIO-\/>PUPDR\ \&=\ \string~(0b11UL\ <<\ 2*Pin);\ \textcolor{comment}{//\ 00}}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ pGPIO-\/>PUPDR\ |=\ (uint32\_t)pupd\ <<\ 2*Pin;}
+\DoxyCodeLine{00265\ \ \ \ \ \}}
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{keywordtype}{void}\ SetSpeed(eSpeed\ speed)}
+\DoxyCodeLine{00267\ \ \ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ pGPIO-\/>OSPEEDR\ \&=\ \string~(0b11UL\ <<\ 2*Pin);\ \textcolor{comment}{//\ 00}}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ pGPIO-\/>OSPEEDR\ |=\ (uint32\_t)speed\ <<\ 2*Pin;\ }
+\DoxyCodeLine{00270\ \ \ \ \ \}}
+\DoxyCodeLine{00271\ \};}
+\DoxyCodeLine{00272\ }
+
+\end{DoxyCode}

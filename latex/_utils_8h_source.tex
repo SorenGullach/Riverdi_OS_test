@@ -1,0 +1,69 @@
+\doxysection{Utils.\+h}
+\hypertarget{_utils_8h_source}{}\label{_utils_8h_source}\index{osSTM32H7xx/Utils.h@{osSTM32H7xx/Utils.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ 2024\ Søren Gullach}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ You\ must\ include\ the\ following\ attribution\ in\ all\ copies\ or\ substantial\ portions\ of\ the\ Software:}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ "{}Søren Gullach\ <STM32\_R7\_OS@toolsbox.dk>"{}}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}stm32h7xx.h"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <assert.h>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#ifdef\ DEBUG}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <stdarg.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ Printf(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *format,\ ...);}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00031\ \textcolor{keywordtype}{void}\ Printf(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *,\ ...)\ \{\}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ ModifyReg(reg,\ \ clear,\ \ set)\ (reg\ =\ ((reg\ \&\ \string~(clear))\ |\ (set)))}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ SetReg(\ \ \ \ \ reg,\ set\ \ \ \ )\ (reg\ =\ ((reg\ \&\ \string~(set\#\#\_Msk))\ |\ (set)))}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ ClearReg(\ \ \ reg,\ clear\ \ )\ (reg\ \&=\ \string~(clear\#\#\_Msk))}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{struct\ }\_\_attribute\_\_((packed))\ ID\_TypeDef}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ uint32\_t\ Chip\_Id;\ \textcolor{comment}{//\ 0x00}}
+\DoxyCodeLine{00042\ \ \ \ \ uint8\_t\ Vaf\_NumY\ :4;}
+\DoxyCodeLine{00043\ \ \ \ \ uint8\_t\ Vaf\_NumX\ :\ 4;}
+\DoxyCodeLine{00044\ \ \ \ \ uint8\_t\ Lot\_Num[7];}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(ID\_TypeDef)\ ==\ 12,\ \textcolor{stringliteral}{"{}unexpected\ size"{}});}
+\DoxyCodeLine{00047\ \textcolor{keyword}{extern}\ ID\_TypeDef\ *Chip\_Id;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{extern}\ uint16\_t\ *Chip\_FlashSize;}
+\DoxyCodeLine{00050\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{char}\ *Chip\_LineIdentifier;}
+\DoxyCodeLine{00051\ \textcolor{keywordtype}{void}\ DumpChipInfo();}
+\DoxyCodeLine{00052\ \textcolor{keywordtype}{void}\ DumpMemInfo();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00055\ \textcolor{comment}{enum\ STM32Variant\ \{}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ \ \ \ UFBGA169\_LQFP176\_H7x7\ =\ 0b0010,}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ \ \ \ LQFP144\_H7x5\ \ \ \ \ \ \ \ \ \ =\ 0b0011,}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ \ \ \ LQFP176\_H7x5\ \ \ \ \ \ \ \ \ \ =\ 0b0110,}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ \ UFBGA176\_H7x5\ \ \ \ \ \ \ \ \ =\ 0b0111,}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ \ LQFP208\_H7x7\ \ \ \ \ \ \ \ \ \ =\ 0b1001,}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ \ LQFP208\_H7x5\ \ \ \ \ \ \ \ \ \ =\ 0b1010}}
+\DoxyCodeLine{00062\ \textcolor{comment}{\};}}
+\DoxyCodeLine{00063\ \textcolor{comment}{*/}}
+
+\end{DoxyCode}

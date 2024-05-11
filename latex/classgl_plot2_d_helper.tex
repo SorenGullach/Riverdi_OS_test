@@ -1,0 +1,74 @@
+\doxysection{gl\+Plot2\+DHelper Class Reference}
+\hypertarget{classgl_plot2_d_helper}{}\label{classgl_plot2_d_helper}\index{glPlot2DHelper@{glPlot2DHelper}}
+Inheritance diagram for gl\+Plot2\+DHelper\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.834532cm]{classgl_plot2_d_helper}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgl_plot2_d_helper_ab82eeb740c426fd0793ecd59f9a4b566}\label{classgl_plot2_d_helper_ab82eeb740c426fd0793ecd59f9a4b566} 
+void {\bfseries Plot\+Line} (P\+\_\+t x0, P\+\_\+t y0, P\+\_\+t x1, P\+\_\+t y1, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&color)
+\item 
+\Hypertarget{classgl_plot2_d_helper_afa637624a283e1a60f1e6643c50c729c}\label{classgl_plot2_d_helper_afa637624a283e1a60f1e6643c50c729c} 
+void {\bfseries Plot\+Circle} (\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&center, P\+\_\+t radius, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&color)
+\item 
+\Hypertarget{classgl_plot2_d_helper_a679ec2462b058f2926c4aec2922bb2e8}\label{classgl_plot2_d_helper_a679ec2462b058f2926c4aec2922bb2e8} 
+void {\bfseries Plot\+Circle\+Fill} (\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&center, P\+\_\+t radius, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&color)
+\item 
+\Hypertarget{classgl_plot2_d_helper_a5dc913baa731d3a81f3e66b5dfd2f5f1}\label{classgl_plot2_d_helper_a5dc913baa731d3a81f3e66b5dfd2f5f1} 
+void {\bfseries Plot\+Arc} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} box, \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&center, P\+\_\+t radius, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&color)
+\item 
+\Hypertarget{classgl_plot2_d_helper_a7b778bb27019912ba2f2442c53128d9d}\label{classgl_plot2_d_helper_a7b778bb27019912ba2f2442c53128d9d} 
+void {\bfseries Plot\+Fill\+Arc} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} box, \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&center, P\+\_\+t radius, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&color)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_video_memory_plot}{gl\+Video\+Memory\+Plot}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries Plot} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&box, P\+\_\+t x, P\+\_\+t y, const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&color)
+\item 
+void {\bfseries Plot} (P\+\_\+t x, P\+\_\+t y, const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&color)
+\item 
+void {\bfseries Plot} (const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&p, const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&color)
+\item 
+void {\bfseries Plot} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} box, const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&p, const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&color)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Protected Member Functions inherited from \mbox{\hyperlink{classgl_video_memory}{gl\+Video\+Memory}}}
+\begin{DoxyCompactItemize}
+\item 
+static bool {\bfseries last\+Band} ()
+\item 
+static void {\bfseries Limit\+Region} ()
+\item 
+static void {\bfseries Next\+Region} ()
+\item 
+static void {\bfseries Init} (const P\+\_\+t w, const P\+\_\+t h, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*}pvm)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classgl_video_memory}{gl\+Video\+Memory}}}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*} {\bfseries p\+VM}
+\item 
+static P\+\_\+t {\bfseries Width}
+\item 
+static P\+\_\+t {\bfseries Height}
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+static P\+\_\+t {\bfseries ls}
+\item 
+static P\+\_\+t {\bfseries y\+Start}
+\item 
+static P\+\_\+t {\bfseries y\+End}
+\item 
+static \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Region}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+gl\+STM32\+H7xx/gl\+Primitives.\+h\item 
+gl\+STM32\+H7xx/gl\+Primitives.\+cpp\end{DoxyCompactItemize}

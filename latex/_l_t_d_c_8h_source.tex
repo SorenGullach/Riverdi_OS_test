@@ -1,0 +1,107 @@
+\doxysection{LTDC.\+h}
+\hypertarget{_l_t_d_c_8h_source}{}\label{_l_t_d_c_8h_source}\index{osSTM32H7xx/LTDC.h@{osSTM32H7xx/LTDC.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ 2024\ Søren\ Gullach}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ You\ must\ include\ the\ following\ attribution\ in\ all\ copies\ or\ substantial\ portions\ of\ the\ Software:}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ "{}Søren\ Gullach\ <STM32\_R7\_OS@toolsbox.dk>"{}}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}stm32h7xx.h"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}assert.h"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}GPIO.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}Utils.h"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}DSI.h"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}TFT\_Setup.h"{}}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ https://indico.scc.kit.edu/event/460/contributions/5488/attachments/2862/4148/Datasheet\_LDC-\/TFT\_STM32.pdf}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ https://www.st.com/resource/en/reference\_manual/rm0399-\/stm32h745755-\/and-\/stm32h747757-\/advanced-\/armbased-\/32bit-\/mcus-\/stmicroelectronics.pdf}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhw_l_t_d_c___i_r_qs}{hwLTDC\_IRQs}};}
+\DoxyCodeLine{00034\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{classhw_l_t_d_c___i_r_qs}{hwLTDC\_IRQs}}\ *phwLTDC\_IRQs;}
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhw_l_t_d_c___i_r_qs}{hwLTDC\_IRQs}}}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classhw_l_t_d_c___i_r_qs}{hwLTDC\_IRQs}}()}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ phwLTDC\_IRQs\ =\ \textcolor{keyword}{this};}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ cbBlanking()\ =\ 0;\ \textcolor{comment}{//\ this\ function\ is\ called\ from\ the\ LTDC\ interrupt}}
+\DoxyCodeLine{00043\ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhw_l_t_d_c}{hwLTDC}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classhw_d_s_i}{hwDSI}}}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classhw_l_t_d_c}{hwLTDC}}()}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ Init();}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ 3.\ Configure\ the\ synchronous\ timings:\ VSYNC,\ HSYNC,\ vertical\ and\ horizontal\ back}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ porch,\ active\ data\ area\ and\ the\ front\ porch\ timings\ following\ the\ panel\ datasheet\ }}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ as\ described\ in\ the\ Section\ 33.4.1.}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ TimingParameters();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00061\ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ A\ constant\ background\ color\ (RGB888)\ can\ programmed.}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ It\ is\ used\ for\ blending\ with\ the\ bottom\ layer.}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ BackgroundColor(uint8\_t\ red,\ uint8\_t\ green,\ uint8\_t\ blue);}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ Every\ layer\ can\ have\ a\ default\ color\ in\ the\ format\ ARGB\ which\ is\ used\ outside\ the\ defined}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ layer\ window\ or\ when\ a\ layer\ is\ disabled.}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ DefaultColor(\mbox{\hyperlink{struct_r__t}{R\_t<uint8\_t,\ 1,\ 2>}}\ l,\ uint8\_t\ red,\ uint8\_t\ green,\ uint8\_t\ blue,\ uint8\_t\ alpha);\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ A\ color\ key\ (RGB)\ can\ be\ configured\ to\ be\ representative\ for\ a\ transparent\ pixel.}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ ColorKey(\mbox{\hyperlink{struct_r__t}{R\_t<uint8\_t,\ 1,\ 2>}}\ layer,\ uint8\_t\ red,\ uint8\_t\ green,\ uint8\_t\ blue);}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//\ The\ blending\ is\ always\ active\ and\ the\ two\ layers\ can\ be\ blended\ following\ the\ blending\ factors}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ BlendingFactors(\mbox{\hyperlink{struct_r__t}{R\_t<uint8\_t,\ 1,\ 2>}}\ l,\ eBlendingFactor1\ BF1,\ eBlendingFactor2\ BF2,\ uint8\_t\ constantAlpha);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//\ init\ layer}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ 7.\ Configure\ the\ layer1\ /\ 2\ parameters\ by\ :}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ 8.\ Enable\ layer1\ /\ 2\ and\ if\ needed\ the\ CLUT\ in\ the\ LTDC\_LxCR\ register.}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ Layer(\mbox{\hyperlink{struct_r__t}{R\_t<uint8\_t,\ 1,\ 2>}}\ l,\ \textcolor{keywordtype}{void}\ *pRGBData,\ uint16\_t\ x0,\ uint16\_t\ y0,\ uint16\_t\ x1,\ uint16\_t\ y1);}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ Height()\ \{\ \ \textcolor{keywordflow}{return}\ VACT;\ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ Width()\ \{\ \ \ \textcolor{keywordflow}{return}\ HACT;\ \}}
+\DoxyCodeLine{00079\ \ \ \ \ uint16\_t\ Width(uint16\_t\ w)\ }
+\DoxyCodeLine{00080\ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ uint32\_t\ BytesPerPixel\ =\ 4;\ \textcolor{comment}{//\ TODO\ depend\ on\ PixelFormat}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ LTDC\ Layerx\ Color\ Frame\ Buffer\ Length\ Register}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ uint16\_t\ LinePitch\ =\ w\ *\ BytesPerPixel;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((LinePitch\ \%\ 64)\ !=\ 0)}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ LinePitch\ +=\ 64\ -\/\ (LinePitch\ \%\ 64);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ assert((LinePitch\ \%\ 64)\ ==\ 0\ \&\&\ \textcolor{stringliteral}{"{}Wrong\ line\ pitch"{}});}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ LinePitch\ /\ BytesPerPixel;\ }
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ CurrentPos(uint16\_t\ \&x,\ uint16\_t\ \&y)\ }
+\DoxyCodeLine{00092\ \ \ \ \ \{\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ x\ =\ (LTDC-\/>CPSR\&LTDC\_CPSR\_CXPOS\_Msk)\ >>\ LTDC\_CPSR\_CXPOS\_Pos;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ y\ =\ (LTDC-\/>CPSR\&LTDC\_CPSR\_CYPOS\_Msk)\ >>\ LTDC\_CPSR\_CYPOS\_Pos;}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{bool}\ BlankingOverrun()\ }
+\DoxyCodeLine{00097\ \ \ \ \ \{\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ uint16\_t\ y\ =\ (LTDC-\/>CPSR\ \&\ LTDC\_CPSR\_CYPOS\_Msk)\ >>\ LTDC\_CPSR\_CYPOS\_Pos;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ y\ >=\ VBP\ \&\&\ y\ <\ VBP\ +\ VACT;\ }
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \};}
+
+\end{DoxyCode}

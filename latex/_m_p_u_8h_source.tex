@@ -1,0 +1,213 @@
+\doxysection{MPU.\+h}
+\hypertarget{_m_p_u_8h_source}{}\label{_m_p_u_8h_source}\index{osSTM32H7xx/MPU.h@{osSTM32H7xx/MPU.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}stm32h7xx.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <assert.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ https://www.st.com/resource/en/programming\_manual/pm0253-\/stm32f7-\/series-\/and-\/stm32h7-\/series-\/cortexm7-\/processor-\/programming-\/manual-\/stmicroelectronics.pdf}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ section\ 4.6}}
+\DoxyCodeLine{00009\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ The\ Memory\ Protection\ Unit\ (MPU)\ divides\ the\ memory\ map\ into\ a\ number\ of\ regions,\ and}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ \ defines\ the\ location,\ size,\ access\ permissions,\ and\ memory\ attributes\ of\ each\ region.\ It}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ \ \ supports:}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ \ \ •\ Independent\ attribute\ settings\ for\ each\ region.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ \ \ •\ Overlapping\ regions.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ \ \ •\ Export\ of\ memory\ attributes\ to\ the\ system.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ \ \ The\ memory\ attributes\ affect\ the\ behavior\ of\ memory\ accesses\ to\ the\ region.\ The\ Cortex®-\/}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ \ \ \ M7\ MPU\ defines:}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ \ \ \ •\ 8\ or\ 16\ separate\ memory\ regions,\ 0-\/7\ or\ 0-\/15.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ \ \ \ •\ A\ background\ region.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ \ \ \ When\ memory\ regions\ overlap,\ a\ memory\ access\ is\ affected\ by\ the\ attributes\ of\ the\ region}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ \ \ \ with\ the\ highest\ number.\ For\ example,\ the\ attributes\ for\ region\ 7\ take\ precedence\ over\ the}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ \ \ attributes\ of\ any\ region\ that\ overlaps\ region\ 7.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ \ \ \ The\ background\ region\ has\ the\ same\ memory\ access\ attributes\ as\ the\ default\ memory}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ \ \ map,\ but\ is\ accessible\ from\ privileged\ software\ only.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ The\ Cortex®-\/M7\ MPU\ memory\ map\ is\ unified.\ This\ means\ instruction\ accesses\ and\ data}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ \ accesses\ have\ same\ region\ settings.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ \ If\ a\ program\ accesses\ a\ memory\ location\ that\ is\ prohibited\ by\ the\ MPU,\ the\ processor}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ \ generates\ a\ MemManage\ fault.\ This\ causes\ a\ fault\ exception,\ and\ might\ cause\ termination}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ \ of\ the\ process\ in\ an\ OS\ environment.\ In\ an\ OS\ environment,\ the\ kernel\ can\ update\ the\ MPU}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ \ region\ setting\ dynamically\ based\ on\ the\ process\ to\ be\ executed.\ Typically,\ an\ embedded}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ OS\ uses\ the\ MPU\ for\ memory\ protection.}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ **/}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhw_m_p_u}{hwMPU}}}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eAccessPermission}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ \ \ \ \ AP[2:0]\ \ \ \ \ Privileged\ permissions\ \ Unprivileged\ permissions\ \ \ \ Description}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ \ \ \ \ 000\ \ \ \ \ \ \ \ \ No\ access\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ No\ access\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ All\ accesses\ generate\ a\ permission\ fault}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ \ \ \ \ 001\ \ \ \ \ \ \ \ \ RW\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ No\ access\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Access\ from\ a\ privileged\ software\ only}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ \ \ \ \ 010\ \ \ \ \ \ \ \ \ RW\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Written\ by\ an\ unprivileged\ software\ generates\ a\ permission\ fault}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ \ \ \ \ 011\ \ \ \ \ \ \ \ \ RW\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RW\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Full\ access}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ \ \ \ \ \ \ \ 100\ \ \ \ \ \ \ \ \ Unpredictable\ \ \ \ \ \ \ \ \ \ \ Unpredictable\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Reserved}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ \ \ \ \ \ \ \ 101\ \ \ \ \ \ \ \ \ RO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ No\ access\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Read\ by\ a\ privileged\ software\ only}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ \ \ \ \ \ 110\ \ \ \ \ \ \ \ \ RO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Read\ only,\ by\ privileged\ or\ unprivileged\ software}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ \ \ \ \ \ \ \ 111\ \ \ \ \ \ \ \ \ RO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Read\ only,\ by\ privileged\ or\ unprivileged\ software}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}\ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ NoAccess\ =\ 0,}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ PRW\ =\ 1,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ PRW\_URO\ =\ 2,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ PRW\_URW\ =\ 3,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ PRO\ =\ 5,}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ PRO\_URO\ =\ 6}
+\DoxyCodeLine{00056\ \ \ \ \ \};}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eTexLevel}
+\DoxyCodeLine{00059\ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ \ \ \ \ \ TEX\ \ \ \ \ C\ \ \ B\ \ \ Memory\ type\ \ \ \ \ \ \ \ \ Description\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Shareable}}
+\DoxyCodeLine{00062\ \textcolor{comment}{\ \ \ \ \ \ \ \ 000\ \ \ \ \ 0\ \ \ 0\ \ \ Strongly\ ordered\ \ \ \ Strongly\ ordered\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Yes}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ \ \ \ \ \ \ \ 000\ \ \ \ \ 0\ \ \ 1\ \ \ Device\ \ \ \ \ \ \ \ \ \ \ \ \ \ Shared\ device\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Yes}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ \ \ \ \ \ \ \ 000\ \ \ \ \ 1\ \ \ 0\ \ \ Normal\ \ \ \ \ \ \ \ \ \ \ \ \ \ Write\ through,\ no\ write\ allocate\ \ \ \ S\ bit}}
+\DoxyCodeLine{00065\ \textcolor{comment}{\ \ \ \ \ \ \ \ 000\ \ \ \ \ 1\ \ \ 1\ \ \ Normal\ \ \ \ \ \ \ \ \ \ \ \ \ \ Write-\/back,\ no\ write\ allocate\ \ \ \ \ \ \ S\ bit}}
+\DoxyCodeLine{00066\ \textcolor{comment}{\ \ \ \ \ \ \ \ 001\ \ \ \ \ 0\ \ \ 0\ \ \ Normal\ \ \ \ \ \ \ \ \ \ \ \ \ \ Non-\/cacheable\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ S\ bit}}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ \ \ \ \ \ \ \ 001\ \ \ \ \ 0\ \ \ 1\ \ \ Reserved\ \ \ \ \ \ \ \ \ \ \ \ Reserved\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Reserved}}
+\DoxyCodeLine{00068\ \textcolor{comment}{\ \ \ \ \ \ \ \ 001\ \ \ \ \ 1\ \ \ 0\ \ \ Undefined\ \ \ \ \ \ \ \ \ \ \ Undefined\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Undefined}}
+\DoxyCodeLine{00069\ \textcolor{comment}{\ \ \ \ \ \ \ \ 001\ \ \ \ \ 1\ \ \ 1\ \ \ Normal\ \ \ \ \ \ \ \ \ \ \ \ \ \ Write-\/back,\ write\ and\ read\ allocate\ S\ bit}}
+\DoxyCodeLine{00070\ \textcolor{comment}{\ \ \ \ \ \ \ \ 010\ \ \ \ \ 0\ \ \ 0\ \ \ Device\ \ \ \ \ \ \ \ \ \ \ \ \ \ Non-\/shareable\ device\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ No}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ \ \ \ \ \ \ \ 010\ \ \ \ \ 0\ \ \ 1\ \ \ Reserved\ \ \ \ \ \ \ \ \ \ \ \ Reserved\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Reserved}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ Level0\ =\ 0,}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ Level1\ =\ 1,}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ Level2\ =\ 2}
+\DoxyCodeLine{00076\ \ \ \ \ \};}
+\DoxyCodeLine{00077\ \ \ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eSize}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ S32B\ \ \ =\ 0x04,}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ S64B\ \ \ =\ 0x05,}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ S128B\ \ =\ 0x06,}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ S256B\ \ =\ 0x07,}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ S512B\ \ =\ 0x08,}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ S1KB\ \ \ =\ 0x09,}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ S2KB\ \ \ =\ 0x0A,}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ S4KB\ \ \ =\ 0x0B,}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ S8KB\ \ \ =\ 0x0C,}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ S16KB\ \ =\ 0x0D,}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ S32KB\ \ =\ 0x0E,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ S64KB\ \ =\ 0x0F,}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ S128KB\ =\ 0x10,}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ S256KB\ =\ 0x11,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ S512KB\ =\ 0x12,}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ S1MB\ \ \ =\ 0x13,}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ S2MB\ \ \ =\ 0x14,}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ S4MB\ \ \ =\ 0x15,}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ S8MB\ \ \ =\ 0x16,}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ S16MB\ \ =\ 0x17,}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ S32MB\ \ =\ 0x18,}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ S64MB\ \ =\ 0x19,}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ S128MB\ =\ 0x1A,}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ S256MB\ =\ 0x1B,}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ S512MB\ =\ 0x1C,}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ S1GB\ \ \ =\ 0x1D,}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ S2GB\ \ \ =\ 0x1E,}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ S4GB\ \ \ =\ 0x1F,}
+\DoxyCodeLine{00108\ \ \ \ \ \};}
+\DoxyCodeLine{00109\ \ \ \ \ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ DisableRegion(uint8\_t\ no,\ uint32\_t\ address)}
+\DoxyCodeLine{00111\ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ assert(no\ >=\ 0\ \&\&\ no\ <\ ((MPU-\/>TYPE\ \&\&\ MPU\_TYPE\_DREGION\_Msk)\ <<\ MPU\_TYPE\_DREGION\_Pos));}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ MPU-\/>RNR\ =\ no;\ \textcolor{comment}{//\ Select\ region\ 0}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ MPU-\/>RBAR\ =\ address;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ MPU-\/>RASR\ =\ 0;}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ EnableRegion(\ uint8\_t\ no,}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ uint32\_t\ address,}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ eSize\ size,}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ executeNever,}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ shareable,}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ cacheable,}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ bufferable,}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ eAccessPermission\ accessPermission,}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ eTexLevel\ texLevel)}
+\DoxyCodeLine{00127\ \ \ \ \ \{}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ assert(no\ >=\ 0\ \&\&\ no\ <\ ((MPU-\/>TYPE\ \&\&\ MPU\_TYPE\_DREGION\_Msk)\ <<\ MPU\_TYPE\_DREGION\_Pos));}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ Disable();}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Configure\ region\ }}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ MPU-\/>RNR\ =\ no;\ \textcolor{comment}{//\ Select\ region\ 0}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ MPU-\/>RBAR\ =\ address;}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ MPU-\/>RASR\ =\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ (uint32\_t)0\ <<\ MPU\_RASR\_ATTRS\_Pos\ |}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ (uint32\_t)executeNever\ <<\ MPU\_RASR\_XN\_Pos\ |}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ (uint32\_t)accessPermission\ <<\ MPU\_RASR\_AP\_Pos\ |\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ (uint32\_t)texLevel\ <<\ MPU\_RASR\_TEX\_Pos\ |}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ (uint32\_t)shareable\ <<\ MPU\_RASR\_S\_Pos\ |}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ (uint32\_t)cacheable\ <<\ MPU\_RASR\_C\_Pos\ |}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ (uint32\_t)bufferable\ <<\ MPU\_RASR\_B\_Pos\ |}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ (uint32\_t)size\ <<\ MPU\_RASR\_SIZE\_Pos\ |}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ MPU\_RASR\_ENABLE\_Msk}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Enable\ MPU}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ Enable(eControlMode\_Hartfault::None,\ eControlMode\_Privileged::Privileged\_default);}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eControlMode\_Hartfault}
+\DoxyCodeLine{00153\ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00155\ \textcolor{comment}{\ \ \ \ \ \ \ \ Enables\ the\ operation\ of\ MPU\ during\ hard\ fault,\ NMI,\ and\ FAULTMASK}}
+\DoxyCodeLine{00156\ \textcolor{comment}{\ \ \ \ \ \ \ \ handlers.}}
+\DoxyCodeLine{00157\ \textcolor{comment}{\ \ \ \ \ \ \ \ When\ the\ MPU\ is\ enabled:}}
+\DoxyCodeLine{00158\ \textcolor{comment}{\ \ \ \ \ \ \ \ 0:\ MPU\ is\ disabled\ during\ hard\ fault,\ NMI,\ and\ FAULTMASK\ handlers,}}
+\DoxyCodeLine{00159\ \textcolor{comment}{\ \ \ \ \ \ \ \ regardless\ of\ the\ value\ of\ the\ ENABLE\ bit.}}
+\DoxyCodeLine{00160\ \textcolor{comment}{\ \ \ \ \ \ \ \ 1:\ The\ MPU\ is\ enabled\ during\ hard\ fault,\ NMI,\ and\ FAULTMASK\ handlers.}}
+\DoxyCodeLine{00161\ \textcolor{comment}{\ \ \ \ \ \ \ \ When\ the\ MPU\ is\ disabled,\ if\ this\ bit\ is\ set\ to\ 1\ the\ behavior\ is}}
+\DoxyCodeLine{00162\ \textcolor{comment}{\ \ \ \ \ \ \ \ Unpredictable.}}
+\DoxyCodeLine{00163\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ None\ =\ 0,}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ HartFault\_NMI\ =\ 1}
+\DoxyCodeLine{00166\ \ \ \ \ \};}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eControlMode\_Privileged}
+\DoxyCodeLine{00168\ \ \ \ \ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00170\ \textcolor{comment}{\ \ \ \ \ \ \ \ Enables\ privileged\ software\ access\ to\ the\ default\ memory\ map:}}
+\DoxyCodeLine{00171\ \textcolor{comment}{\ \ \ \ \ \ \ \ 0:\ If\ the\ MPU\ is\ enabled,\ disables\ use\ of\ the\ default\ memory\ map.\ Any}}
+\DoxyCodeLine{00172\ \textcolor{comment}{\ \ \ \ \ \ \ \ memory\ access\ to\ a\ location\ not\ covered\ by\ any\ enabled\ region\ causes\ a}}
+\DoxyCodeLine{00173\ \textcolor{comment}{\ \ \ \ \ \ \ \ fault.}}
+\DoxyCodeLine{00174\ \textcolor{comment}{\ \ \ \ \ \ \ \ 1:\ If\ the\ MPU\ is\ enabled,\ enables\ use\ of\ the\ default\ memory\ map\ as\ a}}
+\DoxyCodeLine{00175\ \textcolor{comment}{\ \ \ \ \ \ \ \ background\ region\ for\ privileged\ software\ accesses.}}
+\DoxyCodeLine{00176\ \textcolor{comment}{\ \ \ \ \ \ \ \ When\ enabled,\ the\ background\ region\ acts\ as\ if\ it\ is\ region\ number\ -\/1.\ Any}}
+\DoxyCodeLine{00177\ \textcolor{comment}{\ \ \ \ \ \ \ \ region\ that\ is\ defined\ and\ enabled\ has\ priority\ over\ this\ default\ map.}}
+\DoxyCodeLine{00178\ \textcolor{comment}{\ \ \ \ \ \ \ \ If\ the\ MPU\ is\ disabled,\ the\ processor\ ignores\ this\ bit.}}
+\DoxyCodeLine{00179\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ None\ =\ 0,\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ Privileged\_default\ =\ 1}
+\DoxyCodeLine{00182\ \ \ \ \ \};}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{comment}{//\ Enable\ the\ MPU\ }}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Enable(eControlMode\_Hartfault\ hartfault,\ eControlMode\_Privileged\ privileged)}
+\DoxyCodeLine{00185\ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ MPU-\/>CTRL\ =\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ (uint32\_t)hartfault\ <<\ MPU\_CTRL\_HFNMIENA\_Pos\ |\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ (uint32\_t)privileged\ <<\ MPU\_CTRL\_PRIVDEFENA\_Pos\ |}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ MPU\_CTRL\_ENABLE\_Msk;}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Enable\ fault\ exceptions\ }}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ SCB-\/>SHCSR\ |=\ SCB\_SHCSR\_MEMFAULTENA\_Msk;}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ MPU\ setting\ take\ effects\ }}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \_\_DSB();}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \_\_ISB();}
+\DoxyCodeLine{00196\ \ \ \ \ \}}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{comment}{//\ Disable\ MPU}}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Disable()}
+\DoxyCodeLine{00199\ \ \ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Make\ sure\ outstanding\ transfers\ are\ done\ }}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \_\_DMB();}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Disable\ fault\ exceptions\ }}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ SCB-\/>SHCSR\ \&=\ \string~SCB\_SHCSR\_MEMFAULTENA\_Msk;}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Disable\ the\ MPU\ and\ clear\ the\ control\ register}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ MPU-\/>CTRL\ =\ 0;}
+\DoxyCodeLine{00206\ \ \ \ \ \}}
+\DoxyCodeLine{00207\ \};}
+
+\end{DoxyCode}

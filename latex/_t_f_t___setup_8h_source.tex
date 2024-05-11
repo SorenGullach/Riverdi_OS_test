@@ -1,0 +1,177 @@
+\doxysection{TFT\+\_\+\+Setup.\+h}
+\hypertarget{_t_f_t___setup_8h_source}{}\label{_t_f_t___setup_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ 2024\ Sen Gullach}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ You\ must\ include\ the\ following\ attribution\ in\ all\ copies\ or\ substantial\ portions\ of\ the\ Software:}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ "{}Sen Gullach\ <STM32\_R7\_OS@toolsbox.dk>"{}}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ from\ data\ sheet}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ HV\ MODE\ -\/\ Horizontal\ input\ timing\ \ |\ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00025\ \textcolor{comment}{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00026\ \textcolor{comment}{|\ \ \ \ \ \ \ \ \ \ Parameter\ Symbol\ \ \ \ \ \ \ \ \ \ |\ \ \ Min\ \ \ |\ \ Typ\ \ \ |\ \ \ Max\ \ \ |\ \ Unit\ \ |}}
+\DoxyCodeLine{00027\ \textcolor{comment}{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00028\ \textcolor{comment}{|\ \ \ Horizontal\ display\ area\ (thd)\ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1024\ \ \ \ \ \ \ \ \ |\ \ DCLK\ \ |}}
+\DoxyCodeLine{00029\ \textcolor{comment}{|\ \ \ \ \ \ \ \ \ \ DCLK\ frequency\ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ 44.9\ \ |\ \ 51.2\ \ |\ \ \ 63\ \ \ \ |\ \ \ MHz\ \ |}}
+\DoxyCodeLine{00030\ \textcolor{comment}{|\ \ \ \ \ (frame\ rate\ 60Hz)\ (fclk)\ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00031\ \textcolor{comment}{|\ \ \ \ \ 1\ Horizontal\ Line\ (th)\ \ \ \ \ \ \ \ \ |\ \ \ 1200\ \ |\ \ 1344\ \ |\ \ 1400\ \ \ |\ \ DCLK\ \ |}}
+\DoxyCodeLine{00032\ \textcolor{comment}{|\ \ \ \ \ \ \ HSYNC\ pulse\ width\ (thpw)\ \ \ \ \ |\ \ \ \ 1\ \ \ \ |\ \ \ 70\ \ \ |\ \ \ 140\ \ \ |\ \ DCLK\ \ |}}
+\DoxyCodeLine{00033\ \textcolor{comment}{|\ \ \ \ \ \ \ \ HSYNC\ blanking\ (thb)\ \ \ \ \ \ \ \ |\ \ \ 160\ \ \ |\ \ 160\ \ \ |\ \ \ 160\ \ \ |\ \ DCLK\ \ |}}
+\DoxyCodeLine{00034\ \textcolor{comment}{|\ \ \ \ \ \ HSYNC\ front\ porch\ (thfp)\ \ \ \ \ \ |\ \ \ \ 16\ \ \ |\ \ 160\ \ \ |\ \ \ 260\ \ \ |\ \ DCLK\ \ |}}
+\DoxyCodeLine{00035\ \textcolor{comment}{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00036\ \textcolor{comment}{}}
+\DoxyCodeLine{00037\ \textcolor{comment}{|\ \ \ HV\ MODE\ -\/\ Vertical\ input\ timing\ \ |\ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00038\ \textcolor{comment}{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00039\ \textcolor{comment}{|\ \ \ Parameter\ Symbol\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ Min\ \ \ |\ \ Typ\ \ \ |\ \ \ Max\ \ \ |\ \ Unit\ \ |}}
+\DoxyCodeLine{00040\ \textcolor{comment}{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00041\ \textcolor{comment}{|\ \ \ Vertical\ display\ area\ (tvd)\ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 600\ \ \ \ \ \ \ \ \ \ |\ \ \ \ H\ \ \ |}}
+\DoxyCodeLine{00042\ \textcolor{comment}{|\ \ \ \ VSYNC\ period\ time\ (tv)\ \ \ \ \ \ \ \ \ \ |\ \ \ 624\ \ \ |\ \ 635\ \ \ |\ \ \ 750\ \ \ |\ \ \ \ H\ \ \ |}}
+\DoxyCodeLine{00043\ \textcolor{comment}{|\ \ \ VSYNC\ pulse\ width\ (tvpw)\ \ \ \ \ \ \ \ \ |\ \ \ \ 1\ \ \ \ |\ \ \ 10\ \ \ |\ \ \ \ 20\ \ \ |\ \ \ \ H\ \ \ |}}
+\DoxyCodeLine{00044\ \textcolor{comment}{|\ \ \ \ VSYNC\ back\ porch\ (tvb)\ \ \ \ \ \ \ \ \ \ |\ \ \ \ 23\ \ \ |\ \ \ 23\ \ \ |\ \ \ \ 23\ \ \ |\ \ \ \ H\ \ \ |}}
+\DoxyCodeLine{00045\ \textcolor{comment}{|\ \ \ VSYNC\ front\ porch\ (tvfp)\ \ \ \ \ \ \ \ \ |\ \ \ \ 1\ \ \ \ |\ \ \ 12\ \ \ |\ \ \ 127\ \ \ |\ \ \ \ H\ \ \ |}}
+\DoxyCodeLine{00046\ \textcolor{comment}{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00047\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ \ \ \ The\ general\ blending\ formula\ is\ :\ BC\ =\ BF1\ x\ C\ +\ BF2\ x\ Cs}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ \ 表 BC\ =\ blended\ color}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ \ \ \ 表 BF1\ =\ blend\ factor\ 1}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ \ 表 C\ =\ current\ layer\ color}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ \ \ \ 表 BF2\ =\ blend\ factor\ 2}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ \ \ \ 表 Cs\ =\ subjacent\ layers\ blended\ color}}
+\DoxyCodeLine{00056\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00057\ \textcolor{keyword}{enum\ class}\ eBlendingFactor1}
+\DoxyCodeLine{00058\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ F1\_CA\ \ \ \ =\ 0B100U\ \textcolor{comment}{/*\ Constant\ Alpha\ */},}
+\DoxyCodeLine{00060\ \ \ \ \ F1\_PAxCA\ =\ 0B110U\ \textcolor{comment}{/*\ Constant\ Alpha\ x\ Pixel\ Alpha\ */},}
+\DoxyCodeLine{00061\ \ \ \ \ F2\_CA\ \ \ \ =\ 0B101U\ \textcolor{comment}{/*\ Constant\ Alpha\ */},}
+\DoxyCodeLine{00062\ \ \ \ \ F2\_PAxCA\ =\ 0B111U\ \textcolor{comment}{/*\ Constant\ Alpha\ x\ Pixel\ Alpha\ */}}
+\DoxyCodeLine{00063\ \};}
+\DoxyCodeLine{00064\ \textcolor{keyword}{enum\ class}\ eBlendingFactor2}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ F2\_CA\ \ \ \ =\ 0B101U\ \textcolor{comment}{/*\ Constant\ Alpha\ */},}
+\DoxyCodeLine{00067\ \ \ \ \ F2\_PAxCA\ =\ 0B111U\ \textcolor{comment}{/*\ Constant\ Alpha\ x\ Pixel\ Alpha\ */}}
+\DoxyCodeLine{00068\ \};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ TFT\ display\ specifications}}
+\DoxyCodeLine{00071\ \textcolor{keyword}{const}\ uint16\_t\ HSW\ =\ 70;\ \ \ \ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{const}\ uint16\_t\ HBP\ =\ 160;\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{const}\ uint16\_t\ HFP\ =\ 160;\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{const}\ uint16\_t\ HACT\ =\ 1024;\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{const}\ uint16\_t\ VSH\ =\ 10;\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{const}\ uint16\_t\ VBP\ =\ 23;\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{const}\ uint16\_t\ VFP\ =\ 12;\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{const}\ uint16\_t\ VACT\ =\ 600;\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{enum\ class}\ eDSI\_PLL\_IN}
+\DoxyCodeLine{00081\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ DIV1\ =\ 1U,}
+\DoxyCodeLine{00083\ \ \ \ \ DIV2\ =\ 2U,}
+\DoxyCodeLine{00084\ \ \ \ \ DIV3\ =\ 3U,}
+\DoxyCodeLine{00085\ \ \ \ \ DIV4\ =\ 4U,}
+\DoxyCodeLine{00086\ \ \ \ \ DIV5\ =\ 5U,}
+\DoxyCodeLine{00087\ \ \ \ \ DIV6\ =\ 6U,}
+\DoxyCodeLine{00088\ \ \ \ \ DIV7\ =\ 7U,}
+\DoxyCodeLine{00089\ \};}
+\DoxyCodeLine{00090\ \textcolor{keyword}{enum\ class}\ eDSI\_PLL\_OUT}
+\DoxyCodeLine{00091\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ DIV1\ =\ 0U,}
+\DoxyCodeLine{00093\ \ \ \ \ DIV2\ =\ 1U,}
+\DoxyCodeLine{00094\ \ \ \ \ DIV4\ =\ 2U,}
+\DoxyCodeLine{00095\ \ \ \ \ DIV8\ =\ 3U}
+\DoxyCodeLine{00096\ \};}
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ Clock\ Pll\ setup}}
+\DoxyCodeLine{00098\ \textcolor{keyword}{const}\ eDSI\_PLL\_IN\ IDF\ =\ eDSI\_PLL\_IN::DIV1;}
+\DoxyCodeLine{00099\ \textcolor{keyword}{const}\ eDSI\_PLL\_OUT\ ODF\ =\ eDSI\_PLL\_OUT::DIV1;}
+\DoxyCodeLine{00100\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_r__t}{R\_t<uint32\_t,\ 10,\ 125>}}\ NDIV\ =\ 62;}
+\DoxyCodeLine{00101\ \textcolor{keyword}{const}\ uint32\_t\ TXClkEscape\ =\ 4;}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{comment}{//\ DSI\ Host\ timing}}
+\DoxyCodeLine{00104\ \textcolor{keyword}{const}\ uint32\_t\ TimeoutCkdiv\ =\ 1;}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{comment}{//\ Data\ \&\ clock\ lanes}}
+\DoxyCodeLine{00107\ \textcolor{keyword}{const}\ uint32\_t\ NumberOfLanes\ =\ 2;}
+\DoxyCodeLine{00108\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ AutomaticClockLaneControl\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ ClockLaneRunsInHighSpeedMode\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{comment}{//\ PHY\ timings}}
+\DoxyCodeLine{00112\ \textcolor{keyword}{const}\ uint32\_t\ ClockLaneHS2LPTime\ =\ 28;}
+\DoxyCodeLine{00113\ \textcolor{keyword}{const}\ uint32\_t\ ClockLaneLP2HSTime\ =\ 32;}
+\DoxyCodeLine{00114\ \textcolor{keyword}{const}\ uint32\_t\ DataLaneHS2LPTime\ =\ 15;}
+\DoxyCodeLine{00115\ \textcolor{keyword}{const}\ uint32\_t\ DataLaneLP2HSTime\ =\ 24;}
+\DoxyCodeLine{00116\ \textcolor{keyword}{const}\ uint32\_t\ DataLaneMaxReadTime\ =\ 0;}
+\DoxyCodeLine{00117\ \textcolor{keyword}{const}\ uint32\_t\ StopWaitTime\ =\ 0;}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{keyword}{enum\ class}\ eColorCoding\ }
+\DoxyCodeLine{00120\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ RGB565\ =\ 0U,}
+\DoxyCodeLine{00122\ \ \ \ \ RGB666\ =\ 3U,\ }
+\DoxyCodeLine{00123\ \ \ \ \ RGB888\ =\ 5U,}
+\DoxyCodeLine{00124\ \};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{keyword}{enum\ class}\ eVideoMode}
+\DoxyCodeLine{00127\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ NoBurst\_PULSES\ =\ 0U,}
+\DoxyCodeLine{00129\ \ \ \ \ NoBurst\_EVENTS\ =\ 1U,}
+\DoxyCodeLine{00130\ \ \ \ \ BURST\ \ \ \ \ \ \ \ \ \ =\ 2U,}
+\DoxyCodeLine{00131\ \};}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{comment}{//\ Display\ interface}}
+\DoxyCodeLine{00134\ \textcolor{keyword}{const}\ uint32\_t\ VirtualChannelID\ =\ 0;}
+\DoxyCodeLine{00135\ \textcolor{keyword}{const}\ eColorCoding\ ColorCoding\ =\ eColorCoding::RGB888;}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ LooselyPacked\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{keyword}{const}\ eVideoMode\ Mode\ =\ eVideoMode::BURST;}
+\DoxyCodeLine{00140\ \textcolor{keyword}{const}\ uint32\_t\ PacketSize\ =\ HACT;}
+\DoxyCodeLine{00141\ \textcolor{keyword}{const}\ uint32\_t\ NumberOfChunks\ =\ 0;}
+\DoxyCodeLine{00142\ \textcolor{keyword}{const}\ uint32\_t\ NullPacketSize\ =\ 0;}
+\DoxyCodeLine{00143\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ FrameBTAAcknowledgeEnable\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ LPCommandEnable\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00146\ \textcolor{keyword}{const}\ uint32\_t\ LPLargestPacketSize\ =\ 23;}
+\DoxyCodeLine{00147\ \textcolor{keyword}{const}\ uint32\_t\ LPVACTLargestPacketSize\ =\ 0;}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ LPHorizontalFrontPorchEnable\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00150\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ LPHorizontalBackPorchEnable\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00151\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ LPVerticalActiveEnable\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ LPVerticalFrontPorchEnable\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00153\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ LPVerticalBackPorchEnable\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00154\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ LPVerticalSyncActiveEnable\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ HSPolarityHigh\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00157\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ VSPolarityHigh\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00158\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ DEPolarityHigh\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00159\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ PCPolarityInverted\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \textcolor{comment}{//\ LTDC\ settings}}
+\DoxyCodeLine{00163\ \textcolor{keyword}{enum\ class}\ ePixelFormat\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ }
+\DoxyCodeLine{00165\ \ \ \ \ ARGB8888\ =\ 0B000U\ \textcolor{comment}{/*\ ARGB8888\ LTDC\ pixel\ format\ */},}
+\DoxyCodeLine{00166\ \ \ \ \ RGB888\ \ \ =\ 0B001U\ \textcolor{comment}{/*\ RGB888\ LTDC\ pixel\ format\ */},}
+\DoxyCodeLine{00167\ \ \ \ \ RGB565\ \ \ =\ 0B010U\ \textcolor{comment}{/*\ RGB565\ LTDC\ pixel\ format\ */},}
+\DoxyCodeLine{00168\ \ \ \ \ ARGB1555\ =\ 0B011U\ \textcolor{comment}{/*\ ARGB1555\ LTDC\ pixel\ format\ */},}
+\DoxyCodeLine{00169\ \ \ \ \ ARGB4444\ =\ 0B100U\ \textcolor{comment}{/*\ ARGB4444\ LTDC\ pixel\ format\ */},}
+\DoxyCodeLine{00170\ \ \ \ \ L8\ \ \ \ \ \ \ =\ 0B101U\ \textcolor{comment}{/*\ L8\ LTDC\ pixel\ format\ */},}
+\DoxyCodeLine{00171\ \ \ \ \ AL44\ \ \ \ \ =\ 0B110U\ \textcolor{comment}{/*\ AL44\ LTDC\ pixel\ format\ */},}
+\DoxyCodeLine{00172\ \ \ \ \ AL88\ \ \ \ \ =\ 0B111U\ \ \textcolor{comment}{/*\ AL88\ LTDC\ pixel\ format\ */}}
+\DoxyCodeLine{00173\ \};}
+
+\end{DoxyCode}
