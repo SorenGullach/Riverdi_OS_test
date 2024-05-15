@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <VisualGDBProjectSettings2 xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ConfigurationName>Debug</ConfigurationName>
   <Project xsi:type="com.visualgdb.project.embedded">
     <CustomSourceDirectories>
       <Directories />
@@ -28,20 +29,12 @@
     <BinaryDirectory>build/$(PlatformName)/$(ConfigurationName)</BinaryDirectory>
     <MakeCommandTemplate>
       <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>
-      <RemoteHost>
-        <HostName>BuildMachine</HostName>
-        <Transport>BuiltinShortcut</Transport>
-      </RemoteHost>
       <Command>$(VISUALGDB_DIR)/ninja.exe</Command>
       <WorkingDirectory>$(BuildDir)</WorkingDirectory>
       <BackgroundMode xsi:nil="true" />
     </MakeCommandTemplate>
     <CMakeCommand>
       <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>
-      <RemoteHost>
-        <HostName>BuildMachine</HostName>
-        <Transport>BuiltinShortcut</Transport>
-      </RemoteHost>
       <Command>$(SYSPROGS_CMAKE_PATH)</Command>
       <BackgroundMode xsi:nil="true" />
     </CMakeCommand>
@@ -66,7 +59,6 @@
         <BuildAllTargetsInSubdir>false</BuildAllTargetsInSubdir>
         <FoldSingleItemPathLevels>true</FoldSingleItemPathLevels>
       </ProjectItemSettings>
-      <TargetSpecificSettings />
       <SetLDLibraryPathFromDependentArtifacts>true</SetLDLibraryPathFromDependentArtifacts>
       <ProjectGUID>979c9b5a-1f2f-4d56-8938-f795d3f02dea</ProjectGUID>
       <VirtualFolders />
@@ -93,170 +85,18 @@
     <ShowMessageAfterExecuting>true</ShowMessageAfterExecuting>
   </CustomShortcuts>
   <UserDefinedVariables />
-  <ImportedPropertySheets />
   <CodeSense>
-    <Enabled>True</Enabled>
+    <Enabled>Unknown</Enabled>
     <ExtraSettings>
       <HideErrorsInSystemHeaders>true</HideErrorsInSystemHeaders>
       <SupportLightweightReferenceAnalysis>true</SupportLightweightReferenceAnalysis>
-      <DiscoverySettings>
-        <Mode>Enabled</Mode>
-        <SearchInProjectDir>true</SearchInProjectDir>
-        <SearchInSourceDirs>true</SearchInSourceDirs>
-        <SearchInIncludeSubdirs>true</SearchInIncludeSubdirs>
-        <ExtraSearchDirs>
-          <string>../../../Users/45201/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32H7xxxx/CMSIS_HAL/Device/ST/STM32H7xx/Include</string>
-          <string>C:\Users\45201\AppData\Local\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32\STM32H7xxxx\CMSIS_HAL\Device\ST\STM32H7xx\Include</string>
-        </ExtraSearchDirs>
-      </DiscoverySettings>
       <CheckForClangFormatFiles>true</CheckForClangFormatFiles>
       <FormattingEngine xsi:nil="true" />
     </ExtraSettings>
     <CodeAnalyzerSettings>
-      <Enabled>true</Enabled>
-      <SelectedAnalyzers>
-        <string>alpha.clone.CloneChecker</string>
-        <string>alpha.core.BoolAssignment</string>
-        <string>alpha.core.C11Lock</string>
-        <string>alpha.core.CastSize</string>
-        <string>alpha.core.CastToStruct</string>
-        <string>alpha.core.Conversion</string>
-        <string>alpha.core.DynamicTypeChecker</string>
-        <string>alpha.core.FixedAddr</string>
-        <string>alpha.core.IdenticalExpr</string>
-        <string>alpha.core.PointerArithm</string>
-        <string>alpha.core.PointerSub</string>
-        <string>alpha.core.PthreadLockBase</string>
-        <string>alpha.core.SizeofPtr</string>
-        <string>alpha.core.StackAddressAsyncEscape</string>
-        <string>alpha.core.TestAfterDivZero</string>
-        <string>alpha.cplusplus.ContainerModeling</string>
-        <string>alpha.cplusplus.DeleteWithNonVirtualDtor</string>
-        <string>alpha.cplusplus.EnumCastOutOfRange</string>
-        <string>alpha.cplusplus.InvalidatedIterator</string>
-        <string>alpha.cplusplus.IteratorModeling</string>
-        <string>alpha.cplusplus.IteratorRange</string>
-        <string>alpha.cplusplus.MismatchedIterator</string>
-        <string>alpha.cplusplus.SmartPtr</string>
-        <string>alpha.cplusplus.STLAlgorithmModeling</string>
-        <string>alpha.deadcode.UnreachableCode</string>
-        <string>alpha.fuchsia.Lock</string>
-        <string>alpha.llvm.Conventions</string>
-        <string>alpha.nondeterminism.PointerIteration</string>
-        <string>alpha.nondeterminism.PointerSorting</string>
-        <string>alpha.security.ArrayBound</string>
-        <string>alpha.security.ArrayBoundV2</string>
-        <string>alpha.security.cert.env.InvalidPtr</string>
-        <string>alpha.security.cert.pos.34c</string>
-        <string>alpha.security.MallocOverflow</string>
-        <string>alpha.security.MmapWriteExec</string>
-        <string>alpha.security.ReturnPtrRange</string>
-        <string>alpha.security.taint.TaintPropagation</string>
-        <string>alpha.unix.BlockInCriticalSection</string>
-        <string>alpha.unix.Chroot</string>
-        <string>alpha.unix.cstring.BufferOverlap</string>
-        <string>alpha.unix.cstring.NotNullTerminated</string>
-        <string>alpha.unix.cstring.OutOfBounds</string>
-        <string>alpha.unix.cstring.UninitializedRead</string>
-        <string>alpha.unix.Errno</string>
-        <string>alpha.unix.PthreadLock</string>
-        <string>alpha.unix.SimpleStream</string>
-        <string>alpha.unix.StdCLibraryFunctionArgs</string>
-        <string>alpha.unix.Stream</string>
-        <string>alpha.webkit.UncountedCallArgsChecker</string>
-        <string>alpha.webkit.UncountedLocalVarsChecker</string>
-        <string>apiModeling.Errno</string>
-        <string>apiModeling.google.GTest</string>
-        <string>apiModeling.llvm.CastValue</string>
-        <string>apiModeling.llvm.ReturnValue</string>
-        <string>apiModeling.StdCLibraryFunctions</string>
-        <string>apiModeling.TrustNonnull</string>
-        <string>apiModeling.TrustReturnsNonnull</string>
-        <string>core.builtin.BuiltinFunctions</string>
-        <string>core.builtin.NoReturnFunctions</string>
-        <string>core.CallAndMessage</string>
-        <string>core.CallAndMessageModeling</string>
-        <string>core.DivideZero</string>
-        <string>core.DynamicTypePropagation</string>
-        <string>core.NonnilStringConstants</string>
-        <string>core.NonNullParamChecker</string>
-        <string>core.NullDereference</string>
-        <string>core.StackAddrEscapeBase</string>
-        <string>core.StackAddressEscape</string>
-        <string>core.UndefinedBinaryOperatorResult</string>
-        <string>core.uninitialized.ArraySubscript</string>
-        <string>core.uninitialized.Assign</string>
-        <string>core.uninitialized.Branch</string>
-        <string>core.uninitialized.CapturedBlockVariable</string>
-        <string>core.uninitialized.NewArraySize</string>
-        <string>core.uninitialized.UndefReturn</string>
-        <string>core.VLASize</string>
-        <string>cplusplus.InnerPointer</string>
-        <string>cplusplus.Move</string>
-        <string>cplusplus.NewDelete</string>
-        <string>cplusplus.NewDeleteLeaks</string>
-        <string>cplusplus.PlacementNew</string>
-        <string>cplusplus.PureVirtualCall</string>
-        <string>cplusplus.SelfAssignment</string>
-        <string>cplusplus.SmartPtrModeling</string>
-        <string>cplusplus.StringChecker</string>
-        <string>cplusplus.VirtualCallModeling</string>
-        <string>deadcode.DeadStores</string>
-        <string>fuchsia.HandleChecker</string>
-        <string>nullability.NullabilityBase</string>
-        <string>nullability.NullableDereferenced</string>
-        <string>nullability.NullablePassedToNonnull</string>
-        <string>nullability.NullableReturnedFromNonnull</string>
-        <string>nullability.NullPassedToNonnull</string>
-        <string>nullability.NullReturnedFromNonnull</string>
-        <string>optin.cplusplus.UninitializedObject</string>
-        <string>optin.cplusplus.VirtualCall</string>
-        <string>optin.mpi.MPI-Checker</string>
-        <string>optin.osx.cocoa.localizability.EmptyLocalizationContextChecker</string>
-        <string>optin.osx.cocoa.localizability.NonLocalizedStringChecker</string>
-        <string>optin.osx.OSObjectCStyleCast</string>
-        <string>optin.performance.GCDAntipattern</string>
-        <string>optin.performance.Padding</string>
-        <string>optin.portability.UnixAPI</string>
-        <string>security.FloatLoopCounter</string>
-        <string>security.insecureAPI.bcmp</string>
-        <string>security.insecureAPI.bcopy</string>
-        <string>security.insecureAPI.bzero</string>
-        <string>security.insecureAPI.decodeValueOfObjCType</string>
-        <string>security.insecureAPI.DeprecatedOrUnsafeBufferHandling</string>
-        <string>security.insecureAPI.getpw</string>
-        <string>security.insecureAPI.gets</string>
-        <string>security.insecureAPI.mkstemp</string>
-        <string>security.insecureAPI.mktemp</string>
-        <string>security.insecureAPI.rand</string>
-        <string>security.insecureAPI.SecuritySyntaxChecker</string>
-        <string>security.insecureAPI.strcpy</string>
-        <string>security.insecureAPI.UncheckedReturn</string>
-        <string>security.insecureAPI.vfork</string>
-        <string>unix.API</string>
-        <string>unix.cstring.BadSizeArg</string>
-        <string>unix.cstring.CStringModeling</string>
-        <string>unix.cstring.NullArg</string>
-        <string>unix.DynamicMemoryModeling</string>
-        <string>unix.Malloc</string>
-        <string>unix.MallocSizeof</string>
-        <string>unix.MismatchedDeallocator</string>
-        <string>unix.Vfork</string>
-        <string>valist.CopyToSelf</string>
-        <string>valist.Uninitialized</string>
-        <string>valist.Unterminated</string>
-        <string>valist.ValistBase</string>
-        <string>webkit.NoUncountedMemberChecker</string>
-        <string>webkit.RefCntblBaseVirtualDtor</string>
-        <string>webkit.UncountedLambdaCapturesChecker</string>
-      </SelectedAnalyzers>
-      <ExtraArguments>
-        <string />
-      </ExtraArguments>
+      <Enabled>false</Enabled>
     </CodeAnalyzerSettings>
   </CodeSense>
-  <Configurations />
-  <ProgramArgumentsSuggestions />
   <Debug xsi:type="com.visualgdb.debug.embedded">
     <AdditionalStartupCommands />
     <AdditionalGDBSettings>
