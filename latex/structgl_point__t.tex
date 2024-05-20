@@ -1,14 +1,26 @@
 \doxysection{gl\+Point\+\_\+t Struct Reference}
 \hypertarget{structgl_point__t}{}\label{structgl_point__t}\index{glPoint\_t@{glPoint\_t}}
+
+
+Represents a 1D point with x and y coordinates.  
+
+
+
+
+{\ttfamily \#include $<$gl\+Types.\+h$>$}
+
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{structgl_point__t_a4e0a7f67001ff6930cb8e19e3f632090}\label{structgl_point__t_a4e0a7f67001ff6930cb8e19e3f632090} 
-{\bfseries gl\+Point\+\_\+t} (P\+\_\+t x, P\+\_\+t y)
-\item 
-\Hypertarget{structgl_point__t_ae797edd711aba136ebdd204c47e7e7ff}\label{structgl_point__t_ae797edd711aba136ebdd204c47e7e7ff} 
-\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} {\bfseries Move} (int dx, int dy) const
-\end{DoxyCompactItemize}
+\Hypertarget{structgl_point__t_ab87d77be498a1b1bca08ab804a8edcba}\label{structgl_point__t_ab87d77be498a1b1bca08ab804a8edcba} 
+{\bfseries gl\+Point\+\_\+t} ()
+\begin{DoxyCompactList}\small\item\em Default constructor initializing the point to (0, 0). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_point__t_a4e0a7f67001ff6930cb8e19e3f632090}{gl\+Point\+\_\+t}} (P\+\_\+t x, P\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize the point with specific coordinates. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \mbox{\hyperlink{structgl_point__t_a384cc5afe0d187aa31335692660c26f0}{Displace}} (const int dx, const int dy) const
+\begin{DoxyCompactList}\small\item\em Displaces the point by the specified amounts in the x and y directions. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \mbox{\hyperlink{structgl_point__t_a981ec0f8d253aad258cb75ce895256e5}{Displace}} (const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&p) const
+\begin{DoxyCompactList}\small\item\em Displaces the point by the coordinates of another point. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -18,6 +30,70 @@ P\+\_\+t {\bfseries X}
 \Hypertarget{structgl_point__t_ab21fbdf8dbb537a7ee3b1cd47df65783}\label{structgl_point__t_ab21fbdf8dbb537a7ee3b1cd47df65783} 
 P\+\_\+t {\bfseries Y}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a 1D point with x and y coordinates. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structgl_point__t_a4e0a7f67001ff6930cb8e19e3f632090}\label{structgl_point__t_a4e0a7f67001ff6930cb8e19e3f632090} 
+\index{glPoint\_t@{glPoint\_t}!glPoint\_t@{glPoint\_t}}
+\index{glPoint\_t@{glPoint\_t}!glPoint\_t@{glPoint\_t}}
+\doxysubsubsection{\texorpdfstring{glPoint\_t()}{glPoint\_t()}}
+{\footnotesize\ttfamily gl\+Point\+\_\+t\+::gl\+Point\+\_\+t (\begin{DoxyParamCaption}\item[{P\+\_\+t}]{x,  }\item[{P\+\_\+t}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor to initialize the point with specific coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x-\/coordinate. \\
+\hline
+{\em y} & The y-\/coordinate. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structgl_point__t_a981ec0f8d253aad258cb75ce895256e5}\label{structgl_point__t_a981ec0f8d253aad258cb75ce895256e5} 
+\index{glPoint\_t@{glPoint\_t}!Displace@{Displace}}
+\index{Displace@{Displace}!glPoint\_t@{glPoint\_t}}
+\doxysubsubsection{\texorpdfstring{Displace()}{Displace()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} gl\+Point\+\_\+t\+::\+Displace (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Displaces the point by the coordinates of another point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & The point providing displacement coordinates. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new displaced point. 
+\end{DoxyReturn}
+\Hypertarget{structgl_point__t_a384cc5afe0d187aa31335692660c26f0}\label{structgl_point__t_a384cc5afe0d187aa31335692660c26f0} 
+\index{glPoint\_t@{glPoint\_t}!Displace@{Displace}}
+\index{Displace@{Displace}!glPoint\_t@{glPoint\_t}}
+\doxysubsubsection{\texorpdfstring{Displace()}{Displace()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} gl\+Point\+\_\+t\+::\+Displace (\begin{DoxyParamCaption}\item[{const int}]{dx,  }\item[{const int}]{dy }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Displaces the point by the specified amounts in the x and y directions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dx} & The displacement in the x direction. \\
+\hline
+{\em dy} & The displacement in the y direction. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new displaced point. 
+\end{DoxyReturn}
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}

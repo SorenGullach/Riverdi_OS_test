@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: cbDisplay Class Reference</title>
+<title>Riverdi OS Test: cbDisplay Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">My Project
+   <div id="projectname">Riverdi OS Test
    </div>
   </td>
  </tr>
@@ -77,6 +77,11 @@ $(function() {
   <div class="headertitle"><div class="title">cbDisplay Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Abstract callback class for display-related events.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="gl_types_8h_source.html">glTypes.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cbDisplay:</div>
 <div class="dyncontent">
@@ -92,17 +97,118 @@ Inheritance diagram for cbDisplay:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab2ff6a7b4bfb525ed79c49f711903657" id="r_ab2ff6a7b4bfb525ed79c49f711903657"><td class="memItemLeft" align="right" valign="top"><a id="ab2ff6a7b4bfb525ed79c49f711903657" name="ab2ff6a7b4bfb525ed79c49f711903657"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Blanking</b> ()</td></tr>
+<tr class="memdesc:ab2ff6a7b4bfb525ed79c49f711903657"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoked during the blanking period. <br /></td></tr>
 <tr class="separator:ab2ff6a7b4bfb525ed79c49f711903657"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a085ed844fefb4b808aa4f0d431e561be" id="r_a085ed844fefb4b808aa4f0d431e561be"><td class="memItemLeft" align="right" valign="top"><a id="a085ed844fefb4b808aa4f0d431e561be" name="a085ed844fefb4b808aa4f0d431e561be"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Touch</b> (<a class="el" href="structgl_touch_point__t.html">glTouchPoint_t</a> &amp;tp)</td></tr>
+<tr class="memitem:a085ed844fefb4b808aa4f0d431e561be" id="r_a085ed844fefb4b808aa4f0d431e561be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a085ed844fefb4b808aa4f0d431e561be">Touch</a> (<a class="el" href="structgl_touch_point__t.html">glTouchPoint_t</a> &amp;tp)</td></tr>
+<tr class="memdesc:a085ed844fefb4b808aa4f0d431e561be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoked when a touch event occurs.  <br /></td></tr>
 <tr class="separator:a085ed844fefb4b808aa4f0d431e561be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54467ed5dfaef5d9fb651921d64eed40" id="r_a54467ed5dfaef5d9fb651921d64eed40"><td class="memItemLeft" align="right" valign="top"><a id="a54467ed5dfaef5d9fb651921d64eed40" name="a54467ed5dfaef5d9fb651921d64eed40"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>cbBlanking</b> ()=0</td></tr>
+<tr class="memitem:a54467ed5dfaef5d9fb651921d64eed40" id="r_a54467ed5dfaef5d9fb651921d64eed40"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a54467ed5dfaef5d9fb651921d64eed40">cbBlanking</a> ()=0</td></tr>
+<tr class="memdesc:a54467ed5dfaef5d9fb651921d64eed40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pure virtual function to handle blanking events.  <br /></td></tr>
 <tr class="separator:a54467ed5dfaef5d9fb651921d64eed40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2371e3a78b24a19635435b3eda9d9355" id="r_a2371e3a78b24a19635435b3eda9d9355"><td class="memItemLeft" align="right" valign="top"><a id="a2371e3a78b24a19635435b3eda9d9355" name="a2371e3a78b24a19635435b3eda9d9355"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>cbTouch</b> (<a class="el" href="structgl_touch_point__t.html">glTouchPoint_t</a> &amp;)=0</td></tr>
+<tr class="memitem:a2371e3a78b24a19635435b3eda9d9355" id="r_a2371e3a78b24a19635435b3eda9d9355"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2371e3a78b24a19635435b3eda9d9355">cbTouch</a> (<a class="el" href="structgl_touch_point__t.html">glTouchPoint_t</a> &amp;)=0</td></tr>
+<tr class="memdesc:a2371e3a78b24a19635435b3eda9d9355"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pure virtual function to handle touch events.  <br /></td></tr>
 <tr class="separator:a2371e3a78b24a19635435b3eda9d9355"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Abstract callback class for display-related events. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a54467ed5dfaef5d9fb651921d64eed40" name="a54467ed5dfaef5d9fb651921d64eed40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54467ed5dfaef5d9fb651921d64eed40">&#9670;&#160;</a></span>cbBlanking()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void cbDisplay::cbBlanking </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pure virtual function to handle blanking events. </p>
+
+<p>Implemented in <a class="el" href="classgl_main.html#aa3bbbd92f5f8500d8f81224270a42fbf">glMain</a>.</p>
+
+</div>
+</div>
+<a id="a2371e3a78b24a19635435b3eda9d9355" name="a2371e3a78b24a19635435b3eda9d9355"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2371e3a78b24a19635435b3eda9d9355">&#9670;&#160;</a></span>cbTouch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void cbDisplay::cbTouch </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structgl_touch_point__t.html">glTouchPoint_t</a> &amp;</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pure virtual function to handle touch events. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tp</td><td>The touch point. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classgl_main.html#ab86832b66f825b77d86d114213373be3">glMain</a>.</p>
+
+</div>
+</div>
+<a id="a085ed844fefb4b808aa4f0d431e561be" name="a085ed844fefb4b808aa4f0d431e561be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a085ed844fefb4b808aa4f0d431e561be">&#9670;&#160;</a></span>Touch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cbDisplay::Touch </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structgl_touch_point__t.html">glTouchPoint_t</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Invoked when a touch event occurs. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tp</td><td>The touch point. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>glSTM32H7xx/<a class="el" href="gl_types_8h_source.html">glTypes.h</a></li>
 </ul>

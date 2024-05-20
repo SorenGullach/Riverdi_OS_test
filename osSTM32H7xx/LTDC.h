@@ -19,11 +19,11 @@
 
 #pragma once
 
-#include "stm32h7xx.h"
-#include "assert.h"
+#include <stm32h7xx.h>
+#include <assert.h>
 
 #include "GPIO.h"
-#include "Utils.h"
+#include "Hardware.h"
 #include "DSI.h"
 #include "TFT_Setup.h"
 

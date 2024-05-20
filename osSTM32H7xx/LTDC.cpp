@@ -18,7 +18,7 @@
  */
 
 #include "LTDC.h"
-#include "Utils.h"
+#include "Hardware.h"
 
 // 3. Configure the synchronous timings: VSYNC, HSYNC, vertical and horizontal back
 	// porch, active data area and the front porch timings following the panel datasheet 
@@ -217,9 +217,9 @@ void hwLTDC::Init(/*void *pRGBData1, void *pRGBData2*/)
 	// Configure the HS, VS, DE and PC polarity 
 	LTDC->GCR &= ~(LTDC_GCR_HSPOL_Msk | LTDC_GCR_VSPOL_Msk | LTDC_GCR_DEPOL_Msk | LTDC_GCR_PCPOL_Msk);
 	LTDC->GCR |= HSPolarityHigh ? LTDC_GCR_HSPOL : 0 | 
-		VSPolarityHigh ? LTDC_GCR_VSPOL : 0 | 
-	    !DEPolarityHigh ? LTDC_GCR_DEPOL : 0 | 
-		PCPolarityInverted ? LTDC_GCR_PCPOL : 0;
+		(VSPolarityHigh ? LTDC_GCR_VSPOL : 0) | 
+	    (!DEPolarityHigh ? LTDC_GCR_DEPOL : 0) | 
+		(PCPolarityInverted ? LTDC_GCR_PCPOL : 0);
 
 	// 5. If needed, configure the background color in the LTDC_BCCR register.
 	BackgroundColor(0, 0, 0);

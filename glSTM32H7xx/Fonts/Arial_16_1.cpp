@@ -1,6 +1,5 @@
 
-#include "GUIFont.h"
-#include "MemoryDefs.h"
+#include "glFont.h"
 
 extern const uint8_t Arial_16_1_Pixels[];
 
@@ -9,7 +8,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "!" 
 		'!', 		// This char
 		4,18, 		// Width and height of the image
-		1,3,3,14, 	// Start and end coordinates of the image
+		1,3,2,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,12, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+0), // Data offset
@@ -17,7 +16,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char """ 
 		'"', 		// This char
 		5,18, 		// Width and height of the image
-		0,3,4,6, 	// Start and end coordinates of the image
+		1,3,4,6, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,4, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+12), // Data offset
@@ -33,7 +32,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "$" 
 		'$', 		// This char
 		8,18, 		// Width and height of the image
-		0,2,7,15, 	// Start and end coordinates of the image
+		1,2,7,15, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,14, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+28), // Data offset
@@ -41,7 +40,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "%" 
 		'%', 		// This char
 		14,18, 		// Width and height of the image
-		0,3,13,14, 	// Start and end coordinates of the image
+		1,3,12,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,12, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+42), // Data offset
@@ -49,7 +48,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "&" 
 		'&', 		// This char
 		10,18, 		// Width and height of the image
-		0,3,9,14, 	// Start and end coordinates of the image
+		1,3,9,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,12, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+66), // Data offset
@@ -57,7 +56,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "'" 
 		'\'', 		// This char
 		3,18, 		// Width and height of the image
-		0,3,2,6, 	// Start and end coordinates of the image
+		1,3,1,6, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,4, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+90), // Data offset
@@ -81,7 +80,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "*" 
 		'*', 		// This char
 		6,18, 		// Width and height of the image
-		0,3,5,7, 	// Start and end coordinates of the image
+		1,3,5,7, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,5, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+124), // Data offset
@@ -89,7 +88,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "+" 
 		'+', 		// This char
 		9,18, 		// Width and height of the image
-		0,6,8,12, 	// Start and end coordinates of the image
+		1,6,8,12, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,7, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+129), // Data offset
@@ -129,7 +128,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "0" 
 		'0', 		// This char
 		8,18, 		// Width and height of the image
-		0,3,7,14, 	// Start and end coordinates of the image
+		1,3,7,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,12, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+161), // Data offset
@@ -137,7 +136,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "1" 
 		'1', 		// This char
 		8,18, 		// Width and height of the image
-		1,3,5,14, 	// Start and end coordinates of the image
+		2,3,5,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,12, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+173), // Data offset
@@ -153,7 +152,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "3" 
 		'3', 		// This char
 		8,18, 		// Width and height of the image
-		0,3,7,14, 	// Start and end coordinates of the image
+		1,3,7,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,12, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+197), // Data offset
@@ -169,7 +168,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "5" 
 		'5', 		// This char
 		8,18, 		// Width and height of the image
-		0,3,7,14, 	// Start and end coordinates of the image
+		1,3,7,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,12, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+221), // Data offset
@@ -185,7 +184,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "7" 
 		'7', 		// This char
 		8,18, 		// Width and height of the image
-		0,3,7,14, 	// Start and end coordinates of the image
+		1,3,7,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,12, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+245), // Data offset
@@ -193,7 +192,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "8" 
 		'8', 		// This char
 		8,18, 		// Width and height of the image
-		0,3,7,14, 	// Start and end coordinates of the image
+		1,3,7,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,12, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+257), // Data offset
@@ -201,7 +200,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "9" 
 		'9', 		// This char
 		8,18, 		// Width and height of the image
-		0,3,7,14, 	// Start and end coordinates of the image
+		1,3,7,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,12, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+269), // Data offset
@@ -225,7 +224,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "<" 
 		'<', 		// This char
 		9,18, 		// Width and height of the image
-		0,6,8,12, 	// Start and end coordinates of the image
+		1,6,8,12, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,7, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+302), // Data offset
@@ -233,7 +232,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "=" 
 		'=', 		// This char
 		9,18, 		// Width and height of the image
-		0,7,8,11, 	// Start and end coordinates of the image
+		1,7,8,11, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,5, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+316), // Data offset
@@ -241,7 +240,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char ">" 
 		'>', 		// This char
 		9,18, 		// Width and height of the image
-		0,6,8,12, 	// Start and end coordinates of the image
+		1,6,8,12, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,7, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+326), // Data offset
@@ -249,7 +248,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "?" 
 		'?', 		// This char
 		8,18, 		// Width and height of the image
-		0,3,7,14, 	// Start and end coordinates of the image
+		1,3,7,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,12, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+340), // Data offset
@@ -257,7 +256,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "@" 
 		'@', 		// This char
 		16,18, 		// Width and height of the image
-		0,3,15,17, 	// Start and end coordinates of the image
+		1,3,15,17, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,15, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+352), // Data offset
@@ -321,7 +320,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "H" 
 		'H', 		// This char
 		11,18, 		// Width and height of the image
-		1,3,10,14, 	// Start and end coordinates of the image
+		1,3,9,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,12, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+550), // Data offset
@@ -369,7 +368,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "N" 
 		'N', 		// This char
 		11,18, 		// Width and height of the image
-		1,3,10,14, 	// Start and end coordinates of the image
+		1,3,9,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,12, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+658), // Data offset
@@ -393,7 +392,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "Q" 
 		'Q', 		// This char
 		12,18, 		// Width and height of the image
-		0,3,11,15, 	// Start and end coordinates of the image
+		1,3,11,15, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,13, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+730), // Data offset
@@ -409,7 +408,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "S" 
 		'S', 		// This char
 		10,18, 		// Width and height of the image
-		0,3,9,14, 	// Start and end coordinates of the image
+		1,3,9,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,12, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+780), // Data offset
@@ -425,7 +424,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "U" 
 		'U', 		// This char
 		11,18, 		// Width and height of the image
-		1,3,10,14, 	// Start and end coordinates of the image
+		1,3,9,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,12, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+828), // Data offset
@@ -513,7 +512,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "`" 
 		'`', 		// This char
 		5,18, 		// Width and height of the image
-		0,3,3,4, 	// Start and end coordinates of the image
+		1,3,2,4, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,2, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+1021), // Data offset
@@ -521,7 +520,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "a" 
 		'a', 		// This char
 		8,18, 		// Width and height of the image
-		0,6,7,14, 	// Start and end coordinates of the image
+		1,6,7,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,9, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+1023), // Data offset
@@ -537,7 +536,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "c" 
 		'c', 		// This char
 		8,18, 		// Width and height of the image
-		0,6,7,14, 	// Start and end coordinates of the image
+		1,6,7,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,9, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+1044), // Data offset
@@ -553,7 +552,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "e" 
 		'e', 		// This char
 		8,18, 		// Width and height of the image
-		0,6,7,14, 	// Start and end coordinates of the image
+		1,6,7,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,9, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+1065), // Data offset
@@ -617,7 +616,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "m" 
 		'm', 		// This char
 		13,18, 		// Width and height of the image
-		1,6,12,14, 	// Start and end coordinates of the image
+		1,6,11,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,9, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+1161), // Data offset
@@ -633,7 +632,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "o" 
 		'o', 		// This char
 		8,18, 		// Width and height of the image
-		0,6,7,14, 	// Start and end coordinates of the image
+		1,6,7,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,9, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+1188), // Data offset
@@ -665,7 +664,7 @@ const FontItem Arial_16_1[] = {
 	{ // Char "s" 
 		's', 		// This char
 		8,18, 		// Width and height of the image
-		0,6,7,14, 	// Start and end coordinates of the image
+		1,6,6,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,9, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+1230), // Data offset
@@ -749,6 +748,14 @@ const FontItem Arial_16_1[] = {
 		1, 			// Number of bits per pixel
 		1,15, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_16_1_Pixels+1347), // Data offset
+	},
+	{ // Char "~" 
+		'~', 		// This char
+		9,18, 		// Width and height of the image
+		1,8,8,9, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,2, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_16_1_Pixels+1362), // Data offset
 	},
 };
 
@@ -940,5 +947,7 @@ const uint8_t Arial_16_1_Pixels[] = {
 	0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,
 	// Char "}" offset 1347
 	0xE0,0x20,0x20,0x20,0x20,0x30,0x30,0x08,0x30,0x30,0x30,0x30,0x20,0x20,0xE0,
+	// Char "~" offset 1362
+	0x78,0x80,0x0F,0x00,
 
 };

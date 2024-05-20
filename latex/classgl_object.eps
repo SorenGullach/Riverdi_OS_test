@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 555.555542
+%%BoundingBox: 0 0 500 611.111084
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,12 +19,12 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 0.900000 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 0.818182 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 10 def
+/rows 11 def
 /cols 3 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
@@ -177,6 +177,7 @@ boxfont setfont
 (glObjectAttributes) cw
 (glLink) cw
 (glText< len+1 >) cw
+(glText< 20 >) cw
 (glButton) cw
 (glCircle) cw
 (glLabel) cw
@@ -195,10 +196,11 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (glObject) 0.500000 8.000000 box
- (glObjectAttributes) 0.000000 9.000000 box
- (glLink) 1.000000 9.000000 box
- (glText< len+1 >) 1.500000 7.000000 box
+ (glObject) 0.500000 9.000000 box
+ (glObjectAttributes) 0.000000 10.000000 box
+ (glLink) 1.000000 10.000000 box
+ (glText< len+1 >) 1.500000 8.000000 box
+ (glText< 20 >) 1.500000 7.000000 box
  (glButton) 1.500000 6.000000 box
 1.500000 6.000000 mark
  (glCircle) 1.500000 5.000000 box
@@ -213,15 +215,17 @@ boundx scalefactor div boundy scalefactor div scale
 % ----- relations -----
 
 solid
-0 0.500000 8.000000 out
+0 0.500000 9.000000 out
 solid
-0.000000 1.000000 9.000000 conn
+0.000000 1.000000 10.000000 conn
 solid
-1 0.000000 9.000000 in
+1 0.000000 10.000000 in
 solid
-1 1.000000 9.000000 in
+1 1.000000 10.000000 in
 solid
-1 0.500000 7.250000 out
+1 0.500000 8.250000 out
+solid
+0 0.500000 8.500000 hedge
 solid
 0 0.500000 7.500000 hedge
 solid
@@ -239,4 +243,4 @@ solid
 solid
 0 0.500000 0.500000 hedge
 solid
-0.500000 8.000000 0.500000 vedge
+0.500000 9.000000 0.500000 vedge

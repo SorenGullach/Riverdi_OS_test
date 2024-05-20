@@ -20,10 +20,10 @@
 #pragma once
 
 #include <stm32h7xx.h>
-#include <Utils.h>
 #include <assert.h>
 #include <stdio.h>
-#include <Registers.h>
+#include "Hardware.h"
+#include "Registers.h"
 
 #if !defined  (HSI_VALUE)
 #define HSI_VALUE    64'000'000UL /*!< Value of the Internal oscillator in Hz*/

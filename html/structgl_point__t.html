@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: glPoint_t Struct Reference</title>
+<title>Riverdi OS Test: glPoint_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">My Project
+   <div id="projectname">Riverdi OS Test
    </div>
   </td>
  </tr>
@@ -78,15 +78,27 @@ $(function() {
   <div class="headertitle"><div class="title">glPoint_t Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents a 1D point with x and y coordinates.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="gl_types_8h_source.html">glTypes.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4e0a7f67001ff6930cb8e19e3f632090" id="r_a4e0a7f67001ff6930cb8e19e3f632090"><td class="memItemLeft" align="right" valign="top"><a id="a4e0a7f67001ff6930cb8e19e3f632090" name="a4e0a7f67001ff6930cb8e19e3f632090"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>glPoint_t</b> (P_t x, P_t y)</td></tr>
+<tr class="memitem:ab87d77be498a1b1bca08ab804a8edcba" id="r_ab87d77be498a1b1bca08ab804a8edcba"><td class="memItemLeft" align="right" valign="top"><a id="ab87d77be498a1b1bca08ab804a8edcba" name="ab87d77be498a1b1bca08ab804a8edcba"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>glPoint_t</b> ()</td></tr>
+<tr class="memdesc:ab87d77be498a1b1bca08ab804a8edcba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor initializing the point to (0, 0). <br /></td></tr>
+<tr class="separator:ab87d77be498a1b1bca08ab804a8edcba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e0a7f67001ff6930cb8e19e3f632090" id="r_a4e0a7f67001ff6930cb8e19e3f632090"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e0a7f67001ff6930cb8e19e3f632090">glPoint_t</a> (P_t x, P_t y)</td></tr>
+<tr class="memdesc:a4e0a7f67001ff6930cb8e19e3f632090"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to initialize the point with specific coordinates.  <br /></td></tr>
 <tr class="separator:a4e0a7f67001ff6930cb8e19e3f632090"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae797edd711aba136ebdd204c47e7e7ff" id="r_ae797edd711aba136ebdd204c47e7e7ff"><td class="memItemLeft" align="right" valign="top"><a id="ae797edd711aba136ebdd204c47e7e7ff" name="ae797edd711aba136ebdd204c47e7e7ff"></a>
-<a class="el" href="structgl_point__t.html">glPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Move</b> (int dx, int dy) const</td></tr>
-<tr class="separator:ae797edd711aba136ebdd204c47e7e7ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a384cc5afe0d187aa31335692660c26f0" id="r_a384cc5afe0d187aa31335692660c26f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structgl_point__t.html">glPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a384cc5afe0d187aa31335692660c26f0">Displace</a> (const int dx, const int dy) const</td></tr>
+<tr class="memdesc:a384cc5afe0d187aa31335692660c26f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displaces the point by the specified amounts in the x and y directions.  <br /></td></tr>
+<tr class="separator:a384cc5afe0d187aa31335692660c26f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a981ec0f8d253aad258cb75ce895256e5" id="r_a981ec0f8d253aad258cb75ce895256e5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structgl_point__t.html">glPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a981ec0f8d253aad258cb75ce895256e5">Displace</a> (const <a class="el" href="structgl_point__t.html">glPoint_t</a> &amp;p) const</td></tr>
+<tr class="memdesc:a981ec0f8d253aad258cb75ce895256e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displaces the point by the coordinates of another point.  <br /></td></tr>
+<tr class="separator:a981ec0f8d253aad258cb75ce895256e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -97,6 +109,121 @@ P_t&#160;</td><td class="memItemRight" valign="bottom"><b>X</b></td></tr>
 P_t&#160;</td><td class="memItemRight" valign="bottom"><b>Y</b></td></tr>
 <tr class="separator:ab21fbdf8dbb537a7ee3b1cd47df65783"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a 1D point with x and y coordinates. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a4e0a7f67001ff6930cb8e19e3f632090" name="a4e0a7f67001ff6930cb8e19e3f632090"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e0a7f67001ff6930cb8e19e3f632090">&#9670;&#160;</a></span>glPoint_t()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">glPoint_t::glPoint_t </td>
+          <td>(</td>
+          <td class="paramtype">P_t</td>          <td class="paramname"><span class="paramname"><em>x</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">P_t</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor to initialize the point with specific coordinates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>The x-coordinate. </td></tr>
+    <tr><td class="paramname">y</td><td>The y-coordinate. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a981ec0f8d253aad258cb75ce895256e5" name="a981ec0f8d253aad258cb75ce895256e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a981ec0f8d253aad258cb75ce895256e5">&#9670;&#160;</a></span>Displace() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structgl_point__t.html">glPoint_t</a> glPoint_t::Displace </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structgl_point__t.html">glPoint_t</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>p</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Displaces the point by the coordinates of another point. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>The point providing displacement coordinates. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A new displaced point. </dd></dl>
+
+</div>
+</div>
+<a id="a384cc5afe0d187aa31335692660c26f0" name="a384cc5afe0d187aa31335692660c26f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a384cc5afe0d187aa31335692660c26f0">&#9670;&#160;</a></span>Displace() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structgl_point__t.html">glPoint_t</a> glPoint_t::Displace </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>dx</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>dy</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Displaces the point by the specified amounts in the x and y directions. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dx</td><td>The displacement in the x direction. </td></tr>
+    <tr><td class="paramname">dy</td><td>The displacement in the y direction. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A new displaced point. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>glSTM32H7xx/<a class="el" href="gl_types_8h_source.html">glTypes.h</a></li>
 </ul>

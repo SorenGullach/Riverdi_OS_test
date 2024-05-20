@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: glColor_t Struct Reference</title>
+<title>Riverdi OS Test: glColor_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">My Project
+   <div id="projectname">Riverdi OS Test
    </div>
   </td>
  </tr>
@@ -78,29 +78,38 @@ $(function() {
   <div class="headertitle"><div class="title">glColor_t Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents a color with convenience constructors and methods.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="gl_types_8h_source.html">glTypes.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for glColor_t:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="structgl_color__t.png" usemap="#glColor_5Ft_map" alt=""/>
   <map id="glColor_5Ft_map" name="glColor_5Ft_map">
-<area href="structgl_a_r_g_b__t.html" alt="glARGB_t" shape="rect" coords="0,0,66,24"/>
+<area href="structgl_a_r_g_b__t.html" title="Represents a color in ARGB format." alt="glARGB_t" shape="rect" coords="0,0,66,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af87f3f67377b46a52f9f98573be6f063" id="r_af87f3f67377b46a52f9f98573be6f063"><td class="memItemLeft" align="right" valign="top"><a id="af87f3f67377b46a52f9f98573be6f063" name="af87f3f67377b46a52f9f98573be6f063"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>glColor_t</b> (glColors color)</td></tr>
+<tr class="memitem:ad2d6b939cba98bbf9e42b32e6a828d46" id="r_ad2d6b939cba98bbf9e42b32e6a828d46"><td class="memItemLeft" align="right" valign="top"><a id="ad2d6b939cba98bbf9e42b32e6a828d46" name="ad2d6b939cba98bbf9e42b32e6a828d46"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>glColor_t</b> ()</td></tr>
+<tr class="memdesc:ad2d6b939cba98bbf9e42b32e6a828d46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor initializing the color to black with full opacity. <br /></td></tr>
+<tr class="separator:ad2d6b939cba98bbf9e42b32e6a828d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af87f3f67377b46a52f9f98573be6f063" id="r_af87f3f67377b46a52f9f98573be6f063"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af87f3f67377b46a52f9f98573be6f063">glColor_t</a> (glColors color)</td></tr>
+<tr class="memdesc:af87f3f67377b46a52f9f98573be6f063"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to initialize color using a predefined color from glColors enum.  <br /></td></tr>
 <tr class="separator:af87f3f67377b46a52f9f98573be6f063"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8d4417d6f8e083a87257d1b71575969" id="r_af8d4417d6f8e083a87257d1b71575969"><td class="memItemLeft" align="right" valign="top"><a id="af8d4417d6f8e083a87257d1b71575969" name="af8d4417d6f8e083a87257d1b71575969"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>glColor_t</b> (C_t red, C_t green, C_t blue, C_t alpha=255)</td></tr>
+<tr class="memitem:af8d4417d6f8e083a87257d1b71575969" id="r_af8d4417d6f8e083a87257d1b71575969"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8d4417d6f8e083a87257d1b71575969">glColor_t</a> (C_t red, C_t green, C_t blue, C_t alpha=255)</td></tr>
+<tr class="memdesc:af8d4417d6f8e083a87257d1b71575969"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to initialize color using specific RGBA values.  <br /></td></tr>
 <tr class="separator:af8d4417d6f8e083a87257d1b71575969"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:af06e1ec4bceb4bb26d2c9a10b3ae13e4" id="r_af06e1ec4bceb4bb26d2c9a10b3ae13e4"><td class="memItemLeft" align="right" valign="top"><a id="af06e1ec4bceb4bb26d2c9a10b3ae13e4" name="af06e1ec4bceb4bb26d2c9a10b3ae13e4"></a>
-static glColors&#160;</td><td class="memItemRight" valign="bottom"><b>FindNearestColor</b> (C_t r, C_t g, C_t b)</td></tr>
+<tr class="memitem:af06e1ec4bceb4bb26d2c9a10b3ae13e4" id="r_af06e1ec4bceb4bb26d2c9a10b3ae13e4"><td class="memItemLeft" align="right" valign="top">static glColors&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af06e1ec4bceb4bb26d2c9a10b3ae13e4">FindNearestColor</a> (C_t r, C_t g, C_t b)</td></tr>
+<tr class="memdesc:af06e1ec4bceb4bb26d2c9a10b3ae13e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the nearest color from the enum list based on an RGB color.  <br /></td></tr>
 <tr class="separator:af06e1ec4bceb4bb26d2c9a10b3ae13e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
@@ -117,8 +126,141 @@ C_t&#160;</td><td class="memItemRight" valign="bottom"><b>R</b></td></tr>
 <tr class="separator:a49df13d79dbaa44d6002a725428648da inherit pub_attribs_structgl_a_r_g_b__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af46d13fc72a0e7d7bee0323f23652095 inherit pub_attribs_structgl_a_r_g_b__t" id="r_af46d13fc72a0e7d7bee0323f23652095"><td class="memItemLeft" align="right" valign="top">
 C_t&#160;</td><td class="memItemRight" valign="bottom"><b>A</b></td></tr>
+<tr class="memdesc:af46d13fc72a0e7d7bee0323f23652095 inherit pub_attribs_structgl_a_r_g_b__t"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color channels in ARGB format, fitting LTDC layout. <br /></td></tr>
 <tr class="separator:af46d13fc72a0e7d7bee0323f23652095 inherit pub_attribs_structgl_a_r_g_b__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a color with convenience constructors and methods. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="af87f3f67377b46a52f9f98573be6f063" name="af87f3f67377b46a52f9f98573be6f063"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af87f3f67377b46a52f9f98573be6f063">&#9670;&#160;</a></span>glColor_t() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">glColor_t::glColor_t </td>
+          <td>(</td>
+          <td class="paramtype">glColors</td>          <td class="paramname"><span class="paramname"><em>color</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor to initialize color using a predefined color from glColors enum. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">color</td><td>The predefined color. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af8d4417d6f8e083a87257d1b71575969" name="af8d4417d6f8e083a87257d1b71575969"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8d4417d6f8e083a87257d1b71575969">&#9670;&#160;</a></span>glColor_t() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">glColor_t::glColor_t </td>
+          <td>(</td>
+          <td class="paramtype">C_t</td>          <td class="paramname"><span class="paramname"><em>red</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">C_t</td>          <td class="paramname"><span class="paramname"><em>green</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">C_t</td>          <td class="paramname"><span class="paramname"><em>blue</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">C_t</td>          <td class="paramname"><span class="paramname"><em>alpha</em><span class="paramdefsep"> = </span><span class="paramdefval">255</span></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor to initialize color using specific RGBA values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">red</td><td>The red component. </td></tr>
+    <tr><td class="paramname">green</td><td>The green component. </td></tr>
+    <tr><td class="paramname">blue</td><td>The blue component. </td></tr>
+    <tr><td class="paramname">alpha</td><td>The alpha component (default is 255 for full opacity). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="af06e1ec4bceb4bb26d2c9a10b3ae13e4" name="af06e1ec4bceb4bb26d2c9a10b3ae13e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af06e1ec4bceb4bb26d2c9a10b3ae13e4">&#9670;&#160;</a></span>FindNearestColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static glColors glColor_t::FindNearestColor </td>
+          <td>(</td>
+          <td class="paramtype">C_t</td>          <td class="paramname"><span class="paramname"><em>r</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">C_t</td>          <td class="paramname"><span class="paramname"><em>g</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">C_t</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Finds the nearest color from the enum list based on an RGB color. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>The red component of the color. </td></tr>
+    <tr><td class="paramname">g</td><td>The green component of the color. </td></tr>
+    <tr><td class="paramname">b</td><td>The blue component of the color. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The nearest predefined color from the glColors enum. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>glSTM32H7xx/<a class="el" href="gl_types_8h_source.html">glTypes.h</a></li>
 </ul>

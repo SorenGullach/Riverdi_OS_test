@@ -19,43 +19,49 @@
 
 #pragma once
 
-#include "glPrimitives.h"
+#include "glWidgets.h"
 #include "glLabel.h"
+#include "glText.h"
 
-class glButton : public glObject
+class glButton : public glWidget
 {
 public:
 	glButton()
-		: glObject("Button", gl2DPoint_t(), glColor_t())
+		: glWidget("Button", gl2DPoint_t(), glColor_t())
 	{
 	}
-	glButton(gl2DPoint_t pos, glColor_t backColor = glColor_t(glColors::BLUE))
-		: glObject("Button", pos.Nomalize(), backColor) 
+	glButton(const gl2DPoint_t &pos, 
+		const glColor_t &backColor = glColors::BLUE, 
+		const glColor_t &pressedColor = glColor_t(glColor_t::eColorOperation::ComplementBackground))
+		: glWidget("Button", pos.Normalize(), backColor),
+		_BorderWidth(std::min(pos.Width(), pos.Height()) / 10),
+		_PressedColor(pressedColor.Color(backColor))
 	{
-		_BorderWidth = std::min(pos.Width(), pos.Height()) / 10;
 	}
-	glButton(gl2DPoint_t pos, P_t borderWidth, glColor_t backColor = glColor_t(glColors::BLUE))
-		: glObject("Button", pos.Nomalize(), backColor) 
+	glButton(const gl2DPoint_t &pos, P_t borderWidth, 
+		const glColor_t &backColor = glColors::BLUE, 
+		const glColor_t &pressedColor = glColor_t(glColor_t::eColorOperation::ComplementBackground))
+		: glWidget("Button", pos.Normalize(), backColor),
+		_BorderWidth(borderWidth),
+		_PressedColor(pressedColor.Color(backColor))
 	{
-		assert(borderWidth < pos.Height() / 2);
-		assert(borderWidth < pos.Width() / 2);
-		_BorderWidth = borderWidth;
+		assert(_BorderWidth < pos.Height() / 2);
+		assert(_BorderWidth < pos.Width() / 2);
 	}
 
-	virtual void BackColor(glColor_t color)	{ _Color = color; }
+	virtual void BackColor(glColor_t color)	{ _Color = color; } // _Color is used for backcolor
 	virtual void PressedColor(glColor_t color)	{ _PressedColor = color; }
-	virtual void BorderWidth(P_t borderWidth)
-	{
-		_BorderWidth = borderWidth;
-	}
+	virtual void BorderColor(glColor_t color)	{ _BorderColor = color; }
+
+	virtual void BorderWidth(P_t borderWidth)	{ _BorderWidth = borderWidth; }
 
 protected:
-	// Initialize object
+	// Initialize widget
 //	virtual void Init() override {}
 
 	void Touch(const glTouchPoint_t &point) override
 	{
-		if (_Position.IsInside(point.X, point.Y)) 
+		if (_Region.IsInside(point.X, point.Y)) 
 		{
 			if (point.TipAction == glTouchPoint_t::eTipAction::Tip && !Pressed)
 			{
@@ -86,13 +92,13 @@ protected:
 		if (!ImInvalidated) return;
 
 		if (Pressed)
-			glRectangleFill(_Position.Inflate(-_BorderWidth), _PressedColor).Draw();
+			glRectangleFill(_Region.Inflate(-_BorderWidth), _PressedColor).Draw();
 		else
-			glRectangleFill(_Position.Inflate(-_BorderWidth), _Color).Draw();
+			glRectangleFill(_Region.Inflate(-_BorderWidth), _Color).Draw();
 
 		for (P_t i = 0; i < _BorderWidth; i++)
 		{
-			glRectangleRound(_Position.Inflate(-i), 2*_BorderWidth - i, _BorderColor).Draw();
+			glRectangleRound(_Region.Inflate(-i), 2*_BorderWidth - i, _BorderColor).Draw();
 		}
 		
 		if (glVideoMemory::lastBand()) ImInvalidated = false;
@@ -100,12 +106,12 @@ protected:
 	
 	gl2DPoint_t InvalidRegion() override
 	{
-		return _Position.Inflate(-_BorderWidth);
+		return _Region.Inflate(-_BorderWidth);
 	}
 
 	P_t _BorderWidth = 0;
-	glColor_t _PressedColor = { 0, 255, 0 };
-	glColor_t _BorderColor = { 255, 255, 255 };
+	glColor_t _PressedColor = glColors::RED;
+	glColor_t _BorderColor = glColors::WHITE;
 	bool Click = false, Pressed = false;
 
 };
@@ -114,8 +120,11 @@ template<int len, const FontItem *fontFamily>
 	class glButtonText : public glButton
 	{
 	public:
-		glButtonText(gl2DPoint_t pos, const char *text, glColor_t textColor = glColor_t(glColors::YELLOW), glColor_t backColor = glColor_t(glColors::BLUE))
-			: glButton(pos, backColor)
+		glButtonText(const gl2DPoint_t &pos, const char *text, 
+			const glColor_t &textColor = glColor_t(glColor_t::eColorOperation::ComplementBackground), 
+			const glColor_t &backColor = glColor_t(glColors::BLUE), 
+			const glColor_t &pressedColor = glColor_t(glColor_t::eColorOperation::ComplementBackground))
+			: glButton(pos, backColor,pressedColor )
 			, _Text(pos.Inflate(-_BorderWidth*2), text, fontFamily, textColor)
 		{
 			Add(&_Text);
@@ -124,9 +133,11 @@ template<int len, const FontItem *fontFamily>
 		virtual void BorderWidth(P_t borderWidth) override
 		{
 			glButton::BorderWidth(borderWidth);
-			_Text.Move(_Position.Inflate(-_BorderWidth*2));
+			_Text.Region().MoveTo(_Region.Inflate(-_BorderWidth*2));
 		}
- 
+
+		void TextColor(glColor_t color)	{ _Text.Color(color); }
+
 	protected:
-		glText<len + 1> _Text;
+		glText<len> _Text;
 	};

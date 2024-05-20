@@ -1,10 +1,19 @@
 \doxysection{gl\+Touch\+Point\+\_\+t Struct Reference}
 \hypertarget{structgl_touch_point__t}{}\label{structgl_touch_point__t}\index{glTouchPoint\_t@{glTouchPoint\_t}}
+
+
+Represents a point of touch, with actions and slide directions.  
+
+
+
+
+{\ttfamily \#include $<$gl\+Types.\+h$>$}
+
 \doxysubsubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{structgl_touch_point__t_a157257461882a3a46a9439f69c293837}\label{structgl_touch_point__t_a157257461882a3a46a9439f69c293837} 
-enum class {\bfseries e\+Tip\+Action} \{ \newline
+enum class \mbox{\hyperlink{structgl_touch_point__t_a157257461882a3a46a9439f69c293837}{e\+Tip\+Action}} \{ \newline
 {\bfseries Tip}
 , {\bfseries Up}
 , {\bfseries Slide}
@@ -12,9 +21,9 @@ enum class {\bfseries e\+Tip\+Action} \{ \newline
 , \newline
 {\bfseries Zoom\+Wait}
  \}
-\item 
+\begin{DoxyCompactList}\small\item\em Enumeration of touch actions. \end{DoxyCompactList}\item 
 \Hypertarget{structgl_touch_point__t_ab359bc458af91368eeb9b9f6c0478fb4}\label{structgl_touch_point__t_ab359bc458af91368eeb9b9f6c0478fb4} 
-enum {\bfseries e\+Slide\+Action} \{ \newline
+enum \mbox{\hyperlink{structgl_touch_point__t_ab359bc458af91368eeb9b9f6c0478fb4}{e\+Slide\+Action}} \{ \newline
 {\bfseries None}
 , {\bfseries Up}
 , {\bfseries Right}
@@ -22,16 +31,14 @@ enum {\bfseries e\+Slide\+Action} \{ \newline
 , \newline
 {\bfseries Left}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Enumeration of slide actions. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{structgl_touch_point__t_a4850bf2affcaeb04c0897b38962ddf34}\label{structgl_touch_point__t_a4850bf2affcaeb04c0897b38962ddf34} 
-bool {\bfseries operator==} (const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&other) const
-\item 
-\Hypertarget{structgl_touch_point__t_a47348915ae035c7cf4906454892fb361}\label{structgl_touch_point__t_a47348915ae035c7cf4906454892fb361} 
-bool {\bfseries operator!=} (const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&other) const
-\end{DoxyCompactItemize}
+bool \mbox{\hyperlink{structgl_touch_point__t_a4850bf2affcaeb04c0897b38962ddf34}{operator==}} (const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&other) const
+\begin{DoxyCompactList}\small\item\em Equality operator. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structgl_touch_point__t_a47348915ae035c7cf4906454892fb361}{operator!=}} (const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&other) const
+\begin{DoxyCompactList}\small\item\em Inequality operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -54,11 +61,53 @@ int16\+\_\+t {\bfseries ZX}
 int16\+\_\+t {\bfseries ZY}
 \item 
 \Hypertarget{structgl_touch_point__t_a75be01e55c2bacfa25a1dbd7179e5cb1}\label{structgl_touch_point__t_a75be01e55c2bacfa25a1dbd7179e5cb1} 
-e\+Tip\+Action {\bfseries Tip\+Action} = e\+Tip\+Action\+::\+Up
+\mbox{\hyperlink{structgl_touch_point__t_a157257461882a3a46a9439f69c293837}{e\+Tip\+Action}} {\bfseries Tip\+Action} = e\+Tip\+Action\+::\+Up
 \item 
 \Hypertarget{structgl_touch_point__t_a6766f8ec94e4c61feda63eb6007ad315}\label{structgl_touch_point__t_a6766f8ec94e4c61feda63eb6007ad315} 
-e\+Slide\+Action {\bfseries Slide\+Action} = e\+Slide\+Action\+::\+None
+\mbox{\hyperlink{structgl_touch_point__t_ab359bc458af91368eeb9b9f6c0478fb4}{e\+Slide\+Action}} {\bfseries Slide\+Action} = e\+Slide\+Action\+::\+None
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a point of touch, with actions and slide directions. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structgl_touch_point__t_a47348915ae035c7cf4906454892fb361}\label{structgl_touch_point__t_a47348915ae035c7cf4906454892fb361} 
+\index{glTouchPoint\_t@{glTouchPoint\_t}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!glTouchPoint\_t@{glTouchPoint\_t}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily bool gl\+Touch\+Point\+\_\+t\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Inequality operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other touch point to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the touch points are not equal, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{structgl_touch_point__t_a4850bf2affcaeb04c0897b38962ddf34}\label{structgl_touch_point__t_a4850bf2affcaeb04c0897b38962ddf34} 
+\index{glTouchPoint\_t@{glTouchPoint\_t}!operator==@{operator==}}
+\index{operator==@{operator==}!glTouchPoint\_t@{glTouchPoint\_t}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool gl\+Touch\+Point\+\_\+t\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Equality operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other touch point to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the touch points are equal, false otherwise. 
+\end{DoxyReturn}
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}

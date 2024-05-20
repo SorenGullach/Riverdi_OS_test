@@ -1,5 +1,5 @@
 
-#include "GUIFont.h"
+#include "glFont.h"
 
 extern const uint8_t Arial_22_1_Pixels[];
 
@@ -8,7 +8,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "!" 
 		'!', 		// This char
 		6,25, 		// Width and height of the image
-		1,4,4,19, 	// Start and end coordinates of the image
+		2,4,3,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+0), // Data offset
@@ -32,7 +32,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "$" 
 		'$', 		// This char
 		12,25, 		// Width and height of the image
-		1,3,11,21, 	// Start and end coordinates of the image
+		1,3,10,21, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,19, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+54), // Data offset
@@ -40,7 +40,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "%" 
 		'%', 		// This char
 		19,25, 		// Width and height of the image
-		1,4,18,19, 	// Start and end coordinates of the image
+		1,4,17,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		3,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+92), // Data offset
@@ -56,7 +56,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "'" 
 		'\'', 		// This char
 		4,25, 		// Width and height of the image
-		1,4,3,9, 	// Start and end coordinates of the image
+		1,4,2,9, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,6, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+172), // Data offset
@@ -64,7 +64,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "(" 
 		'(', 		// This char
 		7,25, 		// Width and height of the image
-		1,4,6,23, 	// Start and end coordinates of the image
+		1,4,5,23, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,20, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+178), // Data offset
@@ -72,7 +72,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char ")" 
 		')', 		// This char
 		7,25, 		// Width and height of the image
-		1,4,6,23, 	// Start and end coordinates of the image
+		2,4,6,23, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,20, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+198), // Data offset
@@ -80,7 +80,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "*" 
 		'*', 		// This char
 		8,25, 		// Width and height of the image
-		0,4,7,10, 	// Start and end coordinates of the image
+		1,4,7,10, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,7, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+218), // Data offset
@@ -96,7 +96,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "," 
 		',', 		// This char
 		6,25, 		// Width and height of the image
-		2,18,4,22, 	// Start and end coordinates of the image
+		2,18,3,22, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,5, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+245), // Data offset
@@ -104,7 +104,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "-" 
 		'-', 		// This char
 		7,25, 		// Width and height of the image
-		0,13,6,14, 	// Start and end coordinates of the image
+		1,13,6,14, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,2, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+250), // Data offset
@@ -112,7 +112,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "." 
 		'.', 		// This char
 		6,25, 		// Width and height of the image
-		2,18,4,19, 	// Start and end coordinates of the image
+		2,18,3,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,2, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+252), // Data offset
@@ -128,7 +128,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "0" 
 		'0', 		// This char
 		12,25, 		// Width and height of the image
-		0,4,11,19, 	// Start and end coordinates of the image
+		1,4,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+270), // Data offset
@@ -136,7 +136,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "1" 
 		'1', 		// This char
 		12,25, 		// Width and height of the image
-		2,4,8,19, 	// Start and end coordinates of the image
+		2,4,7,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+302), // Data offset
@@ -144,7 +144,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "2" 
 		'2', 		// This char
 		12,25, 		// Width and height of the image
-		0,4,10,19, 	// Start and end coordinates of the image
+		1,4,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+334), // Data offset
@@ -152,7 +152,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "3" 
 		'3', 		// This char
 		12,25, 		// Width and height of the image
-		1,4,11,19, 	// Start and end coordinates of the image
+		1,4,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+366), // Data offset
@@ -160,7 +160,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "4" 
 		'4', 		// This char
 		12,25, 		// Width and height of the image
-		0,4,11,19, 	// Start and end coordinates of the image
+		0,4,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+398), // Data offset
@@ -168,7 +168,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "5" 
 		'5', 		// This char
 		12,25, 		// Width and height of the image
-		1,4,11,19, 	// Start and end coordinates of the image
+		1,4,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+430), // Data offset
@@ -176,7 +176,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "6" 
 		'6', 		// This char
 		12,25, 		// Width and height of the image
-		0,4,11,19, 	// Start and end coordinates of the image
+		1,4,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+462), // Data offset
@@ -184,7 +184,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "7" 
 		'7', 		// This char
 		12,25, 		// Width and height of the image
-		1,4,11,19, 	// Start and end coordinates of the image
+		1,4,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+494), // Data offset
@@ -192,7 +192,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "8" 
 		'8', 		// This char
 		12,25, 		// Width and height of the image
-		1,4,11,19, 	// Start and end coordinates of the image
+		1,4,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+526), // Data offset
@@ -200,7 +200,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "9" 
 		'9', 		// This char
 		12,25, 		// Width and height of the image
-		1,4,11,19, 	// Start and end coordinates of the image
+		1,4,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+558), // Data offset
@@ -208,7 +208,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char ":" 
 		':', 		// This char
 		6,25, 		// Width and height of the image
-		2,9,4,19, 	// Start and end coordinates of the image
+		2,9,3,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,11, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+590), // Data offset
@@ -216,7 +216,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char ";" 
 		';', 		// This char
 		6,25, 		// Width and height of the image
-		2,9,4,22, 	// Start and end coordinates of the image
+		2,9,3,22, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,14, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+601), // Data offset
@@ -248,7 +248,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "?" 
 		'?', 		// This char
 		12,25, 		// Width and height of the image
-		1,4,11,19, 	// Start and end coordinates of the image
+		1,4,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+673), // Data offset
@@ -256,7 +256,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "@" 
 		'@', 		// This char
 		22,25, 		// Width and height of the image
-		1,4,21,23, 	// Start and end coordinates of the image
+		1,4,20,23, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		3,20, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+705), // Data offset
@@ -272,7 +272,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "B" 
 		'B', 		// This char
 		14,25, 		// Width and height of the image
-		1,4,13,19, 	// Start and end coordinates of the image
+		2,4,13,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+797), // Data offset
@@ -288,7 +288,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "D" 
 		'D', 		// This char
 		15,25, 		// Width and height of the image
-		1,4,14,19, 	// Start and end coordinates of the image
+		2,4,14,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+861), // Data offset
@@ -296,7 +296,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "E" 
 		'E', 		// This char
 		14,25, 		// Width and height of the image
-		1,4,13,19, 	// Start and end coordinates of the image
+		2,4,13,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+893), // Data offset
@@ -304,7 +304,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "F" 
 		'F', 		// This char
 		13,25, 		// Width and height of the image
-		1,4,12,19, 	// Start and end coordinates of the image
+		2,4,12,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+925), // Data offset
@@ -320,7 +320,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "H" 
 		'H', 		// This char
 		15,25, 		// Width and height of the image
-		1,4,14,19, 	// Start and end coordinates of the image
+		2,4,13,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+1005), // Data offset
@@ -328,7 +328,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "I" 
 		'I', 		// This char
 		6,25, 		// Width and height of the image
-		2,4,4,19, 	// Start and end coordinates of the image
+		2,4,3,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+1037), // Data offset
@@ -336,7 +336,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "J" 
 		'J', 		// This char
 		11,25, 		// Width and height of the image
-		0,4,9,19, 	// Start and end coordinates of the image
+		1,4,8,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+1053), // Data offset
@@ -344,7 +344,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "K" 
 		'K', 		// This char
 		14,25, 		// Width and height of the image
-		1,4,13,19, 	// Start and end coordinates of the image
+		2,4,13,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+1085), // Data offset
@@ -352,7 +352,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "L" 
 		'L', 		// This char
 		12,25, 		// Width and height of the image
-		1,4,11,19, 	// Start and end coordinates of the image
+		2,4,11,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+1117), // Data offset
@@ -360,7 +360,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "M" 
 		'M', 		// This char
 		18,25, 		// Width and height of the image
-		1,4,16,19, 	// Start and end coordinates of the image
+		2,4,16,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		3,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+1149), // Data offset
@@ -368,7 +368,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "N" 
 		'N', 		// This char
 		15,25, 		// Width and height of the image
-		1,4,13,19, 	// Start and end coordinates of the image
+		2,4,13,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+1197), // Data offset
@@ -376,7 +376,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "O" 
 		'O', 		// This char
 		17,25, 		// Width and height of the image
-		1,4,16,19, 	// Start and end coordinates of the image
+		1,4,15,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		3,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+1229), // Data offset
@@ -384,7 +384,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "P" 
 		'P', 		// This char
 		14,25, 		// Width and height of the image
-		1,4,13,19, 	// Start and end coordinates of the image
+		2,4,13,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+1277), // Data offset
@@ -400,7 +400,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "R" 
 		'R', 		// This char
 		15,25, 		// Width and height of the image
-		1,4,14,19, 	// Start and end coordinates of the image
+		2,4,14,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+1360), // Data offset
@@ -424,7 +424,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "U" 
 		'U', 		// This char
 		15,25, 		// Width and height of the image
-		1,4,14,19, 	// Start and end coordinates of the image
+		2,4,13,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+1456), // Data offset
@@ -496,7 +496,7 @@ const FontItem Arial_22_1[] = {
 	{ // Char "^" 
 		'^', 		// This char
 		10,25, 		// Width and height of the image
-		0,4,9,12, 	// Start and end coordinates of the image
+		1,4,9,12, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,9, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+1720), // Data offset
@@ -504,9 +504,9 @@ const FontItem Arial_22_1[] = {
 	{ // Char "_" 
 		'_', 		// This char
 		12,25, 		// Width and height of the image
-		0,23,11,24, 	// Start and end coordinates of the image
+		0,23,11,23, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
-		2,2, 		// Stride in X and Y directions
+		2,1, 		// Stride in X and Y directions
 		(uint8_t*)(Arial_22_1_Pixels+1738), // Data offset
 	},
 	{ // Char "`" 
@@ -515,47 +515,47 @@ const FontItem Arial_22_1[] = {
 		1,4,4,6, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,3, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+1742), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+1740), // Data offset
 	},
 	{ // Char "a" 
 		'a', 		// This char
 		12,25, 		// Width and height of the image
-		0,8,10,19, 	// Start and end coordinates of the image
+		1,8,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,12, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+1745), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+1743), // Data offset
 	},
 	{ // Char "b" 
 		'b', 		// This char
 		12,25, 		// Width and height of the image
-		1,4,11,19, 	// Start and end coordinates of the image
+		1,4,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+1769), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+1767), // Data offset
 	},
 	{ // Char "c" 
 		'c', 		// This char
 		11,25, 		// Width and height of the image
-		0,8,10,19, 	// Start and end coordinates of the image
+		1,8,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,12, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+1801), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+1799), // Data offset
 	},
 	{ // Char "d" 
 		'd', 		// This char
 		12,25, 		// Width and height of the image
-		0,4,10,19, 	// Start and end coordinates of the image
+		1,4,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+1825), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+1823), // Data offset
 	},
 	{ // Char "e" 
 		'e', 		// This char
 		12,25, 		// Width and height of the image
-		0,8,11,19, 	// Start and end coordinates of the image
+		1,8,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,12, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+1857), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+1855), // Data offset
 	},
 	{ // Char "f" 
 		'f', 		// This char
@@ -563,15 +563,15 @@ const FontItem Arial_22_1[] = {
 		0,4,5,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,16, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+1881), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+1879), // Data offset
 	},
 	{ // Char "g" 
 		'g', 		// This char
 		12,25, 		// Width and height of the image
-		0,8,10,23, 	// Start and end coordinates of the image
+		1,8,10,23, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+1897), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+1895), // Data offset
 	},
 	{ // Char "h" 
 		'h', 		// This char
@@ -579,23 +579,23 @@ const FontItem Arial_22_1[] = {
 		1,4,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+1929), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+1927), // Data offset
 	},
 	{ // Char "i" 
 		'i', 		// This char
 		4,25, 		// Width and height of the image
-		1,4,3,19, 	// Start and end coordinates of the image
+		1,4,2,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,16, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+1961), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+1959), // Data offset
 	},
 	{ // Char "j" 
 		'j', 		// This char
 		4,25, 		// Width and height of the image
-		0,4,3,23, 	// Start and end coordinates of the image
+		0,4,2,23, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,20, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+1977), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+1975), // Data offset
 	},
 	{ // Char "k" 
 		'k', 		// This char
@@ -603,15 +603,15 @@ const FontItem Arial_22_1[] = {
 		1,4,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+1997), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+1995), // Data offset
 	},
 	{ // Char "l" 
 		'l', 		// This char
 		4,25, 		// Width and height of the image
-		1,4,3,19, 	// Start and end coordinates of the image
+		1,4,2,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,16, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+2029), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+2027), // Data offset
 	},
 	{ // Char "m" 
 		'm', 		// This char
@@ -619,7 +619,7 @@ const FontItem Arial_22_1[] = {
 		1,8,16,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		3,12, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+2045), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+2043), // Data offset
 	},
 	{ // Char "n" 
 		'n', 		// This char
@@ -627,31 +627,31 @@ const FontItem Arial_22_1[] = {
 		1,8,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,12, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+2081), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+2079), // Data offset
 	},
 	{ // Char "o" 
 		'o', 		// This char
 		12,25, 		// Width and height of the image
-		0,8,11,19, 	// Start and end coordinates of the image
+		1,8,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,12, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+2105), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+2103), // Data offset
 	},
 	{ // Char "p" 
 		'p', 		// This char
 		12,25, 		// Width and height of the image
-		1,8,11,23, 	// Start and end coordinates of the image
+		1,8,10,23, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+2129), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+2127), // Data offset
 	},
 	{ // Char "q" 
 		'q', 		// This char
 		12,25, 		// Width and height of the image
-		0,8,10,23, 	// Start and end coordinates of the image
+		1,8,10,23, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+2161), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+2159), // Data offset
 	},
 	{ // Char "r" 
 		'r', 		// This char
@@ -659,15 +659,15 @@ const FontItem Arial_22_1[] = {
 		1,8,6,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,12, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+2193), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+2191), // Data offset
 	},
 	{ // Char "s" 
 		's', 		// This char
 		11,25, 		// Width and height of the image
-		0,8,10,19, 	// Start and end coordinates of the image
+		1,8,9,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,12, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+2205), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+2203), // Data offset
 	},
 	{ // Char "t" 
 		't', 		// This char
@@ -675,7 +675,7 @@ const FontItem Arial_22_1[] = {
 		0,4,5,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,16, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+2229), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+2227), // Data offset
 	},
 	{ // Char "u" 
 		'u', 		// This char
@@ -683,7 +683,7 @@ const FontItem Arial_22_1[] = {
 		1,8,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,12, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+2245), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+2243), // Data offset
 	},
 	{ // Char "v" 
 		'v', 		// This char
@@ -691,7 +691,7 @@ const FontItem Arial_22_1[] = {
 		0,8,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,12, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+2269), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+2267), // Data offset
 	},
 	{ // Char "w" 
 		'w', 		// This char
@@ -699,7 +699,7 @@ const FontItem Arial_22_1[] = {
 		0,8,14,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,12, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+2293), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+2291), // Data offset
 	},
 	{ // Char "x" 
 		'x', 		// This char
@@ -707,7 +707,7 @@ const FontItem Arial_22_1[] = {
 		0,8,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,12, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+2317), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+2315), // Data offset
 	},
 	{ // Char "y" 
 		'y', 		// This char
@@ -715,7 +715,7 @@ const FontItem Arial_22_1[] = {
 		0,8,10,23, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,16, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+2341), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+2339), // Data offset
 	},
 	{ // Char "z" 
 		'z', 		// This char
@@ -723,15 +723,15 @@ const FontItem Arial_22_1[] = {
 		0,8,10,19, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		2,12, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+2373), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+2371), // Data offset
 	},
 	{ // Char "{" 
 		'{', 		// This char
 		7,25, 		// Width and height of the image
-		0,4,6,23, 	// Start and end coordinates of the image
+		1,4,6,23, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,20, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+2397), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+2395), // Data offset
 	},
 	{ // Char "|" 
 		'|', 		// This char
@@ -739,7 +739,7 @@ const FontItem Arial_22_1[] = {
 		2,4,3,23, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,20, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+2417), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+2415), // Data offset
 	},
 	{ // Char "}" 
 		'}', 		// This char
@@ -747,7 +747,15 @@ const FontItem Arial_22_1[] = {
 		0,4,6,23, 	// Start and end coordinates of the image
 		1, 			// Number of bits per pixel
 		1,20, 		// Stride in X and Y directions
-		(uint8_t*)(Arial_22_1_Pixels+2437), // Data offset
+		(uint8_t*)(Arial_22_1_Pixels+2435), // Data offset
+	},
+	{ // Char "~" 
+		'~', 		// This char
+		12,25, 		// Width and height of the image
+		1,10,11,12, 	// Start and end coordinates of the image
+		1, 			// Number of bits per pixel
+		2,3, 		// Stride in X and Y directions
+		(uint8_t*)(Arial_22_1_Pixels+2455), // Data offset
 	},
 };
 
@@ -878,66 +886,68 @@ const uint8_t Arial_22_1_Pixels[] = {
 	// Char "^" offset 1720
 	0x0C,0x00,0x0E,0x00,0x1E,0x00,0x1B,0x00,0x33,0x00,0x33,0x00,0x31,0x80,0x61,0x80,0x60,0xC0,
 	// Char "_" offset 1738
-	0xFF,0xF0,0x00,0x00,
-	// Char "`" offset 1742
+	0xFF,0xF0,
+	// Char "`" offset 1740
 	0x70,0x30,0x18,
-	// Char "a" offset 1745
+	// Char "a" offset 1743
 	0x1F,0x80,0x3F,0xC0,0x70,0xE0,0x60,0x60,0x03,0xE0,0x3F,0xE0,0x78,0x60,0x60,0x60,0x60,0xE0,0x60,0xE0,0x7F,0xE0,0x3E,0x60,
-	// Char "b" offset 1769
+	// Char "b" offset 1767
 	0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x6F,0x80,0x7F,0xC0,0x70,0xE0,0x70,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x70,0x60,0x70,0xE0,0x7F,0xC0,0x6F,0x80,
-	// Char "c" offset 1801
+	// Char "c" offset 1799
 	0x0F,0x00,0x3F,0xC0,0x30,0xC0,0x60,0x60,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x60,0x30,0xC0,0x3F,0xC0,0x0F,0x80,
-	// Char "d" offset 1825
+	// Char "d" offset 1823
 	0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x1E,0x60,0x3F,0xE0,0x70,0xE0,0x60,0xE0,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0xE0,0x70,0xE0,0x3F,0xE0,0x1F,0x60,
-	// Char "e" offset 1857
+	// Char "e" offset 1855
 	0x0F,0x00,0x3F,0xC0,0x30,0xE0,0x60,0x60,0x60,0x60,0x7F,0xE0,0x7F,0xE0,0x60,0x00,0x60,0x00,0x30,0x60,0x3F,0xE0,0x0F,0x80,
-	// Char "f" offset 1881
+	// Char "f" offset 1879
 	0x1C,0x3C,0x30,0x30,0xFC,0xFC,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,
-	// Char "g" offset 1897
+	// Char "g" offset 1895
 	0x1F,0x60,0x3F,0xE0,0x70,0xE0,0x60,0xE0,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0xE0,0x70,0xE0,0x3F,0xE0,0x1F,0x60,0x00,0x60,0x60,0xC0,0x7F,0xC0,0x1F,0x00,
-	// Char "h" offset 1929
+	// Char "h" offset 1927
 	0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x67,0x80,0x7F,0xC0,0x70,0xE0,0x70,0x60,0x70,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,
-	// Char "i" offset 1961
+	// Char "i" offset 1959
 	0x60,0x60,0x00,0x00,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,
-	// Char "j" offset 1977
+	// Char "j" offset 1975
 	0x60,0x60,0x00,0x00,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0xE0,0xC0,
-	// Char "k" offset 1997
+	// Char "k" offset 1995
 	0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x61,0xC0,0x63,0x80,0x63,0x00,0x66,0x00,0x7C,0x00,0x7E,0x00,0x76,0x00,0x63,0x00,0x63,0x80,0x61,0x80,0x60,0xC0,0x60,0xE0,
-	// Char "l" offset 2029
+	// Char "l" offset 2027
 	0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,
-	// Char "m" offset 2045
+	// Char "m" offset 2043
 	0x6F,0x9E,0x00,0x7F,0xFF,0x00,0x70,0xE1,0x80,0x70,0xC1,0x80,0x70,0xC1,0x80,0x60,0xC1,0x80,0x60,0xC1,0x80,0x60,0xC1,0x80,0x60,0xC1,0x80,0x60,0xC1,0x80,0x60,0xC1,0x80,0x60,0xC1,0x80,
-	// Char "n" offset 2081
+	// Char "n" offset 2079
 	0x67,0x80,0x7F,0xC0,0x70,0xE0,0x70,0x60,0x70,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,
-	// Char "o" offset 2105
+	// Char "o" offset 2103
 	0x0F,0x80,0x3F,0xC0,0x70,0xE0,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x70,0xE0,0x3F,0xC0,0x0F,0x80,
-	// Char "p" offset 2129
+	// Char "p" offset 2127
 	0x6F,0x80,0x7F,0xC0,0x70,0xE0,0x70,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x70,0x60,0x70,0xE0,0x7F,0xC0,0x6F,0x80,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,
-	// Char "q" offset 2161
+	// Char "q" offset 2159
 	0x1F,0x60,0x3F,0xE0,0x70,0xE0,0x60,0xE0,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0xE0,0x30,0xE0,0x3F,0xE0,0x0F,0x60,0x00,0x60,0x00,0x60,0x00,0x60,0x00,0x60,
-	// Char "r" offset 2193
+	// Char "r" offset 2191
 	0x6E,0x7E,0x70,0x70,0x70,0x60,0x60,0x60,0x60,0x60,0x60,0x60,
-	// Char "s" offset 2205
+	// Char "s" offset 2203
 	0x1F,0x00,0x3F,0x80,0x60,0xC0,0x60,0x00,0x78,0x00,0x3F,0x00,0x0F,0xC0,0x01,0xC0,0x60,0xC0,0x60,0xC0,0x3F,0x80,0x1F,0x00,
-	// Char "t" offset 2229
+	// Char "t" offset 2227
 	0x10,0x30,0x30,0x30,0xFC,0xFC,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x3C,0x1C,
-	// Char "u" offset 2245
+	// Char "u" offset 2243
 	0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x70,0xE0,0x30,0xE0,0x3F,0xE0,0x1F,0x60,
-	// Char "v" offset 2269
+	// Char "v" offset 2267
 	0xE0,0xE0,0x60,0xC0,0x60,0xC0,0x71,0xC0,0x31,0x80,0x31,0x80,0x1B,0x00,0x1B,0x00,0x1B,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,
-	// Char "w" offset 2293
+	// Char "w" offset 2291
 	0xC1,0x82,0xE3,0x86,0x63,0xC6,0x63,0xC6,0x63,0xCC,0x36,0xCC,0x36,0x6C,0x36,0x6C,0x3E,0x78,0x1C,0x78,0x1C,0x38,0x1C,0x30,
-	// Char "x" offset 2317
+	// Char "x" offset 2315
 	0x60,0xC0,0x71,0xC0,0x3B,0x80,0x1B,0x00,0x1E,0x00,0x0E,0x00,0x0E,0x00,0x1F,0x00,0x3B,0x80,0x31,0x80,0x71,0xC0,0xE0,0xE0,
-	// Char "y" offset 2341
+	// Char "y" offset 2339
 	0xE0,0x60,0x60,0xC0,0x60,0xC0,0x30,0xC0,0x31,0x80,0x31,0x80,0x19,0x00,0x1B,0x00,0x1B,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0C,0x00,0x0C,0x00,0x78,0x00,0x70,0x00,
-	// Char "z" offset 2373
+	// Char "z" offset 2371
 	0x7F,0xC0,0x7F,0xC0,0x01,0x80,0x03,0x80,0x07,0x00,0x0E,0x00,0x0C,0x00,0x18,0x00,0x38,0x00,0x70,0x00,0xFF,0xC0,0xFF,0xE0,
-	// Char "{" offset 2397
+	// Char "{" offset 2395
 	0x0E,0x1E,0x18,0x18,0x18,0x18,0x18,0x18,0x30,0x60,0x60,0x30,0x18,0x18,0x18,0x18,0x18,0x18,0x1E,0x0E,
-	// Char "|" offset 2417
+	// Char "|" offset 2415
 	0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,
-	// Char "}" offset 2437
+	// Char "}" offset 2435
 	0xE0,0xF0,0x30,0x18,0x18,0x18,0x18,0x18,0x18,0x0E,0x0E,0x18,0x18,0x18,0x18,0x18,0x18,0x30,0xF0,0xE0,
+	// Char "~" offset 2455
+	0x3E,0x10,0x7F,0xF0,0x43,0xE0,
 
 };

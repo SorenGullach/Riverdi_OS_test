@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: gl2DPoint_t Struct Reference</title>
+<title>Riverdi OS Test: gl2DPoint_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">My Project
+   <div id="projectname">Riverdi OS Test
    </div>
   </td>
  </tr>
@@ -73,19 +73,28 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="structgl2_d_point__t-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">gl2DPoint_t Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents a 2D rectangular region defined by two points.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="gl_types_8h_source.html">glTypes.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afe813019c60115a9249a28ff51d2bafd" id="r_afe813019c60115a9249a28ff51d2bafd"><td class="memItemLeft" align="right" valign="top"><a id="afe813019c60115a9249a28ff51d2bafd" name="afe813019c60115a9249a28ff51d2bafd"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>gl2DPoint_t</b> (const <a class="el" href="structgl_point__t.html">glPoint_t</a> &amp;lt, const <a class="el" href="structgl_point__t.html">glPoint_t</a> &amp;rb)</td></tr>
+<tr class="memitem:ac5602e7d20edd61499fb42fc2e59605a" id="r_ac5602e7d20edd61499fb42fc2e59605a"><td class="memItemLeft" align="right" valign="top"><a id="ac5602e7d20edd61499fb42fc2e59605a" name="ac5602e7d20edd61499fb42fc2e59605a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>gl2DPoint_t</b> ()</td></tr>
+<tr class="memdesc:ac5602e7d20edd61499fb42fc2e59605a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
+<tr class="separator:ac5602e7d20edd61499fb42fc2e59605a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe813019c60115a9249a28ff51d2bafd" id="r_afe813019c60115a9249a28ff51d2bafd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe813019c60115a9249a28ff51d2bafd">gl2DPoint_t</a> (const <a class="el" href="structgl_point__t.html">glPoint_t</a> &amp;lt, const <a class="el" href="structgl_point__t.html">glPoint_t</a> &amp;rb)</td></tr>
+<tr class="memdesc:afe813019c60115a9249a28ff51d2bafd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to initialize the 2D point with top-left and bottom-right points.  <br /></td></tr>
 <tr class="separator:afe813019c60115a9249a28ff51d2bafd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7873333381bf56e2df2c2fc42425af42" id="r_a7873333381bf56e2df2c2fc42425af42"><td class="memItemLeft" align="right" valign="top"><a id="a7873333381bf56e2df2c2fc42425af42" name="a7873333381bf56e2df2c2fc42425af42"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>gl2DPoint_t</b> (P_t left, P_t top, P_t right, P_t bottom)</td></tr>
+<tr class="memitem:a7873333381bf56e2df2c2fc42425af42" id="r_a7873333381bf56e2df2c2fc42425af42"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7873333381bf56e2df2c2fc42425af42">gl2DPoint_t</a> (P_t left, P_t top, P_t right, P_t bottom)</td></tr>
+<tr class="memdesc:a7873333381bf56e2df2c2fc42425af42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to initialize the 2D point with specific coordinates.  <br /></td></tr>
 <tr class="separator:a7873333381bf56e2df2c2fc42425af42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5cd2885fc1bad76593bdc6b1ee6e8a49" id="r_a5cd2885fc1bad76593bdc6b1ee6e8a49"><td class="memItemLeft" align="right" valign="top"><a id="a5cd2885fc1bad76593bdc6b1ee6e8a49" name="a5cd2885fc1bad76593bdc6b1ee6e8a49"></a>
 P_t&#160;</td><td class="memItemRight" valign="bottom"><b>L</b> ()</td></tr>
@@ -111,15 +120,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>R</b> (const P_t &amp
 <tr class="memitem:a504f7b67a3539a5cc7145ff5fdaf6c18" id="r_a504f7b67a3539a5cc7145ff5fdaf6c18"><td class="memItemLeft" align="right" valign="top"><a id="a504f7b67a3539a5cc7145ff5fdaf6c18" name="a504f7b67a3539a5cc7145ff5fdaf6c18"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>B</b> (const P_t &amp;t)</td></tr>
 <tr class="separator:a504f7b67a3539a5cc7145ff5fdaf6c18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d913cab27d8ed75825f39530fb2cb9e" id="r_a9d913cab27d8ed75825f39530fb2cb9e"><td class="memItemLeft" align="right" valign="top"><a id="a9d913cab27d8ed75825f39530fb2cb9e" name="a9d913cab27d8ed75825f39530fb2cb9e"></a>
-<a class="el" href="structgl2_d_point__t.html">gl2DPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Nomalize</b> ()</td></tr>
-<tr class="separator:a9d913cab27d8ed75825f39530fb2cb9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a618c6896fa85e52afa2328eeb88270cb" id="r_a618c6896fa85e52afa2328eeb88270cb"><td class="memItemLeft" align="right" valign="top"><a id="a618c6896fa85e52afa2328eeb88270cb" name="a618c6896fa85e52afa2328eeb88270cb"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsInside</b> (P_t x, P_t y) const</td></tr>
-<tr class="separator:a618c6896fa85e52afa2328eeb88270cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04cdf77142e71e746c97384b111d467a" id="r_a04cdf77142e71e746c97384b111d467a"><td class="memItemLeft" align="right" valign="top"><a id="a04cdf77142e71e746c97384b111d467a" name="a04cdf77142e71e746c97384b111d467a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsInside</b> (const <a class="el" href="structgl_point__t.html">glPoint_t</a> &amp;p) const</td></tr>
-<tr class="separator:a04cdf77142e71e746c97384b111d467a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a505ec165cb1ed007acb1c5192ebb9dcb" id="r_a505ec165cb1ed007acb1c5192ebb9dcb"><td class="memItemLeft" align="right" valign="top"><a id="a505ec165cb1ed007acb1c5192ebb9dcb" name="a505ec165cb1ed007acb1c5192ebb9dcb"></a>
+<a class="el" href="structgl_point__t.html">glPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>LT</b> () const</td></tr>
+<tr class="separator:a505ec165cb1ed007acb1c5192ebb9dcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e9104b3bf0d04223a636e8d5d584bb8" id="r_a2e9104b3bf0d04223a636e8d5d584bb8"><td class="memItemLeft" align="right" valign="top"><a id="a2e9104b3bf0d04223a636e8d5d584bb8" name="a2e9104b3bf0d04223a636e8d5d584bb8"></a>
+<a class="el" href="structgl_point__t.html">glPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>LB</b> () const</td></tr>
+<tr class="separator:a2e9104b3bf0d04223a636e8d5d584bb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a320f6c6c26a90a8a9c31b017a7fabee4" id="r_a320f6c6c26a90a8a9c31b017a7fabee4"><td class="memItemLeft" align="right" valign="top"><a id="a320f6c6c26a90a8a9c31b017a7fabee4" name="a320f6c6c26a90a8a9c31b017a7fabee4"></a>
+<a class="el" href="structgl_point__t.html">glPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>RT</b> () const</td></tr>
+<tr class="separator:a320f6c6c26a90a8a9c31b017a7fabee4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae87f818f45011a61dcba9993a1e9414d" id="r_ae87f818f45011a61dcba9993a1e9414d"><td class="memItemLeft" align="right" valign="top"><a id="ae87f818f45011a61dcba9993a1e9414d" name="ae87f818f45011a61dcba9993a1e9414d"></a>
+<a class="el" href="structgl_point__t.html">glPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>RB</b> () const</td></tr>
+<tr class="separator:ae87f818f45011a61dcba9993a1e9414d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01ac71a03ce603688b2a1db98a7c588d" id="r_a01ac71a03ce603688b2a1db98a7c588d"><td class="memItemLeft" align="right" valign="top"><a id="a01ac71a03ce603688b2a1db98a7c588d" name="a01ac71a03ce603688b2a1db98a7c588d"></a>
 P_t&#160;</td><td class="memItemRight" valign="bottom"><b>Width</b> () const</td></tr>
 <tr class="separator:a01ac71a03ce603688b2a1db98a7c588d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,9 +141,27 @@ P_t&#160;</td><td class="memItemRight" valign="bottom"><b>Height</b> () const</t
 <tr class="memitem:a2db94a5566f080ec87f41f3b07b65b77" id="r_a2db94a5566f080ec87f41f3b07b65b77"><td class="memItemLeft" align="right" valign="top"><a id="a2db94a5566f080ec87f41f3b07b65b77" name="a2db94a5566f080ec87f41f3b07b65b77"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>Empty</b> () const</td></tr>
 <tr class="separator:a2db94a5566f080ec87f41f3b07b65b77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86b04b4a9ab098cc002bffe09ebed8fe" id="r_a86b04b4a9ab098cc002bffe09ebed8fe"><td class="memItemLeft" align="right" valign="top"><a id="a86b04b4a9ab098cc002bffe09ebed8fe" name="a86b04b4a9ab098cc002bffe09ebed8fe"></a>
-<a class="el" href="structgl2_d_point__t.html">gl2DPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Move</b> (int dx, int dy) const</td></tr>
-<tr class="separator:a86b04b4a9ab098cc002bffe09ebed8fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacaa7e2e5683495b0e846f25a54b53c0" id="r_aacaa7e2e5683495b0e846f25a54b53c0"><td class="memItemLeft" align="right" valign="top"><a id="aacaa7e2e5683495b0e846f25a54b53c0" name="aacaa7e2e5683495b0e846f25a54b53c0"></a>
+<a class="el" href="structgl2_d_point__t.html">gl2DPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Normalize</b> ()</td></tr>
+<tr class="separator:aacaa7e2e5683495b0e846f25a54b53c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a962486053506d2425433d87ed5fbc4d5" id="r_a962486053506d2425433d87ed5fbc4d5"><td class="memItemLeft" align="right" valign="top"><a id="a962486053506d2425433d87ed5fbc4d5" name="a962486053506d2425433d87ed5fbc4d5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsInside</b> (const P_t x, const P_t y) const</td></tr>
+<tr class="separator:a962486053506d2425433d87ed5fbc4d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04cdf77142e71e746c97384b111d467a" id="r_a04cdf77142e71e746c97384b111d467a"><td class="memItemLeft" align="right" valign="top"><a id="a04cdf77142e71e746c97384b111d467a" name="a04cdf77142e71e746c97384b111d467a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsInside</b> (const <a class="el" href="structgl_point__t.html">glPoint_t</a> &amp;p) const</td></tr>
+<tr class="separator:a04cdf77142e71e746c97384b111d467a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3630626b93a2c8255a4fde6642d24c7a" id="r_a3630626b93a2c8255a4fde6642d24c7a"><td class="memItemLeft" align="right" valign="top"><a id="a3630626b93a2c8255a4fde6642d24c7a" name="a3630626b93a2c8255a4fde6642d24c7a"></a>
+<a class="el" href="structgl2_d_point__t.html">gl2DPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Displace</b> (const int dx, const int dy) const</td></tr>
+<tr class="separator:a3630626b93a2c8255a4fde6642d24c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5121b8ebb152fcdf1e05192a0726d04f" id="r_a5121b8ebb152fcdf1e05192a0726d04f"><td class="memItemLeft" align="right" valign="top"><a id="a5121b8ebb152fcdf1e05192a0726d04f" name="a5121b8ebb152fcdf1e05192a0726d04f"></a>
+<a class="el" href="structgl2_d_point__t.html">gl2DPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Displace</b> (const <a class="el" href="structgl_point__t.html">glPoint_t</a> &amp;p) const</td></tr>
+<tr class="separator:a5121b8ebb152fcdf1e05192a0726d04f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c4d4f815aa59d2357959248a806f8c3" id="r_a9c4d4f815aa59d2357959248a806f8c3"><td class="memItemLeft" align="right" valign="top"><a id="a9c4d4f815aa59d2357959248a806f8c3" name="a9c4d4f815aa59d2357959248a806f8c3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>MoveTo</b> (const int l, const int t, const int r, const int b)</td></tr>
+<tr class="separator:a9c4d4f815aa59d2357959248a806f8c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a822f434c7d0491e3105a105a842021b2" id="r_a822f434c7d0491e3105a105a842021b2"><td class="memItemLeft" align="right" valign="top"><a id="a822f434c7d0491e3105a105a842021b2" name="a822f434c7d0491e3105a105a842021b2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>MoveTo</b> (const <a class="el" href="structgl2_d_point__t.html">gl2DPoint_t</a> &amp;p)</td></tr>
+<tr class="separator:a822f434c7d0491e3105a105a842021b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad15bb146dbd83e6ac3d30619e0aa9e74" id="r_ad15bb146dbd83e6ac3d30619e0aa9e74"><td class="memItemLeft" align="right" valign="top"><a id="ad15bb146dbd83e6ac3d30619e0aa9e74" name="ad15bb146dbd83e6ac3d30619e0aa9e74"></a>
 <a class="el" href="structgl2_d_point__t.html">gl2DPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Inflate</b> (int d) const</td></tr>
 <tr class="separator:ad15bb146dbd83e6ac3d30619e0aa9e74"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,15 +172,106 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>Empty</b> () const</t
 <a class="el" href="structgl2_d_point__t.html">gl2DPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Intersection</b> (const <a class="el" href="structgl2_d_point__t.html">gl2DPoint_t</a> &amp;Position) const</td></tr>
 <tr class="separator:ae65ae6ee9a1aa22568e9e4eac95f6e05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a6877c700749f9a55b2672ed71f5ec1c8" id="r_a6877c700749f9a55b2672ed71f5ec1c8"><td class="memItemLeft" align="right" valign="top"><a id="a6877c700749f9a55b2672ed71f5ec1c8" name="a6877c700749f9a55b2672ed71f5ec1c8"></a>
-<a class="el" href="structgl_point__t.html">glPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>LT</b></td></tr>
-<tr class="separator:a6877c700749f9a55b2672ed71f5ec1c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30a0947296297f27397a2945717c1197" id="r_a30a0947296297f27397a2945717c1197"><td class="memItemLeft" align="right" valign="top"><a id="a30a0947296297f27397a2945717c1197" name="a30a0947296297f27397a2945717c1197"></a>
-<a class="el" href="structgl_point__t.html">glPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>RB</b></td></tr>
-<tr class="separator:a30a0947296297f27397a2945717c1197"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a0ee8b6691248ed59183137ac68883209" id="r_a0ee8b6691248ed59183137ac68883209"><td class="memItemLeft" align="right" valign="top"><a id="a0ee8b6691248ed59183137ac68883209" name="a0ee8b6691248ed59183137ac68883209"></a>
+<a class="el" href="structgl_point__t.html">glPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_LT</b></td></tr>
+<tr class="separator:a0ee8b6691248ed59183137ac68883209"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefb7cdfbfddf8cf87c513dd6d37faa6a" id="r_aefb7cdfbfddf8cf87c513dd6d37faa6a"><td class="memItemLeft" align="right" valign="top"><a id="aefb7cdfbfddf8cf87c513dd6d37faa6a" name="aefb7cdfbfddf8cf87c513dd6d37faa6a"></a>
+<a class="el" href="structgl_point__t.html">glPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_RB</b></td></tr>
+<tr class="separator:aefb7cdfbfddf8cf87c513dd6d37faa6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a 2D rectangular region defined by two points. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="afe813019c60115a9249a28ff51d2bafd" name="afe813019c60115a9249a28ff51d2bafd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe813019c60115a9249a28ff51d2bafd">&#9670;&#160;</a></span>gl2DPoint_t() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">gl2DPoint_t::gl2DPoint_t </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structgl_point__t.html">glPoint_t</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>lt</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structgl_point__t.html">glPoint_t</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rb</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor to initialize the 2D point with top-left and bottom-right points. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lt</td><td>The top-left point. </td></tr>
+    <tr><td class="paramname">rb</td><td>The bottom-right point. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7873333381bf56e2df2c2fc42425af42" name="a7873333381bf56e2df2c2fc42425af42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7873333381bf56e2df2c2fc42425af42">&#9670;&#160;</a></span>gl2DPoint_t() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">gl2DPoint_t::gl2DPoint_t </td>
+          <td>(</td>
+          <td class="paramtype">P_t</td>          <td class="paramname"><span class="paramname"><em>left</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">P_t</td>          <td class="paramname"><span class="paramname"><em>top</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">P_t</td>          <td class="paramname"><span class="paramname"><em>right</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">P_t</td>          <td class="paramname"><span class="paramname"><em>bottom</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor to initialize the 2D point with specific coordinates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">left</td><td>The left coordinate. </td></tr>
+    <tr><td class="paramname">top</td><td>The top coordinate. </td></tr>
+    <tr><td class="paramname">right</td><td>The right coordinate. </td></tr>
+    <tr><td class="paramname">bottom</td><td>The bottom coordinate. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>glSTM32H7xx/<a class="el" href="gl_types_8h_source.html">glTypes.h</a></li>
 </ul>

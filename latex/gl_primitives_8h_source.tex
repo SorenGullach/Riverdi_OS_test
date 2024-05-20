@@ -23,34 +23,33 @@
 \DoxyCodeLine{00019\ }
 \DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <Utils.h>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}Hardware.h"{}}}
 \DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}glTypes.h"{}}}
-\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <Fonts/GUIFont.h>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}glFont.h"{}}}
 \DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <string.h>}}
-\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}assert.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <assert.h>}}
 \DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \textcolor{comment}{//\ helper\ class\ for\ plotting\ on\ the\ Video\ memory}}
 \DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_video_memory_plot}{glVideoMemoryPlot}}\ :\ \textcolor{keyword}{protected}\ \mbox{\hyperlink{classgl_video_memory}{glVideoMemory}}}
 \DoxyCodeLine{00030\ \{}
 \DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ plot\ in\ invalid\ region\ and\ box}}
 \DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ Plot(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ \&box,\ P\_t\ x,\ P\_t\ y,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color)\ \ \ }
 \DoxyCodeLine{00034\ \ \ \ \ \{\ }
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ IVR\ =\ Region.Intersection(box);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ IVR\ =\ InvalidRegion.Intersection(box);}
 \DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IVR.IsInside(x,\ y))}
 \DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ assert(x\ <\ Width\ \&\&\ y\ <\ Height);}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ pVM[x\ +\ y*Width]\ =\ color;\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ assert(x\ <\ \_ScreenWidth\ \&\&\ y\ <\ \_ScreenHeight);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ pVM[x\ +\ y*\_ScreenWidth]\ =\ color;\ }
 \DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00041\ \ \ \ \ \}}
 \DoxyCodeLine{00042\ }
 \DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ plot\ in\ invalid\ region}}
 \DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ Plot(P\_t\ x,\ P\_t\ y,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color)}
 \DoxyCodeLine{00045\ \ \ \ \ \{\ }
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Region.IsInside(x,\ y))}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (InvalidRegion.IsInside(x,\ y))}
 \DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ assert(x\ <\ Width\ \&\&\ y\ <\ Height);}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ pVM[x\ +\ y*Width]\ =\ color;\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ assert(x\ <\ \_ScreenWidth\ \&\&\ y\ <\ \_ScreenHeight);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ pVM[x\ +\ y*\_ScreenWidth]\ =\ color;\ }
 \DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00051\ \ \ \ \ \}}
 \DoxyCodeLine{00052\ }
@@ -60,8 +59,7 @@
 \DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ Plot(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ box,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&p,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color)\ \{\ Plot(box,\ p.X,\ p.Y,\ color);\ \}}
 \DoxyCodeLine{00057\ \};}
 \DoxyCodeLine{00058\ }
-\DoxyCodeLine{00059\ \textcolor{comment}{//\ gl\ object\ to\ report\ events}}
-\DoxyCodeLine{00060\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_event}{glEvent}}}
+\DoxyCodeLine{00060\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_event}{glEvent}}\ }
 \DoxyCodeLine{00061\ \{}
 \DoxyCodeLine{00062\ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eEventType}
@@ -75,7 +73,7 @@
 \DoxyCodeLine{00071\ \ \ \ \ \{}
 \DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct}}
 \DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ glTouchPoint\_t::eSlideAction\ Action;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_touch_point__t_ab359bc458af91368eeb9b9f6c0478fb4}{glTouchPoint\_t::eSlideAction}}\ Action;}
 \DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \}\ Slide;}
 \DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct}}
 \DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \{}
@@ -87,7 +85,7 @@
 \DoxyCodeLine{00084\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
 \DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_chain}{glChain}};}
 \DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_link}{glLink}}}
+\DoxyCodeLine{00087\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_link}{glLink}}\ }
 \DoxyCodeLine{00088\ \{}
 \DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{//\ Allow\ glChain\ to\ access\ pNext\ and\ pPrev\ directly}}
 \DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
@@ -112,7 +110,7 @@
 \DoxyCodeLine{00109\ }
 \DoxyCodeLine{00111\ \textcolor{comment}{//\ A\ double\ linked\ list}}
 \DoxyCodeLine{00112\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
-\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_chain}{glChain}}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_chain}{glChain}}\ }
 \DoxyCodeLine{00114\ \ \ \ \ \{}
 \DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ a\ object}}
@@ -210,9 +208,9 @@
 \DoxyCodeLine{00209\ \ \ \ \ \textcolor{comment}{//\ is\ object\ invalidated}}
 \DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordtype}{bool}\ ImInvalidated\ =\ \textcolor{keyword}{true};}
 \DoxyCodeLine{00211\ \ \ \ \ }
-\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordtype}{void}\ Move(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ pos)}
+\DoxyCodeLine{00212\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ \&Region()}
 \DoxyCodeLine{00213\ \ \ \ \ \{}
-\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \_Position\ =\ pos;}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_Position;}
 \DoxyCodeLine{00215\ \ \ \ \ \}}
 \DoxyCodeLine{00216\ }
 \DoxyCodeLine{00217\ \textcolor{keyword}{protected}:}
@@ -333,537 +331,345 @@
 \DoxyCodeLine{00334\ \textcolor{keyword}{\ \ \ \ }\{}
 \DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ImInvalidated)\ \textcolor{keywordflow}{return};}
 \DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ Plot(\_Position.LT,\ \_Color);}
-\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (glVideoMemory::lastBand())\ ImInvalidated\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ Plot(\_Position.LT(),\ \_Color);}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgl_video_memory_a79f28b876830fedd3cc74a256eb2c410}{glVideoMemory::lastBand}}())\ ImInvalidated\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00339\ \ \ \ \ \}}
 \DoxyCodeLine{00340\ \ \ \ \ \textcolor{keywordtype}{void}\ Touch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&)\textcolor{keyword}{\ override\ }\{\}}
 \DoxyCodeLine{00341\ \};}
 \DoxyCodeLine{00342\ }
-\DoxyCodeLine{00344\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ length>}
-\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_text}{glText}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_object}{glObject}},\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classgl_video_memory_plot}{glVideoMemoryPlot}}}
-\DoxyCodeLine{00346\ \ \ \ \ \{}
-\DoxyCodeLine{00347\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_text}{glText}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ pos,\ \textcolor{keyword}{const}\ FontItem\ *fontFamily,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ color\ =\ glColors::WHITE)\ }
-\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Text"{}},\ pos.Nomalize(),\ color)}
-\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ assert(fontFamily\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ \textcolor{stringliteral}{"{}no\ fontFamily"{}});}
-\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ FontFamily\ =\ fontFamily;}
-\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ Text(\textcolor{stringliteral}{"{}empty"{}});}
-\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_text}{glText}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ pos,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *text,\ \textcolor{keyword}{const}\ FontItem\ *fontFamily,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ color\ =\ glColors::WHITE)\ }
-\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Text"{}},\ pos.Nomalize(),\ color)}
-\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ assert(fontFamily\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ \textcolor{stringliteral}{"{}no\ fontFamily"{}});}
-\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ FontFamily\ =\ fontFamily;}
-\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ assert(text\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ \textcolor{stringliteral}{"{}no\ text"{}});}
-\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ Text(text);}
-\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Text(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *text)}
-\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(\_Text,\ text,\ length);}
-\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ redraw\ your\ self}}
-\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Redraw1()\ }
-\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ImInvalidated)\ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00372\ }
-\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ pos\ =\ Center();}
-\DoxyCodeLine{00374\ }
-\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ color\ =\ \_Color;}
-\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ pix[100];}
-\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ P\_t\ xs\ =\ pos.L();}
-\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *pc\ =\ \_Text;}
-\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (*pc\ !=\ 0)}
-\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ FontItem\ *f\ =\ \&FontFamily[*pc++\ -\/FontFamily-\/>c];}
-\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assert(f-\/>w\ <\ \textcolor{keyword}{sizeof}(pix));}
-\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ P\_t\ ys\ =\ pos.T()\ +\ f-\/>yb;}
-\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ l\ =\ 0,\ y\ =\ ys;\ l\ <\ f-\/>StrideY\ \&\&\ y\ <\ pos.B();\ y++,\ l++)}
-\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CharPix(f,\ l,\ pix,\ \_Color.A);}
-\DoxyCodeLine{00387\ }
-\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ =\ 0;\ x\ <\ f-\/>w\ \&\&\ xs\ +\ x\ <\ pos.R();\ x++)}
-\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pix[x]\ >\ 0)}
-\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ color.A\ =\ pix[x];}
-\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Plot(xs\ +\ x,\ y,\ color);}
-\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xs\ +=\ f-\/>w;}
-\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00400\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ for\ (int\ y\ =\ pos.T();\ y\ <\ pos.B();\ y++)}}
-\DoxyCodeLine{00401\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ for\ (int\ x\ =\ pos.L();\ x\ <\ pos.R();\ x++)}}
-\DoxyCodeLine{00402\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}}
-\DoxyCodeLine{00403\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Plot(x,\ y,\ \_Color);}}
-\DoxyCodeLine{00404\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}}
-\DoxyCodeLine{00405\ \textcolor{comment}{\ \ \ \ */}\ \ \ \ \ \ }
-\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (glVideoMemory::lastBand())\ ImInvalidated\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Redraw()\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00410\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
-\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ widget\ needs\ to\ be\ redrawn}}
-\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ImInvalidated)\ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00413\ }
-\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ center\ position\ of\ the\ widget}}
-\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ pos\ =\ Center();}
-\DoxyCodeLine{00416\ }
-\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ variables}}
-\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ color\ =\ \_Color;}
-\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ pix[100];}
-\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ P\_t\ xs\ =\ pos.L();}
-\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *pc\ =\ \_Text;}
-\DoxyCodeLine{00422\ }
-\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Iterate\ over\ each\ character\ in\ the\ text}}
-\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (*pc\ !=\ 0)}
-\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Retrieve\ font\ information\ for\ the\ character}}
-\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ FontItem\ *f\ =\ \&FontFamily[*pc++\ -\/FontFamily-\/>c];}
-\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assert(f-\/>w\ <\ \textcolor{keyword}{sizeof}(pix));\ \textcolor{comment}{//\ Ensure\ buffer\ size\ is\ not\ exceeded}}
-\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ P\_t\ ys\ =\ pos.T()\ +\ f-\/>yb;}
-\DoxyCodeLine{00430\ }
-\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Iterate\ over\ each\ row\ of\ the\ character}}
-\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ l\ =\ 0,\ y\ =\ ys;\ l\ <\ f-\/>StrideY\ \&\&\ y\ <\ pos.B();\ ++l,\ ++y)}
-\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Extract\ pixel\ data\ for\ the\ row}}
-\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CharPix(f,\ l,\ pix,\ \_Color.A);}
-\DoxyCodeLine{00436\ }
-\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Iterate\ over\ each\ pixel\ in\ the\ row}}
-\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ =\ 0;\ x\ <\ f-\/>w;\ ++x)}
-\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Plot\ the\ pixel\ if\ its\ value\ is\ greater\ than\ 0}}
-\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pix[x]\ >\ 0)}
-\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ color.A\ =\ pix[x];}
-\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Plot(xs\ +\ x,\ y,\ color);}
-\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00448\ }
-\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Move\ the\ horizontal\ position\ for\ the\ next\ character}}
-\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xs\ +=\ f-\/>w;}
-\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00452\ }
-\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ last\ band\ of\ video\ memory\ is\ reached}}
-\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (glVideoMemory::lastBand())\ ImInvalidated\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Touch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&)\textcolor{keyword}{\ override\ }\{\}}
-\DoxyCodeLine{00457\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ \_Text[length];}
-\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ FontItem\ *FontFamily;}
-\DoxyCodeLine{00460\ }
-\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Function\ to\ extract\ pixel\ data\ for\ a\ character}}
-\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ CharPix(\textcolor{keyword}{const}\ FontItem\ *f,\ \textcolor{keywordtype}{int}\ l,\ uint8\_t\ pix[],\ C\_t\ alpha)}
-\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ variables}}
-\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ BitsPerPixel\ =\ f-\/>BitsPerPixel;}
-\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ *Data\ =\ \&f-\/>Data[f-\/>StrideX\ *\ l];\ \textcolor{comment}{//\ Pointer\ to\ the\ start\ of\ character\ data}}
-\DoxyCodeLine{00467\ \ \ \ \ }
-\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clear\ the\ pixel\ buffer}}
-\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ memset(pix,\ 0,\ f-\/>w);}
-\DoxyCodeLine{00470\ }
-\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Variables\ for\ bit\ manipulation}}
-\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ BPP\ =\ 1\ <<\ f-\/>BitsPerPixel;}
-\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ bitPosition\ =\ 0;}
-\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ currentByte\ =\ 0;}
-\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ pixelIndex\ =\ 0;\ \textcolor{comment}{//\ Index\ for\ accessing\ elements\ in\ the\ pixel\ buffer}}
-\DoxyCodeLine{00476\ }
-\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Iterate\ over\ each\ pixel\ in\ the\ character}}
-\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ =\ 0;\ x\ <\ f-\/>w\ \&\&\ pixelIndex\ <\ f-\/>w;\ ++x)}
-\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Unpack\ each\ pixel\ from\ the\ packed\ data}}
-\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//for\ (int\ b\ =\ BitsPerPixel\ -\/\ 1;\ b\ >=\ 0\ \&\&\ pixelIndex\ <\ f-\/>w;\ -\/-\/b)}}
-\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ b\ =\ 0;\ b\ <\ BitsPerPixel\ \&\&\ pixelIndex\ <\ f-\/>w;\ ++b)}
-\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we\ need\ to\ read\ a\ new\ byte}}
-\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bitPosition\ \%\ 8\ ==\ 0)}
-\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentByte\ =\ Data[bitPosition\ /\ 8];}
-\DoxyCodeLine{00487\ }
-\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Extract\ the\ pixel\ value\ from\ the\ current\ byte}}
-\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ pixelValue\ =\ (currentByte\ >>\ (8\ -\/\ (bitPosition\ \%\ 8)\ -\/\ BitsPerPixel))\ \&\ ((1\ <<\ BitsPerPixel)\ -\/\ 1);}
-\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pixelValue\ >\ 0)}
-\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pix[pixelIndex]\ =\ alpha\ /\ (BPP\ -\/\ pixelValue);}
-\DoxyCodeLine{00492\ }
-\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Increment\ the\ bit\ position\ and\ pixel\ index}}
-\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bitPosition\ +=\ BitsPerPixel;}
-\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++pixelIndex;}
-\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ Center()}
-\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ variables}}
-\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ 0;}
-\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ P\_t\ w\ =\ 0;}
-\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ c;}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00345\ \textcolor{comment}{//\ help\ class}}
+\DoxyCodeLine{00346\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_plot2_d_helper}{glPlot2DHelper}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_video_memory_plot}{glVideoMemoryPlot}}}
+\DoxyCodeLine{00347\ \{}
+\DoxyCodeLine{00348\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keywordtype}{void}\ PlotLine(P\_t\ x0,\ P\_t\ y0,\ P\_t\ x1,\ P\_t\ y1,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color);}
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keywordtype}{void}\ PlotCircle(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&center,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color);}
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keywordtype}{void}\ PlotCircleFill(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&center,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color);}
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keywordtype}{void}\ PlotArc(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ box,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&center,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color);}
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keywordtype}{void}\ PlotFillArc(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ box,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&center,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color);}
+\DoxyCodeLine{00354\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keywordtype}{void}\ PlotLineLow(P\_t\ x0,\ P\_t\ y0,\ P\_t\ x1,\ P\_t\ y1,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color);}
+\DoxyCodeLine{00356\ \ \ \ \ \textcolor{keywordtype}{void}\ PlotLineHigh(P\_t\ x0,\ P\_t\ y0,\ P\_t\ x1,\ P\_t\ y1,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color);}
+\DoxyCodeLine{00357\ \ \ \ \ \textcolor{keywordtype}{void}\ PlotVLine(P\_t\ x0,\ P\_t\ y0,\ P\_t\ y1,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color);}
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keywordtype}{void}\ PlotHLine(P\_t\ x0,\ P\_t\ x1,\ P\_t\ y0,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color);}
+\DoxyCodeLine{00359\ \};}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00362\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_line}{glLine}}\ :\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classgl_plot2_d_helper}{glPlot2DHelper}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_object}{glObject}}}
+\DoxyCodeLine{00363\ \{}
+\DoxyCodeLine{00364\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00365\ \ \ \ \ \mbox{\hyperlink{classgl_line}{glLine}}()}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Line"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}())\ \{\}}
+\DoxyCodeLine{00367\ \ \ \ \ }
+\DoxyCodeLine{00368\ \ \ \ \ \mbox{\hyperlink{classgl_line}{glLine}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&start,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&end,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Line"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(start,\ end),\ color)\ \{\}}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \ \ \ \ \mbox{\hyperlink{classgl_line}{glLine}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&start,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&end,\ glColors\ color)}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Line"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(start,\ end),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(color))\ \{\}}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \ \ \ \ \mbox{\hyperlink{classgl_line}{glLine}}(P\_t\ x0,\ P\_t\ y0,\ P\_t\ x1,\ P\_t\ y1,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Line"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(x0,\ y0,\ x1,\ y1),\ color)\ \{\}}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \ \ \ \ \mbox{\hyperlink{classgl_line}{glLine}}(P\_t\ x0,\ P\_t\ y0,\ P\_t\ x1,\ P\_t\ y1,\ glColors\ color)}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Line"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(x0,\ y0,\ x1,\ y1),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(color))\ \{\}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{comment}{//\ Initialize\ object}}
+\DoxyCodeLine{00382\ \textcolor{comment}{//\ \ virtual\ void\ Init()\ override\ \{\}}}
+\DoxyCodeLine{00383\ \ \ \ \ \textcolor{comment}{//\ redraw\ your\ self\ }}
+\DoxyCodeLine{00384\ \ \ \ \ \textcolor{comment}{//\ return\ true\ if\ anything\ done}}
+\DoxyCodeLine{00385\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Redraw()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00386\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ImInvalidated)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ PlotLine(\_Position.L(),\ \_Position.T(),\ \_Position.R(),\ \_Position.B(),\ \_Color);}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgl_video_memory_a79f28b876830fedd3cc74a256eb2c410}{glVideoMemory::lastBand}}())\ ImInvalidated\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00391\ \ \ \ \ \}}
+\DoxyCodeLine{00392\ \ \ \ \ \textcolor{keywordtype}{void}\ Touch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&)\textcolor{keyword}{\ override\ }\{\}}
+\DoxyCodeLine{00393\ \};}
+\DoxyCodeLine{00394\ \ \ \ \ }
+\DoxyCodeLine{00395\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_rectangle}{glRectangle}}\ :\ \textcolor{keyword}{protected}\ \mbox{\hyperlink{classgl_plot2_d_helper}{glPlot2DHelper}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_object}{glObject}}}
+\DoxyCodeLine{00396\ \{}
+\DoxyCodeLine{00397\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00398\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}()}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Rectangle"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}())\ \{\}}
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00401\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ rect,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Rectangle"{}},\ rect.Normalize(),\ color)\ \{\}}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ rect,\ glColors\ color)}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Rectangle"{}},\ rect.Normalize(),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(color))\ \{\}}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00407\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ start,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ end,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Rectangle"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(start,\ end).Normalize(),\ color)\ \{\}}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ start,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ end,\ glColors\ color)}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Rectangle"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(start,\ end).Normalize(),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(color))\ \{\}}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(P\_t\ l,\ P\_t\ t,\ P\_t\ r,\ P\_t\ b,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Rectangle"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(l,\ t,\ r,\ b).Normalize(),\ color)\ \{\}}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(P\_t\ l,\ P\_t\ t,\ P\_t\ r,\ P\_t\ b,\ glColors\ color)}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Rectangle"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(l,\ t,\ r,\ b).Normalize(),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(color))\ \{\}}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Draw()}
+\DoxyCodeLine{00421\ \ \ \ \ \{}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ PlotLine(\_Position.LT().X,\ \_Position.LT().Y,\ \_Position.RB().X,\ \_Position.LT().Y,\ \_Color);}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ PlotLine(\_Position.RB().X,\ \_Position.LT().Y,\ \_Position.RB().X,\ \_Position.RB().Y,\ \_Color);}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ PlotLine(\_Position.RB().X,\ \_Position.RB().Y,\ \_Position.LT().X,\ \_Position.RB().Y,\ \_Color);}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ PlotLine(\_Position.LT().X,\ \_Position.RB().Y,\ \_Position.LT().X,\ \_Position.LT().Y,\ \_Color);}
+\DoxyCodeLine{00426\ \ \ \ \ \}}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{keywordtype}{void}\ Inflate(\textcolor{keywordtype}{int}\ d)}
+\DoxyCodeLine{00429\ \ \ \ \ \{}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \_Position\ =\ \_Position.Inflate(d);\ \ \ \ \ \ \ }
+\DoxyCodeLine{00431\ \ \ \ \ \}}
+\DoxyCodeLine{00432\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00433\ \ \ \ \ \textcolor{comment}{//\ Initialize\ object}}
+\DoxyCodeLine{00434\ \textcolor{comment}{//\ \ virtual\ void\ Init()\ override\ \{\}}}
+\DoxyCodeLine{00435\ \ \ \ \ \textcolor{comment}{//\ redraw\ your\ self}}
+\DoxyCodeLine{00436\ \ \ \ \ \textcolor{comment}{//\ return\ true\ if\ anything\ done}}
+\DoxyCodeLine{00437\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Redraw()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00438\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ImInvalidated)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00440\ }
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ Draw();}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgl_video_memory_a79f28b876830fedd3cc74a256eb2c410}{glVideoMemory::lastBand}}())\ ImInvalidated\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00444\ \ \ \ \ \}}
+\DoxyCodeLine{00445\ \ \ \ \ \textcolor{keywordtype}{void}\ Touch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&)\textcolor{keyword}{\ override\ }\{\}}
+\DoxyCodeLine{00446\ \};}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}}
+\DoxyCodeLine{00449\ \{}
+\DoxyCodeLine{00450\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00451\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ rect,\ }
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(rect,\ color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleFill"{}};\ \}}
+\DoxyCodeLine{00455\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ rect,\ }
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ glColors\ color)}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(rect,\ color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleFill"{}};\ \}}
+\DoxyCodeLine{00459\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&start,\ }
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&end,\ }
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(start,\ end,\ color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleFill"{}};\ \}}
+\DoxyCodeLine{00464\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&start,\ }
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&end,}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ glColors\ color)}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(start,\ end,\ color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleFill"{}};\ \}}
+\DoxyCodeLine{00469\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(P\_t\ left,\ P\_t\ top,\ P\_t\ right,\ P\_t\ bottom,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(left,\ top,\ right,\ bottom,\ color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleFill"{}};\ \}}
+\DoxyCodeLine{00471\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(P\_t\ left,\ P\_t\ top,\ P\_t\ right,\ P\_t\ bottom,\ glColors\ color)}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(left,\ top,\ right,\ bottom,\ color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleFill"{}};\ \}}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \ \ \ \ \textcolor{keywordtype}{void}\ Draw()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00475\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (P\_t\ x\ =\ \_Position.LT().X;\ x\ <=\ \_Position.RB().X;\ x++)}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (P\_t\ y\ =\ \_Position.LT().Y;\ y\ <=\ \_Position.RB().Y;\ y++)}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Plot(x,\ y,\ \_Color);}
+\DoxyCodeLine{00479\ \ \ \ \ \}}
+\DoxyCodeLine{00480\ \};}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_circle}{glCircle}}\ :\ \textcolor{keyword}{protected}\ \mbox{\hyperlink{classgl_plot2_d_helper}{glPlot2DHelper}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_object}{glObject}}}
+\DoxyCodeLine{00483\ \{}
+\DoxyCodeLine{00484\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00485\ \ \ \ \ \mbox{\hyperlink{classgl_circle}{glCircle}}()}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Circel"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}())\ \{\}}
+\DoxyCodeLine{00487\ \ \ \ \ \mbox{\hyperlink{classgl_circle}{glCircle}}(P\_t\ x,\ P\_t\ y,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)\ }
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Circel"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(x\ -\/\ radius,\ y\ -\/\ radius,\ x\ +\ radius,\ y\ +\ radius),\ color)}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ ,\ \_Center(x,\ y)}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ ,\ \_Radius(radius)\ \{\}}
+\DoxyCodeLine{00491\ \ \ \ \ \mbox{\hyperlink{classgl_circle}{glCircle}}(P\_t\ x,\ P\_t\ y,\ P\_t\ radius,\ glColors\ color)\ }
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Circel"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(x\ -\/\ radius,\ y\ -\/\ radius,\ x\ +\ radius,\ y\ +\ radius),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(color))}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ ,\ \_Center(x,\ y)}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ ,\ \_Radius(radius)\ \{\}}
+\DoxyCodeLine{00495\ }
+\DoxyCodeLine{00496\ \ \ \ \ \mbox{\hyperlink{classgl_circle}{glCircle}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&center,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)\ }
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Circel"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(center.\mbox{\hyperlink{structgl_point__t_a384cc5afe0d187aa31335692660c26f0}{Displace}}(-\/radius,\ -\/radius),\ center.\mbox{\hyperlink{structgl_point__t_a384cc5afe0d187aa31335692660c26f0}{Displace}}(radius,\ radius)),\ color)}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ ,\ \_Center(center)}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ ,\ \_Radius(radius)\ \{\}}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ \ \ \ \ \mbox{\hyperlink{classgl_circle}{glCircle}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&center,\ P\_t\ radius,\ glColors\ color)\ }
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Circel"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(center.\mbox{\hyperlink{structgl_point__t_a384cc5afe0d187aa31335692660c26f0}{Displace}}(-\/radius,\ -\/radius),\ center.\mbox{\hyperlink{structgl_point__t_a384cc5afe0d187aa31335692660c26f0}{Displace}}(radius,\ radius)),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(color))}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ ,\ \_Center(center)}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ ,\ \_Radius(radius)\ \{\}}
 \DoxyCodeLine{00505\ }
-\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Iterate\ over\ each\ character\ in\ the\ text}}
-\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((c\ =\ \_Text[i])\ !=\ 0)}
-\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Retrieve\ font\ information\ for\ the\ character}}
-\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ FontItem\ *f\ =\ \&FontFamily[c\ -\/\ FontFamily-\/>c];}
-\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assert(f-\/>c\ ==\ c);}
-\DoxyCodeLine{00512\ }
-\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Accumulate\ width\ of\ characters}}
-\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ w\ +=\ f-\/>w;}
-\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i++;}
-\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00517\ }
-\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ height\ of\ font}}
-\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ P\_t\ h\ =\ FontFamily-\/>h;}
-\DoxyCodeLine{00520\ }
-\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ x-\/coordinate\ for\ centering}}
-\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ P\_t\ x\ =\ \_Position.L();}
-\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (w\ <\ \_Position.Width())}
-\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ +=\ (\_Position.Width()\ -\/\ w)\ /\ 2;}
+\DoxyCodeLine{00506\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Draw()}
+\DoxyCodeLine{00507\ \ \ \ \ \{}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ PlotCircle(\_Center,\ \_Radius,\ \_Color);}
+\DoxyCodeLine{00509\ \ \ \ \ \}}
+\DoxyCodeLine{00510\ }
+\DoxyCodeLine{00511\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00512\ \ \ \ \ \textcolor{comment}{//\ Initialize\ object}}
+\DoxyCodeLine{00513\ \textcolor{comment}{//\ \ virtual\ void\ Init()\ override\ \{\}}}
+\DoxyCodeLine{00514\ \ \ \ \ \textcolor{comment}{//\ redraw\ your\ self}}
+\DoxyCodeLine{00515\ \ \ \ \ \textcolor{comment}{//\ return\ true\ if\ anything\ done}}
+\DoxyCodeLine{00516\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Redraw()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00517\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ImInvalidated)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ Draw();}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgl_video_memory_a79f28b876830fedd3cc74a256eb2c410}{glVideoMemory::lastBand}}())\ ImInvalidated\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00523\ \ \ \ \ \}}
+\DoxyCodeLine{00524\ \ \ \ \ \textcolor{keywordtype}{void}\ Touch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&)\textcolor{keyword}{\ override\ }\{\}}
 \DoxyCodeLine{00525\ }
-\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ y-\/coordinate\ for\ centering}}
-\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \ \ \ \ P\_t\ y\ =\ \_Position.T();}
-\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (h\ <\ \_Position.Height())}
-\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ y\ +=\ (\_Position.Height()\ -\/\ h)\ /\ 2;}
-\DoxyCodeLine{00530\ }
-\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ intersection\ point\ between\ position\ and\ calculated\ rectangle}}
-\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_Position.Intersection(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(x,\ y,\ x\ +\ w,\ y\ +\ h));}
-\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00535\ \ \ \ \ \};}
-\DoxyCodeLine{00536\ }
-\DoxyCodeLine{00538\ \textcolor{comment}{//\ help\ class}}
-\DoxyCodeLine{00539\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_plot2_d_helper}{glPlot2DHelper}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_video_memory_plot}{glVideoMemoryPlot}}}
-\DoxyCodeLine{00540\ \{}
-\DoxyCodeLine{00541\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00542\ \ \ \ \ \textcolor{keywordtype}{void}\ PlotLine(P\_t\ x0,\ P\_t\ y0,\ P\_t\ x1,\ P\_t\ y1,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color);}
-\DoxyCodeLine{00543\ \ \ \ \ \textcolor{keywordtype}{void}\ PlotCircle(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&center,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color);}
-\DoxyCodeLine{00544\ \ \ \ \ \textcolor{keywordtype}{void}\ PlotCircleFill(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&center,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color);}
-\DoxyCodeLine{00545\ \ \ \ \ \textcolor{keywordtype}{void}\ PlotArc(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ box,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&center,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color);}
-\DoxyCodeLine{00546\ \ \ \ \ \textcolor{keywordtype}{void}\ PlotFillArc(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ box,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&center,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color);}
-\DoxyCodeLine{00547\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00548\ \ \ \ \ \textcolor{keywordtype}{void}\ PlotLineLow(P\_t\ x0,\ P\_t\ y0,\ P\_t\ x1,\ P\_t\ y1,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color);}
-\DoxyCodeLine{00549\ \ \ \ \ \textcolor{keywordtype}{void}\ PlotLineHigh(P\_t\ x0,\ P\_t\ y0,\ P\_t\ x1,\ P\_t\ y1,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color);}
-\DoxyCodeLine{00550\ \ \ \ \ \textcolor{keywordtype}{void}\ PlotVLine(P\_t\ x0,\ P\_t\ y0,\ P\_t\ y1,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color);}
-\DoxyCodeLine{00551\ \ \ \ \ \textcolor{keywordtype}{void}\ PlotHLine(P\_t\ x0,\ P\_t\ x1,\ P\_t\ y0,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color);}
-\DoxyCodeLine{00552\ \};}
-\DoxyCodeLine{00553\ }
-\DoxyCodeLine{00555\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_line}{glLine}}\ :\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classgl_plot2_d_helper}{glPlot2DHelper}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_object}{glObject}}}
-\DoxyCodeLine{00556\ \{}
-\DoxyCodeLine{00557\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00558\ \ \ \ \ \mbox{\hyperlink{classgl_line}{glLine}}()}
-\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Line"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}())\ \{\}}
-\DoxyCodeLine{00560\ \ \ \ \ }
-\DoxyCodeLine{00561\ \ \ \ \ \mbox{\hyperlink{classgl_line}{glLine}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&start,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&end,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)}
-\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Line"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(start,\ end),\ color)\ \{\}}
-\DoxyCodeLine{00563\ }
-\DoxyCodeLine{00564\ \ \ \ \ \mbox{\hyperlink{classgl_line}{glLine}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&start,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&end,\ glColors\ color)}
-\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Line"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(start,\ end),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(color))\ \{\}}
-\DoxyCodeLine{00566\ }
-\DoxyCodeLine{00567\ \ \ \ \ \mbox{\hyperlink{classgl_line}{glLine}}(P\_t\ x0,\ P\_t\ y0,\ P\_t\ x1,\ P\_t\ y1,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)}
-\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Line"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(x0,\ y0,\ x1,\ y1),\ color)\ \{\}}
-\DoxyCodeLine{00569\ }
-\DoxyCodeLine{00570\ \ \ \ \ \mbox{\hyperlink{classgl_line}{glLine}}(P\_t\ x0,\ P\_t\ y0,\ P\_t\ x1,\ P\_t\ y1,\ glColors\ color)}
-\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Line"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(x0,\ y0,\ x1,\ y1),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(color))\ \{\}}
-\DoxyCodeLine{00572\ }
-\DoxyCodeLine{00573\ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00574\ \ \ \ \ \textcolor{comment}{//\ Initialize\ object}}
-\DoxyCodeLine{00575\ \textcolor{comment}{//\ \ virtual\ void\ Init()\ override\ \{\}}}
-\DoxyCodeLine{00576\ \ \ \ \ \textcolor{comment}{//\ redraw\ your\ self\ }}
-\DoxyCodeLine{00577\ \ \ \ \ \textcolor{comment}{//\ return\ true\ if\ anything\ done}}
-\DoxyCodeLine{00578\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Redraw()\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00579\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ImInvalidated)\ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ PlotLine(\_Position.L(),\ \_Position.T(),\ \_Position.R(),\ \_Position.B(),\ \_Color);}
-\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (glVideoMemory::lastBand())\ ImInvalidated\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00584\ \ \ \ \ \}}
-\DoxyCodeLine{00585\ \ \ \ \ \textcolor{keywordtype}{void}\ Touch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&)\textcolor{keyword}{\ override\ }\{\}}
-\DoxyCodeLine{00586\ \};}
-\DoxyCodeLine{00587\ \ \ \ \ }
-\DoxyCodeLine{00588\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_rectangle}{glRectangle}}\ :\ \textcolor{keyword}{protected}\ \mbox{\hyperlink{classgl_plot2_d_helper}{glPlot2DHelper}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_object}{glObject}}}
-\DoxyCodeLine{00589\ \{}
-\DoxyCodeLine{00590\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00591\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}()}
-\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Rectangle"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}())\ \{\}}
-\DoxyCodeLine{00593\ }
-\DoxyCodeLine{00594\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ rect,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)}
-\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Rectangle"{}},\ rect.Nomalize(),\ color)\ \{\}}
-\DoxyCodeLine{00596\ }
-\DoxyCodeLine{00597\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ rect,\ glColors\ color)}
-\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Rectangle"{}},\ rect.Nomalize(),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(color))\ \{\}}
-\DoxyCodeLine{00599\ }
-\DoxyCodeLine{00600\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ start,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ end,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)}
-\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Rectangle"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(start,\ end).Nomalize(),\ color)\ \{\}}
-\DoxyCodeLine{00602\ }
-\DoxyCodeLine{00603\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ start,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ end,\ glColors\ color)}
-\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Rectangle"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(start,\ end).Nomalize(),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(color))\ \{\}}
-\DoxyCodeLine{00605\ }
-\DoxyCodeLine{00606\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(P\_t\ l,\ P\_t\ t,\ P\_t\ r,\ P\_t\ b,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)}
-\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Rectangle"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(l,\ t,\ r,\ b).Nomalize(),\ color)\ \{\}}
-\DoxyCodeLine{00608\ }
-\DoxyCodeLine{00609\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(P\_t\ l,\ P\_t\ t,\ P\_t\ r,\ P\_t\ b,\ glColors\ color)}
-\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Rectangle"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(l,\ t,\ r,\ b).Nomalize(),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(color))\ \{\}}
-\DoxyCodeLine{00611\ }
-\DoxyCodeLine{00612\ }
-\DoxyCodeLine{00613\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Draw()}
-\DoxyCodeLine{00614\ \ \ \ \ \{}
-\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ PlotLine(\_Position.LT.X,\ \_Position.LT.Y,\ \_Position.RB.X,\ \_Position.LT.Y,\ \_Color);}
-\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ PlotLine(\_Position.RB.X,\ \_Position.LT.Y,\ \_Position.RB.X,\ \_Position.RB.Y,\ \_Color);}
-\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ PlotLine(\_Position.RB.X,\ \_Position.RB.Y,\ \_Position.LT.X,\ \_Position.RB.Y,\ \_Color);}
-\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ PlotLine(\_Position.LT.X,\ \_Position.RB.Y,\ \_Position.LT.X,\ \_Position.LT.Y,\ \_Color);}
-\DoxyCodeLine{00619\ \ \ \ \ \}}
-\DoxyCodeLine{00620\ }
-\DoxyCodeLine{00621\ \ \ \ \ \textcolor{keywordtype}{void}\ Inflate(\textcolor{keywordtype}{int}\ d)}
-\DoxyCodeLine{00622\ \ \ \ \ \{}
-\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \_Position\ =\ \_Position.Inflate(d);\ \ \ \ \ \ \ }
-\DoxyCodeLine{00624\ \ \ \ \ \}}
-\DoxyCodeLine{00625\ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00626\ \ \ \ \ \textcolor{comment}{//\ Initialize\ object}}
-\DoxyCodeLine{00627\ \textcolor{comment}{//\ \ virtual\ void\ Init()\ override\ \{\}}}
-\DoxyCodeLine{00628\ \ \ \ \ \textcolor{comment}{//\ redraw\ your\ self}}
-\DoxyCodeLine{00629\ \ \ \ \ \textcolor{comment}{//\ return\ true\ if\ anything\ done}}
-\DoxyCodeLine{00630\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Redraw()\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00631\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ImInvalidated)\ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00633\ }
-\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ Draw();}
-\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (glVideoMemory::lastBand())\ ImInvalidated\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00637\ \ \ \ \ \}}
-\DoxyCodeLine{00638\ \ \ \ \ \textcolor{keywordtype}{void}\ Touch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&)\textcolor{keyword}{\ override\ }\{\}}
-\DoxyCodeLine{00639\ \};}
-\DoxyCodeLine{00640\ }
-\DoxyCodeLine{00641\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}}
-\DoxyCodeLine{00642\ \{}
-\DoxyCodeLine{00643\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00644\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(}
-\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ rect,\ }
-\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)}
-\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(rect,\ color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleFill"{}};\ \}}
-\DoxyCodeLine{00648\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(}
-\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ rect,\ }
-\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ glColors\ color)}
-\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(rect,\ color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleFill"{}};\ \}}
-\DoxyCodeLine{00652\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(}
-\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&start,\ }
-\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&end,\ }
-\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)}
-\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(start,\ end,\ color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleFill"{}};\ \}}
-\DoxyCodeLine{00657\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(}
-\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&start,\ }
-\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&end,}
-\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ glColors\ color)}
-\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(start,\ end,\ color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleFill"{}};\ \}}
-\DoxyCodeLine{00662\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(P\_t\ left,\ P\_t\ top,\ P\_t\ right,\ P\_t\ bottom,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)}
-\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(left,\ top,\ right,\ bottom,\ color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleFill"{}};\ \}}
-\DoxyCodeLine{00664\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(P\_t\ left,\ P\_t\ top,\ P\_t\ right,\ P\_t\ bottom,\ glColors\ color)}
-\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(left,\ top,\ right,\ bottom,\ color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleFill"{}};\ \}}
+\DoxyCodeLine{00526\ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \_Center;}
+\DoxyCodeLine{00527\ \ \ \ \ P\_t\ \_Radius;}
+\DoxyCodeLine{00528\ \};}
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00530\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_circle_fill}{glCircleFill}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_circle}{glCircle}}}
+\DoxyCodeLine{00531\ \{}
+\DoxyCodeLine{00532\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00533\ \ \ \ \ \mbox{\hyperlink{classgl_circle_fill}{glCircleFill}}(P\_t\ x,\ P\_t\ y,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)\ }
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_circle}{glCircle}}(x,\ y,\ radius,\ color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}CircleFill"{}};\ \}}
+\DoxyCodeLine{00535\ \ \ \ \ \mbox{\hyperlink{classgl_circle_fill}{glCircleFill}}(P\_t\ x,\ P\_t\ y,\ P\_t\ radius,\ glColors\ color)\ }
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_circle}{glCircle}}(x,\ y,\ radius,\ color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}CircleFill"{}};\ \}}
+\DoxyCodeLine{00537\ }
+\DoxyCodeLine{00538\ \ \ \ \ \mbox{\hyperlink{classgl_circle_fill}{glCircleFill}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&center,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)\ }
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_circle}{glCircle}}(center,\ radius,\ color)\ \{\_Name\ =\ \textcolor{stringliteral}{"{}CircleFill"{}};\ \}}
+\DoxyCodeLine{00540\ \ \ \ \ \mbox{\hyperlink{classgl_circle_fill}{glCircleFill}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&center,\ P\_t\ radius,\ glColors\ color)\ }
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_circle}{glCircle}}(center,\ radius,\ color)\ \{\_Name\ =\ \textcolor{stringliteral}{"{}CircleFill"{}};\ \}}
+\DoxyCodeLine{00542\ }
+\DoxyCodeLine{00543\ \ \ \ \ \textcolor{keywordtype}{void}\ Draw()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00544\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ PlotCircleFill(\_Center,\ \_Radius,\ \_Color);}
+\DoxyCodeLine{00546\ \ \ \ \ \}}
+\DoxyCodeLine{00547\ \};}
+\DoxyCodeLine{00548\ }
+\DoxyCodeLine{00549\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_arc}{glArc}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_circle}{glCircle}}}
+\DoxyCodeLine{00550\ \{}
+\DoxyCodeLine{00551\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00552\ \ \ \ \ \mbox{\hyperlink{classgl_arc}{glArc}}()\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}glArc"{}};\ \}}
+\DoxyCodeLine{00553\ \ \ \ \ \mbox{\hyperlink{classgl_arc}{glArc}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ box,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ center,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)\ }
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_circle}{glCircle}}(center,\ radius,\ color)}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \{\ \_Position\ =\ box.Normalize();\ \_Name\ =\ \textcolor{stringliteral}{"{}glArc"{}};\ \}}
+\DoxyCodeLine{00556\ \ \ \ \ \mbox{\hyperlink{classgl_arc}{glArc}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ box,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ center,\ P\_t\ radius,\ glColors\ color)\ }
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_circle}{glCircle}}(center,\ radius,\ color)}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \{\ \_Position\ =\ box.Normalize();\ \_Name\ =\ \textcolor{stringliteral}{"{}glArc"{}};\ \}}
+\DoxyCodeLine{00559\ \ \ \ \ }
+\DoxyCodeLine{00560\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Draw()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00561\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ PlotArc(\_Position,\ \_Center,\ \_Radius,\ \_Color);}
+\DoxyCodeLine{00563\ \ \ \ \ \}}
+\DoxyCodeLine{00564\ \};}
+\DoxyCodeLine{00565\ }
+\DoxyCodeLine{00566\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_arc_fill}{glArcFill}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_arc}{glArc}}}
+\DoxyCodeLine{00567\ \{}
+\DoxyCodeLine{00568\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00569\ \ \ \ \ \mbox{\hyperlink{classgl_arc_fill}{glArcFill}}()\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}glArcFill"{}};\ \}}
+\DoxyCodeLine{00570\ \ \ \ \ \mbox{\hyperlink{classgl_arc_fill}{glArcFill}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ box,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ center,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)\ }
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_arc}{glArc}}(box,\ center,\ radius,\ color)\ \{\}}
+\DoxyCodeLine{00572\ \ \ \ \ \mbox{\hyperlink{classgl_arc_fill}{glArcFill}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ box,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ center,\ P\_t\ radius,\ glColors\ color)\ }
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_arc}{glArc}}(box,\ center,\ radius,\ color)\ \{\}}
+\DoxyCodeLine{00574\ }
+\DoxyCodeLine{00575\ \ \ \ \ \textcolor{keywordtype}{void}\ Draw()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00576\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ PlotFillArc(\_Position,\ \_Center,\ \_Radius,\ \_Color);}
+\DoxyCodeLine{00578\ \ \ \ \ \}}
+\DoxyCodeLine{00579\ \};}
+\DoxyCodeLine{00580\ }
+\DoxyCodeLine{00581\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_rectangle_round}{glRectangleRound}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}}
+\DoxyCodeLine{00582\ \{}
+\DoxyCodeLine{00583\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00584\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round}{glRectangleRound}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ rect,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&\_Color)}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(rect,\ \_Color)\ \{\ Radius\ =\ radius;\ \}}
+\DoxyCodeLine{00586\ }
+\DoxyCodeLine{00587\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round}{glRectangleRound}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ rect,\ P\_t\ radius,\ glColors\ \_Color)}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(rect,\ \_Color)\ \{\ Radius\ =\ radius;\ \}}
+\DoxyCodeLine{00589\ }
+\DoxyCodeLine{00590\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round}{glRectangleRound}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&start,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&end,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&\_Color)}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(start,\ end,\ \_Color)\ \{\ Radius\ =\ radius;\ \}}
+\DoxyCodeLine{00592\ }
+\DoxyCodeLine{00593\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round}{glRectangleRound}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&start,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&end,\ P\_t\ radius,\ glColors\ \_Color)}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(start,\ end,\ \_Color)\ \{\ Radius\ =\ radius;\ \}}
+\DoxyCodeLine{00595\ \ \ \ \ }
+\DoxyCodeLine{00596\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round}{glRectangleRound}}(P\_t\ left,\ P\_t\ top,\ P\_t\ right,\ P\_t\ bottom,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&\_Color)}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(left,\ top,\ right,\ bottom,\ \_Color)\ \{\ Radius\ =\ radius;\ \}}
+\DoxyCodeLine{00598\ \ \ \ \ }
+\DoxyCodeLine{00599\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round}{glRectangleRound}}(P\_t\ left,\ P\_t\ top,\ P\_t\ right,\ P\_t\ bottom,\ P\_t\ radius,\ glColors\ \_Color)}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(left,\ top,\ right,\ bottom,\ \_Color)\ \{\ Radius\ =\ radius;\ \}}
+\DoxyCodeLine{00601\ }
+\DoxyCodeLine{00602\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Draw()}
+\DoxyCodeLine{00603\ \ \ \ \ \{}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ assert(Radius\ <=\ \_Position.Width()\ \&\&\ Radius\ <=\ \_Position.Height());}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ PlotLine(\_Position.L()\ +\ Radius,\ \_Position.T(),\ \_Position.R()\ -\/\ Radius,\ \_Position.T(),\ \_Color);}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ PlotLine(\_Position.R(),\ \_Position.T()\ +\ Radius,\ \_Position.R(),\ \_Position.B()\ -\/\ Radius,\ \_Color);}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ PlotLine(\_Position.R()\ -\/\ Radius,\ \_Position.B(),\ \_Position.L()\ +\ Radius,\ \_Position.B(),\ \_Color);}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ PlotLine(\_Position.L(),\ \_Position.B()\ -\/\ Radius,\ \_Position.L(),\ \_Position.T()\ +\ Radius,\ \_Color);}
+\DoxyCodeLine{00609\ }
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ b(\_Position.L(),\ \_Position.T(),\ \_Position.L()\ +\ Radius,\ \_Position.T()\ +\ Radius);}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ p(\_Position.L()\ +\ Radius,\ \_Position.T()\ +\ Radius);}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_arc}{glArc}}(b,\ p,\ Radius,\ \_Color).Draw();}
+\DoxyCodeLine{00613\ }
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ b\ =\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(\_Position.R()\ -\/\ Radius,\ \_Position.T(),\ \_Position.R(),\ \_Position.T()\ +\ Radius);}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ p\ =\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(\_Position.R()\ -\/\ Radius,\ \_Position.T()\ +\ Radius);}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_arc}{glArc}}(b,\ p,\ Radius,\ \_Color).Draw();}
+\DoxyCodeLine{00617\ }
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ b\ =\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(\_Position.R()\ -\/\ Radius,\ \_Position.B()\ -\/\ Radius,\ \_Position.R(),\ \_Position.B());}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ p\ =\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(\_Position.R()\ -\/\ Radius,\ \_Position.B()\ -\/\ Radius);}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_arc}{glArc}}(b,\ p,\ Radius,\ \_Color).Draw();}
+\DoxyCodeLine{00621\ }
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ b\ =\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(\_Position.L(),\ \_Position.B()\ -\/\ Radius,\ \_Position.L()\ +\ Radius,\ \_Position.B());}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ p\ =\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(\_Position.L()\ +\ Radius,\ \_Position.B()\ -\/\ Radius);}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_arc}{glArc}}(b,\ p,\ Radius,\ \_Color).Draw();}
+\DoxyCodeLine{00625\ \ \ \ \ \}}
+\DoxyCodeLine{00626\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00627\ \ \ \ \ P\_t\ Radius\ =\ 5;}
+\DoxyCodeLine{00628\ \};}
+\DoxyCodeLine{00629\ }
+\DoxyCodeLine{00630\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_rectangle_round_fill}{glRectangleRoundFill}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}}
+\DoxyCodeLine{00631\ \{}
+\DoxyCodeLine{00632\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00633\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round_fill}{glRectangleRoundFill}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ rect,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&\_Color)}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(rect,\ \_Color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleRoundFill"{}};\ Radius\ =\ radius;\ \}}
+\DoxyCodeLine{00635\ }
+\DoxyCodeLine{00636\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round_fill}{glRectangleRoundFill}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ rect,\ P\_t\ radius,\ glColors\ \_Color)}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(rect,\ \_Color)\ \{\ Radius\ =\ radius;\ \}}
+\DoxyCodeLine{00638\ }
+\DoxyCodeLine{00639\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round_fill}{glRectangleRoundFill}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&start,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&end,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&\_Color)}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(start,\ end,\ \_Color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleRoundFill"{}};\ Radius\ =\ radius;\ \}}
+\DoxyCodeLine{00641\ }
+\DoxyCodeLine{00642\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round_fill}{glRectangleRoundFill}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&start,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&end,\ P\_t\ radius,\ glColors\ \_Color)}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(start,\ end,\ \_Color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleRoundFill"{}};\ Radius\ =\ radius;\ \}}
+\DoxyCodeLine{00644\ }
+\DoxyCodeLine{00645\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round_fill}{glRectangleRoundFill}}(P\_t\ left,\ P\_t\ top,\ P\_t\ right,\ P\_t\ bottom,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&\_Color)}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(left,\ top,\ right,\ bottom,\ \_Color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleRoundFill"{}};\ Radius\ =\ radius;\ \}}
+\DoxyCodeLine{00647\ }
+\DoxyCodeLine{00648\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round_fill}{glRectangleRoundFill}}(P\_t\ left,\ P\_t\ top,\ P\_t\ right,\ P\_t\ bottom,\ P\_t\ radius,\ glColors\ \_Color)}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(left,\ top,\ right,\ bottom,\ \_Color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleRoundFill"{}};\ Radius\ =\ radius;\ \}}
+\DoxyCodeLine{00650\ }
+\DoxyCodeLine{00651\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Draw()}
+\DoxyCodeLine{00652\ \ \ \ \ \{}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ assert(Radius\ <=\ \_Position.Width()\ \&\&\ Radius\ <=\ \_Position.Height());}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(\_Position.L(),\ \_Position.T()\ +\ Radius,\ \_Position.R(),\ \_Position.B()\ -\/\ Radius,\ \_Color).Draw();}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(\_Position.L()\ +\ Radius,\ \_Position.T(),\ \_Position.R()\ -\/\ Radius,\ \_Position.T()\ +\ Radius,\ \_Color).Draw();}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(\_Position.L()\ +\ Radius,\ \_Position.B()\ -\/\ Radius,\ \_Position.R()\ -\/\ Radius,\ \_Position.B(),\ \_Color).Draw();}
+\DoxyCodeLine{00658\ \ \ \ \ }
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ b(\_Position.L(),\ \_Position.T(),\ \_Position.L()\ +\ Radius,\ \_Position.T()\ +\ Radius);}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ p(\_Position.L()\ +\ Radius,\ \_Position.T()\ +\ Radius);}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_arc_fill}{glArcFill}}(b,\ p,\ Radius,\ \_Color).Draw();}
+\DoxyCodeLine{00662\ }
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ b\ =\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(\_Position.R()\ -\/\ Radius,\ \_Position.T(),\ \_Position.R(),\ \_Position.T()\ +\ Radius);}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ p\ =\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(\_Position.R()\ -\/\ Radius,\ \_Position.T()\ +\ Radius);}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_arc_fill}{glArcFill}}(b,\ p,\ Radius,\ \_Color).Draw();}
 \DoxyCodeLine{00666\ }
-\DoxyCodeLine{00667\ \ \ \ \ \textcolor{keywordtype}{void}\ Draw()\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00668\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (P\_t\ x\ =\ \_Position.LT.X;\ x\ <=\ \_Position.RB.X;\ x++)}
-\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (P\_t\ y\ =\ \_Position.LT.Y;\ y\ <=\ \_Position.RB.Y;\ y++)}
-\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Plot(x,\ y,\ \_Color);}
-\DoxyCodeLine{00672\ \ \ \ \ \}}
-\DoxyCodeLine{00673\ \};}
-\DoxyCodeLine{00674\ }
-\DoxyCodeLine{00675\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_circle}{glCircle}}\ :\ \textcolor{keyword}{protected}\ \mbox{\hyperlink{classgl_plot2_d_helper}{glPlot2DHelper}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_object}{glObject}}}
-\DoxyCodeLine{00676\ \{}
-\DoxyCodeLine{00677\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00678\ \ \ \ \ \mbox{\hyperlink{classgl_circle}{glCircle}}()}
-\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Circel"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}())\ \{\}}
-\DoxyCodeLine{00680\ \ \ \ \ \mbox{\hyperlink{classgl_circle}{glCircle}}(P\_t\ x,\ P\_t\ y,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)\ }
-\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Circel"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(x\ -\/\ radius,\ y\ -\/\ radius,\ x\ +\ radius,\ y\ +\ radius),\ color)}
-\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ ,\ \_Center(x,\ y)}
-\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ ,\ \_Radius(radius)\ \{\}}
-\DoxyCodeLine{00684\ \ \ \ \ \mbox{\hyperlink{classgl_circle}{glCircle}}(P\_t\ x,\ P\_t\ y,\ P\_t\ radius,\ glColors\ color)\ }
-\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Circel"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(x\ -\/\ radius,\ y\ -\/\ radius,\ x\ +\ radius,\ y\ +\ radius),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(color))}
-\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ ,\ \_Center(x,\ y)}
-\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ ,\ \_Radius(radius)\ \{\}}
-\DoxyCodeLine{00688\ }
-\DoxyCodeLine{00689\ \ \ \ \ \mbox{\hyperlink{classgl_circle}{glCircle}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&center,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)\ }
-\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Circel"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(center.Move(-\/radius,\ -\/radius),\ center.Move(radius,\ radius)),\ color)}
-\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ ,\ \_Center(center)}
-\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ ,\ \_Radius(radius)\ \{\}}
-\DoxyCodeLine{00693\ }
-\DoxyCodeLine{00694\ \ \ \ \ \mbox{\hyperlink{classgl_circle}{glCircle}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&center,\ P\_t\ radius,\ glColors\ color)\ }
-\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Circel"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(center.Move(-\/radius,\ -\/radius),\ center.Move(radius,\ radius)),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(color))}
-\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ ,\ \_Center(center)}
-\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ ,\ \_Radius(radius)\ \{\}}
-\DoxyCodeLine{00698\ }
-\DoxyCodeLine{00699\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Draw()}
-\DoxyCodeLine{00700\ \ \ \ \ \{}
-\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ PlotCircle(\_Center,\ \_Radius,\ \_Color);}
-\DoxyCodeLine{00702\ \ \ \ \ \}}
-\DoxyCodeLine{00703\ }
-\DoxyCodeLine{00704\ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00705\ \ \ \ \ \textcolor{comment}{//\ Initialize\ object}}
-\DoxyCodeLine{00706\ \textcolor{comment}{//\ \ virtual\ void\ Init()\ override\ \{\}}}
-\DoxyCodeLine{00707\ \ \ \ \ \textcolor{comment}{//\ redraw\ your\ self}}
-\DoxyCodeLine{00708\ \ \ \ \ \textcolor{comment}{//\ return\ true\ if\ anything\ done}}
-\DoxyCodeLine{00709\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Redraw()\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00710\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ImInvalidated)\ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ Draw();}
-\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00715\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (glVideoMemory::lastBand())\ ImInvalidated\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00716\ \ \ \ \ \}}
-\DoxyCodeLine{00717\ \ \ \ \ \textcolor{keywordtype}{void}\ Touch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&)\textcolor{keyword}{\ override\ }\{\}}
-\DoxyCodeLine{00718\ }
-\DoxyCodeLine{00719\ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \_Center;}
-\DoxyCodeLine{00720\ \ \ \ \ P\_t\ \_Radius;}
-\DoxyCodeLine{00721\ \};}
-\DoxyCodeLine{00722\ }
-\DoxyCodeLine{00723\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_circle_fill}{glCircleFill}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_circle}{glCircle}}}
-\DoxyCodeLine{00724\ \{}
-\DoxyCodeLine{00725\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00726\ \ \ \ \ \mbox{\hyperlink{classgl_circle_fill}{glCircleFill}}(P\_t\ x,\ P\_t\ y,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)\ }
-\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_circle}{glCircle}}(x,\ y,\ radius,\ color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}CircleFill"{}};\ \}}
-\DoxyCodeLine{00728\ \ \ \ \ \mbox{\hyperlink{classgl_circle_fill}{glCircleFill}}(P\_t\ x,\ P\_t\ y,\ P\_t\ radius,\ glColors\ color)\ }
-\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_circle}{glCircle}}(x,\ y,\ radius,\ color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}CircleFill"{}};\ \}}
-\DoxyCodeLine{00730\ }
-\DoxyCodeLine{00731\ \ \ \ \ \mbox{\hyperlink{classgl_circle_fill}{glCircleFill}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&center,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)\ }
-\DoxyCodeLine{00732\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_circle}{glCircle}}(center,\ radius,\ color)\ \{\_Name\ =\ \textcolor{stringliteral}{"{}CircleFill"{}};\ \}}
-\DoxyCodeLine{00733\ \ \ \ \ \mbox{\hyperlink{classgl_circle_fill}{glCircleFill}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&center,\ P\_t\ radius,\ glColors\ color)\ }
-\DoxyCodeLine{00734\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_circle}{glCircle}}(center,\ radius,\ color)\ \{\_Name\ =\ \textcolor{stringliteral}{"{}CircleFill"{}};\ \}}
-\DoxyCodeLine{00735\ }
-\DoxyCodeLine{00736\ \ \ \ \ \textcolor{keywordtype}{void}\ Draw()\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00737\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ PlotCircleFill(\_Center,\ \_Radius,\ \_Color);}
-\DoxyCodeLine{00739\ \ \ \ \ \}}
-\DoxyCodeLine{00740\ \};}
-\DoxyCodeLine{00741\ }
-\DoxyCodeLine{00742\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_arc}{glArc}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_circle}{glCircle}}}
-\DoxyCodeLine{00743\ \{}
-\DoxyCodeLine{00744\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00745\ \ \ \ \ \mbox{\hyperlink{classgl_arc}{glArc}}()\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}glArc"{}};\ \}}
-\DoxyCodeLine{00746\ \ \ \ \ \mbox{\hyperlink{classgl_arc}{glArc}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ box,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ center,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)\ }
-\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_circle}{glCircle}}(center,\ radius,\ color)}
-\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ \{\ \_Position\ =\ box.Nomalize();\ \_Name\ =\ \textcolor{stringliteral}{"{}glArc"{}};\ \}}
-\DoxyCodeLine{00749\ \ \ \ \ \mbox{\hyperlink{classgl_arc}{glArc}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ box,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ center,\ P\_t\ radius,\ glColors\ color)\ }
-\DoxyCodeLine{00750\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_circle}{glCircle}}(center,\ radius,\ color)}
-\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ \{\ \_Position\ =\ box.Nomalize();\ \_Name\ =\ \textcolor{stringliteral}{"{}glArc"{}};\ \}}
-\DoxyCodeLine{00752\ \ \ \ \ }
-\DoxyCodeLine{00753\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Draw()\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00754\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ PlotArc(\_Position,\ \_Center,\ \_Radius,\ \_Color);}
-\DoxyCodeLine{00756\ \ \ \ \ \}}
-\DoxyCodeLine{00757\ \};}
-\DoxyCodeLine{00758\ }
-\DoxyCodeLine{00759\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_arc_fill}{glArcFill}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_arc}{glArc}}}
-\DoxyCodeLine{00760\ \{}
-\DoxyCodeLine{00761\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00762\ \ \ \ \ \mbox{\hyperlink{classgl_arc_fill}{glArcFill}}()\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}glArcFill"{}};\ \}}
-\DoxyCodeLine{00763\ \ \ \ \ \mbox{\hyperlink{classgl_arc_fill}{glArcFill}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ box,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ center,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&color)\ }
-\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_arc}{glArc}}(box,\ center,\ radius,\ color)\ \{\}}
-\DoxyCodeLine{00765\ \ \ \ \ \mbox{\hyperlink{classgl_arc_fill}{glArcFill}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ box,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ center,\ P\_t\ radius,\ glColors\ color)\ }
-\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_arc}{glArc}}(box,\ center,\ radius,\ color)\ \{\}}
-\DoxyCodeLine{00767\ }
-\DoxyCodeLine{00768\ \ \ \ \ \textcolor{keywordtype}{void}\ Draw()\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00769\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00770\ \ \ \ \ \ \ \ \ PlotFillArc(\_Position,\ \_Center,\ \_Radius,\ \_Color);}
-\DoxyCodeLine{00771\ \ \ \ \ \}}
-\DoxyCodeLine{00772\ \};}
-\DoxyCodeLine{00773\ }
-\DoxyCodeLine{00774\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_rectangle_round}{glRectangleRound}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}}
-\DoxyCodeLine{00775\ \{}
-\DoxyCodeLine{00776\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00777\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round}{glRectangleRound}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ rect,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&\_Color)}
-\DoxyCodeLine{00778\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(rect,\ \_Color)\ \{\ Radius\ =\ radius;\ \}}
-\DoxyCodeLine{00779\ }
-\DoxyCodeLine{00780\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round}{glRectangleRound}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ rect,\ P\_t\ radius,\ glColors\ \_Color)}
-\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(rect,\ \_Color)\ \{\ Radius\ =\ radius;\ \}}
-\DoxyCodeLine{00782\ }
-\DoxyCodeLine{00783\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round}{glRectangleRound}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&start,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&end,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&\_Color)}
-\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(start,\ end,\ \_Color)\ \{\ Radius\ =\ radius;\ \}}
-\DoxyCodeLine{00785\ }
-\DoxyCodeLine{00786\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round}{glRectangleRound}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&start,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&end,\ P\_t\ radius,\ glColors\ \_Color)}
-\DoxyCodeLine{00787\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(start,\ end,\ \_Color)\ \{\ Radius\ =\ radius;\ \}}
-\DoxyCodeLine{00788\ \ \ \ \ }
-\DoxyCodeLine{00789\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round}{glRectangleRound}}(P\_t\ left,\ P\_t\ top,\ P\_t\ right,\ P\_t\ bottom,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&\_Color)}
-\DoxyCodeLine{00790\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(left,\ top,\ right,\ bottom,\ \_Color)\ \{\ Radius\ =\ radius;\ \}}
-\DoxyCodeLine{00791\ \ \ \ \ }
-\DoxyCodeLine{00792\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round}{glRectangleRound}}(P\_t\ left,\ P\_t\ top,\ P\_t\ right,\ P\_t\ bottom,\ P\_t\ radius,\ glColors\ \_Color)}
-\DoxyCodeLine{00793\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(left,\ top,\ right,\ bottom,\ \_Color)\ \{\ Radius\ =\ radius;\ \}}
-\DoxyCodeLine{00794\ }
-\DoxyCodeLine{00795\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Draw()}
-\DoxyCodeLine{00796\ \ \ \ \ \{}
-\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ assert(Radius\ <=\ \_Position.Width()\ \&\&\ Radius\ <=\ \_Position.Height());}
-\DoxyCodeLine{00798\ \ \ \ \ \ \ \ \ PlotLine(\_Position.L()\ +\ Radius,\ \_Position.T(),\ \_Position.R()\ -\/\ Radius,\ \_Position.T(),\ \_Color);}
-\DoxyCodeLine{00799\ \ \ \ \ \ \ \ \ PlotLine(\_Position.R(),\ \_Position.T()\ +\ Radius,\ \_Position.R(),\ \_Position.B()\ -\/\ Radius,\ \_Color);}
-\DoxyCodeLine{00800\ \ \ \ \ \ \ \ \ PlotLine(\_Position.R()\ -\/\ Radius,\ \_Position.B(),\ \_Position.L()\ +\ Radius,\ \_Position.B(),\ \_Color);}
-\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ PlotLine(\_Position.L(),\ \_Position.B()\ -\/\ Radius,\ \_Position.L(),\ \_Position.T()\ +\ Radius,\ \_Color);}
-\DoxyCodeLine{00802\ }
-\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ b(\_Position.L(),\ \_Position.T(),\ \_Position.L()\ +\ Radius,\ \_Position.T()\ +\ Radius);}
-\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ p(\_Position.L()\ +\ Radius,\ \_Position.T()\ +\ Radius);}
-\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_arc}{glArc}}(b,\ p,\ Radius,\ \_Color).Draw();}
-\DoxyCodeLine{00806\ }
-\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ b\ =\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(\_Position.R()\ -\/\ Radius,\ \_Position.T(),\ \_Position.R(),\ \_Position.T()\ +\ Radius);}
-\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ p\ =\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(\_Position.R()\ -\/\ Radius,\ \_Position.T()\ +\ Radius);}
-\DoxyCodeLine{00809\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_arc}{glArc}}(b,\ p,\ Radius,\ \_Color).Draw();}
-\DoxyCodeLine{00810\ }
-\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ b\ =\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(\_Position.R()\ -\/\ Radius,\ \_Position.B()\ -\/\ Radius,\ \_Position.R(),\ \_Position.B());}
-\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ p\ =\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(\_Position.R()\ -\/\ Radius,\ \_Position.B()\ -\/\ Radius);}
-\DoxyCodeLine{00813\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_arc}{glArc}}(b,\ p,\ Radius,\ \_Color).Draw();}
-\DoxyCodeLine{00814\ }
-\DoxyCodeLine{00815\ \ \ \ \ \ \ \ \ b\ =\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(\_Position.L(),\ \_Position.B()\ -\/\ Radius,\ \_Position.L()\ +\ Radius,\ \_Position.B());}
-\DoxyCodeLine{00816\ \ \ \ \ \ \ \ \ p\ =\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(\_Position.L()\ +\ Radius,\ \_Position.B()\ -\/\ Radius);}
-\DoxyCodeLine{00817\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_arc}{glArc}}(b,\ p,\ Radius,\ \_Color).Draw();}
-\DoxyCodeLine{00818\ \ \ \ \ \}}
-\DoxyCodeLine{00819\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00820\ \ \ \ \ P\_t\ Radius\ =\ 5;}
-\DoxyCodeLine{00821\ \};}
-\DoxyCodeLine{00822\ }
-\DoxyCodeLine{00823\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_rectangle_round_fill}{glRectangleRoundFill}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}}
-\DoxyCodeLine{00824\ \{}
-\DoxyCodeLine{00825\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00826\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round_fill}{glRectangleRoundFill}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ rect,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&\_Color)}
-\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(rect,\ \_Color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleRoundFill"{}};\ Radius\ =\ radius;\ \}}
-\DoxyCodeLine{00828\ }
-\DoxyCodeLine{00829\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round_fill}{glRectangleRoundFill}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ rect,\ P\_t\ radius,\ glColors\ \_Color)}
-\DoxyCodeLine{00830\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(rect,\ \_Color)\ \{\ Radius\ =\ radius;\ \}}
-\DoxyCodeLine{00831\ }
-\DoxyCodeLine{00832\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round_fill}{glRectangleRoundFill}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&start,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&end,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&\_Color)}
-\DoxyCodeLine{00833\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(start,\ end,\ \_Color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleRoundFill"{}};\ Radius\ =\ radius;\ \}}
-\DoxyCodeLine{00834\ }
-\DoxyCodeLine{00835\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round_fill}{glRectangleRoundFill}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&start,\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&end,\ P\_t\ radius,\ glColors\ \_Color)}
-\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(start,\ end,\ \_Color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleRoundFill"{}};\ Radius\ =\ radius;\ \}}
-\DoxyCodeLine{00837\ }
-\DoxyCodeLine{00838\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round_fill}{glRectangleRoundFill}}(P\_t\ left,\ P\_t\ top,\ P\_t\ right,\ P\_t\ bottom,\ P\_t\ radius,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \&\_Color)}
-\DoxyCodeLine{00839\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(left,\ top,\ right,\ bottom,\ \_Color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleRoundFill"{}};\ Radius\ =\ radius;\ \}}
-\DoxyCodeLine{00840\ }
-\DoxyCodeLine{00841\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round_fill}{glRectangleRoundFill}}(P\_t\ left,\ P\_t\ top,\ P\_t\ right,\ P\_t\ bottom,\ P\_t\ radius,\ glColors\ \_Color)}
-\DoxyCodeLine{00842\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}(left,\ top,\ right,\ bottom,\ \_Color)\ \{\ \_Name\ =\ \textcolor{stringliteral}{"{}RectangleRoundFill"{}};\ Radius\ =\ radius;\ \}}
-\DoxyCodeLine{00843\ }
-\DoxyCodeLine{00844\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Draw()}
-\DoxyCodeLine{00845\ \ \ \ \ \{}
-\DoxyCodeLine{00846\ \ \ \ \ \ \ \ \ assert(Radius\ <=\ \_Position.Width()\ \&\&\ Radius\ <=\ \_Position.Height());}
-\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(\_Position.L(),\ \_Position.T()\ +\ Radius,\ \_Position.R(),\ \_Position.B()\ -\/\ Radius,\ \_Color).Draw();}
-\DoxyCodeLine{00848\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00849\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(\_Position.L()\ +\ Radius,\ \_Position.T(),\ \_Position.R()\ -\/\ Radius,\ \_Position.T()\ +\ Radius,\ \_Color).Draw();}
-\DoxyCodeLine{00850\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(\_Position.L()\ +\ Radius,\ \_Position.B()\ -\/\ Radius,\ \_Position.R()\ -\/\ Radius,\ \_Position.B(),\ \_Color).Draw();}
-\DoxyCodeLine{00851\ \ \ \ \ }
-\DoxyCodeLine{00852\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ b(\_Position.L(),\ \_Position.T(),\ \_Position.L()\ +\ Radius,\ \_Position.T()\ +\ Radius);}
-\DoxyCodeLine{00853\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ p(\_Position.L()\ +\ Radius,\ \_Position.T()\ +\ Radius);}
-\DoxyCodeLine{00854\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_arc_fill}{glArcFill}}(b,\ p,\ Radius,\ \_Color).Draw();}
-\DoxyCodeLine{00855\ }
-\DoxyCodeLine{00856\ \ \ \ \ \ \ \ \ b\ =\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(\_Position.R()\ -\/\ Radius,\ \_Position.T(),\ \_Position.R(),\ \_Position.T()\ +\ Radius);}
-\DoxyCodeLine{00857\ \ \ \ \ \ \ \ \ p\ =\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(\_Position.R()\ -\/\ Radius,\ \_Position.T()\ +\ Radius);}
-\DoxyCodeLine{00858\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_arc_fill}{glArcFill}}(b,\ p,\ Radius,\ \_Color).Draw();}
-\DoxyCodeLine{00859\ }
-\DoxyCodeLine{00860\ \ \ \ \ \ \ \ \ b\ =\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(\_Position.R()\ -\/\ Radius,\ \_Position.B()\ -\/\ Radius,\ \_Position.R(),\ \_Position.B());}
-\DoxyCodeLine{00861\ \ \ \ \ \ \ \ \ p\ =\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(\_Position.R()\ -\/\ Radius,\ \_Position.B()\ -\/\ Radius);}
-\DoxyCodeLine{00862\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_arc_fill}{glArcFill}}(b,\ p,\ Radius,\ \_Color).Draw();}
-\DoxyCodeLine{00863\ }
-\DoxyCodeLine{00864\ \ \ \ \ \ \ \ \ b\ =\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(\_Position.L(),\ \_Position.B()\ -\/\ Radius,\ \_Position.L()\ +\ Radius,\ \_Position.B());}
-\DoxyCodeLine{00865\ \ \ \ \ \ \ \ \ p\ =\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(\_Position.L()\ +\ Radius,\ \_Position.B()\ -\/\ Radius);}
-\DoxyCodeLine{00866\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_arc_fill}{glArcFill}}(b,\ p,\ Radius,\ \_Color).Draw();}
-\DoxyCodeLine{00867\ \ \ \ \ \}}
-\DoxyCodeLine{00868\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00869\ \ \ \ \ P\_t\ Radius\ =\ 5;}
-\DoxyCodeLine{00870\ \};}
-\DoxyCodeLine{00871\ }
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ b\ =\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(\_Position.R()\ -\/\ Radius,\ \_Position.B()\ -\/\ Radius,\ \_Position.R(),\ \_Position.B());}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ p\ =\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(\_Position.R()\ -\/\ Radius,\ \_Position.B()\ -\/\ Radius);}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_arc_fill}{glArcFill}}(b,\ p,\ Radius,\ \_Color).Draw();}
+\DoxyCodeLine{00670\ }
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ b\ =\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(\_Position.L(),\ \_Position.B()\ -\/\ Radius,\ \_Position.L()\ +\ Radius,\ \_Position.B());}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ p\ =\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(\_Position.L()\ +\ Radius,\ \_Position.B()\ -\/\ Radius);}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_arc_fill}{glArcFill}}(b,\ p,\ Radius,\ \_Color).Draw();}
+\DoxyCodeLine{00674\ \ \ \ \ \}}
+\DoxyCodeLine{00675\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00676\ \ \ \ \ P\_t\ Radius\ =\ 5;}
+\DoxyCodeLine{00677\ \};}
+\DoxyCodeLine{00678\ }
 
 \end{DoxyCode}

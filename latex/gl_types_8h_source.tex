@@ -2,323 +2,652 @@
 \hypertarget{gl_types_8h_source}{}\label{gl_types_8h_source}\index{glSTM32H7xx/glTypes.h@{glSTM32H7xx/glTypes.h}}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ 2024\ Søren\ Gullach}}
-\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
-\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
-\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
-\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
-\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
-\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
-\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
-\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
-\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ limitations\ under\ the\ License.}}
-\DoxyCodeLine{00015\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ You\ must\ include\ the\ following\ attribution\ in\ all\ copies\ or\ substantial\ portions\ of\ the\ Software:}}
-\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ "{}Søren\ Gullach\ <STM32\_R7\_OS@toolsbox.dk>"{}}}
-\DoxyCodeLine{00018\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00019\ }
-\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
-\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <cmath>}}
-\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <assert.h>}}
-\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}MemoryDefs.h"{}}}
-\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}glColorTable.h"{}}}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \textcolor{keyword}{typedef}\ uint16\_t\ P\_t;}
-\DoxyCodeLine{00029\ \textcolor{keyword}{typedef}\ uint8\_t\ C\_t;}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <assert.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}MemoryDefs.h"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}glColorTable.h"{}}}
 \DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \textcolor{comment}{//\ Define\ a\ structure\ to\ represent\ colors\ in\ ARGB\ format}}
-\DoxyCodeLine{00032\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}}
-\DoxyCodeLine{00033\ \{}
-\DoxyCodeLine{00034\ \ \ \ \ C\_t\ B,\ G,\ R,\ A;\ \textcolor{comment}{//\ fits\ LTDC\ layout}}
-\DoxyCodeLine{00035\ \}\ \_\_PACKED;\ }
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}}
+\DoxyCodeLine{00031\ \textcolor{keyword}{typedef}\ uint16\_t\ P\_t;}
+\DoxyCodeLine{00032\ \textcolor{keyword}{typedef}\ uint8\_t\ C\_t;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}}
 \DoxyCodeLine{00038\ \{}
-\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}()}
-\DoxyCodeLine{00040\ \ \ \ \ \{}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ R\ =\ G\ =\ B\ =\ 0;\ A\ =\ 255;}
-\DoxyCodeLine{00042\ \ \ \ \ \}}
-\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(glColors\ color)}
-\DoxyCodeLine{00044\ \ \ \ \ \{}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ R\ =\ (\textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(color)\ >>\ 16)\ \&\ 0xFF;}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ G\ =\ (\textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(color)\ >>\ 8)\ \&\ 0xFF;}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ B\ =\ (\textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(color))\ \&\ 0xFF;}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ A\ =\ 255;}
-\DoxyCodeLine{00049\ \ \ \ \ \}}
-\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(C\_t\ red,\ C\_t\ green,\ C\_t\ blue,\ C\_t\ alpha\ =\ 255)}
+\DoxyCodeLine{00039\ \ \ \ \ C\_t\ B,\ G,\ R,\ \mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}};\ }
+\DoxyCodeLine{00040\ \}\ \_\_PACKED;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{structgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}{glColor\_t}}()}
 \DoxyCodeLine{00051\ \ \ \ \ \{}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ R\ =\ red;\ G\ =\ green;\ B\ =\ blue;\ A\ =\ alpha;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ R\ =\ G\ =\ B\ =\ 0;\ \mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ =\ 255;}
 \DoxyCodeLine{00053\ \ \ \ \ \}}
-\DoxyCodeLine{00054\ \ \ \ \ }
-\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ find\ the\ nearest\ color\ from\ the\ enum\ list\ based\ on\ an\ RGB\ color}}
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{static}\ glColors\ FindNearestColor(C\_t\ r,\ C\_t\ g,\ C\_t\ b)\ }
-\DoxyCodeLine{00057\ \ \ \ \ \{}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ glColors\ nearestColor\ =\ glColors::BLACK;\ \textcolor{comment}{//\ Default\ to\ black}}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ minDistance\ =\ std::numeric\_limits<float>::max();}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Iterate\ through\ all\ colors\ in\ the\ enum\ list}}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ i\ =\ 0;\ i\ <\ glColorTableSize;\ ++i)\ }
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ glColors\ currentColor\ =\ \textcolor{keyword}{static\_cast<}glColors\textcolor{keyword}{>}(i);}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ Color(currentColor);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{structgl_color__t_af87f3f67377b46a52f9f98573be6f063}{glColor\_t}}(glColors\ color)}
+\DoxyCodeLine{00060\ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ R\ =\ (\textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(color)\ >>\ 16)\ \&\ 0xFF;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ G\ =\ (\textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(color)\ >>\ 8)\ \&\ 0xFF;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ B\ =\ (\textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(color))\ \&\ 0xFF;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ =\ 255;}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
 \DoxyCodeLine{00066\ }
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ distance\ between\ the\ current\ color\ and\ the\ input\ RGB\ color}}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ distance\ =\ sqrtf(powf(Color.R\ -\/\ r,\ 2)\ +\ powf(Color.G\ -\/\ g,\ 2)\ +\ powf(Color.B\ -\/\ b,\ 2));}
-\DoxyCodeLine{00069\ }
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ nearest\ color\ if\ a\ closer\ match\ is\ found}}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (distance\ <\ minDistance)\ }
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ minDistance\ =\ distance;}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nearestColor\ =\ currentColor;}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ nearestColor;}
-\DoxyCodeLine{00079\ \ \ \ \ \}}
-\DoxyCodeLine{00080\ \};\ }
-\DoxyCodeLine{00081\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structgl_color__t}{glColor\_t}})\ ==\ 4,\ \textcolor{stringliteral}{"{}Wrong\ size"{}});}
-\DoxyCodeLine{00082\ }
-\DoxyCodeLine{00083\ \textcolor{comment}{//\ a\ 1D\ point}}
-\DoxyCodeLine{00084\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \{}
-\DoxyCodeLine{00085\ \ \ \ \ P\_t\ X,\ Y;}
-\DoxyCodeLine{00086\ \ \ \ \ }
-\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}()}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ :\ X(0)}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ ,\ Y(0)\ \{\}}
-\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(P\_t\ x,\ P\_t\ y)}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ :\ X(x)}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ ,\ Y(y)\ \{\}}
-\DoxyCodeLine{00093\ \ \ \ \ }
-\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ Move(\textcolor{keywordtype}{int}\ dx,\ \textcolor{keywordtype}{int}\ dy)\textcolor{keyword}{\ \ const\ }}
-\DoxyCodeLine{00095\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(X\ +\ dx,\ Y\ +\ dy);}
-\DoxyCodeLine{00097\ \ \ \ \ \}}
-\DoxyCodeLine{00098\ \};}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{structgl_color__t_af8d4417d6f8e083a87257d1b71575969}{glColor\_t}}(C\_t\ red,\ C\_t\ green,\ C\_t\ blue,\ C\_t\ alpha\ =\ 255)}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ R\ =\ red;\ G\ =\ green;\ B\ =\ blue;\ \mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ =\ alpha;}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{static}\ glColors\ \mbox{\hyperlink{structgl_color__t_af06e1ec4bceb4bb26d2c9a10b3ae13e4}{FindNearestColor}}(C\_t\ r,\ C\_t\ g,\ C\_t\ b)\ }
+\DoxyCodeLine{00087\ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ glColors\ nearestColor\ =\ glColors::BLACK;\ \textcolor{comment}{//\ Default\ to\ black}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ minDistance\ =\ std::numeric\_limits<float>::max();}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Iterate\ through\ all\ colors\ in\ the\ enum\ list}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ i\ =\ 0;\ i\ <\ glColorTableSize;\ ++i)\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ glColors\ currentColor\ =\ \textcolor{keyword}{static\_cast<}glColors\textcolor{keyword}{>}(i);}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ Color(currentColor);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ distance\ between\ the\ current\ color\ and\ the\ input\ RGB\ color}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ distance\ =\ sqrtf(powf(Color.R\ -\/\ r,\ 2)\ +\ powf(Color.G\ -\/\ g,\ 2)\ +\ powf(Color.B\ -\/\ b,\ 2));}
 \DoxyCodeLine{00099\ }
-\DoxyCodeLine{00100\ \textcolor{comment}{//\ a\ 2D\ point}}
-\DoxyCodeLine{00101\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}}
-\DoxyCodeLine{00102\ \{}
-\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ LT,\ RB;}
-\DoxyCodeLine{00104\ \ \ \ \ }
-\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}()\ \{\}}
-\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&lt,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&rb)}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ :\ LT(lt)}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ ,\ RB(rb)}
-\DoxyCodeLine{00109\ \ \ \ \ \{\ }
-\DoxyCodeLine{00110\ \ \ \ \ \}}
-\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(P\_t\ left,\ P\_t\ top,\ P\_t\ right,\ P\_t\ bottom)}
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ :\ LT(left,\ top)}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ ,\ RB(right,\ bottom)}
-\DoxyCodeLine{00114\ \ \ \ \ \{\ }
-\DoxyCodeLine{00115\ \ \ \ \ \}}
-\DoxyCodeLine{00116\ \ \ \ \ P\_t\ L()\ \{\ \textcolor{keywordflow}{return}\ LT.X;\ \}}
-\DoxyCodeLine{00117\ \ \ \ \ P\_t\ T()\ \{\ \textcolor{keywordflow}{return}\ LT.Y;\ \}}
-\DoxyCodeLine{00118\ \ \ \ \ P\_t\ R()\ \{\ \textcolor{keywordflow}{return}\ RB.X;\ \}}
-\DoxyCodeLine{00119\ \ \ \ \ P\_t\ B()\ \{\ \textcolor{keywordflow}{return}\ RB.Y;\ \}}
-\DoxyCodeLine{00120\ }
-\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{void}\ L(\textcolor{keyword}{const}\ P\_t\ \&t)\ \ \ \ \{\ LT.X\ =\ t;\ \}}
-\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ T(\textcolor{keyword}{const}\ P\_t\ \&t)\ \ \ \ \{\ LT.Y\ =\ t;\ \}}
-\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{void}\ R(\textcolor{keyword}{const}\ P\_t\ \&t)\ \ \ \ \{\ RB.X\ =\ t;\ \}}
-\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{void}\ B(\textcolor{keyword}{const}\ P\_t\ \&t)\ \ \ \ \{\ RB.Y\ =\ t;\ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ nearest\ color\ if\ a\ closer\ match\ is\ found}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (distance\ <\ minDistance)\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ minDistance\ =\ distance;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nearestColor\ =\ currentColor;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ nearestColor;}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \};\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structgl_color__t}{glColor\_t}})\ ==\ 4,\ \textcolor{stringliteral}{"{}Wrong\ size"{}});}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ P\_t\ X,\ Y;}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{structgl_point__t_ab87d77be498a1b1bca08ab804a8edcba}{glPoint\_t}}()}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ :\ X(0)}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ ,\ Y(0)\ \{\}}
 \DoxyCodeLine{00125\ }
-\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ Nomalize()}
-\DoxyCodeLine{00127\ \ \ \ \ \{}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ pt\ =\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pt.L()\ >\ pt.R())\ \{\ P\_t\ t\ =\ pt.R();\ pt.R(L());\ pt.L(t);\ \}}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pt.T()\ >\ pt.B())\ \{\ P\_t\ t\ =\ pt.B();\ pt.B(T());\ pt.T(t);\ \}}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pt;}
-\DoxyCodeLine{00132\ \ \ \ \ \}}
-\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsInside(P\_t\ x,\ P\_t\ y)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00134\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ x\ >=\ LT.X\ \&\&\ x\ <=\ RB.X\ \&\&\ y\ >=\ LT.Y\ \&\&\ y\ <=\ RB.Y;}
-\DoxyCodeLine{00136\ \ \ \ \ \}}
-\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsInside(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&p)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00138\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ IsInside(p.X,\ p.Y);}
-\DoxyCodeLine{00140\ \ \ \ \ \}}
-\DoxyCodeLine{00141\ \ \ \ \ P\_t\ Width()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ RB.X\ -\/\ LT.X;\ \}}
-\DoxyCodeLine{00142\ \ \ \ \ P\_t\ Height()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ RB.Y\ -\/\ LT.Y;\ \}}
-\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{bool}\ Empty()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Width()\ ==\ 0\ ||\ Height()\ ==\ 0;\ \}}
-\DoxyCodeLine{00144\ }
-\DoxyCodeLine{00145\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ Move(\textcolor{keywordtype}{int}\ dx,\ \textcolor{keywordtype}{int}\ dy)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00146\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(LT.Move(dx,\ dy),\ RB.Move(dx,\ dy));}
-\DoxyCodeLine{00148\ \ \ \ \ \}}
-\DoxyCodeLine{00149\ }
-\DoxyCodeLine{00150\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ Inflate(\textcolor{keywordtype}{int}\ d)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00151\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(LT.Move(-\/d,\ -\/d),\ RB.Move(d,\ d));}
-\DoxyCodeLine{00153\ \ \ \ \ \}}
-\DoxyCodeLine{00154\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ Union(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ \&Position)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00155\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Empty())\ \textcolor{keywordflow}{return}\ Position;}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Position.Empty())\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ P\_t\ newLeft\ =\ LT.X;}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ P\_t\ newTop\ =\ LT.Y;}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ P\_t\ newRight\ =\ RB.X;}
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ P\_t\ newBottom\ =\ RB.Y;}
-\DoxyCodeLine{00163\ }
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ minimum\ left\ and\ top\ coordinates}}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Position.LT.X\ <\ LT.X)\ newLeft\ =\ Position.LT.X;}
-\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Position.LT.Y\ <\ LT.Y)\ newTop\ =\ Position.LT.Y;}
-\DoxyCodeLine{00167\ }
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ maximum\ right\ and\ bottom\ coordinates}}
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Position.RB.X\ >\ RB.X)\ newRight\ =\ Position.RB.X;}
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Position.RB.Y\ >\ RB.Y)\ newBottom\ =\ Position.RB.Y;}
-\DoxyCodeLine{00171\ }
-\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ the\ position\ to\ encompass\ the\ other\ position}}
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(newLeft,\ newTop,\ newRight,\ newBottom);}
-\DoxyCodeLine{00174\ \ \ \ \ \}}
-\DoxyCodeLine{00175\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ Intersection(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ \&Position)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00176\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Empty())\ \textcolor{keywordflow}{return}\ Position;}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ P\_t\ newLeft\ =\ LT.X;}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ P\_t\ newTop\ =\ LT.Y;}
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ P\_t\ newRight\ =\ RB.X;}
-\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ P\_t\ newBottom\ =\ RB.Y;}
-\DoxyCodeLine{00183\ }
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ minimum\ right\ and\ bottom\ coordinates}}
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Position.LT.X\ >\ LT.X)\ newLeft\ =\ Position.LT.X;}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Position.LT.Y\ >\ LT.Y)\ newTop\ =\ Position.LT.Y;}
-\DoxyCodeLine{00187\ }
-\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ maximum\ left\ and\ top\ coordinates}}
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Position.RB.X\ <\ RB.X)\ newRight\ =\ Position.RB.X;}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Position.RB.Y\ <\ RB.Y)\ newBottom\ =\ Position.RB.Y;}
-\DoxyCodeLine{00191\ }
-\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ intersection\ exists}}
-\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (newLeft\ <\ newRight\ \&\&\ newTop\ <\ newBottom)\ }
-\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(newLeft,\ newTop,\ newRight,\ newBottom);}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ }
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ an\ empty\ rectangle\ if\ there's\ no\ intersection}}
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}();}
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00202\ \ \ \ \ \}\ \ \ }
-\DoxyCodeLine{00203\ \};}
+\DoxyCodeLine{00131\ \ \ \ \ \mbox{\hyperlink{structgl_point__t_a4e0a7f67001ff6930cb8e19e3f632090}{glPoint\_t}}(P\_t\ x,\ P\_t\ y)}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ :\ X(x)}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ ,\ Y(y)\ \{\}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00141\ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \mbox{\hyperlink{structgl_point__t_a384cc5afe0d187aa31335692660c26f0}{Displace}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ dx,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ dy)\textcolor{keyword}{\ const\ }}
+\DoxyCodeLine{00142\ \textcolor{keyword}{\ \ \ \ }\{\ \ \ \ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ new\ x-\/coordinate\ after\ displacement}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ P\_t\ newX\ =\ (dx\ <\ 0\ \&\&\ X\ >\ -\/dx)\ ?\ X\ +\ dx\ :\ (dx\ >\ 0\ ?\ X\ +\ dx\ :\ X);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ new\ y-\/coordinate\ after\ displacement}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ P\_t\ newY\ =\ (dy\ <\ 0\ \&\&\ Y\ >\ -\/dy)\ ?\ Y\ +\ dy\ :\ (dy\ >\ 0\ ?\ Y\ +\ dy\ :\ Y);}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ the\ displaced\ point}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structgl_point__t_ab87d77be498a1b1bca08ab804a8edcba}{glPoint\_t}}(newX,\ newY);\ }
+\DoxyCodeLine{00151\ \ \ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00158\ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \mbox{\hyperlink{structgl_point__t_a981ec0f8d253aad258cb75ce895256e5}{Displace}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&p)\textcolor{keyword}{\ \ const\ }\{\ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structgl_point__t_a981ec0f8d253aad258cb75ce895256e5}{Displace}}(p.X,\ p.Y);\ \}}
+\DoxyCodeLine{00159\ \};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00164\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}}
+\DoxyCodeLine{00165\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t_ac5602e7d20edd61499fb42fc2e59605a}{gl2DPoint\_t}}()\ \{\}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00176\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t_afe813019c60115a9249a28ff51d2bafd}{gl2DPoint\_t}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&lt,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&rb)}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ :\ \_LT(lt)}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ ,\ \_RB(rb)\ }
+\DoxyCodeLine{00179\ \ \ \ \ \{\ }
+\DoxyCodeLine{00180\ \ \ \ \ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00189\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t_a7873333381bf56e2df2c2fc42425af42}{gl2DPoint\_t}}(P\_t\ left,\ P\_t\ top,\ P\_t\ right,\ P\_t\ bottom)}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ :\ \_LT(left,\ top)}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ ,\ \_RB(right,\ bottom)\ }
+\DoxyCodeLine{00192\ \ \ \ \ \{\ }
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ P\_t\ L()\ \{\ \textcolor{keywordflow}{return}\ \_LT.X;\ \}}
+\DoxyCodeLine{00196\ \ \ \ \ P\_t\ T()\ \{\ \textcolor{keywordflow}{return}\ \_LT.Y;\ \}}
+\DoxyCodeLine{00197\ \ \ \ \ P\_t\ R()\ \{\ \textcolor{keywordflow}{return}\ \_RB.X;\ \}}
+\DoxyCodeLine{00198\ \ \ \ \ P\_t\ B()\ \{\ \textcolor{keywordflow}{return}\ \_RB.Y;\ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordtype}{void}\ L(\textcolor{keyword}{const}\ P\_t\ \&t)\ \{\ \_LT.X\ =\ t;\ \}}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{void}\ T(\textcolor{keyword}{const}\ P\_t\ \&t)\ \{\ \_LT.Y\ =\ t;\ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordtype}{void}\ R(\textcolor{keyword}{const}\ P\_t\ \&t)\ \{\ \_RB.X\ =\ t;\ \}}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordtype}{void}\ B(\textcolor{keyword}{const}\ P\_t\ \&t)\ \{\ \_RB.Y\ =\ t;\ \}}
 \DoxyCodeLine{00204\ }
-\DoxyCodeLine{00205\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_video_memory}{glVideoMemory}}}
-\DoxyCodeLine{00206\ \{}
-\DoxyCodeLine{00207\ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00208\ \ \ \ \ \textcolor{comment}{//\ pointer\ to\ graphic\ buffer;\ }}
-\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ *pVM;\ }
-\DoxyCodeLine{00210\ \ \ \ \ \textcolor{comment}{//\ width\ \&\ height\ of\ graphic\ buffer}}
-\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keyword}{static}\ P\_t\ Width,\ Height;\ }
-\DoxyCodeLine{00212\ \ \ \ \ }
-\DoxyCodeLine{00213\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00214\ \ \ \ \ \textcolor{comment}{//\ band\ drawing\ control}}
-\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keyword}{static}\ P\_t\ ls,\ yStart,\ yEnd;\ \textcolor{comment}{//\ lines\ to\ draw\ on\ each\ blanking}}
-\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ Region;\ \textcolor{comment}{//\ invalid\ region}}
-\DoxyCodeLine{00217\ \ \ \ \ \textcolor{comment}{//\ is\ this\ the\ last\ band}}
-\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ lastBand()\ \{\ \textcolor{keywordflow}{return}\ yEnd\ ==\ Height;\ \}}
-\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ LimitRegion()}
-\DoxyCodeLine{00220\ \ \ \ \ \{}
-\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ Region\ =\ Region.Intersection(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ yStart,\ Width\ -\/\ 1,\ yEnd\ -\/\ 1));}
-\DoxyCodeLine{00222\ \ \ \ \ \}}
-\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ NextRegion()}
-\DoxyCodeLine{00224\ \ \ \ \ \{}
-\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ yStart\ +=\ ls;\ }
-\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (yStart\ >=\ Height)\ yStart\ =\ 0;}
-\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ yEnd\ =\ yStart\ +\ ls;}
-\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (yEnd\ >=\ Height)\ yEnd\ =\ Height;}
-\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ Region\ =\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0);}
-\DoxyCodeLine{00230\ \ \ \ \ \}}
-\DoxyCodeLine{00231\ \ \ \ \ }
-\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Init(\textcolor{keyword}{const}\ P\_t\ w,\ \textcolor{keyword}{const}\ P\_t\ h,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ *pvm)}
-\DoxyCodeLine{00233\ \ \ \ \ \{}
-\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ pVM\ =\ pvm;\ }
-\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ Width\ =\ w;\ Height\ =\ h;}
-\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ ls\ =\ h;}
-\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ yStart\ =\ 0,\ yEnd\ =\ yStart\ +\ ls;}
-\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ Region\ =\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0);}
-\DoxyCodeLine{00239\ \ \ \ \ \}}
-\DoxyCodeLine{00240\ \};}
+\DoxyCodeLine{00205\ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ LT()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \_LT;\ \}\ }
+\DoxyCodeLine{00206\ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ LB()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(\_LT.X,\ \_RB.Y);\ \}\ }
+\DoxyCodeLine{00207\ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ RT()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(\_RB.X,\ \_LT.Y);\ \}\ }
+\DoxyCodeLine{00208\ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ RB()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \_RB;\ \}\ }
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ P\_t\ Width()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \_RB.X\ -\/\ \_LT.X;\ \}}
+\DoxyCodeLine{00211\ \ \ \ \ P\_t\ Height()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \_RB.Y\ -\/\ \_LT.Y;\ \}}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordtype}{bool}\ Empty()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Width()\ ==\ 0\ ||\ Height()\ ==\ 0;\ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ Normalize()}
+\DoxyCodeLine{00215\ \ \ \ \ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ pt\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pt.L()\ >\ pt.R())\ \{\ P\_t\ t\ =\ pt.R();\ pt.R(L());\ pt.L(t);\ \}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pt.T()\ >\ pt.B())\ \{\ P\_t\ t\ =\ pt.B();\ pt.B(T());\ pt.T(t);\ \}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pt;}
+\DoxyCodeLine{00220\ \ \ \ \ \}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsInside(\textcolor{keyword}{const}\ P\_t\ x,\ \textcolor{keyword}{const}\ P\_t\ y)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ x\ >=\ \_LT.X\ \&\&\ x\ <=\ \_RB.X\ \&\&\ y\ >=\ \_LT.Y\ \&\&\ y\ <=\ \_RB.Y;\ \}}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsInside(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&p)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ IsInside(p.X,\ p.Y);\ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ Displace(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ dx,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ dy)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structgl2_d_point__t_ac5602e7d20edd61499fb42fc2e59605a}{gl2DPoint\_t}}(\_LT.\mbox{\hyperlink{structgl_point__t_a384cc5afe0d187aa31335692660c26f0}{Displace}}(dx,\ dy),\ \_RB.\mbox{\hyperlink{structgl_point__t_a384cc5afe0d187aa31335692660c26f0}{Displace}}(dx,\ dy));\ \}}
+\DoxyCodeLine{00226\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ Displace(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \&p)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Displace(p.X,\ p.Y);\ \}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordtype}{void}\ MoveTo(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ l,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ t,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ r,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ b)\ \{\ \_LT\ =\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(l,\ t);\ \_RB\ =\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(r,\ b);\ \}}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordtype}{void}\ MoveTo(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ \&p)\ \{\ \_LT\ =\ p.LT(),\ \_RB\ =\ p.RB();\ \}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ Inflate(\textcolor{keywordtype}{int}\ d)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structgl2_d_point__t_ac5602e7d20edd61499fb42fc2e59605a}{gl2DPoint\_t}}(\_LT.\mbox{\hyperlink{structgl_point__t_a384cc5afe0d187aa31335692660c26f0}{Displace}}(-\/d,\ -\/d),\ \_RB.\mbox{\hyperlink{structgl_point__t_a384cc5afe0d187aa31335692660c26f0}{Displace}}(d,\ d));\ \}}
+\DoxyCodeLine{00232\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ Union(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ \&Position)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00233\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Empty())\ \textcolor{keywordflow}{return}\ Position;}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Position.Empty())\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ P\_t\ newLeft\ =\ \_LT.X;}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ P\_t\ newTop\ =\ \_LT.Y;}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ P\_t\ newRight\ =\ \_RB.X;}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ P\_t\ newBottom\ =\ \_RB.Y;}
 \DoxyCodeLine{00241\ }
-\DoxyCodeLine{00242\ \textcolor{preprocessor}{\#include\ <math.h>}}
-\DoxyCodeLine{00243\ \textcolor{preprocessor}{\#define\ M\_PI\ 3.1415926535897932384626433832795}}
-\DoxyCodeLine{00244\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ RainbowColorGradient(\textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ minimum\ left\ and\ top\ coordinates}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Position.\_LT.X\ <\ \_LT.X)\ newLeft\ =\ Position.\_LT.X;}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Position.\_LT.Y\ <\ \_LT.Y)\ newTop\ =\ Position.\_LT.Y;}
 \DoxyCodeLine{00245\ }
-\DoxyCodeLine{00246\ \textcolor{comment}{//\ Action/Point\ of\ Touch}}
-\DoxyCodeLine{00247\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}}
-\DoxyCodeLine{00248\ \{}
-\DoxyCodeLine{00249\ \ \ \ \ int16\_t\ X,\ Y,\ DX,\ DY,\ ZX,\ ZY;}
-\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eTipAction}
-\DoxyCodeLine{00251\ \ \ \ \ \{}
-\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ Tip,\ }
-\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ Up,\ }
-\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ Slide,\ }
-\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ Zoom,\ }
-\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ ZoomWait}
-\DoxyCodeLine{00257\ \ \ \ \ \};}
-\DoxyCodeLine{00258\ \ \ \ \ eTipAction\ TipAction\ =\ eTipAction::Up;}
-\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keyword}{enum}\ eSlideAction}
-\DoxyCodeLine{00260\ \ \ \ \ \{}
-\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ None,}
-\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ Up,}
-\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ Right,}
-\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ Down,}
-\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ Left,}
-\DoxyCodeLine{00266\ \ \ \ \ \};}
-\DoxyCodeLine{00267\ \ \ \ \ eSlideAction\ SlideAction\ =\ eSlideAction::None;}
-\DoxyCodeLine{00268\ \ \ \ \ }
-\DoxyCodeLine{00269\ \ \ \ \ \textcolor{comment}{//\ Equality\ operator\ ==}}
-\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\&\ other)\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ X\ ==\ other.X\ \&\&\ Y\ ==\ other.Y\ \&\&\ DX\ ==\ other.DX\ \&\&}
-\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DY\ ==\ other.DY\ \&\&\ ZX\ ==\ other.ZX\ \&\&\ ZY\ ==\ other.ZY\ \&\&}
-\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TipAction\ ==\ other.TipAction;}
-\DoxyCodeLine{00274\ \ \ \ \ \}}
-\DoxyCodeLine{00275\ }
-\DoxyCodeLine{00276\ \ \ \ \ \textcolor{comment}{//\ Inequality\ operator\ !=}}
-\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator!=(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\&\ other)\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ other);}
-\DoxyCodeLine{00279\ \ \ \ \ \}}
-\DoxyCodeLine{00280\ \};}
-\DoxyCodeLine{00281\ }
-\DoxyCodeLine{00282\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_lock}{Lock}}\ \{}
-\DoxyCodeLine{00283\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00284\ \ \ \ \ \mbox{\hyperlink{class_lock}{Lock}}()}
-\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ :\ locked(\textcolor{keyword}{false})\ \{\}}
-\DoxyCodeLine{00286\ }
-\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keywordtype}{void}\ lock()\ \{}
-\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\_\_sync\_lock\_test\_and\_set(\&locked,\ \textcolor{keyword}{true}))\ \{}
-\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Spin\ until\ the\ lock\ is\ acquired}}
-\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00291\ \ \ \ \ \}}
-\DoxyCodeLine{00292\ }
-\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keywordtype}{void}\ unlock()\ \{}
-\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \_\_sync\_lock\_release(\&locked);}
-\DoxyCodeLine{00295\ \ \ \ \ \}}
-\DoxyCodeLine{00296\ }
-\DoxyCodeLine{00297\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keywordtype}{bool}\ locked;}
-\DoxyCodeLine{00299\ \};}
-\DoxyCodeLine{00300\ }
-\DoxyCodeLine{00301\ \textcolor{comment}{//\ callback\ class\ for\ (glMain)}}
-\DoxyCodeLine{00302\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcb_display}{cbDisplay}}}
-\DoxyCodeLine{00303\ \{}
-\DoxyCodeLine{00304\ \ \ \ \ \mbox{\hyperlink{class_lock}{Lock}}\ mtx;}
-\DoxyCodeLine{00305\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00306\ \ \ \ \ \textcolor{keywordtype}{void}\ Blanking()}
-\DoxyCodeLine{00307\ \ \ \ \ \{}
-\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ cbBlanking();}
-\DoxyCodeLine{00309\ \ \ \ \ \}}
-\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keywordtype}{void}\ Touch(\mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\&\ tp)}
-\DoxyCodeLine{00311\ \ \ \ \ \{}
-\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ NVIC\_DisableIRQ(LTDC\_IRQn);}
-\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ cbTouch(tp);}
-\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ NVIC\_EnableIRQ(LTDC\_IRQn);}
-\DoxyCodeLine{00315\ \ \ \ \ \}}
-\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ cbBlanking()\ =\ 0;}
-\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ cbTouch(\mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\&)\ =\ 0;}
-\DoxyCodeLine{00318\ \};}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ maximum\ right\ and\ bottom\ coordinates}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Position.\_RB.X\ >\ \_RB.X)\ newRight\ =\ Position.\_RB.X;}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Position.\_RB.Y\ >\ \_RB.Y)\ newBottom\ =\ Position.\_RB.Y;}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ the\ position\ to\ encompass\ the\ other\ position}}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structgl2_d_point__t_ac5602e7d20edd61499fb42fc2e59605a}{gl2DPoint\_t}}(newLeft,\ newTop,\ newRight,\ newBottom);}
+\DoxyCodeLine{00252\ \ \ \ \ \}}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ Intersection(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ \&Position)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00255\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Empty())\ \textcolor{keywordflow}{return}\ Position;}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ P\_t\ newLeft\ =\ \_LT.X;}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ P\_t\ newTop\ =\ \_LT.Y;}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ P\_t\ newRight\ =\ \_RB.X;}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ P\_t\ newBottom\ =\ \_RB.Y;}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ minimum\ right\ and\ bottom\ coordinates}}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Position.\_LT.X\ >\ \_LT.X)\ newLeft\ =\ Position.\_LT.X;}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Position.\_LT.Y\ >\ \_LT.Y)\ newTop\ =\ Position.\_LT.Y;}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ maximum\ left\ and\ top\ coordinates}}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Position.\_RB.X\ <\ \_RB.X)\ newRight\ =\ Position.\_RB.X;}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Position.\_RB.Y\ <\ \_RB.Y)\ newBottom\ =\ Position.\_RB.Y;}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ intersection\ exists}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (newLeft\ <\ newRight\ \&\&\ newTop\ <\ newBottom)\ }
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structgl2_d_point__t_ac5602e7d20edd61499fb42fc2e59605a}{gl2DPoint\_t}}(newLeft,\ newTop,\ newRight,\ newBottom);}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ an\ empty\ rectangle\ if\ there's\ no\ intersection}}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structgl2_d_point__t_ac5602e7d20edd61499fb42fc2e59605a}{gl2DPoint\_t}}();}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00281\ \ \ \ \ \}\ \ \ \ }
+\DoxyCodeLine{00282\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00283\ \ \ \ \ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}\ \_LT,\ \_RB;}
+\DoxyCodeLine{00284\ \};}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00289\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_video_memory}{glVideoMemory}}}
+\DoxyCodeLine{00290\ \{}
+\DoxyCodeLine{00291\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00296\ \ \ \ \ \textcolor{keyword}{static}\ P\_t\ \mbox{\hyperlink{classgl_video_memory_ad8382197b985124b688fd84216728f14}{ScreenWidth}}()\ \{\ \textcolor{keywordflow}{return}\ \_ScreenWidth;\ \}}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keyword}{static}\ P\_t\ \mbox{\hyperlink{classgl_video_memory_ad2a3fbb1c2c576796b960406fa7951b9}{ScreenHeight}}()\ \{\ \textcolor{keywordflow}{return}\ \_ScreenHeight;\ \}}
+\DoxyCodeLine{00303\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{comment}{//\ Pointer\ to\ graphic\ buffer}}
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ *pVM;\ }
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{comment}{//\ Width\ \&\ height\ of\ graphic\ buffer}}
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keyword}{static}\ P\_t\ \_ScreenWidth,\ \_ScreenHeight;\ }
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{comment}{//\ Band\ drawing\ control}}
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keyword}{static}\ P\_t\ ls,\ yStart,\ yEnd;\ \textcolor{comment}{//\ Lines\ to\ draw\ on\ each\ blanking}}
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ InvalidRegion;\ \textcolor{comment}{//\ Invalid\ region}}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgl_video_memory_a79f28b876830fedd3cc74a256eb2c410}{lastBand}}()\ \{\ \textcolor{keywordflow}{return}\ yEnd\ ==\ \_ScreenHeight;\ \}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00323\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgl_video_memory_a1ee38dc72e41940446fe3bf03e54d659}{LimitRegion}}()}
+\DoxyCodeLine{00324\ \ \ \ \ \{}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ InvalidRegion\ =\ InvalidRegion.Intersection(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ yStart,\ \_ScreenWidth\ -\/\ 1,\ yEnd\ -\/\ 1));}
+\DoxyCodeLine{00326\ \ \ \ \ \}}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgl_video_memory_aec104053547ef2609fadd975369ca657}{NextRegion}}()}
+\DoxyCodeLine{00332\ \ \ \ \ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ yStart\ +=\ ls;\ }
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (yStart\ >=\ \_ScreenHeight)\ yStart\ =\ 0;}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ yEnd\ =\ yStart\ +\ ls;}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (yEnd\ >=\ \_ScreenHeight)\ yEnd\ =\ \_ScreenHeight;}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ InvalidRegion\ =\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0);}
+\DoxyCodeLine{00338\ \ \ \ \ \}}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00346\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgl_video_memory_a3fbd6abbb3a2b322e2313bef9d4664a8}{Init}}(\textcolor{keyword}{const}\ P\_t\ w,\ \textcolor{keyword}{const}\ P\_t\ h,\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ *pvm)}
+\DoxyCodeLine{00347\ \ \ \ \ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ pVM\ =\ pvm;\ }
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \_ScreenWidth\ =\ w;\ \_ScreenHeight\ =\ h;}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ ls\ =\ h;}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ yStart\ =\ 0,\ yEnd\ =\ yStart\ +\ ls;}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ InvalidRegion\ =\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0);}
+\DoxyCodeLine{00353\ \ \ \ \ \}}
+\DoxyCodeLine{00354\ \};}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00357\ \textcolor{preprocessor}{\#define\ M\_PI\ 3.1415926535897932384626433832795}}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00364\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ RainbowColorGradient(\textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00369\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}}
+\DoxyCodeLine{00370\ \{}
+\DoxyCodeLine{00371\ \ \ \ \ int16\_t\ X,\ Y,\ DX,\ DY,\ ZX,\ ZY;}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00376\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{structgl_touch_point__t_a157257461882a3a46a9439f69c293837}{eTipAction}}}
+\DoxyCodeLine{00377\ \ \ \ \ \{}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ Tip,\ }
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ Up,\ }
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ Slide,\ }
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ Zoom,\ }
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ ZoomWait}
+\DoxyCodeLine{00383\ \ \ \ \ \};}
+\DoxyCodeLine{00384\ \ \ \ \ \mbox{\hyperlink{structgl_touch_point__t_a157257461882a3a46a9439f69c293837}{eTipAction}}\ TipAction\ =\ eTipAction::Up;}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00389\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{structgl_touch_point__t_ab359bc458af91368eeb9b9f6c0478fb4}{eSlideAction}}}
+\DoxyCodeLine{00390\ \ \ \ \ \{}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ None,}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ Up,}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ Right,}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ Down,}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ Left,}
+\DoxyCodeLine{00396\ \ \ \ \ \};}
+\DoxyCodeLine{00397\ \ \ \ \ \mbox{\hyperlink{structgl_touch_point__t_ab359bc458af91368eeb9b9f6c0478fb4}{eSlideAction}}\ SlideAction\ =\ eSlideAction::None;}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structgl_touch_point__t_a4850bf2affcaeb04c0897b38962ddf34}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\&\ other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ X\ ==\ other.X\ \&\&\ Y\ ==\ other.Y\ \&\&\ DX\ ==\ other.DX\ \&\&}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DY\ ==\ other.DY\ \&\&\ ZX\ ==\ other.ZX\ \&\&\ ZY\ ==\ other.ZY\ \&\&}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TipAction\ ==\ other.TipAction;}
+\DoxyCodeLine{00408\ \ \ \ \ \}}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structgl_touch_point__t_a47348915ae035c7cf4906454892fb361}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\&\ other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ other);}
+\DoxyCodeLine{00417\ \ \ \ \ \}}
+\DoxyCodeLine{00418\ \};}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00423\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_lock}{Lock}}\ \{}
+\DoxyCodeLine{00424\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00428\ \ \ \ \ \mbox{\hyperlink{class_lock_a9944623567d8138b95e74fadc7190adb}{Lock}}()}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ :\ locked(false)\ \{\}}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00434\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_lock_a9274a7e20cd5884ea268698d6db8eed6}{lock}}()\ \{}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\_\_sync\_lock\_test\_and\_set(\&locked,\ \textcolor{keyword}{true}))\ \{}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Spin\ until\ the\ lock\ is\ acquired}}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00438\ \ \ \ \ \}}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00443\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_lock_a99860d8e0b2fa7d0d2d77fd1dbb05ce3}{unlock}}()\ \{}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \_\_sync\_lock\_release(\&locked);}
+\DoxyCodeLine{00445\ \ \ \ \ \}}
+\DoxyCodeLine{00446\ }
+\DoxyCodeLine{00447\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00448\ \ \ \ \ \textcolor{keywordtype}{bool}\ locked;\ }
+\DoxyCodeLine{00449\ \};}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00454\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcb_display}{cbDisplay}}\ }
+\DoxyCodeLine{00455\ \{}
+\DoxyCodeLine{00456\ \ \ \ \ \mbox{\hyperlink{class_lock}{Lock}}\ mtx;}
+\DoxyCodeLine{00457\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcb_display_ab2ff6a7b4bfb525ed79c49f711903657}{Blanking}}()}
+\DoxyCodeLine{00462\ \ \ \ \ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcb_display_a54467ed5dfaef5d9fb651921d64eed40}{cbBlanking}}();}
+\DoxyCodeLine{00464\ \ \ \ \ \}}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00470\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcb_display_a085ed844fefb4b808aa4f0d431e561be}{Touch}}(\mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\&\ tp)}
+\DoxyCodeLine{00471\ \ \ \ \ \{}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ NVIC\_DisableIRQ(LTDC\_IRQn);}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcb_display_a2371e3a78b24a19635435b3eda9d9355}{cbTouch}}(tp);}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ NVIC\_EnableIRQ(LTDC\_IRQn);}
+\DoxyCodeLine{00475\ \ \ \ \ \}}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00480\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcb_display_a54467ed5dfaef5d9fb651921d64eed40}{cbBlanking}}()\ =\ 0;}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00486\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcb_display_a2371e3a78b24a19635435b3eda9d9355}{cbTouch}}(\mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\&)\ =\ 0;}
+\DoxyCodeLine{00487\ \};}
+\DoxyCodeLine{00488\ }
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ }
+\DoxyCodeLine{00491\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00492\ \textcolor{comment}{\ *\ Copyright\ 2024\ Søren\ Gullach}}
+\DoxyCodeLine{00493\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00494\ \textcolor{comment}{\ *\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00495\ \textcolor{comment}{\ *\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00496\ \textcolor{comment}{\ *\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00497\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00498\ \textcolor{comment}{\ *\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00499\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00500\ \textcolor{comment}{\ *\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00501\ \textcolor{comment}{\ *\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00502\ \textcolor{comment}{\ *\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00503\ \textcolor{comment}{\ *\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00504\ \textcolor{comment}{\ *\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00505\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00506\ \textcolor{comment}{\ *\ You\ must\ include\ the\ following\ attribution\ in\ all\ copies\ or\ substantial\ portions\ of\ the\ Software:}}
+\DoxyCodeLine{00507\ \textcolor{comment}{\ *\ "{}Søren\ Gullach\ <STM32\_R7\_OS@toolsbox.dk>"{}}}
+\DoxyCodeLine{00508\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00509\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00510\ \textcolor{comment}{\#pragma\ once}}
+\DoxyCodeLine{00511\ \textcolor{comment}{}}
+\DoxyCodeLine{00512\ \textcolor{comment}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00513\ \textcolor{comment}{\#include\ <cmath>}}
+\DoxyCodeLine{00514\ \textcolor{comment}{\#include\ <assert.h>}}
+\DoxyCodeLine{00515\ \textcolor{comment}{\#include\ "{}MemoryDefs.h"{}}}
+\DoxyCodeLine{00516\ \textcolor{comment}{\#include\ "{}glColorTable.h"{}}}
+\DoxyCodeLine{00517\ \textcolor{comment}{}}
+\DoxyCodeLine{00518\ \textcolor{comment}{typedef\ uint16\_t\ P\_t;}}
+\DoxyCodeLine{00519\ \textcolor{comment}{typedef\ uint8\_t\ C\_t;}}
+\DoxyCodeLine{00520\ \textcolor{comment}{}}
+\DoxyCodeLine{00522\ struct\ glARGB\_t}
+\DoxyCodeLine{00523\ \{}
+\DoxyCodeLine{00524\ \ \ \ \ C\_t\ B,\ G,\ R,\ A;\ //\ fits\ LTDC\ layout}
+\DoxyCodeLine{00525\ \}\ \_\_PACKED;\ }
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ struct\ glColor\_t\ :\ public\ glARGB\_t}
+\DoxyCodeLine{00528\ \{}
+\DoxyCodeLine{00529\ \ \ \ \ glColor\_t()}
+\DoxyCodeLine{00530\ \ \ \ \ \{}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ R\ =\ G\ =\ B\ =\ 0;\ A\ =\ 255;}
+\DoxyCodeLine{00532\ \ \ \ \ \}}
+\DoxyCodeLine{00533\ \ \ \ \ glColor\_t(glColors\ color)}
+\DoxyCodeLine{00534\ \ \ \ \ \{}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ R\ =\ (static\_cast<uint32\_t>(color)\ >>\ 16)\ \&\ 0xFF;}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ G\ =\ (static\_cast<uint32\_t>(color)\ >>\ 8)\ \&\ 0xFF;}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ B\ =\ (static\_cast<uint32\_t>(color))\ \&\ 0xFF;}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ A\ =\ 255;}
+\DoxyCodeLine{00539\ \ \ \ \ \}}
+\DoxyCodeLine{00540\ \ \ \ \ glColor\_t(C\_t\ red,\ C\_t\ green,\ C\_t\ blue,\ C\_t\ alpha\ =\ 255)}
+\DoxyCodeLine{00541\ \ \ \ \ \{}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ R\ =\ red;\ G\ =\ green;\ B\ =\ blue;\ A\ =\ alpha;}
+\DoxyCodeLine{00543\ \ \ \ \ \}}
+\DoxyCodeLine{00544\ \ \ \ \ }
+\DoxyCodeLine{00545\ \ \ \ \ //\ Function\ to\ find\ the\ nearest\ color\ from\ the\ enum\ list\ based\ on\ an\ RGB\ color}
+\DoxyCodeLine{00546\ \ \ \ \ static\ glColors\ FindNearestColor(C\_t\ r,\ C\_t\ g,\ C\_t\ b)\ }
+\DoxyCodeLine{00547\ \ \ \ \ \{}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ glColors\ nearestColor\ =\ glColors::BLACK;\ //\ Default\ to\ black}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ float\ minDistance\ =\ std::numeric\_limits<float>::max();}
+\DoxyCodeLine{00550\ }
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ //\ Iterate\ through\ all\ colors\ in\ the\ enum\ list}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ for\ (uint32\_t\ i\ =\ 0;\ i\ <\ glColorTableSize;\ ++i)\ }
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \ \ \ \ glColors\ currentColor\ =\ static\_cast<glColors>(i);}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \ \ \ \ glColor\_t\ Color(currentColor);}
+\DoxyCodeLine{00556\ }
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \ \ \ \ //\ Calculate\ the\ distance\ between\ the\ current\ color\ and\ the\ input\ RGB\ color}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \ \ \ \ float\ distance\ =\ sqrtf(powf(Color.R\ -\/\ r,\ 2)\ +\ powf(Color.G\ -\/\ g,\ 2)\ +\ powf(Color.B\ -\/\ b,\ 2));}
+\DoxyCodeLine{00559\ }
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \ \ \ //\ Update\ nearest\ color\ if\ a\ closer\ match\ is\ found}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (distance\ <\ minDistance)\ }
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ minDistance\ =\ distance;}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nearestColor\ =\ currentColor;}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00567\ }
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ return\ nearestColor;}
+\DoxyCodeLine{00569\ \ \ \ \ \}}
+\DoxyCodeLine{00570\ \};\ }
+\DoxyCodeLine{00571\ static\_assert(sizeof(glColor\_t)\ ==\ 4,\ "{}Wrong\ size"{});}
+\DoxyCodeLine{00572\ }
+\DoxyCodeLine{00574\ struct\ glPoint\_t\ \{}
+\DoxyCodeLine{00575\ \ \ \ \ P\_t\ X,\ Y;}
+\DoxyCodeLine{00576\ \ \ \ \ }
+\DoxyCodeLine{00577\ \ \ \ \ glPoint\_t()}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ :\ X(0)}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ ,\ Y(0)\ \{\}}
+\DoxyCodeLine{00580\ \ \ \ \ glPoint\_t(P\_t\ x,\ P\_t\ y)}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ :\ X(x)}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ ,\ Y(y)\ \{\}}
+\DoxyCodeLine{00583\ \ \ \ \ }
+\DoxyCodeLine{00584\ \ \ \ \ //\ Displace\ the\ point\ by\ the\ specified\ amounts\ in\ the\ x\ and\ y\ directions}
+\DoxyCodeLine{00585\ \ \ \ \ glPoint\_t\ Displace(const\ int\ dx,\ const\ int\ dy)\ const\ }
+\DoxyCodeLine{00586\ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ //\ Calculate\ the\ new\ x-\/coordinate\ after\ displacement}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ P\_t\ newX\ =\ (dx\ <\ 0\ \&\&\ X\ >\ -\/dx)\ ?\ X\ +\ dx\ :\ (dx\ >\ 0\ ?\ X\ +\ dx\ :\ X);}
+\DoxyCodeLine{00589\ }
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ //\ Calculate\ the\ new\ y-\/coordinate\ after\ displacement}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ P\_t\ newY\ =\ (dy\ <\ 0\ \&\&\ Y\ >\ -\/dy)\ ?\ Y\ +\ dy\ :\ (dy\ >\ 0\ ?\ Y\ +\ dy\ :\ Y);}
+\DoxyCodeLine{00592\ }
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ //\ Return\ the\ displaced\ point}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ return\ glPoint\_t(newX,\ newY);\ }
+\DoxyCodeLine{00595\ \ \ \ \ \}}
+\DoxyCodeLine{00596\ \ \ \ \ glPoint\_t\ Displace(const\ glPoint\_t\ \&p)\ \ const\ \{\ return\ Displace(p.X,\ p.Y);\ \}}
+\DoxyCodeLine{00597\ \};}
+\DoxyCodeLine{00598\ }
+\DoxyCodeLine{00600\ struct\ gl2DPoint\_t}
+\DoxyCodeLine{00601\ \{}
+\DoxyCodeLine{00602\ \ \ \ \ gl2DPoint\_t()\ \{\}}
+\DoxyCodeLine{00603\ \ \ \ \ gl2DPoint\_t(const\ glPoint\_t\ \&lt,\ const\ glPoint\_t\ \&rb)}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ :\ \_LT(lt)}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ ,\ \_RB(rb)}
+\DoxyCodeLine{00606\ \ \ \ \ \{\ }
+\DoxyCodeLine{00607\ \ \ \ \ \}}
+\DoxyCodeLine{00608\ \ \ \ \ gl2DPoint\_t(P\_t\ left,\ P\_t\ top,\ P\_t\ right,\ P\_t\ bottom)}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ :\ \_LT(left,\ top)}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ ,\ \_RB(right,\ bottom)}
+\DoxyCodeLine{00611\ \ \ \ \ \{\ }
+\DoxyCodeLine{00612\ \ \ \ \ \}}
+\DoxyCodeLine{00613\ \ \ \ \ P\_t\ L()\ \{\ return\ \_LT.X;\ \}}
+\DoxyCodeLine{00614\ \ \ \ \ P\_t\ T()\ \{\ return\ \_LT.Y;\ \}}
+\DoxyCodeLine{00615\ \ \ \ \ P\_t\ R()\ \{\ return\ \_RB.X;\ \}}
+\DoxyCodeLine{00616\ \ \ \ \ P\_t\ B()\ \{\ return\ \_RB.Y;\ \}}
+\DoxyCodeLine{00617\ }
+\DoxyCodeLine{00618\ \ \ \ \ void\ L(const\ P\_t\ \&t)\ \ \ \ \{\ \_LT.X\ =\ t;\ \}}
+\DoxyCodeLine{00619\ \ \ \ \ void\ T(const\ P\_t\ \&t)\ \ \ \ \{\ \_LT.Y\ =\ t;\ \}}
+\DoxyCodeLine{00620\ \ \ \ \ void\ R(const\ P\_t\ \&t)\ \ \ \ \{\ \_RB.X\ =\ t;\ \}}
+\DoxyCodeLine{00621\ \ \ \ \ void\ B(const\ P\_t\ \&t)\ \ \ \ \{\ \_RB.Y\ =\ t;\ \}}
+\DoxyCodeLine{00622\ }
+\DoxyCodeLine{00623\ \ \ \ \ glPoint\_t\ LT()\ \ const\ \{\ return\ \_LT;\ \}\ }
+\DoxyCodeLine{00624\ \ \ \ \ glPoint\_t\ LB()\ \ const\ \{\ return\ glPoint\_t(\_LT.X,\ \_RB.Y);\ \}\ }
+\DoxyCodeLine{00625\ \ \ \ \ glPoint\_t\ RT()\ \ const\ \{\ return\ glPoint\_t(\_RB.X,\ \_LT.Y);\ \}\ }
+\DoxyCodeLine{00626\ \ \ \ \ glPoint\_t\ RB()\ \ const\ \{\ return\ \_RB;\ \}\ }
+\DoxyCodeLine{00627\ }
+\DoxyCodeLine{00628\ \ \ \ \ P\_t\ Width()\ const\ \{\ return\ \_RB.X\ -\/\ \_LT.X;\ \}}
+\DoxyCodeLine{00629\ \ \ \ \ P\_t\ Height()\ const\ \{\ return\ \_RB.Y\ -\/\ \_LT.Y;\ \}}
+\DoxyCodeLine{00630\ \ \ \ \ bool\ Empty()\ const\ \{\ return\ Width()\ ==\ 0\ ||\ Height()\ ==\ 0;\ \}}
+\DoxyCodeLine{00631\ }
+\DoxyCodeLine{00632\ \ \ \ \ gl2DPoint\_t\ Normalize()}
+\DoxyCodeLine{00633\ \ \ \ \ \{}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ gl2DPoint\_t\ pt\ =\ *this;}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ if\ (pt.L()\ >\ pt.R())\ \{\ P\_t\ t\ =\ pt.R();\ pt.R(L());\ pt.L(t);\ \}}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ if\ (pt.T()\ >\ pt.B())\ \{\ P\_t\ t\ =\ pt.B();\ pt.B(T());\ pt.T(t);\ \}}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ return\ pt;}
+\DoxyCodeLine{00638\ \ \ \ \ \}}
+\DoxyCodeLine{00639\ \ \ \ \ bool\ IsInside(const\ P\_t\ x,\ const\ P\_t\ y)\ const\ \ \ \{\ return\ x\ >=\ \_LT.X\ \&\&\ x\ <=\ \_RB.X\ \&\&\ y\ >=\ \_LT.Y\ \&\&\ y\ <=\ \_RB.Y;\ \}}
+\DoxyCodeLine{00640\ \ \ \ \ bool\ IsInside(const\ glPoint\_t\ \&p)\ const\ \ \ \ \ \ \ \ \ \{\ return\ IsInside(p.X,\ p.Y);\ \}}
+\DoxyCodeLine{00641\ }
+\DoxyCodeLine{00642\ \ \ \ \ gl2DPoint\_t\ Displace(const\ int\ dx,\ const\ int\ dy)\ const\ \ \{\ return\ gl2DPoint\_t(\_LT.Displace(dx,\ dy),\ \_RB.Displace(dx,\ dy));\ \ \ \}}
+\DoxyCodeLine{00643\ \ \ \ \ gl2DPoint\_t\ Displace(const\ glPoint\_t\ \&p)\ const\ \ \ \ \ \ \ \ \ \ \{\ return\ Displace(p.X,\ p.Y);\ \ \ \ \}}
+\DoxyCodeLine{00644\ \ \ \ \ }
+\DoxyCodeLine{00645\ \ \ \ \ void\ MoveTo(const\ int\ l,\ const\ int\ t,\ const\ int\ r,\ const\ int\ b)\ \{\ \_LT\ =\ glPoint\_t(l,\ t);\ \_RB\ =\ glPoint\_t(r,\ b);\ \}}
+\DoxyCodeLine{00646\ \ \ \ \ void\ MoveTo(const\ gl2DPoint\_t\ \&p)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \_LT\ =\ p.LT(),\ \_RB\ =\ p.RB();\ \}}
+\DoxyCodeLine{00647\ }
+\DoxyCodeLine{00648\ \ \ \ \ gl2DPoint\_t\ Inflate(int\ d)\ const\ \ \ \ \{\ return\ gl2DPoint\_t(\_LT.Displace(-\/d,\ -\/d),\ \_RB.Displace(d,\ d));\ \}}
+\DoxyCodeLine{00649\ \ \ \ \ gl2DPoint\_t\ Union(const\ gl2DPoint\_t\ \&Position)\ const}
+\DoxyCodeLine{00650\ \ \ \ \ \{}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ if\ (Empty())\ return\ Position;}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ if\ (Position.Empty())\ return\ *this;}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ P\_t\ newLeft\ =\ \_LT.X;}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ P\_t\ newTop\ =\ \_LT.Y;}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ P\_t\ newRight\ =\ \_RB.X;}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ P\_t\ newBottom\ =\ \_RB.Y;}
+\DoxyCodeLine{00658\ }
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ //\ Calculate\ the\ minimum\ left\ and\ top\ coordinates}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ if\ (Position.\_LT.X\ <\ \_LT.X)\ newLeft\ =\ Position.\_LT.X;}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ if\ (Position.\_LT.Y\ <\ \_LT.Y)\ newTop\ =\ Position.\_LT.Y;}
+\DoxyCodeLine{00662\ }
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ //\ Calculate\ the\ maximum\ right\ and\ bottom\ coordinates}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ if\ (Position.\_RB.X\ >\ \_RB.X)\ newRight\ =\ Position.\_RB.X;}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ if\ (Position.\_RB.Y\ >\ \_RB.Y)\ newBottom\ =\ Position.\_RB.Y;}
+\DoxyCodeLine{00666\ }
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ //\ Update\ the\ position\ to\ encompass\ the\ other\ position}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ return\ gl2DPoint\_t(newLeft,\ newTop,\ newRight,\ newBottom);}
+\DoxyCodeLine{00669\ \ \ \ \ \}}
+\DoxyCodeLine{00670\ \ \ \ \ gl2DPoint\_t\ Intersection(const\ gl2DPoint\_t\ \&Position)\ const}
+\DoxyCodeLine{00671\ \ \ \ \ \{}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ if\ (Empty())\ return\ Position;}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ P\_t\ newLeft\ =\ \_LT.X;}
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ P\_t\ newTop\ =\ \_LT.Y;}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ P\_t\ newRight\ =\ \_RB.X;}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ P\_t\ newBottom\ =\ \_RB.Y;}
+\DoxyCodeLine{00678\ }
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ //\ Calculate\ the\ minimum\ right\ and\ bottom\ coordinates}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ if\ (Position.\_LT.X\ >\ \_LT.X)\ newLeft\ =\ Position.\_LT.X;}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ if\ (Position.\_LT.Y\ >\ \_LT.Y)\ newTop\ =\ Position.\_LT.Y;}
+\DoxyCodeLine{00682\ }
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ //\ Calculate\ the\ maximum\ left\ and\ top\ coordinates}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ if\ (Position.\_RB.X\ <\ \_RB.X)\ newRight\ =\ Position.\_RB.X;}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ if\ (Position.\_RB.Y\ <\ \_RB.Y)\ newBottom\ =\ Position.\_RB.Y;}
+\DoxyCodeLine{00686\ }
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ //\ Check\ if\ intersection\ exists}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ if\ (newLeft\ <\ newRight\ \&\&\ newTop\ <\ newBottom)\ }
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \ \ \ \ return\ gl2DPoint\_t(newLeft,\ newTop,\ newRight,\ newBottom);}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ else\ }
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00694\ \ \ \ \ \ \ \ \ \ \ \ \ //\ Return\ an\ empty\ rectangle\ if\ there's\ no\ intersection}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ \ \ \ \ return\ gl2DPoint\_t();}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00697\ \ \ \ \ \}\ \ \ }
+\DoxyCodeLine{00698\ protected:}
+\DoxyCodeLine{00699\ \ \ \ \ glPoint\_t\ \_LT,\ \_RB;}
+\DoxyCodeLine{00700\ \};}
+\DoxyCodeLine{00701\ }
+\DoxyCodeLine{00702\ class\ glVideoMemory}
+\DoxyCodeLine{00703\ \{}
+\DoxyCodeLine{00704\ public:}
+\DoxyCodeLine{00705\ \ \ \ \ static\ P\_t\ ScreenWidth()\ \{\ \ return\ \_ScreenWidth;\ \}}
+\DoxyCodeLine{00706\ \ \ \ \ static\ P\_t\ ScreenHeight()\{\ \ return\ \_ScreenHeight;\}}
+\DoxyCodeLine{00707\ protected:}
+\DoxyCodeLine{00708\ \ \ \ \ //\ pointer\ to\ graphic\ buffer;\ }
+\DoxyCodeLine{00709\ \ \ \ \ static\ glARGB\_t\ *pVM;\ }
+\DoxyCodeLine{00710\ \ \ \ \ //\ width\ \&\ height\ of\ graphic\ buffer}
+\DoxyCodeLine{00711\ \ \ \ \ static\ P\_t\ \_ScreenWidth,\ \_ScreenHeight;\ }
+\DoxyCodeLine{00712\ }
+\DoxyCodeLine{00713\ public:}
+\DoxyCodeLine{00714\ \ \ \ \ //\ band\ drawing\ control}
+\DoxyCodeLine{00715\ \ \ \ \ static\ P\_t\ ls,\ yStart,\ yEnd;\ //\ lines\ to\ draw\ on\ each\ blanking}
+\DoxyCodeLine{00716\ \ \ \ \ static\ gl2DPoint\_t\ InvalidRegion;\ //\ invalid\ region}
+\DoxyCodeLine{00717\ \ \ \ \ //\ is\ this\ the\ last\ band}
+\DoxyCodeLine{00718\ \ \ \ \ static\ bool\ lastBand()\ \{\ return\ yEnd\ ==\ \_ScreenHeight;\ \}}
+\DoxyCodeLine{00719\ \ \ \ \ static\ void\ LimitRegion()}
+\DoxyCodeLine{00720\ \ \ \ \ \{}
+\DoxyCodeLine{00721\ \ \ \ \ \ \ \ \ InvalidRegion\ =\ InvalidRegion.Intersection(gl2DPoint\_t(0,\ yStart,\ \_ScreenWidth\ -\/\ 1,\ yEnd\ -\/\ 1));}
+\DoxyCodeLine{00722\ \ \ \ \ \}}
+\DoxyCodeLine{00723\ \ \ \ \ static\ void\ NextRegion()}
+\DoxyCodeLine{00724\ \ \ \ \ \{}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ yStart\ +=\ ls;\ }
+\DoxyCodeLine{00726\ \ \ \ \ \ \ \ \ if\ (yStart\ >=\ \_ScreenHeight)\ yStart\ =\ 0;}
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ yEnd\ =\ yStart\ +\ ls;}
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \ \ if\ (yEnd\ >=\ \_ScreenHeight)\ yEnd\ =\ \_ScreenHeight;}
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ InvalidRegion\ =\ gl2DPoint\_t(0,\ 0,\ 0,\ 0);}
+\DoxyCodeLine{00730\ \ \ \ \ \}}
+\DoxyCodeLine{00731\ \ \ \ \ }
+\DoxyCodeLine{00732\ \ \ \ \ static\ void\ Init(const\ P\_t\ w,\ const\ P\_t\ h,\ glARGB\_t\ *pvm)}
+\DoxyCodeLine{00733\ \ \ \ \ \{}
+\DoxyCodeLine{00734\ \ \ \ \ \ \ \ \ pVM\ =\ pvm;\ }
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ \_ScreenWidth\ =\ w;\ \_ScreenHeight\ =\ h;}
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ ls\ =\ h;}
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ yStart\ =\ 0,\ yEnd\ =\ yStart\ +\ ls;}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ InvalidRegion\ =\ gl2DPoint\_t(0,\ 0,\ 0,\ 0);}
+\DoxyCodeLine{00739\ \ \ \ \ \}}
+\DoxyCodeLine{00740\ \};}
+\DoxyCodeLine{00741\ }
+\DoxyCodeLine{00742\ \#include\ <math.h>}
+\DoxyCodeLine{00743\ \#define\ M\_PI\ 3.1415926535897932384626433832795}
+\DoxyCodeLine{00744\ glColor\_t\ RainbowColorGradient(float\ value);}
+\DoxyCodeLine{00745\ }
+\DoxyCodeLine{00746\ //\ Action/Point\ of\ Touch}
+\DoxyCodeLine{00747\ struct\ glTouchPoint\_t}
+\DoxyCodeLine{00748\ \{}
+\DoxyCodeLine{00749\ \ \ \ \ int16\_t\ X,\ Y,\ DX,\ DY,\ ZX,\ ZY;}
+\DoxyCodeLine{00750\ \ \ \ \ enum\ class\ eTipAction}
+\DoxyCodeLine{00751\ \ \ \ \ \{}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ Tip,\ }
+\DoxyCodeLine{00753\ \ \ \ \ \ \ \ \ Up,\ }
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ Slide,\ }
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ Zoom,\ }
+\DoxyCodeLine{00756\ \ \ \ \ \ \ \ \ ZoomWait}
+\DoxyCodeLine{00757\ \ \ \ \ \};}
+\DoxyCodeLine{00758\ \ \ \ \ eTipAction\ TipAction\ =\ eTipAction::Up;}
+\DoxyCodeLine{00759\ \ \ \ \ enum\ eSlideAction}
+\DoxyCodeLine{00760\ \ \ \ \ \{}
+\DoxyCodeLine{00761\ \ \ \ \ \ \ \ \ None,}
+\DoxyCodeLine{00762\ \ \ \ \ \ \ \ \ Up,}
+\DoxyCodeLine{00763\ \ \ \ \ \ \ \ \ Right,}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ Down,}
+\DoxyCodeLine{00765\ \ \ \ \ \ \ \ \ Left,}
+\DoxyCodeLine{00766\ \ \ \ \ \};}
+\DoxyCodeLine{00767\ \ \ \ \ eSlideAction\ SlideAction\ =\ eSlideAction::None;}
+\DoxyCodeLine{00768\ \ \ \ \ }
+\DoxyCodeLine{00769\ \ \ \ \ //\ Equality\ operator\ ==}
+\DoxyCodeLine{00770\ \ \ \ \ bool\ operator==(const\ glTouchPoint\_t\&\ other)\ const\ \{}
+\DoxyCodeLine{00771\ \ \ \ \ \ \ \ \ return\ X\ ==\ other.X\ \&\&\ Y\ ==\ other.Y\ \&\&\ DX\ ==\ other.DX\ \&\&}
+\DoxyCodeLine{00772\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DY\ ==\ other.DY\ \&\&\ ZX\ ==\ other.ZX\ \&\&\ ZY\ ==\ other.ZY\ \&\&}
+\DoxyCodeLine{00773\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TipAction\ ==\ other.TipAction;}
+\DoxyCodeLine{00774\ \ \ \ \ \}}
+\DoxyCodeLine{00775\ }
+\DoxyCodeLine{00776\ \ \ \ \ //\ Inequality\ operator\ !=}
+\DoxyCodeLine{00777\ \ \ \ \ bool\ operator!=(const\ glTouchPoint\_t\&\ other)\ const\ \{}
+\DoxyCodeLine{00778\ \ \ \ \ \ \ \ \ return\ !(*this\ ==\ other);}
+\DoxyCodeLine{00779\ \ \ \ \ \}}
+\DoxyCodeLine{00780\ \};}
+\DoxyCodeLine{00781\ }
+\DoxyCodeLine{00782\ class\ Lock\ \{}
+\DoxyCodeLine{00783\ public:}
+\DoxyCodeLine{00784\ \ \ \ \ Lock()}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ :\ locked(false)\ \{\}}
+\DoxyCodeLine{00786\ }
+\DoxyCodeLine{00787\ \ \ \ \ void\ lock()\ \{}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ while\ (\_\_sync\_lock\_test\_and\_set(\&locked,\ true))\ \{}
+\DoxyCodeLine{00789\ \ \ \ \ \ \ \ \ \ \ \ \ //\ Spin\ until\ the\ lock\ is\ acquired}
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00791\ \ \ \ \ \}}
+\DoxyCodeLine{00792\ }
+\DoxyCodeLine{00793\ \ \ \ \ void\ unlock()\ \{}
+\DoxyCodeLine{00794\ \ \ \ \ \ \ \ \ \_\_sync\_lock\_release(\&locked);}
+\DoxyCodeLine{00795\ \ \ \ \ \}}
+\DoxyCodeLine{00796\ }
+\DoxyCodeLine{00797\ private:}
+\DoxyCodeLine{00798\ \ \ \ \ bool\ locked;}
+\DoxyCodeLine{00799\ \};}
+\DoxyCodeLine{00800\ }
+\DoxyCodeLine{00802\ class\ cbDisplay\ }
+\DoxyCodeLine{00803\ \{}
+\DoxyCodeLine{00804\ \ \ \ \ Lock\ mtx;}
+\DoxyCodeLine{00805\ public:}
+\DoxyCodeLine{00806\ \ \ \ \ void\ Blanking()}
+\DoxyCodeLine{00807\ \ \ \ \ \{}
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ cbBlanking();}
+\DoxyCodeLine{00809\ \ \ \ \ \}}
+\DoxyCodeLine{00810\ \ \ \ \ void\ Touch(glTouchPoint\_t\&\ tp)}
+\DoxyCodeLine{00811\ \ \ \ \ \{}
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ NVIC\_DisableIRQ(LTDC\_IRQn);}
+\DoxyCodeLine{00813\ \ \ \ \ \ \ \ \ cbTouch(tp);}
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \ \ NVIC\_EnableIRQ(LTDC\_IRQn);}
+\DoxyCodeLine{00815\ \ \ \ \ \}}
+\DoxyCodeLine{00816\ \ \ \ \ virtual\ void\ cbBlanking()\ =\ 0;}
+\DoxyCodeLine{00817\ \ \ \ \ virtual\ void\ cbTouch(glTouchPoint\_t\&)\ =\ 0;}
+\DoxyCodeLine{00818\ \};}
+\DoxyCodeLine{00819\ */}
 
 \end{DoxyCode}

@@ -1,5 +1,14 @@
 \doxysection{gl\+Color\+\_\+t Struct Reference}
 \hypertarget{structgl_color__t}{}\label{structgl_color__t}\index{glColor\_t@{glColor\_t}}
+
+
+Represents a color with convenience constructors and methods.  
+
+
+
+
+{\ttfamily \#include $<$gl\+Types.\+h$>$}
+
 Inheritance diagram for gl\+Color\+\_\+t\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,18 +18,18 @@ Inheritance diagram for gl\+Color\+\_\+t\+:\begin{figure}[H]
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{structgl_color__t_af87f3f67377b46a52f9f98573be6f063}\label{structgl_color__t_af87f3f67377b46a52f9f98573be6f063} 
-{\bfseries gl\+Color\+\_\+t} (gl\+Colors color)
-\item 
-\Hypertarget{structgl_color__t_af8d4417d6f8e083a87257d1b71575969}\label{structgl_color__t_af8d4417d6f8e083a87257d1b71575969} 
-{\bfseries gl\+Color\+\_\+t} (C\+\_\+t red, C\+\_\+t green, C\+\_\+t blue, C\+\_\+t alpha=255)
-\end{DoxyCompactItemize}
+\Hypertarget{structgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}\label{structgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46} 
+{\bfseries gl\+Color\+\_\+t} ()
+\begin{DoxyCompactList}\small\item\em Default constructor initializing the color to black with full opacity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_color__t_af87f3f67377b46a52f9f98573be6f063}{gl\+Color\+\_\+t}} (gl\+Colors color)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize color using a predefined color from gl\+Colors enum. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_color__t_af8d4417d6f8e083a87257d1b71575969}{gl\+Color\+\_\+t}} (C\+\_\+t red, C\+\_\+t green, C\+\_\+t blue, C\+\_\+t alpha=255)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize color using specific RGBA values. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{structgl_color__t_af06e1ec4bceb4bb26d2c9a10b3ae13e4}\label{structgl_color__t_af06e1ec4bceb4bb26d2c9a10b3ae13e4} 
-static gl\+Colors {\bfseries Find\+Nearest\+Color} (C\+\_\+t r, C\+\_\+t g, C\+\_\+t b)
-\end{DoxyCompactItemize}
+static gl\+Colors \mbox{\hyperlink{structgl_color__t_af06e1ec4bceb4bb26d2c9a10b3ae13e4}{Find\+Nearest\+Color}} (C\+\_\+t r, C\+\_\+t g, C\+\_\+t b)
+\begin{DoxyCompactList}\small\item\em Finds the nearest color from the enum list based on an RGB color. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}}}
 \begin{DoxyCompactItemize}
@@ -32,7 +41,74 @@ C\+\_\+t {\bfseries G}
 C\+\_\+t {\bfseries R}
 \item 
 C\+\_\+t {\bfseries A}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Color channels in ARGB format, fitting LTDC layout. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a color with convenience constructors and methods. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structgl_color__t_af87f3f67377b46a52f9f98573be6f063}\label{structgl_color__t_af87f3f67377b46a52f9f98573be6f063} 
+\index{glColor\_t@{glColor\_t}!glColor\_t@{glColor\_t}}
+\index{glColor\_t@{glColor\_t}!glColor\_t@{glColor\_t}}
+\doxysubsubsection{\texorpdfstring{glColor\_t()}{glColor\_t()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily gl\+Color\+\_\+t\+::gl\+Color\+\_\+t (\begin{DoxyParamCaption}\item[{gl\+Colors}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor to initialize color using a predefined color from gl\+Colors enum. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & The predefined color. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structgl_color__t_af8d4417d6f8e083a87257d1b71575969}\label{structgl_color__t_af8d4417d6f8e083a87257d1b71575969} 
+\index{glColor\_t@{glColor\_t}!glColor\_t@{glColor\_t}}
+\index{glColor\_t@{glColor\_t}!glColor\_t@{glColor\_t}}
+\doxysubsubsection{\texorpdfstring{glColor\_t()}{glColor\_t()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily gl\+Color\+\_\+t\+::gl\+Color\+\_\+t (\begin{DoxyParamCaption}\item[{C\+\_\+t}]{red,  }\item[{C\+\_\+t}]{green,  }\item[{C\+\_\+t}]{blue,  }\item[{C\+\_\+t}]{alpha = {\ttfamily 255} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor to initialize color using specific RGBA values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em red} & The red component. \\
+\hline
+{\em green} & The green component. \\
+\hline
+{\em blue} & The blue component. \\
+\hline
+{\em alpha} & The alpha component (default is 255 for full opacity). \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structgl_color__t_af06e1ec4bceb4bb26d2c9a10b3ae13e4}\label{structgl_color__t_af06e1ec4bceb4bb26d2c9a10b3ae13e4} 
+\index{glColor\_t@{glColor\_t}!FindNearestColor@{FindNearestColor}}
+\index{FindNearestColor@{FindNearestColor}!glColor\_t@{glColor\_t}}
+\doxysubsubsection{\texorpdfstring{FindNearestColor()}{FindNearestColor()}}
+{\footnotesize\ttfamily static gl\+Colors gl\+Color\+\_\+t\+::\+Find\+Nearest\+Color (\begin{DoxyParamCaption}\item[{C\+\_\+t}]{r,  }\item[{C\+\_\+t}]{g,  }\item[{C\+\_\+t}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Finds the nearest color from the enum list based on an RGB color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The red component of the color. \\
+\hline
+{\em g} & The green component of the color. \\
+\hline
+{\em b} & The blue component of the color. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The nearest predefined color from the gl\+Colors enum. 
+\end{DoxyReturn}
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}

@@ -20,11 +20,11 @@
 
 #pragma once
 
-#include "stm32h7xx.h"
-#include <GPIO.h>
-#include <SysTick.h>
-#include <Utils.h>
-#include <MemoryDefs.h>
+#include <stm32h7xx.h>
+#include "GPIO.h"
+#include "SysTick.h"
+#include "Hardware.h"
+#include "MemoryDefs.h"
 
 template<int ch>
 	class hwI2C

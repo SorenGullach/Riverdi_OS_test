@@ -17,6 +17,6 @@
  * "Søren Gullach <STM32_R7_OS@toolsbox.dk>"
  */
 
-#include "GUIFont.h"
+#include "glFont.h"
 #include "glButton.h"
 

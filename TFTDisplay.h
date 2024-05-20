@@ -98,8 +98,7 @@ public:
 
 		for (uint16_t x = 0; x <= 255; x++)
 		{
-			float value = x * (2 * M_PI / 256); // Calculate the color value
-			glColor_t t = RainbowColorGradient(value);
+			glColor_t t = glColor_t::RainbowColorGradient(x,255);
 			hwLTDC::BackgroundColor(t.R, t.G, t.B);
 			osDelay(50);
 		}
@@ -138,9 +137,8 @@ public:
 		// back color for background
 		BackgroundColor(255, 0, 0);
 
-		// a read band at "X"
-		float value = (500 * 2 * M_PI) / Width2; // Calculate the color value
-		glColor_t t = RainbowColorGradient(value);
+		// a rainbow band at "X"
+		glColor_t t = glColor_t::RainbowColorGradient(500, Width2);
 		DefaultColor(2, t.R, t.G, t.B, t.A);
 		
 		Layer(1, pVM1, 0, 0, 0 + Width1, 0 + Height1);
@@ -221,8 +219,8 @@ public:
 		for (uint32_t i = 0; i < 2; i++)
 			for (uint32_t x = 0; x < Width2; x++)
 			{
-				float value = (x * 2 * M_PI) / Width2; // Calculate the color value
-				glColor_t t = RainbowColorGradient(value);
+				// Calculate the color value
+				glColor_t t = glColor_t::RainbowColorGradient(x,Width2);
 				for (uint32_t y = 0; y < Height2; y++) 
 				{
 					pVM2[x + y*Width2] = t;

@@ -21,7 +21,7 @@
 
 #include <glMain.h>
 #include <glPage.h>
-#include <Fonts/GUIFont.h>
+#include <glFont.h>
 
 class GUIPageTest : public glPage
 {
@@ -31,11 +31,11 @@ public:
 	{
 		_Color = glColor_t(0, 0, 0);
 	}
-	// Initialize object
+	// Initialize widget
 	virtual void Init()
 	{
-		l1 = glLine(0, 0, _Position.Width(), _Position.Height(), Cr);
-		l2 = glLine(_Position.Width(), 0, 0, _Position.Height(), Cg);
+		l1 = glLine(0, 0, _Region.Width(), _Region.Height(), Cr);
+		l2 = glLine(_Region.Width(), 0, 0, _Region.Height(), Cg);
 		Add(&p1);
 		Add(&p2);
 		Add(&p3);
@@ -87,61 +87,82 @@ private:
 	glButtonText<20, Arial_16_1> B2 = { gl2DPoint_t(200, 300, 500, 400), "Hello" };
 };
 
-class GUIPage1 : public glPage
+class GUIPageTexts : public glPage
 {
 public:
-	GUIPage1()
+	GUIPageTexts()
+		: glPage("Page1")
+	{
+		_Color = glColors::LIGHT_PINK;
+	}
+	// Initialize widget
+	virtual void Init()
+	{
+		P_t xmax=0,x = 0,y=0;
+		for (int i = 0; i < 18; i++)
+		{
+			Add(&glTexts[i]); 
+			glTexts[i].Region().MoveTo(gl2DPoint_t(x, y, x+ glTexts[i].TextWidth(), y+ glTexts[i].TextHeight()).Inflate(0, 0, 5, 5));
+			y = glTexts[i].Region().B();
+			if (glTexts[i].Region().R() > xmax) xmax = glTexts[i].Region().R();
+			if (y > glVideoMemory::ScreenHeight())
+			{
+				x = xmax;
+				y = 0;
+				if (x > glVideoMemory::ScreenWidth())
+					x = 0;
+				glTexts[i].Region().MoveTo(gl2DPoint_t(x, y, x + glTexts[i].TextWidth(), y + glTexts[i].TextHeight()).Inflate(0, 0, 5, 5));
+				y = glTexts[i].Region().B();
+			}
+		}
+	}
+private:
+	glText<20> glTexts[18]
+	{
+		{ gl2DPoint_t(0, 0, 0, 0), "jArial_10_1", Arial_10_1 }, // 0
+		{ gl2DPoint_t(0, 0, 0, 0), "jArial_12_1", Arial_12_1 },
+		{ gl2DPoint_t(0, 0, 0, 0), "jArial_14_1", Arial_14_1 },
+		{ gl2DPoint_t(0, 0, 0, 0), "jArial_16_1", Arial_16_1 },
+		{ gl2DPoint_t(0, 0, 0, 0), "jArial_19_1", Arial_19_1 },
+		{ gl2DPoint_t(0, 0, 0, 0), "jArial_22_1", Arial_22_1 },
+		{ gl2DPoint_t(0, 0, 0, 0), "jArial_26_1", Arial_26_1 },
+		{ gl2DPoint_t(0, 0, 0, 0), "jArial_31_1", Arial_31_1 },
+		{ gl2DPoint_t(0, 0, 0, 0), "jArial_37_1", Arial_37_1 },
+		{ gl2DPoint_t(0, 0, 0, 0), "jArial_44_1", Arial_44_1 },
+		{ gl2DPoint_t(0, 0, 0, 0), "jArial_52_1", Arial_52_1 }, // 10
+		{ gl2DPoint_t(0, 0, 0, 0), "jArial_62_1", Arial_62_1 },
+		{ gl2DPoint_t(0, 0, 0, 0), "jArial_74_1", Arial_74_1 },
+		{ gl2DPoint_t(0, 0, 0, 0), "jArial_88_1", Arial_88_1 },
+		{ gl2DPoint_t(0, 0, 0, 0), "jArial_105_1", Arial_105_1 },
+		{ gl2DPoint_t(0, 0, 0, 0), "jArial_126_1", Arial_126_1 }, 
+		{ gl2DPoint_t(0, 0, 0, 0), "jArial_151_1", Arial_151_1 },
+		{ gl2DPoint_t(0, 0, 0, 0), "jArial_181_1", Arial_181_1, glColor_t(glColor_t::eColorOperation::ComplementBackground) }, // 17
+	}
+	;
+};
+
+class GUIPageButtons : public glPage
+{
+public:
+	GUIPageButtons()
 		: glPage("Page1")
 	{
 		_Color = glColor_t(0, 0, 0);
 	}
-	// Initialize object
+	// Initialize widget
 	virtual void Init()
 	{
-		B1.BackColor(glColor_t(glColors::LAWN_GREEN));
-		B1.PressedColor(glColor_t::FindNearestColor(0, 255, 255));
+		B2.TextColor(glColor_t(glColor_t::eColorOperation::ComplementBackground));
+		
+		B1.BackColor(glColors::LAWN_GREEN);
+		B1.PressedColor(glColors::BURLYWOOD);
 		
 		Add(&B1);
 		Add(&B2);
-		Add(&glText1);
-		Add(&glText2);
-		Add(&glText3);
-		Add(&glText4);
-		Add(&glText5);
-		Add(&glText6);
-		Add(&glText7);
-		Add(&glText8);
-		Add(&glText9);
-		Add(&glText10);
-		Add(&glText11);
-		Add(&glText12);
-		Add(&glText13);
-		Add(&glText14);
-		Add(&glText15);
-		Add(&glText16);
-
 	}
 private:
-	glButton B1 = { gl2DPoint_t(100, 300, 300, 400) };
-	glButtonText < 20, Arial_22_2> B2 = { gl2DPoint_t(200, 100, 500, 200), "Page1" };
-	
-	glText<20> glText1 = { gl2DPoint_t(0, 0, 200, 100), "Page1", Arial_16_1 };
-	glText<20> glText2 = { gl2DPoint_t(300, 0, 500, 100), "Page1", Arial_16_2 };
-	glText<20> glText3 = { gl2DPoint_t(0, 100, 200, 200), "Page1", Arial_18_1 };
-	glText<20> glText4 = { gl2DPoint_t(300, 100, 500, 200), "Page1", Arial_18_2 };
-	glText<20> glText5 = { gl2DPoint_t(0, 200, 200, 300), "Page1", Arial_20_1 };
-	glText<20> glText6 = { gl2DPoint_t(300, 200, 500, 300), "Page1", Arial_20_2 };
-	glText<20> glText7 = { gl2DPoint_t(0, 300, 200, 400), "Page1", Arial_22_1 };
-	glText<20> glText8 = { gl2DPoint_t(300, 300, 500, 400), "Page1", Arial_22_2 };
-	glText<20> glText9 = { gl2DPoint_t(0, 400, 200, 500), "Page1", Arial_24_1 };
-	glText<20> glText10 = { gl2DPoint_t(300, 400, 500, 500), "Page1", Arial_24_2 };
-
-	glText<20> glText11 = { gl2DPoint_t(500 + 0, 0, 500 + 200, 100), "Page1", Arial_26_1 };
-	glText<20> glText12 = { gl2DPoint_t(500 + 300, 0, 500 + 500, 100), "Page1", Arial_26_2 };
-	glText<20> glText13 = { gl2DPoint_t(500 + 0, 100, 500 + 200, 200), "Page1", Arial_28_1 };
-	glText<20> glText14 = { gl2DPoint_t(500 + 300, 100, 500 + 500, 200), "Page1", Arial_28_2 };
-	glText<20> glText15 = { gl2DPoint_t(500 + 0, 200, 500 + 200, 300), "Page1", Arial_95_1 };
-	glText<20> glText16 = { gl2DPoint_t(500 + 300, 200, 500 + 500, 300), "Page1", Arial_95_2 };
+	glButton B1 = { gl2DPoint_t(100, 450, 300, 550) };
+	glButtonText < 20, Arial_22_1> B2 = { gl2DPoint_t(400, 450, 600, 550), "Page1" };
 };
 
 /*
@@ -162,15 +183,18 @@ public:
 
 		// construct the GUI
 		glMain::AddPage(&PageTest);
-		glMain::AddPage(&Page1);
+		glMain::AddPage(&PageTexts);
+		glMain::AddPage(&PageButtons);
 		
 		PageTest.Init();
-		Page1.Init(); 
+		PageTexts.Init(); 
+		PageButtons.Init();
 
 		//		glMain::UnitTest();
 	}
 
 private:
 	GUIPageTest PageTest;
-	GUIPage1 Page1;
+	GUIPageTexts PageTexts;
+	GUIPageButtons PageButtons;
 };

@@ -24,7 +24,7 @@
 \DoxyCodeLine{00021\ }
 \DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <glMain.h>}}
 \DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <glPage.h>}}
-\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <Fonts/GUIFont.h>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <glFont.h>}}
 \DoxyCodeLine{00025\ }
 \DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_u_i_page_test}{GUIPageTest}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_page}{glPage}}}
 \DoxyCodeLine{00027\ \{}
@@ -87,60 +87,120 @@
 \DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round_fill}{glRectangleRoundFill}}\ rrf1\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(200,\ 10,\ 400,\ 100),\ 30,\ glColors::LIME\_GREEN\ \};}
 \DoxyCodeLine{00085\ \ \ \ \ }
 \DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{classgl_button}{glButton}}\ B1\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 200,\ 100)\ \};}
-\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{classgl_button_text}{glButtonText<20,\ Arial\_95\_2>}}\ B2\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(200,\ 300,\ 500,\ 400),\ \textcolor{stringliteral}{"{}Hello"{}}\ \};}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{classgl_button_text}{glButtonText<20,\ Arial\_16\_1>}}\ B2\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(200,\ 300,\ 500,\ 400),\ \textcolor{stringliteral}{"{}Hello"{}}\ \};}
 \DoxyCodeLine{00088\ \};}
 \DoxyCodeLine{00089\ }
-\DoxyCodeLine{00090\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_u_i_page1}{GUIPage1}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_page}{glPage}}}
+\DoxyCodeLine{00090\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_u_i_page_texts}{GUIPageTexts}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_page}{glPage}}}
 \DoxyCodeLine{00091\ \{}
 \DoxyCodeLine{00092\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page1}{GUIPage1}}()}
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_texts}{GUIPageTexts}}()}
 \DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_page}{glPage}}(\textcolor{stringliteral}{"{}Page1"{}})}
 \DoxyCodeLine{00095\ \ \ \ \ \{}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \_Color\ =\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(0,\ 0,\ 0);}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \_Color\ =\ glColors::LIGHT\_PINK;}
 \DoxyCodeLine{00097\ \ \ \ \ \}}
 \DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{//\ Initialize\ object}}
 \DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Init()}
 \DoxyCodeLine{00100\ \ \ \ \ \{}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ B1.BackColor(\mbox{\hyperlink{structgl_color__t}{glColor\_t}}(glColors::LAWN\_GREEN));}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ B1.PressedColor(glColor\_t::FindNearestColor(0,255,\ 255));}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ Add(\&B1);}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ Add(\&B2);}
-\DoxyCodeLine{00106\ \ \ \ \ \}}
-\DoxyCodeLine{00107\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{classgl_button}{glButton}}\ B1\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(100,\ 300,\ 300,\ 400)\ \};}
-\DoxyCodeLine{00109\ \ \ \ \ glButtonText\ <\ 20,\ Arial\_22\_2>\ B2\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(200,\ 300,\ 500,\ 300),\ \textcolor{stringliteral}{"{}Page1"{}}\};}
-\DoxyCodeLine{00110\ \};}
-\DoxyCodeLine{00111\ }
-\DoxyCodeLine{00112\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00113\ \textcolor{comment}{\ *\ This\ is\ the\ "{}main"{}\ class\ for\ controlling\ the\ GUI}}
-\DoxyCodeLine{00114\ \textcolor{comment}{\ *\ handles\ pages\ and\ GUI\ state}}
-\DoxyCodeLine{00115\ \textcolor{comment}{\ *\ reports\ to\ CM4\ and\ other\ code\ of\ GUI\ changes}}
-\DoxyCodeLine{00116\ \textcolor{comment}{\ *\ }}
-\DoxyCodeLine{00117\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00118\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_u_i_application}{GUIApplication}}\ :\ \mbox{\hyperlink{classgl_main}{glMain}}}
-\DoxyCodeLine{00119\ \{}
-\DoxyCodeLine{00120\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_application}{GUIApplication}}()}
-\DoxyCodeLine{00122\ \ \ \ \ \{}
-\DoxyCodeLine{00123\ \ \ \ \ \}}
-\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{void}\ Init()}
-\DoxyCodeLine{00125\ \ \ \ \ \{}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ glMain::Init();}
-\DoxyCodeLine{00127\ }
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ construct\ the\ GUI}}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ glMain::AddPage(\&PageTest);}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ glMain::AddPage(\&Page1);}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ PageTest.Init();}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ Page1.Init();\ }
-\DoxyCodeLine{00134\ }
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ glMain::UnitTest();}}
-\DoxyCodeLine{00136\ \ \ \ \ \}}
-\DoxyCodeLine{00137\ }
-\DoxyCodeLine{00138\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00139\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_test}{GUIPageTest}}\ PageTest;}
-\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page1}{GUIPage1}}\ Page1;}
-\DoxyCodeLine{00141\ \};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ P\_t\ xmax=0,x\ =\ 0;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ Add(\&glTexts[0]);\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ glTexts[0].Region().MoveTo(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ glTexts[0].TextWidth(),\ glTexts[0].TextHeight()).Inflate(5));}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ P\_t\ y\ =\ glTexts[0].Region().B();}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ 18;\ i++)}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ Add(\&glTexts[i]);\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ glTexts[i].Region().MoveTo(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(x,\ y,\ x\ +\ glTexts[i\ -\/\ 1].TextWidth(),\ y\ +\ glTexts[i\ -\/\ 1].TextHeight()).Inflate(5));}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ y\ =\ glTexts[i].Region().B();}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (glTexts[i].Region().R()\ >\ xmax)\ xmax\ =\ glTexts[i].Region().R();}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (y\ >\ \mbox{\hyperlink{classgl_video_memory_ad2a3fbb1c2c576796b960406fa7951b9}{glVideoMemory::ScreenHeight}}())}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ xmax;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ y\ =\ 0;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (x\ >\ \mbox{\hyperlink{classgl_video_memory_ad8382197b985124b688fd84216728f14}{glVideoMemory::ScreenWidth}}())}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glTexts[i].Region().MoveTo(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(x,\ y,\ x\ +\ glTexts[i\ -\/\ 1].TextWidth(),\ y\ +\ glTexts[i\ -\/\ 1].TextHeight()).Inflate(5));}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ y\ =\ glTexts[i].Region().B();}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00123\ \ \ \ \ \mbox{\hyperlink{classgl_text}{glText<20>}}\ glTexts[18]}
+\DoxyCodeLine{00124\ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_10\_1"{}},\ Arial\_10\_1\ \},\ \textcolor{comment}{//\ 0}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_12\_1"{}},\ Arial\_12\_1\ \},}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_14\_1"{}},\ Arial\_14\_1\ \},}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_16\_1"{}},\ Arial\_16\_1\ \},}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_19\_1"{}},\ Arial\_19\_1\ \},}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_22\_1"{}},\ Arial\_22\_1\ \},}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_26\_1"{}},\ Arial\_26\_1\ \},}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_31\_1"{}},\ Arial\_31\_1\ \},}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_37\_1"{}},\ Arial\_37\_1\ \},}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_44\_1"{}},\ Arial\_44\_1\ \},}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_52\_1"{}},\ Arial\_52\_1\ \},\ \textcolor{comment}{//\ 10}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_62\_1"{}},\ Arial\_62\_1\ \},}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_74\_1"{}},\ Arial\_74\_1\ \},}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_88\_1"{}},\ Arial\_88\_1\ \},}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_105\_1"{}},\ Arial\_105\_1\ \},}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_126\_1"{}},\ Arial\_126\_1\ \},\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_151\_1"{}},\ Arial\_151\_1\ \},}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_181\_1"{}},\ Arial\_181\_1\ \},\ \textcolor{comment}{//\ 17}}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ \ \ \ \ ;}
+\DoxyCodeLine{00145\ \};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_u_i_page_buttons}{GUIPageButtons}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_page}{glPage}}}
+\DoxyCodeLine{00148\ \{}
+\DoxyCodeLine{00149\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00150\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_buttons}{GUIPageButtons}}()}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_page}{glPage}}(\textcolor{stringliteral}{"{}Page1"{}})}
+\DoxyCodeLine{00152\ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \_Color\ =\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(0,\ 0,\ 0);}
+\DoxyCodeLine{00154\ \ \ \ \ \}}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{comment}{//\ Initialize\ object}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Init()}
+\DoxyCodeLine{00157\ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ B1.BackColor(\mbox{\hyperlink{structgl_color__t}{glColor\_t}}(glColors::LAWN\_GREEN));}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ B1.PressedColor(\mbox{\hyperlink{structgl_color__t_af06e1ec4bceb4bb26d2c9a10b3ae13e4}{glColor\_t::FindNearestColor}}(0,\ 255,\ 255));}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ Add(\&B1);}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ Add(\&B2);}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00165\ \ \ \ \ \mbox{\hyperlink{classgl_button}{glButton}}\ B1\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(100,\ 450,\ 300,\ 550)\ \};}
+\DoxyCodeLine{00166\ \ \ \ \ glButtonText\ <\ 20,\ Arial\_22\_1>\ B2\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(400,\ 450,\ 600,\ 550),\ \textcolor{stringliteral}{"{}Page1"{}}\ \};}
+\DoxyCodeLine{00167\ \};}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00170\ \textcolor{comment}{\ *\ This\ is\ the\ "{}main"{}\ class\ for\ controlling\ the\ GUI}}
+\DoxyCodeLine{00171\ \textcolor{comment}{\ *\ handles\ pages\ and\ GUI\ state}}
+\DoxyCodeLine{00172\ \textcolor{comment}{\ *\ reports\ to\ CM4\ and\ other\ code\ of\ GUI\ changes}}
+\DoxyCodeLine{00173\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{00174\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00175\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_u_i_application}{GUIApplication}}\ :\ \mbox{\hyperlink{classgl_main}{glMain}}}
+\DoxyCodeLine{00176\ \{}
+\DoxyCodeLine{00177\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00178\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_application}{GUIApplication}}()}
+\DoxyCodeLine{00179\ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordtype}{void}\ Init()}
+\DoxyCodeLine{00182\ \ \ \ \ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ glMain::Init();}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ construct\ the\ GUI}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ glMain::AddPage(\&PageTest);}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ glMain::AddPage(\&PageTexts);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ glMain::AddPage(\&PageButtons);}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ PageTest.Init();}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ PageTexts.Init();\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ PageButtons.Init();}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ glMain::UnitTest();}}
+\DoxyCodeLine{00195\ \ \ \ \ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00198\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_test}{GUIPageTest}}\ PageTest;}
+\DoxyCodeLine{00199\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_texts}{GUIPageTexts}}\ PageTexts;}
+\DoxyCodeLine{00200\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_buttons}{GUIPageButtons}}\ PageButtons;}
+\DoxyCodeLine{00201\ \};}
 
 \end{DoxyCode}

@@ -1,14 +1,24 @@
 \doxysection{gl2\+DPoint\+\_\+t Struct Reference}
 \hypertarget{structgl2_d_point__t}{}\label{structgl2_d_point__t}\index{gl2DPoint\_t@{gl2DPoint\_t}}
+
+
+Represents a 2D rectangular region defined by two points.  
+
+
+
+
+{\ttfamily \#include $<$gl\+Types.\+h$>$}
+
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{structgl2_d_point__t_afe813019c60115a9249a28ff51d2bafd}\label{structgl2_d_point__t_afe813019c60115a9249a28ff51d2bafd} 
-{\bfseries gl2\+DPoint\+\_\+t} (const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&lt, const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&rb)
-\item 
-\Hypertarget{structgl2_d_point__t_a7873333381bf56e2df2c2fc42425af42}\label{structgl2_d_point__t_a7873333381bf56e2df2c2fc42425af42} 
-{\bfseries gl2\+DPoint\+\_\+t} (P\+\_\+t left, P\+\_\+t top, P\+\_\+t right, P\+\_\+t bottom)
-\item 
+\Hypertarget{structgl2_d_point__t_ac5602e7d20edd61499fb42fc2e59605a}\label{structgl2_d_point__t_ac5602e7d20edd61499fb42fc2e59605a} 
+{\bfseries gl2\+DPoint\+\_\+t} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl2_d_point__t_afe813019c60115a9249a28ff51d2bafd}{gl2\+DPoint\+\_\+t}} (const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&lt, const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&rb)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize the 2D point with top-\/left and bottom-\/right points. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl2_d_point__t_a7873333381bf56e2df2c2fc42425af42}{gl2\+DPoint\+\_\+t}} (P\+\_\+t left, P\+\_\+t top, P\+\_\+t right, P\+\_\+t bottom)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize the 2D point with specific coordinates. \end{DoxyCompactList}\item 
 \Hypertarget{structgl2_d_point__t_a5cd2885fc1bad76593bdc6b1ee6e8a49}\label{structgl2_d_point__t_a5cd2885fc1bad76593bdc6b1ee6e8a49} 
 P\+\_\+t {\bfseries L} ()
 \item 
@@ -33,14 +43,17 @@ void {\bfseries R} (const P\+\_\+t \&t)
 \Hypertarget{structgl2_d_point__t_a504f7b67a3539a5cc7145ff5fdaf6c18}\label{structgl2_d_point__t_a504f7b67a3539a5cc7145ff5fdaf6c18} 
 void {\bfseries B} (const P\+\_\+t \&t)
 \item 
-\Hypertarget{structgl2_d_point__t_a9d913cab27d8ed75825f39530fb2cb9e}\label{structgl2_d_point__t_a9d913cab27d8ed75825f39530fb2cb9e} 
-\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Nomalize} ()
+\Hypertarget{structgl2_d_point__t_a505ec165cb1ed007acb1c5192ebb9dcb}\label{structgl2_d_point__t_a505ec165cb1ed007acb1c5192ebb9dcb} 
+\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} {\bfseries LT} () const
 \item 
-\Hypertarget{structgl2_d_point__t_a618c6896fa85e52afa2328eeb88270cb}\label{structgl2_d_point__t_a618c6896fa85e52afa2328eeb88270cb} 
-bool {\bfseries Is\+Inside} (P\+\_\+t x, P\+\_\+t y) const
+\Hypertarget{structgl2_d_point__t_a2e9104b3bf0d04223a636e8d5d584bb8}\label{structgl2_d_point__t_a2e9104b3bf0d04223a636e8d5d584bb8} 
+\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} {\bfseries LB} () const
 \item 
-\Hypertarget{structgl2_d_point__t_a04cdf77142e71e746c97384b111d467a}\label{structgl2_d_point__t_a04cdf77142e71e746c97384b111d467a} 
-bool {\bfseries Is\+Inside} (const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&p) const
+\Hypertarget{structgl2_d_point__t_a320f6c6c26a90a8a9c31b017a7fabee4}\label{structgl2_d_point__t_a320f6c6c26a90a8a9c31b017a7fabee4} 
+\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} {\bfseries RT} () const
+\item 
+\Hypertarget{structgl2_d_point__t_ae87f818f45011a61dcba9993a1e9414d}\label{structgl2_d_point__t_ae87f818f45011a61dcba9993a1e9414d} 
+\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} {\bfseries RB} () const
 \item 
 \Hypertarget{structgl2_d_point__t_a01ac71a03ce603688b2a1db98a7c588d}\label{structgl2_d_point__t_a01ac71a03ce603688b2a1db98a7c588d} 
 P\+\_\+t {\bfseries Width} () const
@@ -51,8 +64,26 @@ P\+\_\+t {\bfseries Height} () const
 \Hypertarget{structgl2_d_point__t_a2db94a5566f080ec87f41f3b07b65b77}\label{structgl2_d_point__t_a2db94a5566f080ec87f41f3b07b65b77} 
 bool {\bfseries Empty} () const
 \item 
-\Hypertarget{structgl2_d_point__t_a86b04b4a9ab098cc002bffe09ebed8fe}\label{structgl2_d_point__t_a86b04b4a9ab098cc002bffe09ebed8fe} 
-\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Move} (int dx, int dy) const
+\Hypertarget{structgl2_d_point__t_aacaa7e2e5683495b0e846f25a54b53c0}\label{structgl2_d_point__t_aacaa7e2e5683495b0e846f25a54b53c0} 
+\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Normalize} ()
+\item 
+\Hypertarget{structgl2_d_point__t_a962486053506d2425433d87ed5fbc4d5}\label{structgl2_d_point__t_a962486053506d2425433d87ed5fbc4d5} 
+bool {\bfseries Is\+Inside} (const P\+\_\+t x, const P\+\_\+t y) const
+\item 
+\Hypertarget{structgl2_d_point__t_a04cdf77142e71e746c97384b111d467a}\label{structgl2_d_point__t_a04cdf77142e71e746c97384b111d467a} 
+bool {\bfseries Is\+Inside} (const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&p) const
+\item 
+\Hypertarget{structgl2_d_point__t_a3630626b93a2c8255a4fde6642d24c7a}\label{structgl2_d_point__t_a3630626b93a2c8255a4fde6642d24c7a} 
+\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Displace} (const int dx, const int dy) const
+\item 
+\Hypertarget{structgl2_d_point__t_a5121b8ebb152fcdf1e05192a0726d04f}\label{structgl2_d_point__t_a5121b8ebb152fcdf1e05192a0726d04f} 
+\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Displace} (const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&p) const
+\item 
+\Hypertarget{structgl2_d_point__t_a9c4d4f815aa59d2357959248a806f8c3}\label{structgl2_d_point__t_a9c4d4f815aa59d2357959248a806f8c3} 
+void {\bfseries Move\+To} (const int l, const int t, const int r, const int b)
+\item 
+\Hypertarget{structgl2_d_point__t_a822f434c7d0491e3105a105a842021b2}\label{structgl2_d_point__t_a822f434c7d0491e3105a105a842021b2} 
+void {\bfseries Move\+To} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&p)
 \item 
 \Hypertarget{structgl2_d_point__t_ad15bb146dbd83e6ac3d30619e0aa9e74}\label{structgl2_d_point__t_ad15bb146dbd83e6ac3d30619e0aa9e74} 
 \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Inflate} (int d) const
@@ -63,15 +94,59 @@ bool {\bfseries Empty} () const
 \Hypertarget{structgl2_d_point__t_ae65ae6ee9a1aa22568e9e4eac95f6e05}\label{structgl2_d_point__t_ae65ae6ee9a1aa22568e9e4eac95f6e05} 
 \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Intersection} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&Position) const
 \end{DoxyCompactItemize}
-\doxysubsubsection*{Public Attributes}
+\doxysubsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{structgl2_d_point__t_a6877c700749f9a55b2672ed71f5ec1c8}\label{structgl2_d_point__t_a6877c700749f9a55b2672ed71f5ec1c8} 
-\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} {\bfseries LT}
+\Hypertarget{structgl2_d_point__t_a0ee8b6691248ed59183137ac68883209}\label{structgl2_d_point__t_a0ee8b6691248ed59183137ac68883209} 
+\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} {\bfseries \+\_\+\+LT}
 \item 
-\Hypertarget{structgl2_d_point__t_a30a0947296297f27397a2945717c1197}\label{structgl2_d_point__t_a30a0947296297f27397a2945717c1197} 
-\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} {\bfseries RB}
+\Hypertarget{structgl2_d_point__t_aefb7cdfbfddf8cf87c513dd6d37faa6a}\label{structgl2_d_point__t_aefb7cdfbfddf8cf87c513dd6d37faa6a} 
+\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} {\bfseries \+\_\+\+RB}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a 2D rectangular region defined by two points. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structgl2_d_point__t_afe813019c60115a9249a28ff51d2bafd}\label{structgl2_d_point__t_afe813019c60115a9249a28ff51d2bafd} 
+\index{gl2DPoint\_t@{gl2DPoint\_t}!gl2DPoint\_t@{gl2DPoint\_t}}
+\index{gl2DPoint\_t@{gl2DPoint\_t}!gl2DPoint\_t@{gl2DPoint\_t}}
+\doxysubsubsection{\texorpdfstring{gl2DPoint\_t()}{gl2DPoint\_t()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily gl2\+DPoint\+\_\+t\+::gl2\+DPoint\+\_\+t (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&}]{lt,  }\item[{const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&}]{rb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor to initialize the 2D point with top-\/left and bottom-\/right points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lt} & The top-\/left point. \\
+\hline
+{\em rb} & The bottom-\/right point. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structgl2_d_point__t_a7873333381bf56e2df2c2fc42425af42}\label{structgl2_d_point__t_a7873333381bf56e2df2c2fc42425af42} 
+\index{gl2DPoint\_t@{gl2DPoint\_t}!gl2DPoint\_t@{gl2DPoint\_t}}
+\index{gl2DPoint\_t@{gl2DPoint\_t}!gl2DPoint\_t@{gl2DPoint\_t}}
+\doxysubsubsection{\texorpdfstring{gl2DPoint\_t()}{gl2DPoint\_t()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily gl2\+DPoint\+\_\+t\+::gl2\+DPoint\+\_\+t (\begin{DoxyParamCaption}\item[{P\+\_\+t}]{left,  }\item[{P\+\_\+t}]{top,  }\item[{P\+\_\+t}]{right,  }\item[{P\+\_\+t}]{bottom }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor to initialize the 2D point with specific coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & The left coordinate. \\
+\hline
+{\em top} & The top coordinate. \\
+\hline
+{\em right} & The right coordinate. \\
+\hline
+{\em bottom} & The bottom coordinate. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}

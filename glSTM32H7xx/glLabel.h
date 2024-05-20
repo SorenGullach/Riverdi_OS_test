@@ -19,20 +19,20 @@
 
 #pragma once
 
-#include "glPrimitives.h"
+#include "glWidgets.h"
 
-class glLabel : public glObject
+class glLabel : public glWidget
 {
 public:
 	glLabel()
-		: glObject("Label", gl2DPoint_t(), glColor_t()) {}
+		: glWidget("Label", gl2DPoint_t(), glColor_t()) {}
 	glLabel(gl2DPoint_t pos, glColor_t backColor = glColor_t(glColors::BLUE))
-		: glObject("Label", pos, backColor) 
+		: glWidget("Label", pos, backColor) 
 	{	
 		BorderWidth = std::min(pos.Width(), pos.Height()) / 10;
 	}
 	glLabel(gl2DPoint_t pos, P_t borderWidth, glColor_t backColor = glColor_t(glColors::BLUE))
-		: glObject("Label", pos, backColor) 
+		: glWidget("Label", pos, backColor) 
 	{
 		assert(borderWidth < pos.Height() / 2);
 		assert(borderWidth < pos.Width() / 2);
@@ -52,12 +52,12 @@ public:
 	{
 		if (!ImInvalidated) return;
 
-		glRectangleFill(_Position.Inflate(-BorderWidth), glColors::CYAN).Draw();
+		glRectangleFill(_Region.Inflate(-BorderWidth), glColors::CYAN).Draw();
 //		glRectangleFill(_Position.Inflate(-BorderWidth), _Color).Draw(invalidRegion);
 
 		for (P_t i = 0; i < BorderWidth; i++)
 		{
-			glRectangleRound(_Position.Inflate(-i), 2*BorderWidth - i, BorderColor).Draw();
+			glRectangleRound(_Region.Inflate(-i), 2*BorderWidth - i, BorderColor).Draw();
 		}
 		
 		if (glVideoMemory::lastBand()) ImInvalidated = false;
@@ -65,7 +65,7 @@ public:
 
 	gl2DPoint_t InvalidRegion() override
 	{
-		return _Position.Inflate(-BorderWidth);
+		return _Region.Inflate(-BorderWidth);
 	}
 protected:
 	P_t BorderWidth = 0;

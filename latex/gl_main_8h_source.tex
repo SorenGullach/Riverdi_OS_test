@@ -41,17 +41,17 @@
 \DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ Touch.Init(\textcolor{keyword}{this});\ \textcolor{comment}{//\ for\ touch\ control}}
 \DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ size\ of\ the\ display\ +\ Display\ buffer}}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ glVideoMemory::Init(Display.Width(),\ Display.Height(),\ (\mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ *)SDRAM\_START);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_video_memory_a3fbd6abbb3a2b322e2313bef9d4664a8}{glVideoMemory::Init}}(Display.Width(),\ Display.Height(),\ (\mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ *)SDRAM\_START);}
 \DoxyCodeLine{00041\ }
 \DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ back\ color\ for\ background}}
 \DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ bg\ =\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(glColors::GREEN);}
 \DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ Display.BackgroundColor(bg.R,\ bg.G,\ bg.B);}
 \DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ layer}}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ Display.Layer(1,\ pVM,\ 0,\ 0,\ 0\ +\ Width,\ 0\ +\ Height);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ Display.Layer(1,\ pVM,\ 0,\ 0,\ 0\ +\ \_ScreenWidth,\ 0\ +\ \_ScreenHeight);}
 \DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ blending}}
 \DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ Display.BlendingFactors(1,\ eBlendingFactor1::F1\_CA,\ eBlendingFactor2::F2\_CA,\ 255);}
 \DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ df\ =\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(glColors::RED);}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ Display.DefaultColor(1,\ df.A,\ df.R,\ df.G,\ df.B);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ Display.DefaultColor(1,\ df.\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}},\ df.R,\ df.G,\ df.B);}
 \DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ ck\ =\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(glColors::BLACK);}
 \DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ Display.ColorKey(1,\ ck.R,\ ck.G,\ ck.B);}
 \DoxyCodeLine{00053\ \ \ \ \ \}}
@@ -76,7 +76,7 @@
 \DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classgl_page}{glPage}}\ *pCurrentPage\ =\ \textcolor{keyword}{nullptr};}
 \DoxyCodeLine{00073\ \ \ \ \ }
 \DoxyCodeLine{00074\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ cbTouch(\mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&point)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgl_main_ab86832b66f825b77d86d114213373be3}{cbTouch}}(\mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&point)\textcolor{keyword}{\ override}}
 \DoxyCodeLine{00076\ \textcolor{keyword}{\ \ \ \ }\{}
 \DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrentPage\ ==\ \textcolor{keyword}{nullptr})\ \textcolor{keywordflow}{return};}
 \DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ pCurrentPage-\/>UpdateState(point);}
@@ -107,16 +107,16 @@
 \DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ pCurrentPage-\/>EventAction.EventType\ =\ glEvent::eEventType::None;}
 \DoxyCodeLine{00104\ \ \ \ \ \}}
 \DoxyCodeLine{00105\ }
-\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ cbBlanking()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgl_main_aa3bbbd92f5f8500d8f81224270a42fbf}{cbBlanking}}()\textcolor{keyword}{\ override}}
 \DoxyCodeLine{00107\ \textcolor{keyword}{\ \ \ \ }\{}
 \DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrentPage\ ==\ \textcolor{keyword}{nullptr})\ \textcolor{keywordflow}{return};}
 \DoxyCodeLine{00109\ }
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!pCurrentPage-\/>IsInvalidated(glVideoMemory::Region))\ \textcolor{comment}{//\ returns\ an\ invalidated\ region}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!pCurrentPage-\/>IsInvalidated(glVideoMemory::InvalidRegion))\ \textcolor{comment}{//\ returns\ an\ invalidated\ region}}
 \DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
 \DoxyCodeLine{00112\ }
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ glVideoMemory::LimitRegion();}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_video_memory_a1ee38dc72e41940446fe3bf03e54d659}{glVideoMemory::LimitRegion}}();}
 \DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ pCurrentPage-\/>UpdateLook();}
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ glVideoMemory::NextRegion();}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_video_memory_aec104053547ef2609fadd975369ca657}{glVideoMemory::NextRegion}}();}
 \DoxyCodeLine{00116\ \ \ \ \ \}}
 \DoxyCodeLine{00117\ \};}
 \DoxyCodeLine{00118\ }

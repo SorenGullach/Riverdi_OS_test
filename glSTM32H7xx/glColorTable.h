@@ -144,4 +144,7 @@ enum class glColors {
 	YELLOW                 = 0xFFFF00,
 	YELLOW_GREEN           = 0x9ACD32
 };
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-const-variable"
 const uint32_t glColorTableSize = (144 - 5 +1);
+#pragma GCC diagnostic pop

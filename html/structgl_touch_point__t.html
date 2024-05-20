@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: glTouchPoint_t Struct Reference</title>
+<title>Riverdi OS Test: glTouchPoint_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">My Project
+   <div id="projectname">Riverdi OS Test
    </div>
   </td>
  </tr>
@@ -79,10 +79,15 @@ $(function() {
   <div class="headertitle"><div class="title">glTouchPoint_t Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents a point of touch, with actions and slide directions.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="gl_types_8h_source.html">glTypes.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a157257461882a3a46a9439f69c293837" id="r_a157257461882a3a46a9439f69c293837"><td class="memItemLeft" align="right" valign="top"><a id="a157257461882a3a46a9439f69c293837" name="a157257461882a3a46a9439f69c293837"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>eTipAction</b> { <br />
+<tr class="memitem:a157257461882a3a46a9439f69c293837" id="r_a157257461882a3a46a9439f69c293837"><td class="memItemLeft" align="right" valign="top"><a id="a157257461882a3a46a9439f69c293837" name="a157257461882a3a46a9439f69c293837"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a157257461882a3a46a9439f69c293837">eTipAction</a> { <br />
 &#160;&#160;<b>Tip</b>
 , <b>Up</b>
 , <b>Slide</b>
@@ -91,8 +96,9 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>ZoomWait</b>
 <br />
  }</td></tr>
+<tr class="memdesc:a157257461882a3a46a9439f69c293837"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration of touch actions. <br /></td></tr>
 <tr class="separator:a157257461882a3a46a9439f69c293837"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab359bc458af91368eeb9b9f6c0478fb4" id="r_ab359bc458af91368eeb9b9f6c0478fb4"><td class="memItemLeft" align="right" valign="top"><a id="ab359bc458af91368eeb9b9f6c0478fb4" name="ab359bc458af91368eeb9b9f6c0478fb4"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>eSlideAction</b> { <br />
+<tr class="memitem:ab359bc458af91368eeb9b9f6c0478fb4" id="r_ab359bc458af91368eeb9b9f6c0478fb4"><td class="memItemLeft" align="right" valign="top"><a id="ab359bc458af91368eeb9b9f6c0478fb4" name="ab359bc458af91368eeb9b9f6c0478fb4"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab359bc458af91368eeb9b9f6c0478fb4">eSlideAction</a> { <br />
 &#160;&#160;<b>None</b>
 , <b>Up</b>
 , <b>Right</b>
@@ -101,15 +107,16 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>Left</b>
 <br />
  }</td></tr>
+<tr class="memdesc:ab359bc458af91368eeb9b9f6c0478fb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration of slide actions. <br /></td></tr>
 <tr class="separator:ab359bc458af91368eeb9b9f6c0478fb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4850bf2affcaeb04c0897b38962ddf34" id="r_a4850bf2affcaeb04c0897b38962ddf34"><td class="memItemLeft" align="right" valign="top"><a id="a4850bf2affcaeb04c0897b38962ddf34" name="a4850bf2affcaeb04c0897b38962ddf34"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="structgl_touch_point__t.html">glTouchPoint_t</a> &amp;other) const</td></tr>
+<tr class="memitem:a4850bf2affcaeb04c0897b38962ddf34" id="r_a4850bf2affcaeb04c0897b38962ddf34"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4850bf2affcaeb04c0897b38962ddf34">operator==</a> (const <a class="el" href="structgl_touch_point__t.html">glTouchPoint_t</a> &amp;other) const</td></tr>
+<tr class="memdesc:a4850bf2affcaeb04c0897b38962ddf34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality operator.  <br /></td></tr>
 <tr class="separator:a4850bf2affcaeb04c0897b38962ddf34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47348915ae035c7cf4906454892fb361" id="r_a47348915ae035c7cf4906454892fb361"><td class="memItemLeft" align="right" valign="top"><a id="a47348915ae035c7cf4906454892fb361" name="a47348915ae035c7cf4906454892fb361"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="structgl_touch_point__t.html">glTouchPoint_t</a> &amp;other) const</td></tr>
+<tr class="memitem:a47348915ae035c7cf4906454892fb361" id="r_a47348915ae035c7cf4906454892fb361"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47348915ae035c7cf4906454892fb361">operator!=</a> (const <a class="el" href="structgl_touch_point__t.html">glTouchPoint_t</a> &amp;other) const</td></tr>
+<tr class="memdesc:a47348915ae035c7cf4906454892fb361"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inequality operator.  <br /></td></tr>
 <tr class="separator:a47348915ae035c7cf4906454892fb361"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -133,12 +140,83 @@ int16_t&#160;</td><td class="memItemRight" valign="bottom"><b>ZX</b></td></tr>
 int16_t&#160;</td><td class="memItemRight" valign="bottom"><b>ZY</b></td></tr>
 <tr class="separator:ad41dbaa180f2b80cc3646970f965125f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75be01e55c2bacfa25a1dbd7179e5cb1" id="r_a75be01e55c2bacfa25a1dbd7179e5cb1"><td class="memItemLeft" align="right" valign="top"><a id="a75be01e55c2bacfa25a1dbd7179e5cb1" name="a75be01e55c2bacfa25a1dbd7179e5cb1"></a>
-eTipAction&#160;</td><td class="memItemRight" valign="bottom"><b>TipAction</b> = eTipAction::Up</td></tr>
+<a class="el" href="#a157257461882a3a46a9439f69c293837">eTipAction</a>&#160;</td><td class="memItemRight" valign="bottom"><b>TipAction</b> = eTipAction::Up</td></tr>
 <tr class="separator:a75be01e55c2bacfa25a1dbd7179e5cb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6766f8ec94e4c61feda63eb6007ad315" id="r_a6766f8ec94e4c61feda63eb6007ad315"><td class="memItemLeft" align="right" valign="top"><a id="a6766f8ec94e4c61feda63eb6007ad315" name="a6766f8ec94e4c61feda63eb6007ad315"></a>
-eSlideAction&#160;</td><td class="memItemRight" valign="bottom"><b>SlideAction</b> = eSlideAction::None</td></tr>
+<a class="el" href="#ab359bc458af91368eeb9b9f6c0478fb4">eSlideAction</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SlideAction</b> = eSlideAction::None</td></tr>
 <tr class="separator:a6766f8ec94e4c61feda63eb6007ad315"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a point of touch, with actions and slide directions. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a47348915ae035c7cf4906454892fb361" name="a47348915ae035c7cf4906454892fb361"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47348915ae035c7cf4906454892fb361">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool glTouchPoint_t::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structgl_touch_point__t.html">glTouchPoint_t</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Inequality operator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The other touch point to compare with. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the touch points are not equal, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a4850bf2affcaeb04c0897b38962ddf34" name="a4850bf2affcaeb04c0897b38962ddf34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4850bf2affcaeb04c0897b38962ddf34">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool glTouchPoint_t::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structgl_touch_point__t.html">glTouchPoint_t</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Equality operator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The other touch point to compare with. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the touch points are equal, false otherwise. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>glSTM32H7xx/<a class="el" href="gl_types_8h_source.html">glTypes.h</a></li>
 </ul>

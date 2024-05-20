@@ -1,9 +1,18 @@
 \doxysection{gl\+Video\+Memory\+Plot Class Reference}
 \hypertarget{classgl_video_memory_plot}{}\label{classgl_video_memory_plot}\index{glVideoMemoryPlot@{glVideoMemoryPlot}}
+
+
+helper class for plotting on the Video memory  
+
+
+
+
+{\ttfamily \#include $<$gl\+Primitives.\+h$>$}
+
 Inheritance diagram for gl\+Video\+Memory\+Plot\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=4.028777cm]{classgl_video_memory_plot}
+\includegraphics[height=3.453237cm]{classgl_video_memory_plot}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Public Member Functions}
@@ -25,22 +34,26 @@ void {\bfseries Plot} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\
 \doxysubsection*{Static Protected Member Functions inherited from \mbox{\hyperlink{classgl_video_memory}{gl\+Video\+Memory}}}
 \begin{DoxyCompactItemize}
 \item 
-static bool {\bfseries last\+Band} ()
-\item 
+static P\+\_\+t \mbox{\hyperlink{classgl_video_memory_ad8382197b985124b688fd84216728f14}{Screen\+Width}} ()
+\begin{DoxyCompactList}\small\item\em Gets the screen width. \end{DoxyCompactList}\item 
+static P\+\_\+t \mbox{\hyperlink{classgl_video_memory_ad2a3fbb1c2c576796b960406fa7951b9}{Screen\+Height}} ()
+\begin{DoxyCompactList}\small\item\em Gets the screen height. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{classgl_video_memory_a79f28b876830fedd3cc74a256eb2c410}{last\+Band}} ()
+\begin{DoxyCompactList}\small\item\em Checks if this is the last band. \end{DoxyCompactList}\item 
 static void {\bfseries Limit\+Region} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Limits the region to the intersection with the current drawing region. \end{DoxyCompactList}\item 
 static void {\bfseries Next\+Region} ()
-\item 
-static void {\bfseries Init} (const P\+\_\+t w, const P\+\_\+t h, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*}pvm)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Moves to the next region to be drawn. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classgl_video_memory_a3fbd6abbb3a2b322e2313bef9d4664a8}{Init}} (const P\+\_\+t w, const P\+\_\+t h, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*}pvm)
+\begin{DoxyCompactList}\small\item\em Initializes the video memory with the specified dimensions and buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classgl_video_memory}{gl\+Video\+Memory}}}
 \begin{DoxyCompactItemize}
 \item 
 static \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*} {\bfseries p\+VM}
 \item 
-static P\+\_\+t {\bfseries Width}
+static P\+\_\+t {\bfseries \+\_\+\+Screen\+Width}
 \item 
-static P\+\_\+t {\bfseries Height}
+static P\+\_\+t {\bfseries \+\_\+\+Screen\+Height}
 \end{DoxyCompactItemize}
 \begin{DoxyCompactItemize}
 \item 
@@ -50,9 +63,12 @@ static P\+\_\+t {\bfseries y\+Start}
 \item 
 static P\+\_\+t {\bfseries y\+End}
 \item 
-static \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Region}
+static \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Invalid\+Region}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+helper class for plotting on the Video memory 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

@@ -19,10 +19,11 @@
 
 #pragma once
 
-#include "stm32h7xx.h"
+#include <stm32h7xx.h>
 #include <assert.h>
 #include <stdio.h>
-#include <Utils.h>
+#include "Hardware.h"
+
 
 // https://www.st.com/content/ccc/resource/training/technical/product_training/group0/97/f1/9d/3a/c4/c2/4c/ff/STM32H7-System-Power_control_PWR/files/STM32H7-System-Power_control_PWR.pdf/_jcr_content/translations/en.STM32H7-System-Power_control_PWR.pdf
 

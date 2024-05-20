@@ -19,7 +19,7 @@
 
 #pragma once
 
-#include "glPrimitives.h"
+#include "glWidgets.h"
 #include "glButton.h"
 #include "TFTDisplay.h"
 #include "TPDisplay.h"
@@ -43,7 +43,7 @@ public:
 		glColor_t bg = glColor_t(glColors::GREEN);
 		Display.BackgroundColor(bg.R, bg.G, bg.B);
 		// layer
-		Display.Layer(1, pVM, 0, 0, 0 + Width, 0 + Height);
+		Display.Layer(1, pVM, 0, 0, 0 + _ScreenWidth, 0 + _ScreenHeight);
 		// blending
 		Display.BlendingFactors(1, eBlendingFactor1::F1_CA, eBlendingFactor2::F2_CA, 255);
 		glColor_t df = glColor_t(glColors::RED);
@@ -107,7 +107,7 @@ public:
 	{
 		if (pCurrentPage == nullptr) return;
 
-		if (!pCurrentPage->IsInvalidated(glVideoMemory::Region)) // returns an invalidated region
+		if (!pCurrentPage->IsInvalidated(glVideoMemory::InvalidRegion)) // returns an invalidated region
 			return;
 
 		glVideoMemory::LimitRegion();

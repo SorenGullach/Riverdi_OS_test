@@ -17,10 +17,10 @@
  * "Søren Gullach <STM32_R7_OS@toolsbox.dk>"
  */
 
-#include <SysTick.h>
-#include <RCC.h>
-#include <Utils.h>
 #include <assert.h>
+#include "SysTick.h"
+#include "RCC.h"
+#include "Hardware.h"
 
 uint32_t hwSysTick::Ticks = 0;
 

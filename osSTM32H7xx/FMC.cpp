@@ -17,9 +17,10 @@
  * "Søren Gullach <STM32_R7_OS@toolsbox.dk>"
  */
 
-#include <FMC.h>
 #include <assert.h>
-#include <Utils.h>
+#include "FMC.h"
+#include "Hardware.h"
+
 
 void hwFMCSDRAM::Init()
 {

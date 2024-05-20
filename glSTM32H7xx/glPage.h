@@ -19,36 +19,36 @@
 
 #pragma once
 
-#include "glPrimitives.h"
+#include "glWidgets.h"
 
 // a GUI consists of pages
-class glPage : public glObjectAttributes, public glLink
+class glPage : public glWidgetAttributes, public glLink
 {
 public:
 	glPage(const char *name)
-		: glObjectAttributes(name, gl2DPoint_t(), glColor_t())
+		: glWidgetAttributes(name, gl2DPoint_t(), glColor_t())
 	{
 	}
 //	virtual void Init() override
 //	{
 //	}
 
-	// Add a object to the page
-	void Add(glObject *page)
+	// Add a widget to the page
+	void Add(glWidget *page)
 	{
 		ChainObjects.Add(page);
 	}
 
 	void PosSize(gl2DPoint_t pos)
 	{
-		_Position = pos;
+		_Region = pos;
 	}
 	// called down link to redraw
 	void UpdateLook()
 	{
-		Redraw(); // draw this object
+		Redraw(); // draw this widget
 
-		// Update objects
+		// Update widgets
 		if (ChainObjects.Head() != nullptr)
 			ChainObjects.Head()->UpdateLook();
 	}
@@ -58,7 +58,7 @@ public:
 	{
 		Touch(point); // send touch
 
-		// Update objects
+		// Update widgets
 		if (ChainObjects.Head() != nullptr)
 			ChainObjects.Head()->UpdateState(point);
 	}
@@ -68,7 +68,7 @@ public:
 		//Printf("%s Invalidate\n", Name);
 		ImInvalidated = true; // this page
 		if (ChainObjects.Head() != nullptr)
-			ChainObjects.Head()->Invalidate(); // a all objects
+			ChainObjects.Head()->Invalidate(); // a all widgets
 	}
 	
 	bool IsInvalidated(gl2DPoint_t &invalidRegion)
@@ -91,7 +91,7 @@ public:
 	{
 		if (!ImInvalidated) return;
 		
-		glRectangleFill(_Position.Intersection(glVideoMemory::Region), _Color).Draw();
+		glRectangleFill(_Region.Intersection(glVideoMemory::InvalidRegion), _Color).Draw();
 		
 		if(glVideoMemory::lastBand()) ImInvalidated = false;
 	}
@@ -132,6 +132,6 @@ public:
 
 	glEvent EventAction;
 private:
-	glChain<glObject> ChainObjects;
+	glChain<glWidget> ChainObjects;
 	bool InSlide = false;
 };

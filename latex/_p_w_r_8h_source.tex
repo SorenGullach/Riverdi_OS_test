@@ -23,293 +23,294 @@
 \DoxyCodeLine{00019\ }
 \DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}stm32h7xx.h"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <stm32h7xx.h>}}
 \DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <assert.h>}}
 \DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
-\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <Utils.h>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}Hardware.h"{}}}
 \DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \textcolor{comment}{//\ https://www.st.com/content/ccc/resource/training/technical/product\_training/group0/97/f1/9d/3a/c4/c2/4c/ff/STM32H7-\/System-\/Power\_control\_PWR/files/STM32H7-\/System-\/Power\_control\_PWR.pdf/\_jcr\_content/translations/en.STM32H7-\/System-\/Power\_control\_PWR.pdf}}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \textcolor{comment}{//\ The\ Riverdi\ PCB\ uses\ mode\ 4\ (or\ 3\ with\ modifications)}}
-\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhw_p_w_r}{hwPWR}}}
-\DoxyCodeLine{00031\ \{}
-\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eSupplyConfigurations}
-\DoxyCodeLine{00034\ \ \ \ \ \{}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ \ \ \ \ \ *\ |\ ID\ |\ Supply\ Configuration\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ SDLEVEL\ |\ SDEXTHP\ |\ SDEN\ |\ LDOEN\ |\ BYPASS\ |\ Description\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
-\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ \ \ \ \ \ *\ |-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |-\/-\/-\/-\/-\/-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}}
-\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ \ \ \ \ \ *\ |\ 0\ \ |\ Default\ configuration\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ 00\ \ \ \ \ \ |\ 0\ \ \ \ \ \ \ |\ 1\ \ \ \ |\ 1\ \ \ \ \ |\ 0\ \ \ \ \ \ |\ VCORE\ Power\ Domains\ are\ supplied\ from\ the\ LDO\ according\ to\ VOS.\ SMPS\ step-\/down\ converter\ enabled\ at\ 1.2V,\ may\ be\ used\ to\ supply\ the\ LDO.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
-\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ \ \ \ \ *\ |\ 1\ \ |\ LDO\ supply\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ x\ \ \ \ \ \ \ |\ x\ \ \ \ \ \ \ |\ 0\ \ \ \ |\ 1\ \ \ \ \ |\ 0\ \ \ \ \ \ |\ VCORE\ Power\ Domains\ are\ supplied\ from\ the\ LDO\ according\ to\ VOS.\ LDO\ power\ mode\ (Main,\ LP,\ Off)\ will\ follow\ system\ low-\/power\ modes.\ SMPS\ step-\/down\ converter\ disabled.\ \ \ \ \ \ \ \ \ \ \ \ \ |}}
-\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ \ \ \ \ *\ |\ 2\ \ |\ Direct\ SMPS\ stepdown\ converter\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ x\ \ \ \ \ \ \ |\ 0\ \ \ \ \ \ \ |\ 1\ \ \ \ |\ 0\ \ \ \ \ |\ 0\ \ \ \ \ \ |\ VCORE\ Power\ Domains\ are\ supplied\ from\ SMPS\ step-\/down\ converter\ according\ to\ VOS.\ LDO\ bypassed.\ SMPS\ step-\/down\ converter\ power\ mode\ (MR,\ LP,\ Off)\ will\ follow\ system\ low-\/power\ modes.\ |}}
-\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ \ \ \ \ *\ |\ 3\ \ |\ SMPS\ step-\/down\ converter\ supplies\ LDO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ 01\ or\ 10|\ 0\ \ \ \ \ \ \ |\ 1\ \ \ \ |\ 1\ \ \ \ \ |\ 0\ \ \ \ \ \ |\ VCORE\ Power\ Domains\ are\ supplied\ from\ the\ LDO\ according\ to\ VOS.\ LDO\ power\ mode\ (Main,\ LP,\ Off)\ will\ follow\ system\ low-\/power\ modes.\ SMPS\ step-\/down\ converter\ enabled\ according\ to\ SDLEVEL,\ and\ supplies\ the\ LDO.\ SMPS\ step-\/down\ converter\ power\ mode\ (MR,\ LP,\ Off)\ will\ follow\ system\ low-\/power\ modes.\ |}}
-\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ \ \ \ \ *\ |\ 4\ \ |\ SMPS\ step-\/down\ converter\ supplies\ External\ and\ LDO\ \ \ \ \ \ \ \ \ \ \ \ \ |\ 01\ or\ 10|\ 1\ \ \ \ \ \ \ |\ 1\ \ \ \ |\ 1\ \ \ \ \ |\ 0\ \ \ \ \ \ |\ VCORE\ Power\ Domains\ are\ supplied\ from\ voltage\ regulator\ according\ to\ VOS.\ LDO\ power\ mode\ (Main,\ LP,\ Off)\ will\ follow\ system\ low-\/power\ modes.\ SMPS\ step-\/down\ converter\ enabled\ according\ to\ SDLEVEL\ used\ to\ supply\ external\ circuits\ and\ may\ supply\ the\ LDO.\ SMPS\ step-\/down\ converter\ forced\ ON\ in\ MR\ mode.\ |}}
-\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ \ \ \ \ *\ |\ 5\ \ |\ SMPS\ step-\/down\ converter\ supplies\ external\ and\ LDO\ Bypass\ \ \ \ \ \ |\ 01\ or\ 10|\ 1\ \ \ \ \ \ \ |\ 1\ \ \ \ |\ 0\ \ \ \ \ |\ 1\ \ \ \ \ \ |\ VCORE\ supplied\ from\ external\ source.\ SMPS\ step-\/down\ converter\ enabled\ according\ to\ SDLEVEL\ used\ to\ supply\ external\ circuits\ and\ may\ supply\ the\ external\ source\ for\ VCORE.\ SMPS\ step-\/down\ converter\ forced\ ON\ in\ MR\ mode.\ \ \ \ \ \ \ \ |}}
-\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ \ \ \ \ *\ |\ 6\ \ |\ SMPS\ step-\/down\ converter\ disabled\ and\ LDO\ Bypass\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ x\ \ \ \ \ \ \ |\ x\ \ \ \ \ \ \ |\ 0\ \ \ \ |\ 0\ \ \ \ \ |\ 1\ \ \ \ \ \ |\ VCORE\ supplied\ from\ external\ source.\ SMPS\ step-\/down\ converter\ disabled\ and\ LDO\ bypassed,}}
-\DoxyCodeLine{00045\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ C0,}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ C1,}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ C2,}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ C3,}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ C4,\ }
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ C5,}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ C6}
-\DoxyCodeLine{00053\ \ \ \ \ \};}
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SupplyConfiguration(}
-\DoxyCodeLine{00055\ \#ifdef\ CORE\_CM7}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ eSupplyConfigurations\ config}
-\DoxyCodeLine{00057\ \#endif}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ )}
-\DoxyCodeLine{00059\ \ \ \ \ \{}
-\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#ifdef\ CORE\_CM7}}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ uint32\_t\ CR3\ =\ PWR-\/>CR3\ \&\ \string~(PWR\_CR3\_SMPSLEVEL\_Msk\ |\ PWR\_CR3\_SMPSEXTHP\_Msk\ |\ PWR\_CR3\_SMPSEN\_Msk\ |\ PWR\_CR3\_LDOEN\_Msk\ |\ PWR\_CR3\_BYPASS\_Msk);}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (config)}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ hwPWR::eSupplyConfigurations::C0:}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR3\ =\ CR3\ |\ PWR\_CR3\_SMPSEN\ |\ PWR\_CR3\_LDOEN;}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ hwPWR::eSupplyConfigurations::C1:}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR3\ =\ CR3\ |\ PWR\_CR3\_LDOEN;}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ hwPWR::eSupplyConfigurations::C2:}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR3\ =\ CR3\ |\ PWR\_CR3\_SMPSEN;}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ hwPWR::eSupplyConfigurations::C3:}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR3\ =\ CR3\ |\ PWR\_CR3\_SMPSEN\ |\ PWR\_CR3\_LDOEN;}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ hwPWR::eSupplyConfigurations::C4:}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR3\ =\ CR3\ |\ PWR\_CR3\_SMPSEXTHP\ |\ PWR\_CR3\_SMPSEN\ |\ PWR\_CR3\_LDOEN;}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ hwPWR::eSupplyConfigurations::C5:}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR3\ =\ CR3\ |\ PWR\_CR3\_SMPSEXTHP\ |\ PWR\_CR3\_SMPSEN\ |\ PWR\_CR3\_BYPASS;}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ hwPWR::eSupplyConfigurations::C6:}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR3\ =\ CR3\ |\ PWR\_CR3\_BYPASS;}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ assert(PWR-\/>CSR1\ \&\ PWR\_CSR1\_ACTVOSRDY);}}
-\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00088\ }
-\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#ifdef\ CORE\_CM7}}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ DBGMCU-\/>CR\ |=\ DBGMCU\_CR\_DBG\_STANDBYD1\ |\ DBGMCU\_CR\_DBG\_STOPD1\ |\ DBGMCU\_CR\_DBG\_SLEEPD1;}
-\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#ifdef\ CORE\_CM4}}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ DBGMCU-\/>CR\ |=\ DBGMCU\_CR\_DBG\_STANDBYD2\ |\ DBGMCU\_CR\_DBG\_STOPD2\ |\ DBGMCU\_CR\_DBG\_SLEEPD2;}
-\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00095\ \ \ \ \ \}}
-\DoxyCodeLine{00096\ }
-\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eAnalogVoltageDetectorLevel\ \ \{\ V1\_7\ =\ 0x00,\ V2\_1\ =\ 0x01,\ V2\_5\ =\ 0x10,\ V2\_8\ =\ 0x11\ \};}
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ hwAnalogVoltageDetectorLevelSelection(eAnalogVoltageDetectorLevel\ level)}
-\DoxyCodeLine{00099\ \ \ \ \ \{\ }
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ PWR-\/>CR1\ \&=\ PWR\_CR1\_ALS\_Msk;}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ PWR-\/>CR1\ |=\ (int)level\ <<\ PWR\_CR1\_ALS\_Pos;}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00103\ \ \ \ \ \}}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eVOSs}
-\DoxyCodeLine{00106\ \ \ \ \ \{}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00108\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ Voltage\ regulator\ output\ can\ be\ adjusted\ according\ to\ application\ needs\ through\ 6\ power}}
-\DoxyCodeLine{00109\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ supply\ levels:}}
-\DoxyCodeLine{00110\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *}}
-\DoxyCodeLine{00111\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ Run\ mode\ (VOS0\ to\ VOS3)}}
-\DoxyCodeLine{00112\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ -\/\ Scale\ 0:\ boosted\ performance\ (available\ only\ with\ LDO\ regulator)}}
-\DoxyCodeLine{00113\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ -\/\ Scale\ 1:\ high\ performance}}
-\DoxyCodeLine{00114\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ -\/\ Scale\ 2:\ medium\ performance\ and\ consumption}}
-\DoxyCodeLine{00115\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ -\/\ Scale\ 3:\ optimized\ performance\ and\ low-\/power\ consumption}}
-\DoxyCodeLine{00116\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *}}
-\DoxyCodeLine{00117\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ Stop\ mode\ (SVOS3\ to\ SVOS5)}}
-\DoxyCodeLine{00118\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ -\/\ Scale\ 3:\ peripheral\ with\ wakeup\ from\ Stop\ mode\ capabilities\ (UART,\ SPI,\ I2C,\ LPTIM)\ are\ operational}}
-\DoxyCodeLine{00119\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ -\/\ Scale\ 4\ and\ 5\ where\ the\ peripheral\ with\ wakeup\ from\ Stop\ mode\ is\ disabled}}
-\DoxyCodeLine{00120\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ \ \ The\ peripheral\ functionality\ is\ disabled\ but\ wakeup\ from\ Stop\ mode\ is\ possible}}
-\DoxyCodeLine{00121\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ \ \ through\ GPIO\ or\ asynchronous\ interrupt.}}
-\DoxyCodeLine{00122\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ VOS0,}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ VOS1,}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ VOS2,}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ VOS3,}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ LP\_SVOS3,}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ LP\_SVOS4,}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ LP\_SVOS5,}
-\DoxyCodeLine{00130\ \ \ \ \ \};}
-\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ VOS(eVOSs\ vos)}
-\DoxyCodeLine{00132\ \ \ \ \ \{}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vos\ !=\ eVOSs::VOS0\ \&\&\ (SYSCFG-\/>PWRCR\ \&\ SYSCFG\_PWRCR\_ODEN\_Msk))\ \textcolor{comment}{//\ from\ VOS0}}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ freq\ must\ be\ reduced\ by\ now}}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ RCC-\/>APB4ENR\ |=\ RCC\_APB4ENR\_SYSCFGEN;\ \textcolor{comment}{//\ enable\ SYSCFG}}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ SYSCFG-\/>PWRCR\ \&=\ \string~SYSCFG\_PWRCR\_ODEN;}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (vos)\ }
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eVOSs::VOS0:}
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((PWR-\/>D3CR\ \&\ PWR\_D3CR\_VOS\_Msk)\ !=\ (0x3\ <<\ PWR\_D3CR\_VOS\_Pos))\ \textcolor{comment}{//\ if\ not\ in\ VOS1}}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ VOS(eVOSs::VOS1);}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((PWR-\/>D3CR\ \&\ PWR\_D3CR\_VOS\_Msk)\ ==\ (0x3\ <<\ PWR\_D3CR\_VOS\_Pos))\ \textcolor{comment}{//\ if\ in\ VOS1}}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RCC-\/>APB4ENR\ |=\ RCC\_APB4ENR\_SYSCFGEN;\ \textcolor{comment}{//\ enable\ SYSCFG}}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SYSCFG-\/>PWRCR\ |=\ SYSCFG\_PWRCR\_ODEN;}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((PWR-\/>CSR1\ \&\ PWR\_CSR1\_ACTVOSRDY)\ ==\ 0)\ \_\_asm(\textcolor{stringliteral}{"{}"{}});}
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eVOSs::VOS1:}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(PWR-\/>D3CR,\ PWR\_D3CR\_VOS\_Msk,\ 0x3\ <<\ PWR\_D3CR\_VOS\_Pos);}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((PWR-\/>D3CR\ \&\ PWR\_D3CR\_VOSRDY)\ ==\ 0)\ \_\_asm(\textcolor{stringliteral}{"{}"{}});}
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eVOSs::VOS2:}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(PWR-\/>D3CR,\ PWR\_D3CR\_VOS\_Msk,\ 0x2\ <<\ PWR\_D3CR\_VOS\_Pos);}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((PWR-\/>D3CR\ \&\ PWR\_D3CR\_VOSRDY)\ ==\ 0)\ \_\_asm(\textcolor{stringliteral}{"{}"{}});}
-\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eVOSs::VOS3:}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(PWR-\/>D3CR,\ PWR\_D3CR\_VOS\_Msk,\ 0x1\ <<\ PWR\_D3CR\_VOS\_Pos);}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((PWR-\/>D3CR\ \&\ PWR\_D3CR\_VOSRDY)\ ==\ 0)\ \_\_asm(\textcolor{stringliteral}{"{}"{}});}
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(PWR-\/>CR1,\ PWR\_CR1\_SVOS\_Msk,\ 0x3\ <<\ PWR\_CR1\_SVOS\_Pos);}
-\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR1\ \&=\ \string~PWR\_CR1\_LPDS;}
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eVOSs::LP\_SVOS3:}
-\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(PWR-\/>D3CR,\ PWR\_D3CR\_VOS\_Msk,\ 0x1\ <<\ PWR\_D3CR\_VOS\_Pos);}
-\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((PWR-\/>D3CR\ \&\ PWR\_D3CR\_VOSRDY)\ ==\ 0)\ \_\_asm(\textcolor{stringliteral}{"{}"{}});}
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(PWR-\/>CR1,\ PWR\_CR1\_SVOS\_Msk,\ 0x3\ <<\ PWR\_CR1\_SVOS\_Pos);}
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR1\ |=\ PWR\_CR1\_LPDS;}
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eVOSs::LP\_SVOS4:}
-\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(PWR-\/>D3CR,\ PWR\_D3CR\_VOS\_Msk,\ 0x1\ <<\ PWR\_D3CR\_VOS\_Pos);}
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((PWR-\/>D3CR\ \&\ PWR\_D3CR\_VOSRDY)\ ==\ 0)\ \_\_asm(\textcolor{stringliteral}{"{}"{}});}
-\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR1\ =\ (PWR-\/>CR1\ \&\ \string~PWR\_CR1\_SVOS\_Msk)\ |\ 0x2\ <<\ PWR\_CR1\_SVOS\_Pos;}
-\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eVOSs::LP\_SVOS5:}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(PWR-\/>D3CR,\ PWR\_D3CR\_VOS\_Msk,\ 0x1\ <<\ PWR\_D3CR\_VOS\_Pos);}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((PWR-\/>D3CR\ \&\ PWR\_D3CR\_VOSRDY)\ ==\ 0)\ \_\_asm(\textcolor{stringliteral}{"{}"{}});}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(PWR-\/>CR1,\ PWR\_CR1\_SVOS\_Msk,\ 0x1\ <<\ PWR\_CR1\_SVOS\_Pos);}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00183\ \ \ \ \ \}}
-\DoxyCodeLine{00184\ }
-\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eDomainPowerModes\ \ \ \ \{\ DStop,\ DStandby\ \};}
-\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eCPUs\ \ \ \ \ \ \ \ \{\ CM7,\ CM4\ \};}
-\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eDomains\ \ \ \ \ \{\ D1,\ D2,\ D3\ \};}
-\DoxyCodeLine{00188\ }
-\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordtype}{void}\ PowerMode(eDomainPowerModes\ dm,\ eCPUs\ CPU,\ eDomains\ Domain)}
-\DoxyCodeLine{00190\ \ \ \ \ \{}
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ uint32\_t\ CPUCR\ =\ (CPU\ ==\ eCPUs::CM7\ ?\ PWR-\/>CPUCR\ :\ PWR-\/>CPU2CR);}
-\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (Domain)}
-\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eDomains::D1:}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (dm)}
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eDomainPowerModes::DStop:}
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CPUCR\ \&=\ \string~PWR\_CPUCR\_PDDS\_D1\_Msk;}
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eDomainPowerModes::DStandby:}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CPUCR\ |=\ PWR\_CPUCR\_PDDS\_D1;}
-\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eDomains::D2:}
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (dm)}
-\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eDomainPowerModes::DStop:}
-\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CPUCR\ \&=\ \string~PWR\_CPUCR\_PDDS\_D2\_Msk;}
-\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eDomainPowerModes::DStandby:}
-\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CPUCR\ |=\ PWR\_CPUCR\_PDDS\_D2;}
-\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eDomains::D3:}
-\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ assert(\textcolor{keyword}{false}\ \&\&\ \textcolor{stringliteral}{"{}illegal\ domain"{}});}
-\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ (CPU\ ==\ eCPUs::CM7\ ?\ PWR-\/>CPUCR\ :\ PWR-\/>CPU2CR)\ =\ CPUCR;}
-\DoxyCodeLine{00222\ \ \ \ \ \}}
-\DoxyCodeLine{00223\ \ \ \ \ }
-\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eStopModeEntry\ \{\ WFI,\ WFE\ \};}
-\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordtype}{void}\ EnterLowPower(eStopModeEntry\ sme)}
-\DoxyCodeLine{00226\ \ \ \ \ \{}
-\DoxyCodeLine{00227\ }
-\DoxyCodeLine{00228\ \textcolor{preprocessor}{\#ifdef\ CORE\_CM7}}
-\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \_\_WFE();}
-\DoxyCodeLine{00230\ \textcolor{preprocessor}{\#else\ \ \ }}
-\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \_\_SEV();}
-\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \_\_WFE();}
-\DoxyCodeLine{00233\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ SLEEPDEEP\ bit\ of\ Cortex\ System\ Control\ Register\ }}
-\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ SCB-\/>SCR\ |=\ SCB\_SCR\_SLEEPDEEP\_Msk;}
-\DoxyCodeLine{00237\ }
-\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ that\ all\ instructions\ are\ done\ before\ entering\ STOP\ mode\ }}
-\DoxyCodeLine{00239\ \textcolor{comment}{//\ \ \ \ \ \ \_\_DSB();}}
-\DoxyCodeLine{00240\ \ \ \ \ \textcolor{comment}{//\ \ \_\_ISB();}}
-\DoxyCodeLine{00241\ }
-\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Select\ Stop\ mode\ entry\ }}
-\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sme\ ==\ eStopModeEntry::WFI)}
-\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Request\ Wait\ For\ Interrupt}}
-\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \_\_WFI();}
-\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Request\ Wait\ For\ Event}}
-\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \_\_WFE();}
-\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clear\ SLEEPDEEP\ bit\ of\ Cortex-\/Mx\ in\ the\ System\ Control\ Register\ }}
-\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ SCB-\/>SCR\ \&=\ \string~SCB\_SCR\_SLEEPDEEP\_Msk;}
-\DoxyCodeLine{00256\ }
-\DoxyCodeLine{00257\ \ \ \ \ \}}
-\DoxyCodeLine{00258\ \ \ \ \ }
-\DoxyCodeLine{00259\ \textcolor{preprocessor}{\#ifdef\ CORE\_CM4}}
-\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keywordtype}{void}\ SleepCM4()}
-\DoxyCodeLine{00261\ \ \ \ \ \{}
-\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ VOS(eVOSs::VOS3);}
-\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ PowerMode(eDomainPowerModes::DStop,\ eCPUs::CM4,\ eDomains::D2);}
-\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00265\ \textcolor{comment}{\ \ \ \ \ \ \ \ SysTick-\/>CTRL\ \&=\ \string~SysTick\_CTRL\_TICKINT\_Msk;}}
-\DoxyCodeLine{00266\ \textcolor{comment}{\ \ \ \ \ \ \ \ \_\_set\_PRIMASK(1);}}
-\DoxyCodeLine{00267\ \textcolor{comment}{\ \ \ \ \ \ \ \ \_\_set\_FAULTMASK(1);}}
-\DoxyCodeLine{00268\ \textcolor{comment}{\ \ \ \ \ \ \ \ \_\_disable\_fault\_irq();}}
-\DoxyCodeLine{00269\ \textcolor{comment}{\ \ \ \ \ \ \ \ \_\_disable\_irq();}}
-\DoxyCodeLine{00270\ \textcolor{comment}{\ \ \ \ \ \ \ \ }}
-\DoxyCodeLine{00271\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>IMR1\ =\ 0;}}
-\DoxyCodeLine{00272\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>EMR1\ =\ 0;}}
-\DoxyCodeLine{00273\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>IMR2\ =\ 0;}}
-\DoxyCodeLine{00274\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>EMR2\ =\ 0;}}
-\DoxyCodeLine{00275\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>IMR3\ =\ 0;}}
-\DoxyCodeLine{00276\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>EMR3\ =\ 0;}}
-\DoxyCodeLine{00277\ \textcolor{comment}{}}
-\DoxyCodeLine{00278\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>C2IMR1\ =\ 0;}}
-\DoxyCodeLine{00279\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>C2EMR1\ =\ 0;}}
-\DoxyCodeLine{00280\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>C2IMR2\ =\ 0;}}
-\DoxyCodeLine{00281\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>C2EMR2\ =\ 0;}}
-\DoxyCodeLine{00282\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>C2IMR3\ =\ 0;}}
-\DoxyCodeLine{00283\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>C2EMR3\ =\ 0;}}
-\DoxyCodeLine{00284\ \textcolor{comment}{*/}}
-\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ EnterLowPower(eStopModeEntry::WFI);}
-\DoxyCodeLine{00286\ \ \ \ \ \}}
-\DoxyCodeLine{00287\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#ifdef\ CORE\_CM7}}
-\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keywordtype}{bool}\ WaitForCM4ToSleep(\textcolor{keywordtype}{int}\ timeout\ =\ INT32\_MAX)}
-\DoxyCodeLine{00290\ \ \ \ \ \{}
-\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((RCC-\/>CR\ \&\ RCC\_CR\_D2CKRDY)\ \&\&\ timeout\ >\ 0)}
-\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (timeout\ !=\ INT32\_MAX)\ -\/-\/timeout;}
-\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !(RCC-\/>CR\ \&\ RCC\_CR\_D2CKRDY);}
-\DoxyCodeLine{00296\ \ \ \ \ \}}
-\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keywordtype}{bool}\ WaitForCM4ToRun(\textcolor{keywordtype}{int}\ timeout\ =\ INT32\_MAX)\ }
-\DoxyCodeLine{00298\ \ \ \ \ \{}
-\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!(RCC-\/>CR\ \&\ RCC\_CR\_D2CKRDY)\ \&\&\ timeout\ >\ 0)}
-\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (timeout\ !=\ INT32\_MAX)\ -\/-\/timeout;}
-\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (RCC-\/>CR\ \&\ RCC\_CR\_D2CKRDY);}
-\DoxyCodeLine{00305\ \ \ \ \ \}}
-\DoxyCodeLine{00306\ }
-\DoxyCodeLine{00307\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00308\ }
-\DoxyCodeLine{00309\ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ https://www.st.com/content/ccc/resource/training/technical/product\_training/group0/97/f1/9d/3a/c4/c2/4c/ff/STM32H7-\/System-\/Power\_control\_PWR/files/STM32H7-\/System-\/Power\_control\_PWR.pdf/\_jcr\_content/translations/en.STM32H7-\/System-\/Power\_control\_PWR.pdf}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ The\ Riverdi\ PCB\ uses\ mode\ 4\ (or\ 3\ with\ modifications)}}
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhw_p_w_r}{hwPWR}}}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eSupplyConfigurations}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ \ \ \ \ \ *\ |\ ID\ |\ Supply\ Configuration\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ SDLEVEL\ |\ SDEXTHP\ |\ SDEN\ |\ LDOEN\ |\ BYPASS\ |\ Description\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ \ \ \ \ \ *\ |-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |-\/-\/-\/-\/-\/-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ \ \ \ \ *\ |\ 0\ \ |\ Default\ configuration\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ 00\ \ \ \ \ \ |\ 0\ \ \ \ \ \ \ |\ 1\ \ \ \ |\ 1\ \ \ \ \ |\ 0\ \ \ \ \ \ |\ VCORE\ Power\ Domains\ are\ supplied\ from\ the\ LDO\ according\ to\ VOS.\ SMPS\ step-\/down\ converter\ enabled\ at\ 1.2V,\ may\ be\ used\ to\ supply\ the\ LDO.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ \ \ \ \ *\ |\ 1\ \ |\ LDO\ supply\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ x\ \ \ \ \ \ \ |\ x\ \ \ \ \ \ \ |\ 0\ \ \ \ |\ 1\ \ \ \ \ |\ 0\ \ \ \ \ \ |\ VCORE\ Power\ Domains\ are\ supplied\ from\ the\ LDO\ according\ to\ VOS.\ LDO\ power\ mode\ (Main,\ LP,\ Off)\ will\ follow\ system\ low-\/power\ modes.\ SMPS\ step-\/down\ converter\ disabled.\ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ \ \ \ \ *\ |\ 2\ \ |\ Direct\ SMPS\ stepdown\ converter\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ x\ \ \ \ \ \ \ |\ 0\ \ \ \ \ \ \ |\ 1\ \ \ \ |\ 0\ \ \ \ \ |\ 0\ \ \ \ \ \ |\ VCORE\ Power\ Domains\ are\ supplied\ from\ SMPS\ step-\/down\ converter\ according\ to\ VOS.\ LDO\ bypassed.\ SMPS\ step-\/down\ converter\ power\ mode\ (MR,\ LP,\ Off)\ will\ follow\ system\ low-\/power\ modes.\ |}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ \ \ \ \ *\ |\ 3\ \ |\ SMPS\ step-\/down\ converter\ supplies\ LDO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ 01\ or\ 10|\ 0\ \ \ \ \ \ \ |\ 1\ \ \ \ |\ 1\ \ \ \ \ |\ 0\ \ \ \ \ \ |\ VCORE\ Power\ Domains\ are\ supplied\ from\ the\ LDO\ according\ to\ VOS.\ LDO\ power\ mode\ (Main,\ LP,\ Off)\ will\ follow\ system\ low-\/power\ modes.\ SMPS\ step-\/down\ converter\ enabled\ according\ to\ SDLEVEL,\ and\ supplies\ the\ LDO.\ SMPS\ step-\/down\ converter\ power\ mode\ (MR,\ LP,\ Off)\ will\ follow\ system\ low-\/power\ modes.\ |}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ \ \ \ \ *\ |\ 4\ \ |\ SMPS\ step-\/down\ converter\ supplies\ External\ and\ LDO\ \ \ \ \ \ \ \ \ \ \ \ \ |\ 01\ or\ 10|\ 1\ \ \ \ \ \ \ |\ 1\ \ \ \ |\ 1\ \ \ \ \ |\ 0\ \ \ \ \ \ |\ VCORE\ Power\ Domains\ are\ supplied\ from\ voltage\ regulator\ according\ to\ VOS.\ LDO\ power\ mode\ (Main,\ LP,\ Off)\ will\ follow\ system\ low-\/power\ modes.\ SMPS\ step-\/down\ converter\ enabled\ according\ to\ SDLEVEL\ used\ to\ supply\ external\ circuits\ and\ may\ supply\ the\ LDO.\ SMPS\ step-\/down\ converter\ forced\ ON\ in\ MR\ mode.\ |}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ \ \ \ \ *\ |\ 5\ \ |\ SMPS\ step-\/down\ converter\ supplies\ external\ and\ LDO\ Bypass\ \ \ \ \ \ |\ 01\ or\ 10|\ 1\ \ \ \ \ \ \ |\ 1\ \ \ \ |\ 0\ \ \ \ \ |\ 1\ \ \ \ \ \ |\ VCORE\ supplied\ from\ external\ source.\ SMPS\ step-\/down\ converter\ enabled\ according\ to\ SDLEVEL\ used\ to\ supply\ external\ circuits\ and\ may\ supply\ the\ external\ source\ for\ VCORE.\ SMPS\ step-\/down\ converter\ forced\ ON\ in\ MR\ mode.\ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ \ \ \ \ \ \ \ *\ |\ 6\ \ |\ SMPS\ step-\/down\ converter\ disabled\ and\ LDO\ Bypass\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ x\ \ \ \ \ \ \ |\ x\ \ \ \ \ \ \ |\ 0\ \ \ \ |\ 0\ \ \ \ \ |\ 1\ \ \ \ \ \ |\ VCORE\ supplied\ from\ external\ source.\ SMPS\ step-\/down\ converter\ disabled\ and\ LDO\ bypassed,}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ C0,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ C1,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ C2,}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ C3,}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ C4,\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ C5,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ C6}
+\DoxyCodeLine{00054\ \ \ \ \ \};}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SupplyConfiguration(}
+\DoxyCodeLine{00056\ \#ifdef\ CORE\_CM7}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ eSupplyConfigurations\ config}
+\DoxyCodeLine{00058\ \#endif}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00060\ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#ifdef\ CORE\_CM7}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ uint32\_t\ CR3\ =\ PWR-\/>CR3\ \&\ \string~(PWR\_CR3\_SMPSLEVEL\_Msk\ |\ PWR\_CR3\_SMPSEXTHP\_Msk\ |\ PWR\_CR3\_SMPSEN\_Msk\ |\ PWR\_CR3\_LDOEN\_Msk\ |\ PWR\_CR3\_BYPASS\_Msk);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (config)}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ hwPWR::eSupplyConfigurations::C0:}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR3\ =\ CR3\ |\ PWR\_CR3\_SMPSEN\ |\ PWR\_CR3\_LDOEN;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ hwPWR::eSupplyConfigurations::C1:}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR3\ =\ CR3\ |\ PWR\_CR3\_LDOEN;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ hwPWR::eSupplyConfigurations::C2:}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR3\ =\ CR3\ |\ PWR\_CR3\_SMPSEN;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ hwPWR::eSupplyConfigurations::C3:}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR3\ =\ CR3\ |\ PWR\_CR3\_SMPSEN\ |\ PWR\_CR3\_LDOEN;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ hwPWR::eSupplyConfigurations::C4:}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR3\ =\ CR3\ |\ PWR\_CR3\_SMPSEXTHP\ |\ PWR\_CR3\_SMPSEN\ |\ PWR\_CR3\_LDOEN;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ hwPWR::eSupplyConfigurations::C5:}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR3\ =\ CR3\ |\ PWR\_CR3\_SMPSEXTHP\ |\ PWR\_CR3\_SMPSEN\ |\ PWR\_CR3\_BYPASS;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ hwPWR::eSupplyConfigurations::C6:}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR3\ =\ CR3\ |\ PWR\_CR3\_BYPASS;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ assert(PWR-\/>CSR1\ \&\ PWR\_CSR1\_ACTVOSRDY);}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#ifdef\ CORE\_CM7}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ DBGMCU-\/>CR\ |=\ DBGMCU\_CR\_DBG\_STANDBYD1\ |\ DBGMCU\_CR\_DBG\_STOPD1\ |\ DBGMCU\_CR\_DBG\_SLEEPD1;}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#ifdef\ CORE\_CM4}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ DBGMCU-\/>CR\ |=\ DBGMCU\_CR\_DBG\_STANDBYD2\ |\ DBGMCU\_CR\_DBG\_STOPD2\ |\ DBGMCU\_CR\_DBG\_SLEEPD2;}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eAnalogVoltageDetectorLevel\ \ \{\ V1\_7\ =\ 0x00,\ V2\_1\ =\ 0x01,\ V2\_5\ =\ 0x10,\ V2\_8\ =\ 0x11\ \};}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ hwAnalogVoltageDetectorLevelSelection(eAnalogVoltageDetectorLevel\ level)}
+\DoxyCodeLine{00100\ \ \ \ \ \{\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ PWR-\/>CR1\ \&=\ PWR\_CR1\_ALS\_Msk;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ PWR-\/>CR1\ |=\ (int)level\ <<\ PWR\_CR1\_ALS\_Pos;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eVOSs}
+\DoxyCodeLine{00107\ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00109\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ Voltage\ regulator\ output\ can\ be\ adjusted\ according\ to\ application\ needs\ through\ 6\ power}}
+\DoxyCodeLine{00110\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ supply\ levels:}}
+\DoxyCodeLine{00111\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00112\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ Run\ mode\ (VOS0\ to\ VOS3)}}
+\DoxyCodeLine{00113\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ -\/\ Scale\ 0:\ boosted\ performance\ (available\ only\ with\ LDO\ regulator)}}
+\DoxyCodeLine{00114\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ -\/\ Scale\ 1:\ high\ performance}}
+\DoxyCodeLine{00115\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ -\/\ Scale\ 2:\ medium\ performance\ and\ consumption}}
+\DoxyCodeLine{00116\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ -\/\ Scale\ 3:\ optimized\ performance\ and\ low-\/power\ consumption}}
+\DoxyCodeLine{00117\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00118\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ Stop\ mode\ (SVOS3\ to\ SVOS5)}}
+\DoxyCodeLine{00119\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ -\/\ Scale\ 3:\ peripheral\ with\ wakeup\ from\ Stop\ mode\ capabilities\ (UART,\ SPI,\ I2C,\ LPTIM)\ are\ operational}}
+\DoxyCodeLine{00120\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ -\/\ Scale\ 4\ and\ 5\ where\ the\ peripheral\ with\ wakeup\ from\ Stop\ mode\ is\ disabled}}
+\DoxyCodeLine{00121\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ \ \ The\ peripheral\ functionality\ is\ disabled\ but\ wakeup\ from\ Stop\ mode\ is\ possible}}
+\DoxyCodeLine{00122\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ \ \ through\ GPIO\ or\ asynchronous\ interrupt.}}
+\DoxyCodeLine{00123\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ VOS0,}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ VOS1,}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ VOS2,}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ VOS3,}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ LP\_SVOS3,}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ LP\_SVOS4,}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ LP\_SVOS5,}
+\DoxyCodeLine{00131\ \ \ \ \ \};}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ VOS(eVOSs\ vos)}
+\DoxyCodeLine{00133\ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vos\ !=\ eVOSs::VOS0\ \&\&\ (SYSCFG-\/>PWRCR\ \&\ SYSCFG\_PWRCR\_ODEN\_Msk))\ \textcolor{comment}{//\ from\ VOS0}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ freq\ must\ be\ reduced\ by\ now}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ RCC-\/>APB4ENR\ |=\ RCC\_APB4ENR\_SYSCFGEN;\ \textcolor{comment}{//\ enable\ SYSCFG}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ SYSCFG-\/>PWRCR\ \&=\ \string~SYSCFG\_PWRCR\_ODEN;}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (vos)\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eVOSs::VOS0:}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((PWR-\/>D3CR\ \&\ PWR\_D3CR\_VOS\_Msk)\ !=\ (0x3\ <<\ PWR\_D3CR\_VOS\_Pos))\ \textcolor{comment}{//\ if\ not\ in\ VOS1}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ VOS(eVOSs::VOS1);}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((PWR-\/>D3CR\ \&\ PWR\_D3CR\_VOS\_Msk)\ ==\ (0x3\ <<\ PWR\_D3CR\_VOS\_Pos))\ \textcolor{comment}{//\ if\ in\ VOS1}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RCC-\/>APB4ENR\ |=\ RCC\_APB4ENR\_SYSCFGEN;\ \textcolor{comment}{//\ enable\ SYSCFG}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SYSCFG-\/>PWRCR\ |=\ SYSCFG\_PWRCR\_ODEN;}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((PWR-\/>CSR1\ \&\ PWR\_CSR1\_ACTVOSRDY)\ ==\ 0)\ \_\_asm(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eVOSs::VOS1:}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(PWR-\/>D3CR,\ PWR\_D3CR\_VOS\_Msk,\ 0x3\ <<\ PWR\_D3CR\_VOS\_Pos);}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((PWR-\/>D3CR\ \&\ PWR\_D3CR\_VOSRDY)\ ==\ 0)\ \_\_asm(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eVOSs::VOS2:}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(PWR-\/>D3CR,\ PWR\_D3CR\_VOS\_Msk,\ 0x2\ <<\ PWR\_D3CR\_VOS\_Pos);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((PWR-\/>D3CR\ \&\ PWR\_D3CR\_VOSRDY)\ ==\ 0)\ \_\_asm(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eVOSs::VOS3:}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(PWR-\/>D3CR,\ PWR\_D3CR\_VOS\_Msk,\ 0x1\ <<\ PWR\_D3CR\_VOS\_Pos);}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((PWR-\/>D3CR\ \&\ PWR\_D3CR\_VOSRDY)\ ==\ 0)\ \_\_asm(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(PWR-\/>CR1,\ PWR\_CR1\_SVOS\_Msk,\ 0x3\ <<\ PWR\_CR1\_SVOS\_Pos);}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR1\ \&=\ \string~PWR\_CR1\_LPDS;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eVOSs::LP\_SVOS3:}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(PWR-\/>D3CR,\ PWR\_D3CR\_VOS\_Msk,\ 0x1\ <<\ PWR\_D3CR\_VOS\_Pos);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((PWR-\/>D3CR\ \&\ PWR\_D3CR\_VOSRDY)\ ==\ 0)\ \_\_asm(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(PWR-\/>CR1,\ PWR\_CR1\_SVOS\_Msk,\ 0x3\ <<\ PWR\_CR1\_SVOS\_Pos);}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR1\ |=\ PWR\_CR1\_LPDS;}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eVOSs::LP\_SVOS4:}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(PWR-\/>D3CR,\ PWR\_D3CR\_VOS\_Msk,\ 0x1\ <<\ PWR\_D3CR\_VOS\_Pos);}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((PWR-\/>D3CR\ \&\ PWR\_D3CR\_VOSRDY)\ ==\ 0)\ \_\_asm(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ PWR-\/>CR1\ =\ (PWR-\/>CR1\ \&\ \string~PWR\_CR1\_SVOS\_Msk)\ |\ 0x2\ <<\ PWR\_CR1\_SVOS\_Pos;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eVOSs::LP\_SVOS5:}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(PWR-\/>D3CR,\ PWR\_D3CR\_VOS\_Msk,\ 0x1\ <<\ PWR\_D3CR\_VOS\_Pos);}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((PWR-\/>D3CR\ \&\ PWR\_D3CR\_VOSRDY)\ ==\ 0)\ \_\_asm(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ ModifyReg(PWR-\/>CR1,\ PWR\_CR1\_SVOS\_Msk,\ 0x1\ <<\ PWR\_CR1\_SVOS\_Pos);}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00184\ \ \ \ \ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eDomainPowerModes\ \ \ \ \{\ DStop,\ DStandby\ \};}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eCPUs\ \ \ \ \ \ \ \ \{\ CM7,\ CM4\ \};}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eDomains\ \ \ \ \ \{\ D1,\ D2,\ D3\ \};}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordtype}{void}\ PowerMode(eDomainPowerModes\ dm,\ eCPUs\ CPU,\ eDomains\ Domain)}
+\DoxyCodeLine{00191\ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ uint32\_t\ CPUCR\ =\ (CPU\ ==\ eCPUs::CM7\ ?\ PWR-\/>CPUCR\ :\ PWR-\/>CPU2CR);}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (Domain)}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eDomains::D1:}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (dm)}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eDomainPowerModes::DStop:}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CPUCR\ \&=\ \string~PWR\_CPUCR\_PDDS\_D1\_Msk;}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eDomainPowerModes::DStandby:}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CPUCR\ |=\ PWR\_CPUCR\_PDDS\_D1;}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eDomains::D2:}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (dm)}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eDomainPowerModes::DStop:}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CPUCR\ \&=\ \string~PWR\_CPUCR\_PDDS\_D2\_Msk;}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eDomainPowerModes::DStandby:}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CPUCR\ |=\ PWR\_CPUCR\_PDDS\_D2;}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eDomains::D3:}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ assert(\textcolor{keyword}{false}\ \&\&\ \textcolor{stringliteral}{"{}illegal\ domain"{}});}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ (CPU\ ==\ eCPUs::CM7\ ?\ PWR-\/>CPUCR\ :\ PWR-\/>CPU2CR)\ =\ CPUCR;}
+\DoxyCodeLine{00223\ \ \ \ \ \}}
+\DoxyCodeLine{00224\ \ \ \ \ }
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eStopModeEntry\ \{\ WFI,\ WFE\ \};}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordtype}{void}\ EnterLowPower(eStopModeEntry\ sme)}
+\DoxyCodeLine{00227\ \ \ \ \ \{}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \textcolor{preprocessor}{\#ifdef\ CORE\_CM7}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \_\_WFE();}
+\DoxyCodeLine{00231\ \textcolor{preprocessor}{\#else\ \ \ }}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \_\_SEV();}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \_\_WFE();}
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ SLEEPDEEP\ bit\ of\ Cortex\ System\ Control\ Register\ }}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ SCB-\/>SCR\ |=\ SCB\_SCR\_SLEEPDEEP\_Msk;}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ that\ all\ instructions\ are\ done\ before\ entering\ STOP\ mode\ }}
+\DoxyCodeLine{00240\ \textcolor{comment}{//\ \ \ \ \ \ \_\_DSB();}}
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{comment}{//\ \ \_\_ISB();}}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Select\ Stop\ mode\ entry\ }}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sme\ ==\ eStopModeEntry::WFI)}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Request\ Wait\ For\ Interrupt}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \_\_WFI();}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Request\ Wait\ For\ Event}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \_\_WFE();}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clear\ SLEEPDEEP\ bit\ of\ Cortex-\/Mx\ in\ the\ System\ Control\ Register\ }}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ SCB-\/>SCR\ \&=\ \string~SCB\_SCR\_SLEEPDEEP\_Msk;}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ \ \ \}}
+\DoxyCodeLine{00259\ \ \ \ \ }
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\#ifdef\ CORE\_CM4}}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordtype}{void}\ SleepCM4()}
+\DoxyCodeLine{00262\ \ \ \ \ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ VOS(eVOSs::VOS3);}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ PowerMode(eDomainPowerModes::DStop,\ eCPUs::CM4,\ eDomains::D2);}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00266\ \textcolor{comment}{\ \ \ \ \ \ \ \ SysTick-\/>CTRL\ \&=\ \string~SysTick\_CTRL\_TICKINT\_Msk;}}
+\DoxyCodeLine{00267\ \textcolor{comment}{\ \ \ \ \ \ \ \ \_\_set\_PRIMASK(1);}}
+\DoxyCodeLine{00268\ \textcolor{comment}{\ \ \ \ \ \ \ \ \_\_set\_FAULTMASK(1);}}
+\DoxyCodeLine{00269\ \textcolor{comment}{\ \ \ \ \ \ \ \ \_\_disable\_fault\_irq();}}
+\DoxyCodeLine{00270\ \textcolor{comment}{\ \ \ \ \ \ \ \ \_\_disable\_irq();}}
+\DoxyCodeLine{00271\ \textcolor{comment}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00272\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>IMR1\ =\ 0;}}
+\DoxyCodeLine{00273\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>EMR1\ =\ 0;}}
+\DoxyCodeLine{00274\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>IMR2\ =\ 0;}}
+\DoxyCodeLine{00275\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>EMR2\ =\ 0;}}
+\DoxyCodeLine{00276\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>IMR3\ =\ 0;}}
+\DoxyCodeLine{00277\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>EMR3\ =\ 0;}}
+\DoxyCodeLine{00278\ \textcolor{comment}{}}
+\DoxyCodeLine{00279\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>C2IMR1\ =\ 0;}}
+\DoxyCodeLine{00280\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>C2EMR1\ =\ 0;}}
+\DoxyCodeLine{00281\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>C2IMR2\ =\ 0;}}
+\DoxyCodeLine{00282\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>C2EMR2\ =\ 0;}}
+\DoxyCodeLine{00283\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>C2IMR3\ =\ 0;}}
+\DoxyCodeLine{00284\ \textcolor{comment}{\ \ \ \ \ \ \ \ EXTI-\/>C2EMR3\ =\ 0;}}
+\DoxyCodeLine{00285\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ EnterLowPower(eStopModeEntry::WFI);}
+\DoxyCodeLine{00287\ \ \ \ \ \}}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00289\ \textcolor{preprocessor}{\#ifdef\ CORE\_CM7}}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keywordtype}{bool}\ WaitForCM4ToSleep(\textcolor{keywordtype}{int}\ timeout\ =\ INT32\_MAX)}
+\DoxyCodeLine{00291\ \ \ \ \ \{}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((RCC-\/>CR\ \&\ RCC\_CR\_D2CKRDY)\ \&\&\ timeout\ >\ 0)}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (timeout\ !=\ INT32\_MAX)\ -\/-\/timeout;}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !(RCC-\/>CR\ \&\ RCC\_CR\_D2CKRDY);}
+\DoxyCodeLine{00297\ \ \ \ \ \}}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keywordtype}{bool}\ WaitForCM4ToRun(\textcolor{keywordtype}{int}\ timeout\ =\ INT32\_MAX)\ }
+\DoxyCodeLine{00299\ \ \ \ \ \{}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!(RCC-\/>CR\ \&\ RCC\_CR\_D2CKRDY)\ \&\&\ timeout\ >\ 0)}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (timeout\ !=\ INT32\_MAX)\ -\/-\/timeout;}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (RCC-\/>CR\ \&\ RCC\_CR\_D2CKRDY);}
+\DoxyCodeLine{00306\ \ \ \ \ \}}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \};}
 
 \end{DoxyCode}

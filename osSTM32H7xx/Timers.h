@@ -19,11 +19,12 @@
 
 #pragma once
 
-#include "stm32h7xx.h"
-#include <RCC.h>
-#include <GPIO.h>
-#include <SysTick.h>
-#include <Utils.h>
+#include <stm32h7xx.h>
+#include <assert.h>
+#include "RCC.h"
+#include "GPIO.h"
+#include "SysTick.h"
+
 
 //https://www.st.com/resource/en/reference_manual/rm0399-stm32h745755-and-stm32h747757-advanced-armbased-32bit-mcus-stmicroelectronics.pdf#page=1911"
 
