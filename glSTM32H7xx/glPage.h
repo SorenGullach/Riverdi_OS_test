@@ -22,35 +22,43 @@
 #include "glWidgets.h"
 
 // a GUI consists of pages
-class glPage : public glWidgetAttributes, public glLink
+class glPage : public glLink, public glWidgetColor
 {
 public:
-	glPage(const char *name)
-		: glWidgetAttributes(name, gl2DPoint_t(), glColor_t())
+	glPage(const char *name, glColor_t color)
+		: /*glWidgetLink(name, gl2DPoint_t())
+		,*/ glWidgetColor(color,color)
+		, _Name(name) 
 	{
 	}
 //	virtual void Init() override
 //	{
 //	}
-
+	
 	// Add a widget to the page
-	void Add(glWidget *page)
+	void Add(glWidgetLink *page)
 	{
-		ChainObjects.Add(page);
+		ChainWidgets.Add(page);
 	}
 
-	void PosSize(gl2DPoint_t pos)
+	gl2DPoint_t InvalidRegion() 
 	{
-		_Region = pos;
+		return _Region;
 	}
+
+	void MoveTo(gl2DPoint_t region)
+	{
+		_Region = region;
+	}
+
 	// called down link to redraw
 	void UpdateLook()
 	{
 		Redraw(); // draw this widget
 
 		// Update widgets
-		if (ChainObjects.Head() != nullptr)
-			ChainObjects.Head()->UpdateLook();
+		if (ChainWidgets.Head() != nullptr)
+			ChainWidgets.Head()->UpdateLook();
 	}
 
 	// called down link to update state
@@ -59,18 +67,27 @@ public:
 		Touch(point); // send touch
 
 		// Update widgets
-		if (ChainObjects.Head() != nullptr)
-			ChainObjects.Head()->UpdateState(point);
+		if (ChainWidgets.Head() != nullptr)
+			ChainWidgets.Head()->UpdateState(point);
 	}
 
-	void Invalidate()
+	void InvalidateMe()
 	{
 		//Printf("%s Invalidate\n", Name);
 		ImInvalidated = true; // this page
-		if (ChainObjects.Head() != nullptr)
-			ChainObjects.Head()->Invalidate(); // a all widgets
+		if (ChainWidgets.Head() != nullptr)
+			ChainWidgets.Head()->InvalidateSiblings(); // a all widgets
 	}
-	
+
+	void InvalidateSiblings()
+	{
+		InvalidateMe();
+		
+		// Update siblings
+		if (pNext != nullptr)
+			pNext->InvalidateSiblings();
+	}
+
 	bool IsInvalidated(gl2DPoint_t &invalidRegion)
 	{
 		bool Invalid = false;
@@ -79,10 +96,10 @@ public:
 			invalidRegion = invalidRegion.Union(InvalidRegion());
 			Invalid = true; // all childern is also invalid
 		}
-		else if (ChainObjects.Head() != nullptr)
+		else if (ChainWidgets.Head() != nullptr)
 		{
 			// ask all objs
-			Invalid = ChainObjects.Head()->IsInvalidated(invalidRegion);
+			Invalid = ChainWidgets.Head()->IsInvalidated(invalidRegion);
 		}
 		return Invalid;
 	}
@@ -91,7 +108,7 @@ public:
 	{
 		if (!ImInvalidated) return;
 		
-		glRectangleFill(_Region.Intersection(glVideoMemory::InvalidRegion), _Color).Draw();
+		glRectangleFill(_Region.Intersection(glVideoMemory::InvalidRegion), _BackColor).Draw();
 		
 		if(glVideoMemory::lastBand()) ImInvalidated = false;
 	}
@@ -131,7 +148,13 @@ public:
 	}
 
 	glEvent EventAction;
+protected:
+	gl2DPoint_t _Region;
 private:
-	glChain<glWidget> ChainObjects;
+	char const *_Name = "glWidget";
+	// is widget invalidated
+	bool ImInvalidated = true;
+
+	glChain<glWidgetLink> ChainWidgets;
 	bool InSlide = false;
 };

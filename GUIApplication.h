@@ -23,19 +23,18 @@
 #include <glPage.h>
 #include <glFont.h>
 
-class GUIPageTest : public glPage
+class GUIPageWidgets : public glPage
 {
 public:
-	GUIPageTest()
-		: glPage("PageTest")
+	GUIPageWidgets()
+		: glPage("PageWidgets", glColors::BLACK)
 	{
-		_Color = glColor_t(0, 0, 0);
 	}
 	// Initialize widget
 	virtual void Init()
 	{
-		l1 = glLine(0, 0, _Region.Width(), _Region.Height(), Cr);
-		l2 = glLine(_Region.Width(), 0, 0, _Region.Height(), Cg);
+		l1 = glLine( gl2DPoint_t(0, 0, _Region.Width(), _Region.Height()), Cr);
+		l2 = glLine( gl2DPoint_t(_Region.Width(), 0, 0, _Region.Height()), Cg);
 		Add(&p1);
 		Add(&p2);
 		Add(&p3);
@@ -63,17 +62,18 @@ private:
 	glColor_t Cr = glColor_t(glColors::RED);
 	glColor_t Cg = glColor_t(glColors::GREEN);
 	glColor_t Cb = glColor_t(glColors::BLUE);
-	glPixel p1 = { 100, 100, Cr };
-	glPixel p2 = { 100, 101, glColors::RED };
-	glPixel p3 = { 100, 102, glColors::RED };
-	glPixel p4 = { 100, 103, glColors::RED };
-	glLine l1;
-	glLine l2;
-	glRectangle r1 = { 110, 110, 400, 400, Cr };
-	glCircle c1 = { 500, 300, 100, glColors::RED };
+	glPixel p1 = { glPoint_t(100, 100), Cr };
+	glPixel p2 = { glPoint_t(100, 101), glColors::RED};
+	glPixel p3 = { glPoint_t(100, 102), glColors::RED};
+	glPixel p4 = { glPoint_t(100, 103), glColors::RED};
+	glLine l1 = {gl2DPoint_t(), Cr };
+	glLine l2 = { gl2DPoint_t(), Cg };
+ 
+	glRectangle r1 = { gl2DPoint_t(110, 110, 400, 400), Cr };
+	glCircle c1 = { glPoint_t(500, 300), 100, glColors::RED};
 	glRectangle r2 = { gl2DPoint_t(200, 200, 300, 300), glColors::GREEN };
 	glArc a1 = { gl2DPoint_t(200, 200, 300, 300), glPoint_t(200, 200), 50, glColors::BLUE };
-	glCircleFill f1 = { 700, 300, 100, glColors::BLUE };
+	glCircleFill f1 = { glPoint_t(700, 300), 100, glColors::BLUE };
 	glRectangle r3 = { gl2DPoint_t(200, 450, 300, 550), glColors::BLANCHED_ALMOND };
 	glArcFill fa1 = { gl2DPoint_t(200, 450, 300, 550), glPoint_t(300, 550), 100, glColors::BISQUE };
 	glRectangle r4 = { gl2DPoint_t(400 - 2, 450 - 2, 500 + 2, 550 + 2), glColors::DARK_OLIVE_GREEN };
@@ -83,17 +83,16 @@ private:
 	glRectangleRound rr1 = { gl2DPoint_t(500, 10, 700, 100), 30, glColors::GREEN_YELLOW };
 	glRectangleRoundFill rrf1 = { gl2DPoint_t(200, 10, 400, 100), 30, glColors::LIME_GREEN };
 	
-	glButton B1 = { gl2DPoint_t(0, 0, 200, 100) };
-	glButtonText<20, Arial_16_1> B2 = { gl2DPoint_t(200, 300, 500, 400), "Hello" };
+	glButton<20, Arial_16_1> B1 = { gl2DPoint_t(0, 0, 200, 100), "" };
+	glButton<20, Arial_31_1> B2 = { gl2DPoint_t(200, 300, 500, 400), "Hello" };
 };
 
 class GUIPageTexts : public glPage
 {
 public:
 	GUIPageTexts()
-		: glPage("Page1")
+		: glPage("Page1", glColors::CYAN)
 	{
-		_Color = glColors::LIGHT_PINK;
 	}
 	// Initialize widget
 	virtual void Init()
@@ -145,9 +144,8 @@ class GUIPageButtons : public glPage
 {
 public:
 	GUIPageButtons()
-		: glPage("Page1")
+		: glPage("Page1", glColors::LIGHT_CORAL)
 	{
-		_Color = glColor_t(0, 0, 0);
 	}
 	// Initialize widget
 	virtual void Init()
@@ -156,13 +154,17 @@ public:
 		
 		B1.BackColor(glColors::LAWN_GREEN);
 		B1.PressedColor(glColors::BURLYWOOD);
+		B3.Corners(glWidgetBorder::eCornerStyles::Angel);
+		B3.BorderColor(glColors::RED);
 		
 		Add(&B1);
 		Add(&B2);
+		Add(&B3);
 	}
 private:
-	glButton B1 = { gl2DPoint_t(100, 450, 300, 550) };
-	glButtonText < 20, Arial_22_1> B2 = { gl2DPoint_t(400, 450, 600, 550), "Page1" };
+	glButton< 20, Arial_22_1> B1 = { gl2DPoint_t(100, 450, 300, 550), "B1" };
+	glButton< 20, Arial_31_1> B2 = { gl2DPoint_t(400, 450, 600, 550), "Page1" };
+	glButton< 20, Arial_31_1> B3 = { gl2DPoint_t(400, 150, 600, 250), "Charp corners" };
 };
 
 /*
@@ -194,7 +196,7 @@ public:
 	}
 
 private:
-	GUIPageTest PageTest;
+	GUIPageWidgets PageTest;
 	GUIPageTexts PageTexts;
 	GUIPageButtons PageButtons;
 };

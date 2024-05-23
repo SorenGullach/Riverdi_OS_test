@@ -359,4 +359,3 @@ void glPlot2DHelper::PlotFillArc(const gl2DPoint_t &box, const glPoint_t &center
 	}
 }
 
-

@@ -8,7 +8,9 @@ find_bsp(
 	MCU STM32H757XI
 	HWREGISTER_LIST_FILE STM32H7xxxx/DeviceDefinitions/stm32h757xx.xml
 	CXX_STANDARD 17
-	DISABLE_GNU_EXTENSIONS)
+	DISABLE_GNU_EXTENSIONS
+	FRAMEWORKS com.sysprogs.embedded.semihosting_and_profiler
+	FWCONFIGURATION com.sysprogs.efp.profiling.debugger_check=SYSPROGS_PROFILER_DEBUGGER_CHECK_MODE=1)
 
 	bsp_include_directories(
 	../../../Users/45201/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32H7xxxx/CMSIS_HAL/Core/Include 
@@ -87,6 +89,7 @@ add_bsp_based_executable(
 		glSTM32H7xx/glText.h
 		glSTM32H7xx/glChain.h
 		glSTM32H7xx/glColor.h
+		"old linker.cpp"
 	LINKER_SCRIPT STM32H757XI_flash.lds)
 
 target_include_directories(Riverdi_OS_test PRIVATE glSTM32H7xx osSTM32H7xx glSTM32H7xx/Fonts ../../Users/45201/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32H7xxxx/CMSIS_HAL/Device/ST/STM32H7xx/Include $ENV{ToolchainDir}/arm-none-eabi/include/c++/12.3.1/pstl ../../Users/45201/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32H7xxxx/CMSIS_HAL/Core/Include)
@@ -103,4 +106,4 @@ target_compile_definitions(Riverdi_OS_test PRIVATE STM32H757xx RELEASE)
 	target_compile_options(Riverdi_OS_test PRIVATE -O3 -Wall -Wextra -Werror -fanalyzer -pedantic-errors)
 	message(STATUS "CMAKE_CXX_FLAGS: " ${CMAKE_CXX_FLAGS_RELEASE})
 endif()
-set_source_files_properties(osSTM32H7xx/SystemInitCM4.cpp PROPERTIES HEADER_FILE_ONLY TRUE)
+set_source_files_properties("old linker.cpp" glSTM32H7xx/glLabel.h osSTM32H7xx/SystemInitCM4.cpp PROPERTIES HEADER_FILE_ONLY TRUE)

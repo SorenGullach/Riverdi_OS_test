@@ -27,13 +27,11 @@
 extern void EnableICache();
 extern void EnableDCache();
 
-extern void *_sifastcode, *_sfastcode, *_efastcode;
-
 extern "C" void SystemInit()
 {
 	// copy ramfunctions to itcm
 	void **pSource, **pDest;
-	for (pSource = &_sifastcode, pDest = &_sfastcode; pDest < &_efastcode; pSource++, pDest++)
+	for (pSource = (void **)&_sifastcode, pDest = (void **)&_sfastcode; pDest < (void **)&_efastcode; pSource++, pDest++)
 		*pDest = *pSource;
 
 	// FPU settings

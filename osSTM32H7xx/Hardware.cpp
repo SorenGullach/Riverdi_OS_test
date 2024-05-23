@@ -18,6 +18,7 @@
  */
 
 #include "Hardware.h"
+#include "MemoryDefs.h"
 
 #ifdef DEBUG
 #include <stdarg.h>
@@ -58,15 +59,59 @@ void DumpChipInfo()
 		Chip_LineIdentifier[0]);
 }
 
-extern void *_estack, *_sstack, *__StackLimit;
-extern void *__heap_start__, *__heap_end__;
-extern void *_ssdram,*_esdram;
+#include <stdio.h>
+
+void DumpMemInfo(const char *info, uint32_t start, uint32_t end)
+{
+	Printf("%s:\n",info);
+	Printf("  Start Address: 0x%lX\n", start);
+	Printf("  End Address: 0x%lX\n", end);
+	uint32_t size = end - start;
+	Printf("  Size: %ld(0x%lX) bytes\n", size, size);
+	Printf("\n");
+}
 
 void DumpMemInfo()
 {
-	Printf("Heap stack dump\n");
-	Printf("Heap %lX to %lX %ld bytes\n", &__heap_start__, &__heap_end__, &__heap_end__ - &__heap_start__); 
-	Printf("Stack %lX to %lX %ld bytes\n", &_sstack, &_estack, &_estack - &_sstack);
-	Printf("SDRAM %lX to %lX %ld bytes\n", &_ssdram, &_esdram, &_esdram - &_ssdram);
-	Printf("Heap stack dump end\n\n");
+	// Print a header for the memory dump
+	Printf("Memory Region Information Dump\n\n");
+
+	// Heap information
+	DumpMemInfo("Heap", (uint32_t)&__heap_start__, (uint32_t)&__heap_end__);
+
+	// Stack information
+	DumpMemInfo("Stack", (uint32_t)&_sstack, (uint32_t)&_estack);
+
+	// SDRAM information
+	DumpMemInfo("SDRAM", (uint32_t)&_ssdram, (uint32_t)&_esdram);
+
+	// Text section information (code)
+	DumpMemInfo("Text Section (Code)", (uint32_t)&_stext, (uint32_t)&_etext);
+
+	// Data section information (initialized data)
+	DumpMemInfo("Data Section (Initialized Data)", (uint32_t)&_sdata, (uint32_t)&_edata);
+
+	// RAM Data section information
+	DumpMemInfo("RAM Data Section", (uint32_t)&_sramdata, (uint32_t)&_eramdata);
+
+	// Fast Code section information
+	DumpMemInfo("Fast Code Section", (uint32_t)&_sfastcode, (uint32_t)&_efastcode);
+
+	// BSS section information (uninitialized data)
+	DumpMemInfo("BSS Section (Uninitialized Data)", (uint32_t)&_sbss, (uint32_t)&_ebss);
+
+	// Preinit array section information
+	DumpMemInfo("Preinit Array Section", (uint32_t)&__preinit_array_start, (uint32_t)&__preinit_array_end);
+
+	// Init array section information
+	DumpMemInfo("Init Array Section", (uint32_t)&__init_array_start, (uint32_t)&__init_array_end);
+
+	// Fini array section information
+	DumpMemInfo("Fini Array Section", (uint32_t)&__fini_array_start, (uint32_t)&__fini_array_end);
+
+	// Exidx section information
+	DumpMemInfo("Exception Index Section", (uint32_t)&__exidx_start, (uint32_t)&__exidx_end);
+
+	// Print a footer for the memory dump
+	Printf("Memory Region Information Dump End\n\n");
 }

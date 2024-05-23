@@ -1,0 +1,87 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-DEBUG-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "DEBUG",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Riverdi_OS_test",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "BSP::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-BSP-DEBUG-acfc9054e7af932e2c5a.json",
+					"name" : "BSP",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "BSP_EFP_Profiler::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-BSP_EFP_Profiler-DEBUG-15c03a4a486842a45dd7.json",
+					"name" : "BSP_EFP_Profiler",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Riverdi_OS_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Riverdi_OS_test-DEBUG-078a68d2023eef36aae2.json",
+					"name" : "Riverdi_OS_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Riverdi_OS_test-bin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Riverdi_OS_test-bin-DEBUG-be8ce72168fa2dc31bee.json",
+					"name" : "Riverdi_OS_test-bin",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Projects/Riverdi_OS_test/build/VisualGDB/Debug",
+		"source" : "C:/Projects/Riverdi_OS_test"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

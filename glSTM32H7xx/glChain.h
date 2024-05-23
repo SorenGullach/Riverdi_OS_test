@@ -28,7 +28,7 @@ template<class T>
 class glLink 
 {
 	// Allow glChain to access pNext and pPrev directly
-	template<class T>
+	template<class TC>
 		friend class glChain;
 public:
 	//virtual void Init() = 0;
@@ -36,7 +36,8 @@ public:
 	virtual void UpdateLook() = 0;
 	virtual void UpdateState(glTouchPoint_t &point) = 0;
 	virtual bool IsInvalidated(gl2DPoint_t &invalidRegion) = 0;
-	virtual void Invalidate() = 0;
+	virtual void InvalidateMe() = 0;
+	virtual void InvalidateSiblings() = 0;
 	
 	// buble event to top
 	virtual void Event(glEvent event) = 0;
@@ -54,12 +55,12 @@ template<class T>
 	class glChain 
 	{
 	public:
-		// Add a widget
+		// Add a link
 		void Add(T *obj)
 		{
 			if (!obj) return; // Check for nullptr
 			
-			glLink* pNewLinkObj = dynamic_cast<glLink*>(obj); // Attempt to cast to glLinkObject pointer
+			glLink* pNewLinkObj = dynamic_cast<glLink*>(obj); // Attempt to cast to glLink pointer
 			if (!pNewLinkObj) 
 			{
 				assert(false && "Error: Object does not derive from glLink. Cannot add to glChain.");
@@ -87,7 +88,7 @@ template<class T>
 		{
 			if (!obj) return; // Check for nullptr
 
-			glLink* pLinkObj = dynamic_cast<glLink*>(obj); // Attempt to cast to glLinkObject pointer
+			glLink* pLinkObj = dynamic_cast<glLink*>(obj); // Attempt to cast to glLink pointer
 			if (!pLinkObj) {
 				assert(false && "Error: Object does not derive from glLink. Cannot remove from glChain.");
 				return;

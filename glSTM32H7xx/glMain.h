@@ -54,7 +54,7 @@ public:
 	
 	void AddPage(glPage *page)
 	{
-		page->PosSize(gl2DPoint_t(0, 0, Display.Width() - 1, Display.Height() - 1));
+		page->MoveTo(gl2DPoint_t(0, 0, Display.Width() - 1, Display.Height() - 1));
 		ChainPages.Add(page);
 		//page->Init();
 		
@@ -84,14 +84,14 @@ public:
 		case glEvent::eEventType::Slide:
 			if (pCurrentPage->EventAction.U.Slide.Action == glTouchPoint_t::Right && pCurrentPage->Prev() != nullptr)			
 			{
-				((glPage *)pCurrentPage->Prev())->Invalidate();
+				((glPage *)pCurrentPage->Prev())->InvalidateMe();
 				pCurrentPage->EventAction.U.Slide.Action = glTouchPoint_t::None; 
 				pCurrentPage = (glPage *)(pCurrentPage->Prev());
 				//Printf("%s Currentpage\n", pCurrentPage->Name);
 			}
 			if (pCurrentPage->EventAction.U.Slide.Action == glTouchPoint_t::Left && pCurrentPage->Next() != nullptr)			
 			{
-				((glPage *)pCurrentPage->Next())->Invalidate();
+				((glPage *)pCurrentPage->Next())->InvalidateMe();
 				pCurrentPage->EventAction.U.Slide.Action = glTouchPoint_t::None; 
 				pCurrentPage = (glPage *)(pCurrentPage->Next());
 				//Printf("%s Currentpage\n", pCurrentPage->Name);

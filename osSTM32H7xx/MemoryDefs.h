@@ -23,7 +23,38 @@
 #define RAM_D2_START	D2_AXISRAM_BASE		//, LENGTH = 288K
 #endif
 
-extern void *_ssdram, *_esdram;
+// Declare linker script variables
+extern "C" {
+	extern void *__heap_start__;
+	extern void *__heap_end__;
+	extern void *_sstack;
+	extern void *_estack;
+	extern void *_ssdram;
+	extern void *_esdram;
+	extern void *_stext;
+	extern void *_etext;
+	extern void *_sdata;
+	extern void *_edata;
+	extern void *_sbss;
+	extern void *_ebss;
+	extern void *__data_start__;
+	extern void *__data_end__;
+	extern void *_sramdata;
+	extern void *_eramdata;
+	extern void *_sifastcode;
+	extern void *_sfastcode;
+	extern void *_efastcode;
+	extern void *_sbss;
+	extern void *_ebss;
+	extern void *__preinit_array_start;
+	extern void *__preinit_array_end;
+	extern void *__init_array_start;
+	extern void *__init_array_end;
+	extern void *__fini_array_start;
+	extern void *__fini_array_end;
+	extern void *__exidx_start;
+	extern void *__exidx_end;
+}
 
 # ifdef CORE_CM7
 #define FLASH_START		FLASH_BANK1_BASE	//, LENGTH = 1M
@@ -44,3 +75,4 @@ extern void *_ssdram, *_esdram;
 #define SHARED_END		0x3800FFFF	//, LENGTH = 64K  /* Shared SRAM4 0x38000000 - 0x3800FFFF */
 #define BKPSRAM_START	D3_BKPSRAM_BASE	//, LENGTH = 4K   /* Backup SRAM4 0x38800000 - 0x38800FFF */
 #define BKPSRAM_END		0x38800FFF	//, LENGTH = 4K   /* Backup SRAM4 0x38800000 - 0x38800FFF */
+

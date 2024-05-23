@@ -23,20 +23,15 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 template<int length>
-	class glText : public glWidget, private glVideoMemoryPlot
+	class glText : public glWidgetLink, public glWidgetColor, private glVideoMemoryPlot
 	{
 	public:
-		glText(const gl2DPoint_t &pos, const FontItem *fontFamily, 
-			const glColor_t &color = glColors::WHITE)
-			: glWidget("Text", pos.Normalize(), color)
-		{
-			assert(fontFamily != nullptr && "no fontFamily");
-			FontFamily = fontFamily;
-			Text("empty");
-		}
-		glText(const gl2DPoint_t &pos, const char *text, const FontItem *fontFamily, 
+		glText(const gl2DPoint_t &region, 
+			const char *text, 
+			const FontItem *fontFamily, 
 			const glColor_t &color = glColors::WHITE) 
-			: glWidget("Text", pos.Normalize(), color)
+			: glWidgetLink("Text", region)
+			, glWidgetColor(color, color)
 		{
 			assert(fontFamily != nullptr && "no fontFamily");
 			FontFamily = fontFamily;
@@ -53,23 +48,31 @@ template<int length>
 		P_t TextWidth()
 		{
 			P_t width = 0; // Initialize the width counter
-			int index = 0; // Initialize the character index
-			char character;
+			char *pc = _Text;
 
-			// Iterate over each character in the text until the null terminator is encountered
-			while ((character = _Text[index]) != '\0')
+			// Iterate over each character in the text
+			while (*pc != 0)
 			{
+				if (*pc < FontFamily->c)
+				{
+					if (*pc == ' ')
+						width += FontFamily[SpaceChar - FontFamily->c].w;
+					else
+						width += FontFamily['?' - FontFamily->c].w;
+					pc++;
+					continue;
+				}
 				// Retrieve font information for the character
-				const FontItem* font = &FontFamily[character - FontFamily->c]; // Adjust font pointer based on character
+				const FontItem* font = &FontFamily[*pc - FontFamily->c]; // Adjust font pointer based on character
 
 				// Ensure the retrieved font corresponds to the current character
-				assert(font->c == character);
+				assert(font->c == *pc);
 
 				// Accumulate the width of the character
 				width += font->w;
 
 				// Move to the next character in the text
-				index++;
+				pc++;
 			}
 
 			return width;  // Return the total width of the text
@@ -92,8 +95,8 @@ template<int length>
 //			glRectangle(pos, glColors::RED).Draw();
 
 			// Initialize variables
-			glColor_t color = _Color;
-			uint8_t pix[200];
+			glColor_t color = _FrontColor;
+			C_t pix[200];
 			P_t xs = pos.L();
 			char *pc = _Text;
 
@@ -101,7 +104,20 @@ template<int length>
 			while (*pc != 0)
 			{
 				// Retrieve font information for the character
-				const FontItem *f = &FontFamily[*pc++ -FontFamily->c];
+				const FontItem *f;
+				if (*pc < FontFamily->c)
+				{
+					if (*pc == ' ')
+					{	
+						xs += FontFamily[SpaceChar - FontFamily->c].w;
+						pc++;
+						continue;
+					}
+					f = &FontFamily['?' -FontFamily->c];					
+				}
+				else
+					f = &FontFamily[*pc++ -FontFamily->c];					
+
 				assert(f->w < sizeof(pix)); // Ensure buffer size is not exceeded
 				P_t ys = pos.T() + f->yb;
 
@@ -111,7 +127,7 @@ template<int length>
 				for (int l = 0, y = ys; l < f->StrideY/* && y < pos.B()*/; ++l, ++y)
 				{
 					// Extract pixel data for the row
-					ExtractPixelRow(f, l, pix, _Color.A);
+					ExtractPixelRow(f, l, pix, _FrontColor.A);
 
 					// Iterate over each pixel in the row
 					for (int x = 0; x < f->w; ++x)
@@ -130,16 +146,23 @@ template<int length>
 			}
 
 			// Check if the last band of video memory is reached
-			if (glVideoMemory::lastBand()) ImInvalidated = false;
+			if (glVideoMemory::lastBand()) 
+				ImInvalidated = false;
 		}
 	
+		gl2DPoint_t InvalidRegion() override
+		{
+			return _Region;
+		}
+
 		void Touch(const glTouchPoint_t &) override {}
 	private:
 		char _Text[length];
 		const FontItem *FontFamily;
+		const char SpaceChar = '!';
 
 		// Function to extract pixel data for a character
-		void ExtractPixelRow(const FontItem *f, int l, uint8_t pix[], C_t alpha)
+		void ExtractPixelRow(const FontItem *f, int l, C_t pix[], C_t alpha)
 		{
 			// Initialize variables
 			int BitsPerPixel = f->BitsPerPixel;
@@ -194,7 +217,6 @@ template<int length>
 				}
 			}
 		}
-
 
 		// find center pos
 		gl2DPoint_t Center()

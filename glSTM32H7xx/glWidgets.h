@@ -62,57 +62,32 @@ public:
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-class glWidgetAttributes 
+class glWidgetLink : public glLink
 {
 public:
-	glWidgetAttributes(char const *name, const gl2DPoint_t &position, const glColor_t &color)
+	glWidgetLink(char const *name, const gl2DPoint_t &region)
+		: _Name(name)
+		, _Region(region.Normalize()) {}
+	
+	// Add a widget to the page
+	void Add(glWidgetLink *child)
 	{
-		_Name = name;
-		_Region = position;
-		_Color = color;
+		ChainChilds.Add(child);
 	}
 
-	virtual gl2DPoint_t InvalidRegion() 
-	{
-		return _Region;
-	}
+	virtual const char * Name()					{ return _Name; }
+	virtual void Name(const char *name)			{ _Name = name; }
+
+	virtual gl2DPoint_t &Region()						{ return _Region;	}
+	virtual void MoveTo(const gl2DPoint_t &region)		{ _Region = region; }
 
 	// redraw your self
 	virtual void Redraw() = 0;
 	// Called upon touch change
 	virtual void Touch(const glTouchPoint_t &) = 0;
-
-	// is widget invalidated
-	bool ImInvalidated = true;
-	
-	gl2DPoint_t &Region()
+	virtual gl2DPoint_t InvalidRegion() 
 	{
 		return _Region;
-	}
-	
-	void Color(glColor_t color)
-	{
-		_Color = color;
-	}
-
-protected:
-	// attributes
-	glColor_t _Color;
-	char const *_Name = "glWidget";
-	gl2DPoint_t _Region;
-};
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-class glWidget : public glWidgetAttributes, public glLink
-{
-public:
-	glWidget(char const *name, const gl2DPoint_t &position, const glColor_t &color)
-		: glWidgetAttributes(name, position, color) {}
-
-	// Add a widget to the page
-	void Add(glWidget *child)
-	{
-		ChainChilds.Add(child);
 	}
 
 	// called down link to redraw
@@ -143,18 +118,23 @@ public:
 			pNext->UpdateState(point);
 	}
 	
-	void Invalidate()
+	void InvalidateMe()
 	{
 		//Printf("%s Invalidate\n", Name);
 		ImInvalidated = true; // this obj
 		if (ChainChilds.Head() != nullptr)
-			ChainChilds.Head()->Invalidate(); // & all childs
-		
-		// Update widgets
-		if (pNext != nullptr)
-			pNext->Invalidate();
+			ChainChilds.Head()->InvalidateSiblings(); // & all childs
 	}
-	
+
+	void InvalidateSiblings()
+	{
+		InvalidateMe();
+		
+		// Update siblings
+		if (pNext != nullptr)
+			pNext->InvalidateSiblings();
+	}
+
 	bool IsInvalidated(gl2DPoint_t &invalidRegion)
 	{
 		bool Invalid = false;
@@ -184,9 +164,70 @@ public:
 			pPrev->Event(event);
 	}
 
+protected:
+	char const *_Name = "glWidget";
+	// is widget invalidated
+	bool ImInvalidated = true;
+	gl2DPoint_t _Region;
 private:
-	glChain<glWidget> ChainChilds;
+	glChain<glWidgetLink> ChainChilds;
 };
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+class glWidgetColor
+{
+public:
+	glWidgetColor(
+		const glColor_t &frontColor,
+		const glColor_t &backColor = glColor_t(glColor_t::eColorOperation::ComplementBackground))
+		: _BackColor(backColor), _FrontColor(frontColor)
+	{
+	}
+
+	virtual glColor_t BackColor()	{ return _BackColor; }
+	virtual glColor_t FrontColor()	{ return _FrontColor; }
+
+	virtual void BackColor(glColor_t color)		{ _BackColor = color; }
+	virtual void FrontColor(glColor_t color)	{ _FrontColor = color; }
+
+protected:
+	// attributes
+	glColor_t _BackColor;
+	glColor_t _FrontColor;
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+class glWidgetBorder
+{
+public:
+	enum class eCornerStyles					{ Angel, Round };
+	
+	glWidgetBorder(
+		const glColor_t BorderColor = glColors::WHITE,
+		const P_t borderWidth = 5,
+		const eCornerStyles cornerStyle = eCornerStyles::Round,
+		const P_t borderRadius = 5)
+		: _BorderWidth(borderWidth)
+		, _BorderColor(BorderColor)
+		, _CornerStyle(cornerStyle)
+		, _CornerRadius(borderRadius)
+	{
+	}
+
+	virtual void BorderColor(glColor_t color)	{ _BorderColor = color; }
+	virtual void BorderWidth(P_t Width) 	{ _BorderWidth = Width; }
+	virtual void Corners(eCornerStyles Style)	{ _CornerStyle = Style; }
+	virtual void CornerRadius(P_t radius)	{ _CornerRadius = radius; }
+
+protected:
+	// attributes
+	P_t _BorderWidth;
+	glColor_t _BorderColor;
+	eCornerStyles _CornerStyle;
+	P_t _CornerRadius;
+};
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /**
@@ -197,31 +238,24 @@ private:
  * multiple constructors for different ways of initializing the pixel's position and color.
  * It also overrides the Redraw method to plot the pixel on the screen.
  */
-class glPixel : public glWidget, private glVideoMemoryPlot
+class glPixel : public glWidgetLink, public glWidgetColor, private glVideoMemoryPlot
 {
 public:
-	glPixel() 
-		: glWidget("Pixel", gl2DPoint_t(), glColor_t()) {}
+	glPixel(P_t x, P_t y, const glColor_t &color)
+		: glWidgetLink("Pixel", gl2DPoint_t(x, y, x, y))
+		, glWidgetColor(color, color) {}
 
-	glPixel(P_t x, P_t y, glColor_t &color)
-		: glWidget("Pixel", gl2DPoint_t(x, y, x, y), color) {}
+	glPixel(const glPoint_t &point, const glColor_t &color)
+		: glWidgetLink("Pixel", gl2DPoint_t(point, point))
+		, glWidgetColor(color, color) {}
 
-	glPixel(P_t x, P_t y, glColors color)
-		: glWidget("Pixel", gl2DPoint_t(x, y, x, y), glColor_t(color)) {}
-
-	glPixel(glPoint_t &point, glColor_t &color)
-		: glWidget("Pixel", gl2DPoint_t(point, point), color) {}
-
-	glPixel(glPoint_t &point, glColors color)
-		: glWidget("Pixel", gl2DPoint_t(point, point), glColor_t(color)) {}
-	
 protected:
 	// Redraws the pixel widget.
 	virtual void Redraw() override
 	{
 		if (!ImInvalidated) return;
 		
-		Plot(_Region.LT(), _Color);
+		Plot(_Region.LT(), _BackColor);
 		if (glVideoMemory::lastBand()) ImInvalidated = false;
 	}
 	void Touch(const glTouchPoint_t &) override {}
@@ -246,70 +280,41 @@ private:
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-class glLine : private glPlot2DHelper, public glWidget
+class glLine : private glPlot2DHelper, public glWidgetLink, public glWidgetColor
 {
 public:
-	glLine()
-		: glWidget("Line", gl2DPoint_t(), glColor_t()) {}
-	
-	glLine(const glPoint_t &start, const glPoint_t &end, const glColor_t &color)
-		: glWidget("Line", gl2DPoint_t(start, end), color) {}
-
-	glLine(const glPoint_t &start, const glPoint_t &end, const glColors &color)
-		: glWidget("Line", gl2DPoint_t(start, end), glColor_t(color)) {}
-
-	glLine(P_t x0, P_t y0, P_t x1, P_t y1, glColor_t &color)
-		: glWidget("Line", gl2DPoint_t(x0, y0, x1, y1), color) {}
-
-	glLine(P_t x0, P_t y0, P_t x1, P_t y1, const glColors &color)
-		: glWidget("Line", gl2DPoint_t(x0, y0, x1, y1), glColor_t(color)) {}
+	glLine(const gl2DPoint_t startEnd, const glColor_t &color)
+		: glWidgetLink("Line", startEnd)
+		, glWidgetColor(color, color) {}
 
 protected:
 	// Initialize widget
 //	virtual void Init() override {}
+
 	// redraw your self 
-	// return true if anything done
 	virtual void Redraw() override
 	{
 		if (!ImInvalidated) return;
 		
-		PlotLine(_Region.L(), _Region.T(), _Region.R(), _Region.B(), _Color);
+		PlotLine(_Region.L(), _Region.T(), _Region.R(), _Region.B(), _BackColor);
 		if (glVideoMemory::lastBand()) ImInvalidated = false;
 	}
 	void Touch(const glTouchPoint_t &) override {}
 };
 	
-class glRectangle : protected glPlot2DHelper, public glWidget
+class glRectangle : protected glPlot2DHelper, public glWidgetLink, public glWidgetColor
 {
 public:
-	glRectangle()
-		: glWidget("Rectangle", gl2DPoint_t(), glColor_t()) {}
-
 	glRectangle(const gl2DPoint_t &rect, const glColor_t &color)
-		: glWidget("Rectangle", rect.Normalize(), color) {}
-
-	glRectangle(const gl2DPoint_t &rect, const glColors &color)
-		: glWidget("Rectangle", rect.Normalize(), glColor_t(color)) {}
-
-	glRectangle(const glPoint_t &start, const glPoint_t &end, const glColor_t &color)
-		: glWidget("Rectangle", gl2DPoint_t(start, end).Normalize(), color) {}
-
-	glRectangle(const glPoint_t &start, const glPoint_t &end, const glColors &color)
-		: glWidget("Rectangle", gl2DPoint_t(start, end).Normalize(), glColor_t(color)) {}
-
-	glRectangle(P_t l, P_t t, P_t r, P_t b, const glColor_t &color)
-		: glWidget("Rectangle", gl2DPoint_t(l, t, r, b).Normalize(), color) {}
-
-	glRectangle(P_t l, P_t t, P_t r, P_t b, const glColors &color)
-		: glWidget("Rectangle", gl2DPoint_t(l, t, r, b).Normalize(), glColor_t(color)) {}
-
+		: glWidgetLink("Rectangle", rect)
+		, glWidgetColor(color, color) {}
 
 	virtual void Draw()
 	{
-		PlotLine(_Region.L(), _Region.T(), _Region.R(), _Region.T(), _Color);
-		PlotLine(_Region.R(), _Region.T(), _Region.R(), _Region.B(), _Color);
-		PlotLine(_Region.R(), _Region.B(), _Region.L(), _Region.B(), _Color);
-		PlotLine(_Region.L(), _Region.B(), _Region.L(), _Region.T(), _Color);
+		PlotLine(_Region.L(), _Region.T(), _Region.R(), _Region.T(), _BackColor);
+		PlotLine(_Region.R(), _Region.T(), _Region.R(), _Region.B(), _BackColor);
+		PlotLine(_Region.R(), _Region.B(), _Region.L(), _Region.B(), _BackColor);
+		PlotLine(_Region.L(), _Region.B(), _Region.L(), _Region.T(), _BackColor);
 	}
 
 	void Inflate(int d)
@@ -318,12 +323,12 @@ public:
 	}
 protected:
 	// Initialize widget
-//	virtual void Init() override {}
-	// redraw your self
-	// return true if anything done
+	//	virtual void Init() override {}
+	
+		// redraw your self
 	virtual void Redraw() override
 	{
-		if (!ImInvalidated) return;
+		if (!ImInvalidated) return ;
 
 		Draw();
 		
@@ -337,60 +342,32 @@ class glRectangleFill : public glRectangle
 public:
 	glRectangleFill(const gl2DPoint_t &rect, const glColor_t &color)
 		: glRectangle(rect, color) { _Name = "RectangleFill"; }
-	glRectangleFill(const gl2DPoint_t &rect, const glColors &color)
-		: glRectangle(rect, color) { _Name = "RectangleFill"; }
-	glRectangleFill(const glPoint_t &start, const glPoint_t &end, const glColor_t &color)
-		: glRectangle(start, end, color) { _Name = "RectangleFill"; }
-	glRectangleFill(const glPoint_t &start, const glPoint_t &end, const glColors &color)
-		: glRectangle(start, end, color) { _Name = "RectangleFill"; }
-	glRectangleFill(P_t left, P_t top, P_t right, P_t bottom, glColor_t &color)
-		: glRectangle(left, top, right, bottom, color) { _Name = "RectangleFill"; }
-	glRectangleFill(P_t left, P_t top, P_t right, P_t bottom, glColors color)
-		: glRectangle(left, top, right, bottom, color) { _Name = "RectangleFill"; }
 
 	void Draw() override
 	{
 		for (P_t x = _Region.LT().X; x <= _Region.RB().X; x++)
 			for (P_t y = _Region.LT().Y; y <= _Region.RB().Y; y++)
-				Plot(x, y, _Color);
+				Plot(x, y, _BackColor);
 	}
 };
 
-class glCircle : protected glPlot2DHelper, public glWidget
+class glCircle : protected glPlot2DHelper, public glWidgetLink, public glWidgetColor
 {
 public:
-	glCircle()
-		: glWidget("Circel", gl2DPoint_t(), glColor_t()) {}
-	glCircle(P_t x, P_t y, P_t radius, const glColor_t &color) 
-		: glWidget("Circel", gl2DPoint_t(x - radius, y - radius, x + radius, y + radius), color)
-		, _Center(x, y)
-		, _Radius(radius) {}
-	glCircle(P_t x, P_t y, P_t radius, const glColors &color) 
-		: glWidget("Circel", gl2DPoint_t(x - radius, y - radius, x + radius, y + radius), glColor_t(color))
-		, _Center(x, y)
-		, _Radius(radius) {}
-
 	glCircle(const glPoint_t &center, P_t radius, const glColor_t &color) 
-		: glWidget("Circel", gl2DPoint_t(center.Displace(-radius, -radius), center.Displace(radius, radius)), color)
-		, _Center(center)
-		, _Radius(radius) {}
-
-	glCircle(const glPoint_t &center, P_t radius, const glColors &color) 
-		: glWidget("Circel", gl2DPoint_t(center.Displace(-radius, -radius), center.Displace(radius, radius)), glColor_t(color))
+		: glWidgetLink("Circel", gl2DPoint_t(center.Displace(-radius, -radius), center.Displace(radius, radius)))
+		, glWidgetColor(color, color)
 		, _Center(center)
 		, _Radius(radius) {}
 
 	virtual void Draw()
 	{
-		PlotCircle(_Center, _Radius, _Color);
+		PlotCircle(_Center, _Radius, _BackColor);
 	}
 
 protected:
-	// Initialize widget
-//	virtual void Init() override {}
 	// redraw your self
-	// return true if anything done
-	virtual void Redraw() override
+	void Redraw() override
 	{
 		if (!ImInvalidated) return;
 		
@@ -407,51 +384,37 @@ protected:
 class glCircleFill : public glCircle
 {
 public:
-	glCircleFill(P_t x, P_t y, P_t radius, const glColor_t &color) 
-		: glCircle(x, y, radius, color) { _Name = "CircleFill"; }
-	glCircleFill(P_t x, P_t y, P_t radius, const glColors &color) 
-		: glCircle(x, y, radius, color) { _Name = "CircleFill"; }
-
-	glCircleFill(glPoint_t &center, P_t radius, const glColor_t &color) 
-		: glCircle(center, radius, color) {_Name = "CircleFill"; }
-	glCircleFill(glPoint_t &center, P_t radius, const glColors &color) 
+	glCircleFill(const glPoint_t &center, P_t radius, const glColor_t &color) 
 		: glCircle(center, radius, color) {_Name = "CircleFill"; }
 
 	void Draw() override
 	{
-		PlotCircleFill(_Center, _Radius, _Color);
+		PlotCircleFill(_Center, _Radius, _BackColor);
 	}
 };
 
 class glArc : public glCircle
 {
 public:
-	glArc() { _Name = "glArc"; }
 	glArc(const gl2DPoint_t &box, const glPoint_t &center, P_t radius, const glColor_t &color) 
 		: glCircle(center, radius, color)
 		{ _Region = box.Normalize(); _Name = "glArc"; }
-	glArc(const gl2DPoint_t &box, const glPoint_t &center, P_t radius, const glColors &color) 
-		: glCircle(center, radius, color)
-		{ _Region = box.Normalize(); _Name = "glArc"; }
 	
-	virtual void Draw() override
+	void Draw() override
 	{
-		PlotArc(_Region, _Center, _Radius, _Color);
+		PlotArc(_Region, _Center, _Radius, _BackColor);
 	}
 };
 
 class glArcFill : public glArc
 {
 public:
-	glArcFill() { _Name = "glArcFill"; }
 	glArcFill(const gl2DPoint_t &box, const glPoint_t &center, P_t radius, const glColor_t &color) 
-		: glArc(box, center, radius, color) {}
-	glArcFill(const gl2DPoint_t &box, const glPoint_t &center, P_t radius, const glColors &color) 
-		: glArc(box, center, radius, color) {}
-
+		: glArc(box, center, radius, color) { _Name = "glArcFill"; }
+	
 	void Draw() override
 	{
-		PlotFillArc(_Region, _Center, _Radius, _Color);
+		PlotFillArc(_Region, _Center, _Radius, _BackColor);
 	}
 };
 
@@ -459,46 +422,31 @@ class glRectangleRound : public glRectangle
 {
 public:
 	glRectangleRound(const gl2DPoint_t &rect, P_t radius, const glColor_t &color)
-		: glRectangle(rect, color) { Radius = radius; }
+		: glRectangle(rect, color) { _Name = "glRectangleRound"; Radius = radius; }
 
-	glRectangleRound(const gl2DPoint_t &rect, P_t radius, const glColors &color)
-		: glRectangle(rect, color) { Radius = radius; }
-
-	glRectangleRound(const glPoint_t &start, const glPoint_t &end, P_t radius, const glColor_t &color)
-		: glRectangle(start, end, color) { Radius = radius; }
-
-	glRectangleRound(const glPoint_t &start, const glPoint_t &end, P_t radius, const glColors &color)
-		: glRectangle(start, end, color) { Radius = radius; }
-	
-	glRectangleRound(P_t left, P_t top, P_t right, P_t bottom, P_t radius, const glColor_t &color)
-		: glRectangle(left, top, right, bottom, color) { Radius = radius; }
-	
-	glRectangleRound(P_t left, P_t top, P_t right, P_t bottom, P_t radius, const glColors &color)
-		: glRectangle(left, top, right, bottom, color) { Radius = radius; }
-
-	virtual void Draw()
+	void Draw() override
 	{
 		assert(Radius <= _Region.Width() && Radius <= _Region.Height());
-		PlotLine(_Region.L() + Radius, _Region.T(), _Region.R() - Radius, _Region.T(), _Color);
-		PlotLine(_Region.R(), _Region.T() + Radius, _Region.R(), _Region.B() - Radius, _Color);
-		PlotLine(_Region.R() - Radius, _Region.B(), _Region.L() + Radius, _Region.B(), _Color);
-		PlotLine(_Region.L(), _Region.B() - Radius, _Region.L(), _Region.T() + Radius, _Color);
+		PlotLine(_Region.L() + Radius, _Region.T(), _Region.R() - Radius, _Region.T(), _BackColor);
+		PlotLine(_Region.R(), _Region.T() + Radius, _Region.R(), _Region.B() - Radius, _BackColor);
+		PlotLine(_Region.R() - Radius, _Region.B(), _Region.L() + Radius, _Region.B(), _BackColor);
+		PlotLine(_Region.L(), _Region.B() - Radius, _Region.L(), _Region.T() + Radius, _BackColor);
 
 		gl2DPoint_t b(_Region.L(), _Region.T(), _Region.L() + Radius, _Region.T() + Radius);
 		glPoint_t p(_Region.L() + Radius, _Region.T() + Radius);
-		glArc(b, p, Radius, _Color).Draw();
+		glArc(b, p, Radius, _BackColor).Draw();
 
 		b = gl2DPoint_t(_Region.R() - Radius, _Region.T(), _Region.R(), _Region.T() + Radius);
 		p = glPoint_t(_Region.R() - Radius, _Region.T() + Radius);
-		glArc(b, p, Radius, _Color).Draw();
+		glArc(b, p, Radius, _BackColor).Draw();
 
 		b = gl2DPoint_t(_Region.R() - Radius, _Region.B() - Radius, _Region.R(), _Region.B());
 		p = glPoint_t(_Region.R() - Radius, _Region.B() - Radius);
-		glArc(b, p, Radius, _Color).Draw();
+		glArc(b, p, Radius, _BackColor).Draw();
 
 		b = gl2DPoint_t(_Region.L(), _Region.B() - Radius, _Region.L() + Radius, _Region.B());
 		p = glPoint_t(_Region.L() + Radius, _Region.B() - Radius);
-		glArc(b, p, Radius, _Color).Draw();
+		glArc(b, p, Radius, _BackColor).Draw();
 	}
 private:
 	P_t Radius = 5;
@@ -510,44 +458,29 @@ public:
 	glRectangleRoundFill(const gl2DPoint_t &rect, P_t radius, const glColor_t &color)
 		: glRectangle(rect, color) { _Name = "RectangleRoundFill"; Radius = radius; }
 
-	glRectangleRoundFill(const gl2DPoint_t &rect, P_t radius, const glColors &color)
-		: glRectangle(rect, color) { Radius = radius; }
-
-	glRectangleRoundFill(const glPoint_t &start, const glPoint_t &end, P_t radius, glColor_t &color)
-		: glRectangle(start, end, color) { _Name = "RectangleRoundFill"; Radius = radius; }
-
-	glRectangleRoundFill(const glPoint_t &start, const glPoint_t &end, P_t radius, const glColors &color)
-		: glRectangle(start, end, color) { _Name = "RectangleRoundFill"; Radius = radius; }
-
-	glRectangleRoundFill(P_t left, P_t top, P_t right, P_t bottom, P_t radius, const glColor_t &color)
-		: glRectangle(left, top, right, bottom, color) { _Name = "RectangleRoundFill"; Radius = radius; }
-
-	glRectangleRoundFill(P_t left, P_t top, P_t right, P_t bottom, P_t radius, const glColors &color)
-		: glRectangle(left, top, right, bottom, color) { _Name = "RectangleRoundFill"; Radius = radius; }
-
-	virtual void Draw()
+	void Draw() override
 	{
 		assert(Radius <= _Region.Width() && Radius <= _Region.Height());
-		glRectangleFill(_Region.L(), _Region.T() + Radius, _Region.R(), _Region.B() - Radius, _Color).Draw();
+		glRectangleFill(gl2DPoint_t(_Region.L(), _Region.T() + Radius, _Region.R(), _Region.B() - Radius), _BackColor).Draw();
 		
-		glRectangleFill(_Region.L() + Radius, _Region.T(), _Region.R() - Radius, _Region.T() + Radius, _Color).Draw();
-		glRectangleFill(_Region.L() + Radius, _Region.B() - Radius, _Region.R() - Radius, _Region.B(), _Color).Draw();
+		glRectangleFill(gl2DPoint_t(_Region.L() + Radius, _Region.T(), _Region.R() - Radius, _Region.T() + Radius), _BackColor).Draw();
+		glRectangleFill(gl2DPoint_t(_Region.L() + Radius, _Region.B() - Radius, _Region.R() - Radius, _Region.B()), _BackColor).Draw();
 	
 		gl2DPoint_t b(_Region.L(), _Region.T(), _Region.L() + Radius, _Region.T() + Radius);
 		glPoint_t p(_Region.L() + Radius, _Region.T() + Radius);
-		glArcFill(b, p, Radius, _Color).Draw();
+		glArcFill(b, p, Radius, _BackColor).Draw();
 
 		b = gl2DPoint_t(_Region.R() - Radius, _Region.T(), _Region.R(), _Region.T() + Radius);
 		p = glPoint_t(_Region.R() - Radius, _Region.T() + Radius);
-		glArcFill(b, p, Radius, _Color).Draw();
+		glArcFill(b, p, Radius, _BackColor).Draw();
 
 		b = gl2DPoint_t(_Region.R() - Radius, _Region.B() - Radius, _Region.R(), _Region.B());
 		p = glPoint_t(_Region.R() - Radius, _Region.B() - Radius);
-		glArcFill(b, p, Radius, _Color).Draw();
+		glArcFill(b, p, Radius, _BackColor).Draw();
 
 		b = gl2DPoint_t(_Region.L(), _Region.B() - Radius, _Region.L() + Radius, _Region.B());
 		p = glPoint_t(_Region.L() + Radius, _Region.B() - Radius);
-		glArcFill(b, p, Radius, _Color).Draw();
+		glArcFill(b, p, Radius, _BackColor).Draw();
 	}
 private:
 	P_t Radius = 5;

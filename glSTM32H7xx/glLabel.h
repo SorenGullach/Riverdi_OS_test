@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Søren Gullach
+ * Copyright 2024 SÃ¸ren Gullach
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,33 +14,29 @@
  * limitations under the License.
  *
  * You must include the following attribution in all copies or substantial portions of the Software:
- * "Søren Gullach <STM32_R7_OS@toolsbox.dk>"
+ * "SÃ¸ren Gullach <STM32_R7_OS@toolsbox.dk>"
  */
 
 #pragma once
 
 #include "glWidgets.h"
 
-class glLabel : public glWidget
+template<int len, const FontItem *fontFamily>
+class glLabel : public glWidgetLink, public glWidgetColor, public glWidgetBorder
 {
 public:
-	glLabel()
-		: glWidget("Label", gl2DPoint_t(), glColor_t()) {}
-	glLabel(gl2DPoint_t pos, glColor_t backColor = glColor_t(glColors::BLUE))
-		: glWidget("Label", pos, backColor) 
+	glLabel(
+		const gl2DPoint_t &region, 
+		const glColor_t &backColor = glColor_t(glColors::LIGHT_GRAY))
+		: glWidgetLink("Label", region)
+		, glWidgetColor(backColor)
+		, glWidgetBorder()
 	{	
-		BorderWidth = std::min(pos.Width(), pos.Height()) / 10;
+		//_BorderWidth = std::min(pos.Width(), pos.Height()) / 10;
+		assert(_BorderWidth < region.Height() / 2);
+		assert(_BorderWidth < region.Width() / 2);
 	}
-	glLabel(gl2DPoint_t pos, P_t borderWidth, glColor_t backColor = glColor_t(glColors::BLUE))
-		: glWidget("Label", pos, backColor) 
-	{
-		assert(borderWidth < pos.Height() / 2);
-		assert(borderWidth < pos.Width() / 2);
-		BorderWidth = borderWidth;
-	}
-
-	void BackColor(glColor_t color)	{ _Color = color; }
-
+protected:
 	// Called upon touch change
 	virtual void Touch(const glTouchPoint_t &) override
 	{
@@ -52,24 +48,21 @@ public:
 	{
 		if (!ImInvalidated) return;
 
-		glRectangleFill(_Region.Inflate(-BorderWidth), glColors::CYAN).Draw();
+//		glRectangleFill(_Region.Inflate(-_BorderWidth), glColors::CYAN).Draw();
 //		glRectangleFill(_Position.Inflate(-BorderWidth), _Color).Draw(invalidRegion);
 
-		for (P_t i = 0; i < BorderWidth; i++)
+		for (P_t i = 0; i < _BorderWidth; i++)
 		{
-			glRectangleRound(_Region.Inflate(-i), 2*BorderWidth - i, BorderColor).Draw();
+			if (_CornerStyle == eCornerStyles::Round)
+				glRectangleRound(_Region.Inflate(-i), 2*_BorderWidth - i, _BorderColor).Draw();
+			else
+				glRectangle(_Region.Inflate(-i), _BorderColor).Draw();
 		}
 		
 		if (glVideoMemory::lastBand()) ImInvalidated = false;
 	}
 
-	gl2DPoint_t InvalidRegion() override
-	{
-		return _Region.Inflate(-BorderWidth);
-	}
 protected:
-	P_t BorderWidth = 0;
-	glColor_t BorderColor = { 255, 255, 255 };
 }
 ;
 
