@@ -148,6 +148,9 @@
 \DoxyCodeLine{00144\ \ \ \ \ YELLOW\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0xFFFF00,}
 \DoxyCodeLine{00145\ \ \ \ \ YELLOW\_GREEN\ \ \ \ \ \ \ \ \ \ \ =\ 0x9ACD32}
 \DoxyCodeLine{00146\ \};}
-\DoxyCodeLine{00147\ \textcolor{keyword}{const}\ uint32\_t\ glColorTableSize\ =\ (144\ -\/\ 5\ +1);}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#pragma\ GCC\ diagnostic\ push}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#pragma\ GCC\ diagnostic\ ignored\ "{}-\/Wunused-\/const-\/variable"{}}}
+\DoxyCodeLine{00149\ \textcolor{keyword}{const}\ uint32\_t\ glColorTableSize\ =\ (144\ -\/\ 5\ +1);}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#pragma\ GCC\ diagnostic\ pop}}
 
 \end{DoxyCode}

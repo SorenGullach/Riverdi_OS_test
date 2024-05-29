@@ -27,26 +27,58 @@
 \DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ RAM\_D2\_START\ \ \ \ D2\_AXISRAM\_BASE\ \ \ \ \ }\textcolor{comment}{//,\ LENGTH\ =\ 288K}}
 \DoxyCodeLine{00024\ \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_ssdram,\ *\_esdram;}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#\ ifdef\ CORE\_CM7}}
-\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ FLASH\_START\ \ \ \ \ FLASH\_BANK1\_BASE\ \ \ \ }\textcolor{comment}{//,\ LENGTH\ =\ 1M}}
-\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ DTCMRAM\_START\ \ \ D1\_DTCMRAM\_BASE\ \ \ \ \ }\textcolor{comment}{//,\ LENGTH\ =\ 128K}}
-\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ DTCMRAM\_END\ \ \ \ \ (DTCMRAM\_START+0x1FFFFUL)\ \ \ }\textcolor{comment}{//,\ LENGTH\ =\ 128K}}
-\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ ITCMRAM\_START\ \ \ D1\_ITCMRAM\_BASE\ \ \ \ \ }\textcolor{comment}{//,\ LENGTH\ =\ 64K}}
-\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ ITCMRAM\_END\ \ \ \ \ (ITCMRAM\_START+0x0000FFFFUL)\ \ \ \ }\textcolor{comment}{//,\ LENGTH\ =\ 64K}}
-\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ QSPI\_START\ \ \ \ \ \ QSPI\_BASE\ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//,\ LENGTH\ =\ 128000K}}
-\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ QSPI\_END\ \ \ \ \ \ \ \ (QSPI\_START+0x07FFFFFF)\ }\textcolor{comment}{//,\ LENGTH\ =\ 128000K}}
-\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ RAM\_D1\_START\ \ \ \ D1\_AXISRAM\_BASE\ \ \ \ \ }\textcolor{comment}{//,\ LENGTH\ =\ 512K}}
-\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ RAM\_D1\_END\ \ \ \ \ \ (D1\_AXISRAM\_BASE+0x0003FFFFUL)\ \ }\textcolor{comment}{//,\ LENGTH\ =\ 512K}}
-\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ SDRAM\_START\ \ \ \ \ ((uint32\_t)\&\_ssdram)\ \ \ \ }\textcolor{comment}{//,\ LENGTH\ =\ 0x800000U\ =\ 8388608}}
-\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ SDRAM\_END\ \ \ \ \ \ \ ((uint32\_t)\&\_esdram)}}
-\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ SDRAM\_SIZE\ \ \ \ \ \ (SDRAM\_END-\/SDRAM\_START)}}
-\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ SHARED\_START\ \ \ \ D3\_SRAM\_BASE\ \ \ \ }\textcolor{comment}{//,\ LENGTH\ =\ 64K\ \ /*\ Shared\ SRAM4\ 0x38000000\ -\/\ 0x3800FFFF\ */}}
-\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ SHARED\_END\ \ \ \ \ \ 0x3800FFFF\ \ }\textcolor{comment}{//,\ LENGTH\ =\ 64K\ \ /*\ Shared\ SRAM4\ 0x38000000\ -\/\ 0x3800FFFF\ */}}
-\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ BKPSRAM\_START\ \ \ D3\_BKPSRAM\_BASE\ }\textcolor{comment}{//,\ LENGTH\ =\ 4K\ \ \ /*\ Backup\ SRAM4\ 0x38800000\ -\/\ 0x38800FFF\ */}}
-\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ BKPSRAM\_END\ \ \ \ \ 0x38800FFF\ \ }\textcolor{comment}{//,\ LENGTH\ =\ 4K\ \ \ /*\ Backup\ SRAM4\ 0x38800000\ -\/\ 0x38800FFF\ */}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ Declare\ linker\ script\ variables}}
+\DoxyCodeLine{00027\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_\_heap\_start\_\_;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_\_heap\_end\_\_;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_sstack;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_estack;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_ssdram;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_esdram;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_stext;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_etext;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_sdata;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_edata;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_sbss;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_ebss;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_\_data\_start\_\_;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_\_data\_end\_\_;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_sramdata;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_eramdata;}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_sifastcode;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_sfastcode;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_efastcode;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_sbss;}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_ebss;}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_\_preinit\_array\_start;}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_\_preinit\_array\_end;}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_\_init\_array\_start;}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_\_init\_array\_end;}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_\_fini\_array\_start;}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_\_fini\_array\_end;}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_\_exidx\_start;}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\_\_exidx\_end;}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#\ ifdef\ CORE\_CM7}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ FLASH\_START\ \ \ \ \ FLASH\_BANK1\_BASE\ \ \ \ }\textcolor{comment}{//,\ LENGTH\ =\ 1M}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ DTCMRAM\_START\ \ \ D1\_DTCMRAM\_BASE\ \ \ \ \ }\textcolor{comment}{//,\ LENGTH\ =\ 128K}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ DTCMRAM\_END\ \ \ \ \ (DTCMRAM\_START+0x1FFFFUL)\ \ \ }\textcolor{comment}{//,\ LENGTH\ =\ 128K}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ ITCMRAM\_START\ \ \ D1\_ITCMRAM\_BASE\ \ \ \ \ }\textcolor{comment}{//,\ LENGTH\ =\ 64K}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ ITCMRAM\_END\ \ \ \ \ (ITCMRAM\_START+0x0000FFFFUL)\ \ \ \ }\textcolor{comment}{//,\ LENGTH\ =\ 64K}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ QSPI\_START\ \ \ \ \ \ QSPI\_BASE\ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//,\ LENGTH\ =\ 128000K}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ QSPI\_END\ \ \ \ \ \ \ \ (QSPI\_START+0x07FFFFFF)\ }\textcolor{comment}{//,\ LENGTH\ =\ 128000K}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ RAM\_D1\_START\ \ \ \ D1\_AXISRAM\_BASE\ \ \ \ \ }\textcolor{comment}{//,\ LENGTH\ =\ 512K}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ RAM\_D1\_END\ \ \ \ \ \ (D1\_AXISRAM\_BASE+0x0003FFFFUL)\ \ }\textcolor{comment}{//,\ LENGTH\ =\ 512K}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ SDRAM\_START\ \ \ \ \ ((uint32\_t)\&\_ssdram)\ \ \ \ }\textcolor{comment}{//,\ LENGTH\ =\ 0x800000U\ =\ 8388608}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ SDRAM\_END\ \ \ \ \ \ \ ((uint32\_t)\&\_esdram)}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ SDRAM\_SIZE\ \ \ \ \ \ (SDRAM\_END-\/SDRAM\_START)}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ SHARED\_START\ \ \ \ D3\_SRAM\_BASE\ \ \ \ }\textcolor{comment}{//,\ LENGTH\ =\ 64K\ \ /*\ Shared\ SRAM4\ 0x38000000\ -\/\ 0x3800FFFF\ */}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ SHARED\_END\ \ \ \ \ \ 0x3800FFFF\ \ }\textcolor{comment}{//,\ LENGTH\ =\ 64K\ \ /*\ Shared\ SRAM4\ 0x38000000\ -\/\ 0x3800FFFF\ */}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ BKPSRAM\_START\ \ \ D3\_BKPSRAM\_BASE\ }\textcolor{comment}{//,\ LENGTH\ =\ 4K\ \ \ /*\ Backup\ SRAM4\ 0x38800000\ -\/\ 0x38800FFF\ */}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ BKPSRAM\_END\ \ \ \ \ 0x38800FFF\ \ }\textcolor{comment}{//,\ LENGTH\ =\ 4K\ \ \ /*\ Backup\ SRAM4\ 0x38800000\ -\/\ 0x38800FFF\ */}}
+\DoxyCodeLine{00078\ }
 
 \end{DoxyCode}

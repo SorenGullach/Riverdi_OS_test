@@ -15,34 +15,29 @@ virtual void {\bfseries Init} ()
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_page}{gl\+Page}}}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries gl\+Page} (const char \texorpdfstring{$\ast$}{*}name)
+{\bfseries gl\+Page} (const char \texorpdfstring{$\ast$}{*}name, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&color)
 \item 
-void {\bfseries Add} (\mbox{\hyperlink{classgl_object}{gl\+Object}} \texorpdfstring{$\ast$}{*}page)
+void {\bfseries Add} (\mbox{\hyperlink{classgl_widget_link}{gl\+Widget\+Link}} \texorpdfstring{$\ast$}{*}page)
 \item 
-void {\bfseries Pos\+Size} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} pos)
+\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Invalid\+Region} ()
+\item 
+void {\bfseries Move\+To} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} region)
 \item 
 void \mbox{\hyperlink{classgl_page_ac2fbbbe51e7db1ec0f2d943aa71e2d1b}{Update\+Look}} ()
 \item 
-void \mbox{\hyperlink{classgl_page_a2db7083cdb5af18c24a63c9554b2ff86}{Update\+State}} (\mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point)
+void \mbox{\hyperlink{classgl_page_aeee63ce86222be2c54301345dbd54006}{Update\+State}} (\mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point, bool \&Handled)
 \item 
-void \mbox{\hyperlink{classgl_page_ad9e90580de108e43212348ef92ad725b}{Invalidate}} ()
+void \mbox{\hyperlink{classgl_page_a8ae6ad41709665942e64e6e5f17b19c0}{Invalidate\+Me}} ()
+\item 
+void \mbox{\hyperlink{classgl_page_ae3b686ac0b9b486fea07c603d69d656c}{Invalidate\+Siblings}} ()
 \item 
 bool \mbox{\hyperlink{classgl_page_ac6a2afdd709d15a7c9481c64d194874b}{Is\+Invalidated}} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&invalid\+Region)
 \item 
-virtual void \mbox{\hyperlink{classgl_page_a617c4ddb7099f4ceb85e8176c5a56d9a}{Redraw}} () final
+virtual void {\bfseries Redraw} () final
 \item 
-virtual void \mbox{\hyperlink{classgl_page_aaf1ed7e347d37d8047553aeb10399c99}{Touch}} (const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point) final
+virtual bool {\bfseries Touch} (const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point) final
 \item 
 void \mbox{\hyperlink{classgl_page_a1f8db34ed139d08d073f884273768b38}{Event}} (\mbox{\hyperlink{classgl_event}{gl\+Event}} event)
-\end{DoxyCompactItemize}
-\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_object_attributes}{gl\+Object\+Attributes}}}
-\begin{DoxyCompactItemize}
-\item 
-{\bfseries gl\+Object\+Attributes} (char const \texorpdfstring{$\ast$}{*}name, \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} position, \mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}} color)
-\item 
-virtual \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Invalid\+Region} ()
-\item 
-\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \& {\bfseries Region} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_link}{gl\+Link}}}
 \begin{DoxyCompactItemize}
@@ -51,25 +46,30 @@ virtual \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries I
 \item 
 \mbox{\hyperlink{classgl_link}{gl\+Link}} \texorpdfstring{$\ast$}{*} {\bfseries Next} ()
 \end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_front_color_theme}{gl\+Front\+Color\+Theme}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries gl\+Front\+Color\+Theme} (const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&front\+Color)
+\item 
+virtual \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Front\+Color} ()
+\item 
+virtual void {\bfseries Front\+Color} (\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} color)
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classgl_page}{gl\+Page}}}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classgl_event}{gl\+Event}} {\bfseries Event\+Action}
 \end{DoxyCompactItemize}
-\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classgl_object_attributes}{gl\+Object\+Attributes}}}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classgl_front_color_theme}{gl\+Front\+Color\+Theme}}}
 \begin{DoxyCompactItemize}
 \item 
-bool {\bfseries Im\+Invalidated} = true
+\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries \+\_\+\+Front\+Color}
 \end{DoxyCompactItemize}
-\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classgl_object_attributes}{gl\+Object\+Attributes}}}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classgl_page}{gl\+Page}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}} {\bfseries \+\_\+\+Color}
-\item 
-char const  \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+\+Name} = "{}gl\+Object"{}
-\item 
-\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries \+\_\+\+Position}
+\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries \+\_\+\+Region}
 \end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classgl_link}{gl\+Link}}}
 \begin{DoxyCompactItemize}

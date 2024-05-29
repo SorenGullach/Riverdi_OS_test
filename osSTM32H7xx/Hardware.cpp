@@ -59,7 +59,54 @@ void DumpChipInfo()
 		Chip_LineIdentifier[0]);
 }
 
-#include <stdio.h>
+typedef struct {
+	const char* name;
+	unsigned long start;
+	unsigned long end;
+} MemRegion;
+
+void PrintMemRegionInfo(const MemRegion* region)
+{
+	Printf("%-25s: 0x%08lX - 0x%08lX (%6ld bytes)\n", region->name, region->start, region->end, region->end - region->start);
+}
+
+void DumpMemInfo()
+{
+	// Define memory regions
+	MemRegion regions[] = {
+		{ "Text (Code)", (unsigned long)&_stext, (unsigned long)&_etext },
+		{ "Data (Initialized)", (unsigned long)&_sdata, (unsigned long)&_edata },
+		{ "RAM Data", (unsigned long)&_sramdata, (unsigned long)&_eramdata },
+		{ "Fast Code", (unsigned long)&_sfastcode, (unsigned long)&_efastcode },
+		{ "BSS (Uninitialized)", (unsigned long)&_sbss, (unsigned long)&_ebss },
+		{ "Preinit Array", (unsigned long)&__preinit_array_start, (unsigned long)&__preinit_array_end },
+		{ "Init Array", (unsigned long)&__init_array_start, (unsigned long)&__init_array_end },
+		{ "Fini Array", (unsigned long)&__fini_array_start, (unsigned long)&__fini_array_end },
+		{ "Exception Index", (unsigned long)&__exidx_start, (unsigned long)&__exidx_end },
+		{ "Heap", (unsigned long)&__heap_start__, (unsigned long)&__heap_end__ },
+		{ "Stack", (unsigned long)&_sstack, (unsigned long)&_estack },
+		{ "SDRAM", (unsigned long)&_ssdram, (unsigned long)&_esdram },
+	};
+
+	// Sort memory regions by start address
+	const int numRegions = sizeof(regions) / sizeof(regions[0]);
+	for (int i = 0; i < numRegions - 1; ++i) {
+		for (int j = 0; j < numRegions - i - 1; ++j) {
+			if (regions[j].start > regions[j + 1].start) {
+				MemRegion temp = regions[j];
+				regions[j] = regions[j + 1];
+				regions[j + 1] = temp;
+			}
+		}
+	}
+
+	// Print memory region information
+	Printf("Memory Region Information Dump\n\n");
+	for (int i = 0; i < numRegions; ++i) {
+		PrintMemRegionInfo(&regions[i]);
+	}
+	Printf("\nMemory Region Information Dump End\n\n");
+}
 
 void DumpMemInfo(const char *info, uint32_t start, uint32_t end)
 {
@@ -71,7 +118,7 @@ void DumpMemInfo(const char *info, uint32_t start, uint32_t end)
 	Printf("\n");
 }
 
-void DumpMemInfo()
+void DumpMemInfo1()
 {
 	// Print a header for the memory dump
 	Printf("Memory Region Information Dump\n\n");

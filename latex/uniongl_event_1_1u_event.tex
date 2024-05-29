@@ -1,5 +1,14 @@
 \doxysection{gl\+Event\+::u\+Event Union Reference}
 \hypertarget{uniongl_event_1_1u_event}{}\label{uniongl_event_1_1u_event}\index{glEvent::uEvent@{glEvent::uEvent}}
+
+
+Union to store event-\/specific data.  
+
+
+
+
+{\ttfamily \#include $<$gl\+Types.\+h$>$}
+
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -8,6 +17,7 @@
 xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
 struct \{\\
 \>\mbox{\hyperlink{structgl_touch_point__t_ab359bc458af91368eeb9b9f6c0478fb4}{glTouchPoint\_t::eSlideAction}} {\bfseries Action}\\
+\>\>{\em The action of the slide event. }\\
 \} {\bfseries Slide}\\
 
 \end{tabbing}\item 
@@ -16,12 +26,19 @@ struct \{\\
 xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
 struct \{\\
 \>P\_t {\bfseries X}\\
+\>\>{\em The X-\/coordinate of the click event. }\\
 \>P\_t {\bfseries Y}\\
+\>\>{\em The Y-\/coordinate of the click event. }\\
 \} {\bfseries Click}\\
 
 \end{tabbing}\end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Union to store event-\/specific data. 
+
+This union holds data specific to the type of event that occurred. It can store data for slide actions or click positions. 
+
 The documentation for this union was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-gl\+STM32\+H7xx/gl\+Primitives.\+h\end{DoxyCompactItemize}
+gl\+STM32\+H7xx/gl\+Types.\+h\end{DoxyCompactItemize}

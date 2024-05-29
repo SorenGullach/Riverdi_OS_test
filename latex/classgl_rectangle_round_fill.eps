@@ -176,9 +176,9 @@ boxfont setfont
 (glRectangleRoundFill) cw
 (glRectangle) cw
 (glPlot2DHelper) cw
-(glObject) cw
+(glWidgetLink) cw
+(glFrontColorTheme) cw
 (glVideoMemoryPlot) cw
-(glObjectAttributes) cw
 (glLink) cw
 (glVideoMemory) cw
 /boxwidth boxwidth marginwidth 2 mul add def
@@ -192,42 +192,40 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (glRectangleRoundFill) 0.750000 0.000000 box
- (glRectangle) 0.750000 1.000000 box
+ (glRectangleRoundFill) 1.000000 0.000000 box
+ (glRectangle) 1.000000 1.000000 box
  (glPlot2DHelper) 0.000000 2.000000 box
- (glObject) 1.500000 2.000000 box
+ (glWidgetLink) 1.000000 2.000000 box
+ (glFrontColorTheme) 2.000000 2.000000 box
  (glVideoMemoryPlot) 0.000000 3.000000 box
- (glObjectAttributes) 1.000000 3.000000 box
- (glLink) 2.000000 3.000000 box
+ (glLink) 1.000000 3.000000 box
  (glVideoMemory) 0.000000 4.000000 box
 
 % ----- relations -----
 
 solid
-0 0.750000 0.000000 out
+0 1.000000 0.000000 out
 solid
-1 0.750000 1.000000 in
+1 1.000000 1.000000 in
 solid
-0 0.750000 1.000000 out
+0 1.000000 1.000000 out
 solid
-0.000000 1.500000 2.000000 conn
+0.000000 2.000000 2.000000 conn
 dashed
 1 0.000000 2.000000 in
 solid
 0 0.000000 2.000000 out
 solid
-1 1.500000 2.000000 in
+1 1.000000 2.000000 in
 solid
-0 1.500000 2.000000 out
+0 1.000000 2.000000 out
 solid
-1.000000 2.000000 3.000000 conn
+1 2.000000 2.000000 in
 solid
 1 0.000000 3.000000 in
 dashed
 0 0.000000 3.000000 out
 solid
 1 1.000000 3.000000 in
-solid
-1 2.000000 3.000000 in
 dashed
 1 0.000000 4.000000 in

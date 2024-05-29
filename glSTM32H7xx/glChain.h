@@ -34,7 +34,7 @@ public:
 	//virtual void Init() = 0;
 	
 	virtual void UpdateLook() = 0;
-	virtual void UpdateState(glTouchPoint_t &point) = 0;
+	virtual void UpdateState(glTouchPoint_t &point, bool &Handled) = 0;
 	virtual bool IsInvalidated(gl2DPoint_t &invalidRegion) = 0;
 	virtual void InvalidateMe() = 0;
 	virtual void InvalidateSiblings() = 0;

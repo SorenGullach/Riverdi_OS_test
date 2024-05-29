@@ -23,7 +23,7 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 template<int length>
-	class glText : public glWidgetLink, public glWidgetColor, private glVideoMemoryPlot
+	class glText : public glWidgetLink, public glFrontColorTheme, private glVideoMemoryPlot
 	{
 	public:
 		glText(const gl2DPoint_t &region, 
@@ -31,39 +31,101 @@ template<int length>
 			const FontItem *fontFamily, 
 			const glColor_t &color = glColors::WHITE) 
 			: glWidgetLink("Text", region)
-			, glWidgetColor(color, color)
+			, glFrontColorTheme(color)
 		{
 			assert(fontFamily != nullptr && "no fontFamily");
 			FontFamily = fontFamily;
-			assert(text != nullptr && "no text");
 			Text(text);
 		}
 		
-		void Text(const char *text)
+		/**
+		 * @brief Set the text for the widget and format it using a variable argument list.
+		 * 
+		 * @param text The format string for the text.
+		 * @param ... Additional arguments for formatting the text.
+		 */
+		void Text(const char *text, ...)
 		{
-			strncpy(_Text, text, length-1);
+			if (text == nullptr)
+			{
+				_Text[0] = '\0'; // Ensure null termination
+				// Mark the widget as invalidated to trigger a redraw
+				ImInvalidated = true;
+				return;
+			}
+			
+			// Temporary buffer to store the formatted string
+			char buffer[length+1]; // Adjust the size as necessary
+
+			// Initialize the variable argument list
+			va_list args;
+			va_start(args, text);
+
+			// Format the text and store it in the buffer
+			vsnprintf(buffer, length, text, args);
+
+			// End the variable argument list
+			va_end(args);
+
+			if (strcmp(_Text, buffer) != 0)
+			{
+				// Copy the formatted string to the class member variable _Text
+				// Ensure the string is null-terminated
+				strncpy(_Text, buffer, length);
+				_Text[length] = '\0'; // Ensure null termination
+
+				// Mark the widget as invalidated to trigger a redraw
+				ImInvalidated = true;
+			}
 		}
 
-		// Calculate the total width of the text based on the font information
-		P_t TextWidth()
+		const char *Text()
 		{
-			P_t width = 0; // Initialize the width counter
-			char *pc = _Text;
+			return _Text;
+		}
+
+		/**
+		 * @brief Calculate the total width and height of the text based on the font information.
+		 * 
+		 * @return gl2DPoint_t The dimensions (width and height) of the text.
+		 */
+		gl2DPoint_t TextSize()
+		{
+			P_t height = FontFamily->h; // Initialize the height counter to the height of one line
+			P_t width = 0; // Initialize the width counter for the current line
+			P_t maxWidth = 0; // Initialize the maximum width found across all lines
+			char *pc = _Text; // Pointer to the current character in the text
 
 			// Iterate over each character in the text
 			while (*pc != 0)
 			{
-				if (*pc < FontFamily->c)
+				const FontItem* font;
+
+				// Handle space characters
+				if (*pc == ' ')
 				{
-					if (*pc == ' ')
-						width += FontFamily[SpaceChar - FontFamily->c].w;
-					else
-						width += FontFamily['?' - FontFamily->c].w;
+					width += FontFamily[SpaceChar - FontFamily->c].w;
 					pc++;
 					continue;
 				}
-				// Retrieve font information for the character
-				const FontItem* font = &FontFamily[*pc - FontFamily->c]; // Adjust font pointer based on character
+				// Handle newline characters
+				else if (*pc == '\n')
+				{
+					// Update maxWidth if the current line width is greater
+					if (width > maxWidth) maxWidth = width;
+
+					// Reset width for the new line and increment height by the line height
+					width = 0;
+					height += FontFamily->h;
+					pc++;
+					continue;
+				}
+				// Handle characters outside the font family range
+				else if (*pc < FontFamily->c)
+					font = &FontFamily['?' - FontFamily->c];
+				// Handle valid characters within the font family range
+				else
+					font = &FontFamily[*pc - FontFamily->c];
 
 				// Ensure the retrieved font corresponds to the current character
 				assert(font->c == *pc);
@@ -75,78 +137,66 @@ template<int length>
 				pc++;
 			}
 
-			return width;  // Return the total width of the text
+			// Update maxWidth if the last line's width is greater
+			if (width > maxWidth) maxWidth = width;
+
+			// Return the dimensions of the text
+			return gl2DPoint_t(0, 0, maxWidth, height);
 		}
 
-		P_t TextHeight()
-		{
-			// Calculate height of font
-			return FontFamily->h;
-		}
+		/**
+		 * @brief Redraw the widget if it is marked as invalidated.
+		 */
 		virtual void Redraw() override
 		{
 			// Check if the widget needs to be redrawn
 			if (!ImInvalidated) return;
 
 			// Calculate the center position of the widget
-			gl2DPoint_t pos = Center();
+			gl2DPoint_t pos = _Region.Center(TextSize());
 
-//			glRectangle(_Region, glColors::BLACK).Draw();
-//			glRectangle(pos, glColors::RED).Draw();
-
-			// Initialize variables
-			glColor_t color = _FrontColor;
-			C_t pix[200];
+			// Initialize the starting position for drawing text
 			P_t xs = pos.L();
+			P_t ys = pos.T();
 			char *pc = _Text;
 
 			// Iterate over each character in the text
 			while (*pc != 0)
 			{
-				// Retrieve font information for the character
+				// Pointer to store the font information for the character
 				const FontItem *f;
-				if (*pc < FontFamily->c)
+
+				// Handle spaces by advancing the x position
+				if (*pc == ' ')
 				{
-					if (*pc == ' ')
-					{	
-						xs += FontFamily[SpaceChar - FontFamily->c].w;
-						pc++;
-						continue;
-					}
-					f = &FontFamily['?' -FontFamily->c];					
+					xs += FontFamily[SpaceChar - FontFamily->c].w;
+					pc++;
+					continue;
 				}
+				// Handle newlines by resetting the x position and advancing the y position
+				else if (*pc == '\n')
+				{
+					xs = pos.L();
+					ys += FontFamily->h;
+					pc++;
+					continue;
+				}
+				// Handle characters outside the font family range
+				else if (*pc < FontFamily->c)
+					f = &FontFamily['?' - FontFamily->c];
+				// Handle valid characters within the font family range
 				else
-					f = &FontFamily[*pc++ -FontFamily->c];					
+					f = &FontFamily[*pc++ -FontFamily->c];
 
-				assert(f->w < sizeof(pix)); // Ensure buffer size is not exceeded
-				P_t ys = pos.T() + f->yb;
-
-				//				glRectangle(f->xb, pos.T() + f->yb, f->xe, pos.T()f->ye, glColors::GREEN).Draw();
-
-								// Iterate over each row of the character
-				for (int l = 0, y = ys; l < f->StrideY/* && y < pos.B()*/; ++l, ++y)
-				{
-					// Extract pixel data for the row
-					ExtractPixelRow(f, l, pix, _FrontColor.A);
-
-					// Iterate over each pixel in the row
-					for (int x = 0; x < f->w; ++x)
-					{
-						// Plot the pixel if its value is greater than 0
-						if (pix[x] > 0)
-						{
-							color.A = pix[x];
-							Plot(xs + x, y, color);
-						}
-					}
-				}
+				// Draw the character at the calculated position
+				DrawChar(f, xs, ys, pos);
 
 				// Move the horizontal position for the next character
 				xs += f->w;
 			}
 
-			// Check if the last band of video memory is reached
-			if (glVideoMemory::lastBand()) 
+			// Check if the last band of video memory is reached and reset the invalidation flag
+			if (glVideoMemory::lastBand())
 				ImInvalidated = false;
 		}
 	
@@ -155,22 +205,69 @@ template<int length>
 			return _Region;
 		}
 
-		void Touch(const glTouchPoint_t &) override {}
+		bool Touch(const glTouchPoint_t &) override { return false; }
 	private:
-		char _Text[length];
+		char _Text[length+1];
 		const FontItem *FontFamily;
 		const char SpaceChar = '!';
+		
+		/**
+		 * @brief Draw a character from the specified font at the given position within a region.
+		 * 
+		 * @param f Pointer to the FontItem structure containing the character's data.
+		 * @param xs X-coordinate of the starting position to draw the character.
+		 * @param ys Y-coordinate of the starting position to draw the character.
+		 * @param region The 2D point representing the region where the character should be drawn.
+		 */
+		void DrawChar(const FontItem *f, P_t xs, P_t ys, const gl2DPoint_t &region)
+		{
+			// Buffer to hold pixel data
+			C_t pix[150];
+			assert(f->w < sizeof(pix)); // Ensure buffer size is not exceeded
 
-		// Function to extract pixel data for a character
-		void ExtractPixelRow(const FontItem *f, int l, C_t pix[], C_t alpha)
+			// Initialize the color to the front color
+			glColor_t color = _FrontColor;
+
+			// Adjust the starting y-coordinate by the character's y-bearing
+			ys += f->yb;
+
+			// Iterate over each row of the character
+			for (int r = 0, y = ys; r < f->StrideY && y < region.B(); ++r, ++y)
+			{
+				// Extract pixel data for the current row
+				ExtractPixelRow(f, r, pix, _FrontColor.A);
+
+				// Iterate over each pixel in the row
+				for (int c = 0, x = xs; c < f->w && x < region.R(); ++c, ++x)
+				{
+					// Plot the pixel if its value is greater than 0
+					if (pix[c] > 0)
+					{
+						color.A = pix[c];
+						Plot(x, y, color);
+					}
+				}
+			}
+		}
+		
+		/**
+		 * @brief Extract pixel data for a given row of a character.
+		 * 
+		 * @param f Pointer to the FontItem structure containing the character's data.
+		 * @param row The row index to extract pixel data from.
+		 * @param pix Array to store the extracted pixel data.
+		 * @param alpha The alpha value to apply to non-zero pixels.
+		 */
+		void ExtractPixelRow(const FontItem *f, int row, C_t pix[], C_t alpha)
 		{
 			// Initialize variables
 			int BitsPerPixel = f->BitsPerPixel;
-			uint8_t *Data = &f->Data[f->StrideX * l]; // Pointer to the start of character data
-			uint32_t currentByte = 0;
+			uint8_t *Data = &f->Data[f->StrideX * row]; // Pointer to the start of character data for the specified row
+			uint32_t currentByte = 0; // Variable to store the current byte being processed
 
 			if (BitsPerPixel == 1) 
 			{
+				// Special case for 1 bit per pixel
 				for (int pixelIndex = 0; pixelIndex < f->w; ++pixelIndex) {
 					// Load a new byte when needed
 					if (pixelIndex % 8 == 0) {
@@ -183,16 +280,15 @@ template<int length>
 				}
 				return;
 			}
-			
+
 			// Variables for bit manipulation
-			int BPP = 1 << f->BitsPerPixel;
-			int bitPosition = 0;
+			int BPP = 1 << BitsPerPixel; // Calculate the number of possible pixel values
+			int bitPosition = 0; // Bit position within the data
 
 			// Iterate over each pixel in the character
-			for (int pixelIndex = 0; pixelIndex < f->w; pixelIndex++)
+			for (int pixelIndex = 0; pixelIndex < f->w; ++pixelIndex)
 			{
 				// Unpack each pixel from the packed data
-				//for (int b = BitsPerPixel - 1; b >= 0 && pixelIndex < f->w; --b)
 				for (int b = 0; b < BitsPerPixel && pixelIndex < f->w; ++b)
 				{
 					// Check if we need to read a new byte
@@ -202,43 +298,26 @@ template<int length>
 					// Extract the pixel value from the current byte
 					int shift = 8 - (bitPosition % 8 + BitsPerPixel);
 					uint32_t pixelValue = 0;
+
+					// Handle case where the pixel spans across two bytes
 					if (shift < 0)
 					{
-						pixelValue = currentByte<<-shift;
-						currentByte = Data[(bitPosition / 8)+1];
+						pixelValue = currentByte << -shift;
+						currentByte = Data[(bitPosition / 8) + 1];
 						pixelValue = (pixelValue | (currentByte >> (8 + shift))) & (BPP - 1);
 					}
 					else
+					{
 						pixelValue = (currentByte >> shift) & (BPP - 1);
+					}
+
+					// Apply alpha value to non-zero pixels
 					pix[pixelIndex] = pixelValue > 0 ? alpha / (BPP - pixelValue) : 0;
 
-					// Increment the bit position and pixel index
+					// Increment the bit position
 					bitPosition += BitsPerPixel;
 				}
 			}
 		}
 
-		// find center pos
-		gl2DPoint_t Center()
-		{
-			// Initialize variables
-			P_t w = TextWidth();
-			P_t h = TextHeight();
-
-			// Calculate x-coordinate for centering
-			P_t x = _Region.L();
-			if (w < _Region.Width())
-				x += (_Region.Width() - w) / 2;
-
-// Calculate y-coordinate for centering
-			P_t y = _Region.T();
-			if (h < _Region.Height())
-				y += (_Region.Height() - h) / 2;
-
-// Return intersection point between position and calculated rectangle
-			return gl2DPoint_t(x, y, x + w, y + h); //.Intersection(_Position);
-		}
-
-
-		
 	};

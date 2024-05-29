@@ -174,9 +174,9 @@
 boxfont setfont
 1 boundaspect scale
 (glPixel) cw
-(glObject) cw
+(glWidgetLink) cw
+(glFrontColorTheme) cw
 (glVideoMemoryPlot) cw
-(glObjectAttributes) cw
 (glLink) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
@@ -190,26 +190,24 @@ boundx scalefactor div boundy scalefactor div scale
 % ----- classes -----
 
  (glPixel) 1.000000 0.000000 box
- (glObject) 0.500000 1.000000 box
- (glVideoMemoryPlot) 1.500000 1.000000 box
- (glObjectAttributes) 0.000000 2.000000 box
- (glLink) 1.000000 2.000000 box
+ (glWidgetLink) 0.000000 1.000000 box
+ (glFrontColorTheme) 1.000000 1.000000 box
+ (glVideoMemoryPlot) 2.000000 1.000000 box
+ (glLink) 0.000000 2.000000 box
 
 % ----- relations -----
 
 solid
 0 1.000000 0.000000 out
 solid
-0.500000 1.500000 1.000000 conn
+0.000000 2.000000 1.000000 conn
 solid
-1 0.500000 1.000000 in
+1 0.000000 1.000000 in
 solid
-0 0.500000 1.000000 out
+0 0.000000 1.000000 out
 solid
-0.000000 1.000000 2.000000 conn
+1 1.000000 1.000000 in
 dotted
-1 1.500000 1.000000 in
+1 2.000000 1.000000 in
 solid
 1 0.000000 2.000000 in
-solid
-1 1.000000 2.000000 in

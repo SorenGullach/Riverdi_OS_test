@@ -23,6 +23,10 @@
 #include <glPage.h>
 #include <glFont.h>
 
+#include "glButton.h"
+#include "glLabel.h"
+#include "glSlider.h"
+
 class GUIPageWidgets : public glPage
 {
 public:
@@ -33,8 +37,8 @@ public:
 	// Initialize widget
 	virtual void Init()
 	{
-		l1 = glLine( gl2DPoint_t(0, 0, _Region.Width(), _Region.Height()), Cr);
-		l2 = glLine( gl2DPoint_t(_Region.Width(), 0, 0, _Region.Height()), Cg);
+		l1 = glLine(gl2DPoint_t(0, 0, _Region.Width(), _Region.Height()), Cr);
+		l2 = glLine(gl2DPoint_t(_Region.Width(), 0, 0, _Region.Height()), Cg);
 		Add(&p1);
 		Add(&p2);
 		Add(&p3);
@@ -63,14 +67,14 @@ private:
 	glColor_t Cg = glColor_t(glColors::GREEN);
 	glColor_t Cb = glColor_t(glColors::BLUE);
 	glPixel p1 = { glPoint_t(100, 100), Cr };
-	glPixel p2 = { glPoint_t(100, 101), glColors::RED};
-	glPixel p3 = { glPoint_t(100, 102), glColors::RED};
-	glPixel p4 = { glPoint_t(100, 103), glColors::RED};
-	glLine l1 = {gl2DPoint_t(), Cr };
+	glPixel p2 = { glPoint_t(100, 101), glColors::RED };
+	glPixel p3 = { glPoint_t(100, 102), glColors::RED };
+	glPixel p4 = { glPoint_t(100, 103), glColors::RED };
+	glLine l1 = { gl2DPoint_t(), Cr };
 	glLine l2 = { gl2DPoint_t(), Cg };
  
 	glRectangle r1 = { gl2DPoint_t(110, 110, 400, 400), Cr };
-	glCircle c1 = { glPoint_t(500, 300), 100, glColors::RED};
+	glCircle c1 = { glPoint_t(500, 300), 100, glColors::RED };
 	glRectangle r2 = { gl2DPoint_t(200, 200, 300, 300), glColors::GREEN };
 	glArc a1 = { gl2DPoint_t(200, 200, 300, 300), glPoint_t(200, 200), 50, glColors::BLUE };
 	glCircleFill f1 = { glPoint_t(700, 300), 100, glColors::BLUE };
@@ -91,17 +95,17 @@ class GUIPageTexts : public glPage
 {
 public:
 	GUIPageTexts()
-		: glPage("Page1", glColors::CYAN)
+		: glPage("PageTexts", glColors::CYAN)
 	{
 	}
 	// Initialize widget
 	virtual void Init()
 	{
-		P_t xmax=0,x = 0,y=0;
+		P_t xmax = 0, x = 0, y = 0;
 		for (int i = 0; i < 18; i++)
 		{
 			Add(&glTexts[i]); 
-			glTexts[i].Region().MoveTo(gl2DPoint_t(x, y, x+ glTexts[i].TextWidth(), y+ glTexts[i].TextHeight()).Inflate(0, 0, 5, 5));
+			glTexts[i].Region().MoveTo(gl2DPoint_t(x, y, x + glTexts[i].TextSize().Width(), y + glTexts[i].TextSize().Height()).Inflate(0, 0, 5, 5));
 			y = glTexts[i].Region().B();
 			if (glTexts[i].Region().R() > xmax) xmax = glTexts[i].Region().R();
 			if (y > glVideoMemory::ScreenHeight())
@@ -110,7 +114,7 @@ public:
 				y = 0;
 				if (x > glVideoMemory::ScreenWidth())
 					x = 0;
-				glTexts[i].Region().MoveTo(gl2DPoint_t(x, y, x + glTexts[i].TextWidth(), y + glTexts[i].TextHeight()).Inflate(0, 0, 5, 5));
+				glTexts[i].Region().MoveTo(gl2DPoint_t(x, y, x + glTexts[i].TextSize().Width(), y + glTexts[i].TextSize().Height()).Inflate(0, 0, 5, 5));
 				y = glTexts[i].Region().B();
 			}
 		}
@@ -144,27 +148,60 @@ class GUIPageButtons : public glPage
 {
 public:
 	GUIPageButtons()
-		: glPage("Page1", glColors::LIGHT_CORAL)
+		: glPage("PageButtons", glColors::LIGHT_CORAL)
 	{
 	}
 	// Initialize widget
 	virtual void Init()
 	{
-		B2.TextColor(glColor_t(glColor_t::eColorOperation::ComplementBackground));
-		
-		B1.BackColor(glColors::LAWN_GREEN);
+		B1.ReleasedColor(glColors::LAWN_GREEN);
 		B1.PressedColor(glColors::BURLYWOOD);
-		B3.Corners(glWidgetBorder::eCornerStyles::Angel);
+		B3.CornerRadius(0);
+		//	B3.Corners(glWidgetBorder::eCornerStyles::Angel);
 		B3.BorderColor(glColors::RED);
 		
 		Add(&B1);
 		Add(&B2);
 		Add(&B3);
+		
+		Add(&l1);
+		Add(&l2);
+		Add(&l3);
 	}
 private:
-	glButton< 20, Arial_22_1> B1 = { gl2DPoint_t(100, 450, 300, 550), "B1" };
-	glButton< 20, Arial_31_1> B2 = { gl2DPoint_t(400, 450, 600, 550), "Page1" };
-	glButton< 20, Arial_31_1> B3 = { gl2DPoint_t(400, 150, 600, 250), "Charp corners" };
+	glButton< 35, Arial_22_1> B1 = { gl2DPoint_t(100, 50, 300, 150), "B1 rc=LAWN_GREEN\npc=BURLYWOOD" };
+	glButton< 35, Arial_31_1> B2 = { gl2DPoint_t(400, 50, 600, 150), "B2 default" };
+	glButton< 35, Arial_31_1> B3 = { gl2DPoint_t(400, 200, 600, 300), "B3 Charp corners\nbc=RED" };
+	
+	glLabel< 35, Arial_31_1> l1 = { gl2DPoint_t(100, 200, 350, 250), "l1 Label default" };
+	glLabel< 35, Arial_31_1> l2 = {
+		gl2DPoint_t(100, 300, 350, 350),
+		"l2 Label AGUAMARINE",
+		glLabelTheme(glColor_t::eColorOperation::ComplementBackground, glColors::AQUAMARINE, glColors::WHITE, 5, 20)
+	};
+	glLabel< 35, Arial_31_1> l3 = { 
+		gl2DPoint_t(100, 400, 350, 450), 
+		"l3 Label GREEN",
+		glLabelTheme(glColor_t::eColorOperation::ComplementBackground, glColors::GREEN, glColors::WHITE, 5, 500)
+	};
+};
+
+class GUIPageSliders : public glPage
+{
+public:
+	GUIPageSliders()
+		: glPage("PageSliders", glColors::LIGHT_GRAY)
+	{
+	}
+	// Initialize widget
+	virtual void Init()
+	{
+		Add(&S1);
+		Add(&S2);
+	}
+private:
+	glSlider< 35, Arial_31_1> S1 = { gl2DPoint_t(100, 200, 500, 300), "S1 Slider" };
+	glSlider< 35, Arial_31_1> S2 = { gl2DPoint_t(600, 100, 700, 500), "S2 Slider" };
 };
 
 /*
@@ -187,10 +224,12 @@ public:
 		glMain::AddPage(&PageTest);
 		glMain::AddPage(&PageTexts);
 		glMain::AddPage(&PageButtons);
+		glMain::AddPage(&PageSliders);
 		
 		PageTest.Init();
 		PageTexts.Init(); 
 		PageButtons.Init();
+		PageSliders.Init();
 
 		//		glMain::UnitTest();
 	}
@@ -199,4 +238,5 @@ private:
 	GUIPageWidgets PageTest;
 	GUIPageTexts PageTexts;
 	GUIPageButtons PageButtons;
+	GUIPageSliders PageSliders;
 };

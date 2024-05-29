@@ -101,162 +101,160 @@
 \DoxyCodeLine{00098\ }
 \DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint16\_t\ x\ =\ 0;\ x\ <=\ 255;\ x++)}
 \DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ value\ =\ x\ *\ (2\ *\ M\_PI\ /\ 256);\ \textcolor{comment}{//\ Calculate\ the\ color\ value}}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ t\ =\ RainbowColorGradient(value);}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ hwLTDC::BackgroundColor(t.R,\ t.G,\ t.B);}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ osDelay(50);}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ osDelay(1000);}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ hwLTDC::BackgroundColor(125,\ 125,\ 125);}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (testLevel\ >\ 2)}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ UnitTest1();}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}UnitTest\ of\ Display\ end\ \(\backslash\)n"{}});}
-\DoxyCodeLine{00113\ \ \ \ \ \}}
-\DoxyCodeLine{00114\ }
-\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{void}\ UnitTest1()}
-\DoxyCodeLine{00116\ \ \ \ \ \{}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}UnitTest1\ of\ Display\(\backslash\)n"{}});}
-\DoxyCodeLine{00118\ }
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ the\ number\ of\ lines\ for\ the\ display}}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ uint32\_t\ Height1\ =\ hwLTDC::Height();\ \textcolor{comment}{//\ layer\ 1\ size}}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ uint32\_t\ Width1\ =\ hwLTDC::Width();}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint32\_t\ Height2\ =\ 100;\ \textcolor{comment}{//\ layer\ 2\ size}}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ uint32\_t\ Width2\ =\ hwLTDC::Width(600);}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint32\_t\ Y2\ =\ (Height1\ -\/\ Height2)\ /\ 2;}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint32\_t\ X2\ =\ (Width1\ -\/\ Width2)\ /\ 2;}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\_\_RAM\_ALIGNED(4)\ static\ glColor\_t\ VM2[200*300+64];}}
-\DoxyCodeLine{00128\ }
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ uint32\_t\ size\ =\ SDRAM\_SIZE\ /\ 2;\ \textcolor{comment}{//\ Width2*Height2*sizeof(glColor\_t);}}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ assert(size\ >\ Width1*Height1*\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structgl_color__t}{glColor\_t}})\ \&\&\ \textcolor{stringliteral}{"{}SDRam\ too\ small"{}});}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ *pVM1\ =\ (\mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ *)SDRAM\_START;}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ *pVM2\ =\ (\mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ *)(SDRAM\_START\ +\ size);}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ glColor\_t\ *pVM2\ =\ (glColor\_t\ *)\&VM2;}}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}\ Display\ layer\ 1\ x=\%d,y=\%d,w=\%d\ H=\%d\ Adr=0x\%8X\(\backslash\)n"{}},\ 0,\ 0,\ Width1,\ Height1,\ (uint32\_t)pVM1);}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}\ Display\ layer\ 2\ x=\%d,y=\%d,w=\%d\ H=\%d\ Adr=0x\%8X\(\backslash\)n"{}},\ X2,\ Y2,\ Width2,\ Height2,\ (uint32\_t)pVM2);}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ back\ color\ for\ background}}
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ BackgroundColor(255,\ 0,\ 0);}
-\DoxyCodeLine{00140\ }
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ a\ read\ band\ at\ "{}X"{}}}
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ value\ =\ (500\ *\ 2\ *\ M\_PI)\ /\ Width2;\ \textcolor{comment}{//\ Calculate\ the\ color\ value}}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ t\ =\ RainbowColorGradient(value);}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ DefaultColor(2,\ t.R,\ t.G,\ t.B,\ t.\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}});}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ Layer(1,\ pVM1,\ 0,\ 0,\ 0\ +\ Width1,\ 0\ +\ Height1);}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ Layer(2,\ pVM2,\ X2,\ Y2,\ X2\ +\ Width2,\ Y2\ +\ Height2);}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ BlendingFactors(1,\ eBlendingFactor1::F1\_CA,\ eBlendingFactor2::F2\_CA,\ 100);}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ BlendingFactors(2,\ eBlendingFactor1::F1\_CA,\ eBlendingFactor2::F2\_CA,\ 100);}
-\DoxyCodeLine{00151\ }
-\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#define\ TDELAY\ 100}}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ pixel\ data\ for\ display}}
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ uint32\_t\ x\ =\ 0,\ y\ =\ 0;}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ =\ 255;\ }
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].R\ =\ 255;}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].G\ =\ 0;}
-\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].B\ =\ 0;}
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ x\ =\ Width1\ -\/\ 1,\ y\ =\ 0;}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ =\ 255;\ }
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].R\ =\ 0;}
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].G\ =\ 255;}
-\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].B\ =\ 0;}
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ y\ =\ 0;\ y\ <\ Height1;\ y++)}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ x\ =\ Width1\ -\/\ y\ -\/\ 1;}
-\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ =\ 255;\ \textcolor{comment}{//\ cross\ line}}
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].R\ =\ 255;}
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].G\ =\ 255;}
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].B\ =\ 255;}
-\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ osDelay(1000);}
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ y\ =\ 0;\ y\ <\ Height1;\ y++)}
-\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ x\ =\ y;}
-\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ =\ 255;\ \textcolor{comment}{//\ cross\ line}}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].R\ =\ 255;}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].G\ =\ 255;}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].B\ =\ 255;}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ osDelay(TDELAY);}
-\DoxyCodeLine{00182\ }
-\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ y\ =\ 0;\ y\ <\ Height1;\ y++)}
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ x\ =\ 0;}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ =\ 255;\ \textcolor{comment}{//\ right\ line}}
-\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].R\ =\ 0;}
-\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].G\ =\ 0;}
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].B\ =\ 255;}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ osDelay(TDELAY);}
-\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ y\ =\ 0;\ y\ <\ Height1;\ y++)}
-\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ x\ =\ Width1\ -\/\ 1;}
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ =\ 255;\ \textcolor{comment}{//\ left\ line}}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].R\ =\ 255;}
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].G\ =\ 0;}
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].B\ =\ 0;}
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ osDelay(TDELAY);}
-\DoxyCodeLine{00201\ }
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ x\ =\ 0;\ x\ <\ Width1;\ x++)}
-\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ y\ =\ 0;}
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ =\ 255;\ \textcolor{comment}{//\ top\ line}}
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].R\ =\ 255;}
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].G\ =\ 0;}
-\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].B\ =\ 0;}
-\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ osDelay(TDELAY);}
-\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ x\ =\ 0;\ x\ <\ Width1;\ x++)}
-\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ y\ =\ Height1\ -\/\ 1;}
-\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ =\ 255;\ \textcolor{comment}{//\ bottom\ line}}
-\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].R\ =\ 0;}
-\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].G\ =\ 255;}
-\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].B\ =\ 0;}
-\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ osDelay(TDELAY);}
-\DoxyCodeLine{00220\ }
-\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ i\ =\ 0;\ i\ <\ 2;\ i++)}
-\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ x\ =\ 0;\ x\ <\ Width2;\ x++)}
-\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ value\ =\ (x\ *\ 2\ *\ M\_PI)\ /\ Width2;\ \textcolor{comment}{//\ Calculate\ the\ color\ value}}
-\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ t\ =\ RainbowColorGradient(value);}
-\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ y\ =\ 0;\ y\ <\ Height2;\ y++)\ }
-\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pVM2[x\ +\ y*Width2]\ =\ t;}
-\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ osDelay(TDELAY);}
-\DoxyCodeLine{00232\ }
-\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}UnitTest1\ of\ Display\ end\ \(\backslash\)n"{}});}
-\DoxyCodeLine{00234\ \ \ \ \ \}}
-\DoxyCodeLine{00235\ }
-\DoxyCodeLine{00236\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00237\ \ \ \ \ \mbox{\hyperlink{classcb_display}{cbDisplay}}\ *cbClass\ =\ \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{00238\ }
-\DoxyCodeLine{00239\ \ \ \ \ \mbox{\hyperlink{class_timer15}{Timer15}}\ TimBackLight;\ \textcolor{comment}{//\ backlight\ PWM}}
-\DoxyCodeLine{00240\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ BackLight\ \{GPIOE,\ 5,\ 4,\ hwGPIO::ePP::PushPull\ \}\ \textcolor{comment}{//\ PE5\ as\ AF4\ TIM15\_CH1}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ t\ =\ glColor\_t::RainbowColorGradient(x,255);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ hwLTDC::BackgroundColor(t.R,\ t.G,\ t.B);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ osDelay(50);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ osDelay(1000);}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ hwLTDC::BackgroundColor(125,\ 125,\ 125);}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (testLevel\ >\ 2)}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ UnitTest1();}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}UnitTest\ of\ Display\ end\ \(\backslash\)n"{}});}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{void}\ UnitTest1()}
+\DoxyCodeLine{00115\ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}UnitTest1\ of\ Display\(\backslash\)n"{}});}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ the\ number\ of\ lines\ for\ the\ display}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ uint32\_t\ Height1\ =\ hwLTDC::Height();\ \textcolor{comment}{//\ layer\ 1\ size}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ uint32\_t\ Width1\ =\ hwLTDC::Width();}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint32\_t\ Height2\ =\ 100;\ \textcolor{comment}{//\ layer\ 2\ size}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ uint32\_t\ Width2\ =\ hwLTDC::Width(600);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint32\_t\ Y2\ =\ (Height1\ -\/\ Height2)\ /\ 2;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint32\_t\ X2\ =\ (Width1\ -\/\ Width2)\ /\ 2;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\_\_RAM\_ALIGNED(4)\ static\ glColor\_t\ VM2[200*300+64];}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ uint32\_t\ size\ =\ SDRAM\_SIZE\ /\ 2;\ \textcolor{comment}{//\ Width2*Height2*sizeof(glColor\_t);}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ assert(size\ >\ Width1*Height1*\textcolor{keyword}{sizeof}(\mbox{\hyperlink{classgl_color__t}{glColor\_t}})\ \&\&\ \textcolor{stringliteral}{"{}SDRam\ too\ small"{}});}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ *pVM1\ =\ (\mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ *)SDRAM\_START;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ *pVM2\ =\ (\mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ *)(SDRAM\_START\ +\ size);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ glColor\_t\ *pVM2\ =\ (glColor\_t\ *)\&VM2;}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}\ Display\ layer\ 1\ x=\%d,y=\%d,w=\%d\ H=\%d\ Adr=0x\%8X\(\backslash\)n"{}},\ 0,\ 0,\ Width1,\ Height1,\ (uint32\_t)pVM1);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}\ Display\ layer\ 2\ x=\%d,y=\%d,w=\%d\ H=\%d\ Adr=0x\%8X\(\backslash\)n"{}},\ X2,\ Y2,\ Width2,\ Height2,\ (uint32\_t)pVM2);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ back\ color\ for\ background}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ BackgroundColor(255,\ 0,\ 0);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ a\ rainbow\ band\ at\ "{}X"{}}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ t\ =\ glColor\_t::RainbowColorGradient(500,\ Width2);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ DefaultColor(2,\ t.R,\ t.G,\ t.B,\ t.\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}});}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ Layer(1,\ pVM1,\ 0,\ 0,\ 0\ +\ Width1,\ 0\ +\ Height1);}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ Layer(2,\ pVM2,\ X2,\ Y2,\ X2\ +\ Width2,\ Y2\ +\ Height2);}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ BlendingFactors(1,\ eBlendingFactor1::F1\_CA,\ eBlendingFactor2::F2\_CA,\ 100);}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ BlendingFactors(2,\ eBlendingFactor1::F1\_CA,\ eBlendingFactor2::F2\_CA,\ 100);}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ TDELAY\ 100}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ pixel\ data\ for\ display}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ uint32\_t\ x\ =\ 0,\ y\ =\ 0;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ =\ 255;\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].R\ =\ 255;}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].G\ =\ 0;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].B\ =\ 0;}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ x\ =\ Width1\ -\/\ 1,\ y\ =\ 0;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ =\ 255;\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].R\ =\ 0;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].G\ =\ 255;}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].B\ =\ 0;}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ y\ =\ 0;\ y\ <\ Height1;\ y++)}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ x\ =\ Width1\ -\/\ y\ -\/\ 1;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ =\ 255;\ \textcolor{comment}{//\ cross\ line}}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].R\ =\ 255;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].G\ =\ 255;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].B\ =\ 255;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ osDelay(1000);}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ y\ =\ 0;\ y\ <\ Height1;\ y++)}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ x\ =\ y;}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ =\ 255;\ \textcolor{comment}{//\ cross\ line}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].R\ =\ 255;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].G\ =\ 255;}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].B\ =\ 255;}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ osDelay(TDELAY);}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ y\ =\ 0;\ y\ <\ Height1;\ y++)}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ x\ =\ 0;}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ =\ 255;\ \textcolor{comment}{//\ right\ line}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].R\ =\ 0;}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].G\ =\ 0;}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].B\ =\ 255;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ osDelay(TDELAY);}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ y\ =\ 0;\ y\ <\ Height1;\ y++)}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ x\ =\ Width1\ -\/\ 1;}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ =\ 255;\ \textcolor{comment}{//\ left\ line}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].R\ =\ 255;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].G\ =\ 0;}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].B\ =\ 0;}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ osDelay(TDELAY);}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ x\ =\ 0;\ x\ <\ Width1;\ x++)}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ y\ =\ 0;}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ =\ 255;\ \textcolor{comment}{//\ top\ line}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].R\ =\ 255;}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].G\ =\ 0;}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].B\ =\ 0;}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ osDelay(TDELAY);}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ x\ =\ 0;\ x\ <\ Width1;\ x++)}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ y\ =\ Height1\ -\/\ 1;}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ =\ 255;\ \textcolor{comment}{//\ bottom\ line}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].R\ =\ 0;}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].G\ =\ 255;}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ pVM1[x\ +\ y*Width1].B\ =\ 0;}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ osDelay(TDELAY);}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ i\ =\ 0;\ i\ <\ 2;\ i++)}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ x\ =\ 0;\ x\ <\ Width2;\ x++)}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ color\ value}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ t\ =\ glColor\_t::RainbowColorGradient(x,Width2);}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ y\ =\ 0;\ y\ <\ Height2;\ y++)\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pVM2[x\ +\ y*Width2]\ =\ t;}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ osDelay(TDELAY);}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}UnitTest1\ of\ Display\ end\ \(\backslash\)n"{}});}
+\DoxyCodeLine{00232\ \ \ \ \ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00235\ \ \ \ \ \mbox{\hyperlink{classcb_display}{cbDisplay}}\ *cbClass\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \mbox{\hyperlink{class_timer15}{Timer15}}\ TimBackLight;\ \textcolor{comment}{//\ backlight\ PWM}}
+\DoxyCodeLine{00238\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ BackLight\ \{GPIOE,\ 5,\ 4,\ hwGPIO::ePP::PushPull\ \}\ \textcolor{comment}{//\ PE5\ as\ AF4\ TIM15\_CH1}}
+\DoxyCodeLine{00239\ \ \ \ \ ;}
+\DoxyCodeLine{00240\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ DisplayReset\ \{GPIOA,\ 6,\ hwGPIO::eMode::Output,\ hwGPIO::ePP::PushPull\ \}\ \textcolor{comment}{//\ A6\ LCD\_DISP}}
 \DoxyCodeLine{00241\ \ \ \ \ ;}
-\DoxyCodeLine{00242\ \ \ \ \ \mbox{\hyperlink{classhw_g_p_i_o}{hwGPIO}}\ DisplayReset\ \{GPIOA,\ 6,\ hwGPIO::eMode::Output,\ hwGPIO::ePP::PushPull\ \}\ \textcolor{comment}{//\ A6\ LCD\_DISP}}
-\DoxyCodeLine{00243\ \ \ \ \ ;}
-\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordtype}{void}\ ResetDisplay()}
-\DoxyCodeLine{00245\ \ \ \ \ \{}
-\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ DisplayReset.Low();}
-\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ osDelay(20);}
-\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ DisplayReset.High();}
-\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ osDelay(2);}
-\DoxyCodeLine{00250\ \ \ \ \ \}}
-\DoxyCodeLine{00251\ \ \ \ \ }
-\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ cbBlanking()\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00253\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cbClass\ !=\ \textcolor{keyword}{nullptr})}
-\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ cbClass-\/>\mbox{\hyperlink{classcb_display_ab2ff6a7b4bfb525ed79c49f711903657}{Blanking}}();}
-\DoxyCodeLine{00256\ \ \ \ \ \}}
-\DoxyCodeLine{00257\ \};}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keywordtype}{void}\ ResetDisplay()}
+\DoxyCodeLine{00243\ \ \ \ \ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ DisplayReset.Low();}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ osDelay(20);}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ DisplayReset.High();}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ osDelay(2);}
+\DoxyCodeLine{00248\ \ \ \ \ \}}
+\DoxyCodeLine{00249\ \ \ \ \ }
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ cbBlanking()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00251\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cbClass\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ cbClass-\/>\mbox{\hyperlink{classcb_display_ab2ff6a7b4bfb525ed79c49f711903657}{Blanking}}();}
+\DoxyCodeLine{00254\ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \};}
 
 \end{DoxyCode}

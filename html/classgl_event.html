@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Riverdi OS Test: glEvent Class Reference</title>
+<title>My Project: glEvent Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Riverdi OS Test
+   <div id="projectname">My Project
    </div>
   </td>
  </tr>
@@ -80,37 +80,76 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>gl object to report events  
+<p>A class to report graphical events such as slides and clicks.  
  <a href="#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="gl_primitives_8h_source.html">glPrimitives.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="gl_types_8h_source.html">glTypes.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uniongl_event_1_1u_event.html">uEvent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Union to store event-specific data.  <a href="uniongl_event_1_1u_event.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ae63986141ad7b77417913f127b8edfe7" id="r_ae63986141ad7b77417913f127b8edfe7"><td class="memItemLeft" align="right" valign="top"><a id="ae63986141ad7b77417913f127b8edfe7" name="ae63986141ad7b77417913f127b8edfe7"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>eEventType</b> { <b>None</b>
-, <b>Slide</b>
-, <b>Click</b>
+<tr class="memitem:ae63986141ad7b77417913f127b8edfe7" id="r_ae63986141ad7b77417913f127b8edfe7"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae63986141ad7b77417913f127b8edfe7">eEventType</a> { <a class="el" href="#ae63986141ad7b77417913f127b8edfe7a6adf97f83acf6453d4a6a4b1070f3754">None</a>
+, <a class="el" href="#ae63986141ad7b77417913f127b8edfe7a6160a53ece50ce6d4f5ef4452549835e">Slide</a>
+, <a class="el" href="#ae63986141ad7b77417913f127b8edfe7a316853cc3718335f11c048e33b9be98a">Click</a>
  }</td></tr>
+<tr class="memdesc:ae63986141ad7b77417913f127b8edfe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum to represent the type of event.  <a href="#ae63986141ad7b77417913f127b8edfe7">More...</a><br /></td></tr>
 <tr class="separator:ae63986141ad7b77417913f127b8edfe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ac6b12daf3096d10ee67fce2a8af6bf1b" id="r_ac6b12daf3096d10ee67fce2a8af6bf1b"><td class="memItemLeft" align="right" valign="top"><a id="ac6b12daf3096d10ee67fce2a8af6bf1b" name="ac6b12daf3096d10ee67fce2a8af6bf1b"></a>
-enum glEvent::eEventType&#160;</td><td class="memItemRight" valign="bottom"><b>EventType</b> = eEventType::None</td></tr>
+enum <a class="el" href="#ae63986141ad7b77417913f127b8edfe7">glEvent::eEventType</a>&#160;</td><td class="memItemRight" valign="bottom"><b>EventType</b> = <a class="el" href="#ae63986141ad7b77417913f127b8edfe7a6adf97f83acf6453d4a6a4b1070f3754">eEventType::None</a></td></tr>
+<tr class="memdesc:ac6b12daf3096d10ee67fce2a8af6bf1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the current event. <br /></td></tr>
 <tr class="separator:ac6b12daf3096d10ee67fce2a8af6bf1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d529014843c1484dd9d98b6dbf8d48f" id="r_a7d529014843c1484dd9d98b6dbf8d48f"><td class="memItemLeft" align="right" valign="top"><a id="a7d529014843c1484dd9d98b6dbf8d48f" name="a7d529014843c1484dd9d98b6dbf8d48f"></a>
 union <a class="el" href="uniongl_event_1_1u_event.html">glEvent::uEvent</a>&#160;</td><td class="memItemRight" valign="bottom"><b>U</b></td></tr>
+<tr class="memdesc:a7d529014843c1484dd9d98b6dbf8d48f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Union to store the event data. <br /></td></tr>
 <tr class="separator:a7d529014843c1484dd9d98b6dbf8d48f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>gl object to report events </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>glSTM32H7xx/<a class="el" href="gl_primitives_8h_source.html">glPrimitives.h</a></li>
+<div class="textblock"><p>A class to report graphical events such as slides and clicks. </p>
+<p>This class represents events that can occur in a graphical user interface. It supports events like sliding and clicking, storing relevant event data. </p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="ae63986141ad7b77417913f127b8edfe7" name="ae63986141ad7b77417913f127b8edfe7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae63986141ad7b77417913f127b8edfe7">&#9670;&#160;</a></span>eEventType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#ae63986141ad7b77417913f127b8edfe7">glEvent::eEventType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enum to represent the type of event. </p>
+<p>This enum defines the types of events that can be reported: None, <a class="el" href="struct_slide.html" title="Structure to store slide event data.">Slide</a>, and <a class="el" href="struct_click.html" title="Structure to store click event data.">Click</a>. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ae63986141ad7b77417913f127b8edfe7a6adf97f83acf6453d4a6a4b1070f3754" name="ae63986141ad7b77417913f127b8edfe7a6adf97f83acf6453d4a6a4b1070f3754"></a>None&#160;</td><td class="fielddoc"><p>No event. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae63986141ad7b77417913f127b8edfe7a6160a53ece50ce6d4f5ef4452549835e" name="ae63986141ad7b77417913f127b8edfe7a6160a53ece50ce6d4f5ef4452549835e"></a>Slide&#160;</td><td class="fielddoc"><p>A slide event. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae63986141ad7b77417913f127b8edfe7a316853cc3718335f11c048e33b9be98a" name="ae63986141ad7b77417913f127b8edfe7a316853cc3718335f11c048e33b9be98a"></a>Click&#160;</td><td class="fielddoc"><p>A click event. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>glSTM32H7xx/<a class="el" href="gl_types_8h_source.html">glTypes.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

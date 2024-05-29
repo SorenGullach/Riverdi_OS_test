@@ -1,0 +1,223 @@
+\doxysection{gl\+Slider\texorpdfstring{$<$}{<} len, font\+Family \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classgl_slider}{}\label{classgl_slider}\index{glSlider$<$ len, fontFamily $>$@{glSlider$<$ len, fontFamily $>$}}
+Inheritance diagram for gl\+Slider\texorpdfstring{$<$}{<} len, font\+Family \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classgl_slider}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgl_slider_a271be1a102ddb75a816f857df12a9363}\label{classgl_slider_a271be1a102ddb75a816f857df12a9363} 
+{\bfseries gl\+Slider} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&region, const char \texorpdfstring{$\ast$}{*}text, const \mbox{\hyperlink{classgl_button_theme}{gl\+Button\+Theme}} \&theme=\mbox{\hyperlink{classgl_button_theme}{gl\+Button\+Theme}}())
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_widget_link}{gl\+Widget\+Link}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries gl\+Widget\+Link} (char const \texorpdfstring{$\ast$}{*}name, const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&region)
+\item 
+void {\bfseries Add} (\mbox{\hyperlink{classgl_widget_link}{gl\+Widget\+Link}} \texorpdfstring{$\ast$}{*}child)
+\item 
+virtual const char \texorpdfstring{$\ast$}{*} {\bfseries Name} ()
+\item 
+virtual void {\bfseries Name} (const char \texorpdfstring{$\ast$}{*}name)
+\item 
+virtual \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \& {\bfseries Region} ()
+\item 
+virtual void {\bfseries Move\+To} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&region)
+\item 
+void \mbox{\hyperlink{classgl_widget_link_a8787d368f7b9a9ade0674b02037b3da2}{Update\+Look}} ()
+\item 
+void \mbox{\hyperlink{classgl_widget_link_a100ce9c8ad912aebb70b19a9719f7bd5}{Update\+State}} (\mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point, bool \&Handled)
+\item 
+void \mbox{\hyperlink{classgl_widget_link_a076150fac6eabf764194bb3e7c60bee2}{Invalidate\+Me}} ()
+\item 
+void \mbox{\hyperlink{classgl_widget_link_adcca51f096fd7199fa5f1f80792fede9}{Invalidate\+Siblings}} ()
+\item 
+bool \mbox{\hyperlink{classgl_widget_link_adfb23cb2f1906d04c621992fdea54520}{Is\+Invalidated}} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&invalid\+Region)
+\item 
+void \mbox{\hyperlink{classgl_widget_link_afafacbc70939f2aa821a49fd29c9c129}{Event}} (\mbox{\hyperlink{classgl_event}{gl\+Event}} event)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_link}{gl\+Link}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgl_link}{gl\+Link}} \texorpdfstring{$\ast$}{*} {\bfseries Prev} ()
+\item 
+\mbox{\hyperlink{classgl_link}{gl\+Link}} \texorpdfstring{$\ast$}{*} {\bfseries Next} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_button_theme}{gl\+Button\+Theme}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries gl\+Button\+Theme} (const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&front\+Color, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&back\+Color, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&border\+Color, P\+\_\+t border\+Width, P\+\_\+t corner\+Radius)
+\item 
+virtual void {\bfseries Released\+Color} (\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} color)
+\item 
+virtual void {\bfseries Pressed\+Color} (\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} color)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_label_theme}{gl\+Label\+Theme}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries gl\+Label\+Theme} (const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&text\+Color, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&back\+Color, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&border\+Color, P\+\_\+t border\+Width, P\+\_\+t corner\+Radius)
+\item 
+virtual \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Border\+Color} ()
+\item 
+virtual P\+\_\+t {\bfseries Border\+Width} ()
+\item 
+virtual P\+\_\+t {\bfseries Corner\+Radius} ()
+\item 
+virtual void {\bfseries Border\+Color} (\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} color)
+\item 
+virtual void {\bfseries Border\+Width} (P\+\_\+t width)
+\item 
+virtual void {\bfseries Corner\+Radius} (P\+\_\+t radius)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_text_color_theme}{gl\+Text\+Color\+Theme}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries gl\+Text\+Color\+Theme} (const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&text\+Color)
+\item 
+virtual \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Text\+Color} ()
+\item 
+virtual void {\bfseries Text\+Color} (\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} color)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_back_color_theme}{gl\+Back\+Color\+Theme}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries gl\+Back\+Color\+Theme} (const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&back\+Color)
+\item 
+virtual \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Back\+Color} ()
+\item 
+virtual void {\bfseries Back\+Color} (\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} color)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classgl_slider_a918ca9c90c4915b0f881c7a586e7f9ac}{Touch}} (const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point) override
+\item 
+virtual void \mbox{\hyperlink{classgl_slider_a1878bf3955fb4df04f776ac226ac360d}{Redraw}} () override
+\item 
+void \mbox{\hyperlink{classgl_slider_a6d03cb0bf01027ed2ae996f4c536a9dc}{Invalidate\+Me}} () override
+\item 
+\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \mbox{\hyperlink{classgl_slider_a0dce6f4c6d9ebc072b3ff527c669e503}{Invalid\+Region}} () override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgl_slider_a55307ef2bb60dd70e8e3a48422450b34}\label{classgl_slider_a55307ef2bb60dd70e8e3a48422450b34} 
+\mbox{\hyperlink{classgl_text}{gl\+Text}}$<$ len $>$ {\bfseries \+\_\+\+Text}
+\item 
+\Hypertarget{classgl_slider_a2989ba478c53c83189f5d8fd2349241e}\label{classgl_slider_a2989ba478c53c83189f5d8fd2349241e} 
+bool {\bfseries Horizontal} = true
+\item 
+\Hypertarget{classgl_slider_a2f8630f1ddac1ffa743c39eedd6926ab}\label{classgl_slider_a2f8630f1ddac1ffa743c39eedd6926ab} 
+P\+\_\+t {\bfseries Pos} = 0
+\item 
+\Hypertarget{classgl_slider_a2d28602601d7145c87c9ff478cb91a92}\label{classgl_slider_a2d28602601d7145c87c9ff478cb91a92} 
+\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Cursor}
+\item 
+\Hypertarget{classgl_slider_a1a0276c5671630a56fda562abc768ab3}\label{classgl_slider_a1a0276c5671630a56fda562abc768ab3} 
+\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Invalid}
+\item 
+\Hypertarget{classgl_slider_ae65bd581a4a64ac2d72ede5b86c86b7c}\label{classgl_slider_ae65bd581a4a64ac2d72ede5b86c86b7c} 
+bool {\bfseries Horisontal}
+\item 
+\Hypertarget{classgl_slider_aae83f5a1dd90087d205cd89f4daeec45}\label{classgl_slider_aae83f5a1dd90087d205cd89f4daeec45} 
+bool {\bfseries Click} = false
+\item 
+\Hypertarget{classgl_slider_adce417882178d47fcb204c1a072c3312}\label{classgl_slider_adce417882178d47fcb204c1a072c3312} 
+bool {\bfseries Pressed} = false
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classgl_widget_link}{gl\+Widget\+Link}}}
+\begin{DoxyCompactItemize}
+\item 
+char const  \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+\+Name} = "{}gl\+Widget"{}
+\item 
+bool {\bfseries Im\+Invalidated} = true
+\item 
+\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries \+\_\+\+Region}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classgl_link}{gl\+Link}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgl_link}{gl\+Link}} \texorpdfstring{$\ast$}{*} {\bfseries p\+Next} = nullptr
+\item 
+\mbox{\hyperlink{classgl_link}{gl\+Link}} \texorpdfstring{$\ast$}{*} {\bfseries p\+Prev} = nullptr
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classgl_button_theme}{gl\+Button\+Theme}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries \+\_\+\+Pressed\+Color}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classgl_label_theme}{gl\+Label\+Theme}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries \+\_\+\+Border\+Color}
+\item 
+P\+\_\+t {\bfseries \+\_\+\+Border\+Width}
+\item 
+P\+\_\+t {\bfseries \+\_\+\+Corner\+Radius}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classgl_text_color_theme}{gl\+Text\+Color\+Theme}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries \+\_\+\+Text\+Color}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classgl_back_color_theme}{gl\+Back\+Color\+Theme}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries \+\_\+\+Back\+Color}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgl_slider_a6d03cb0bf01027ed2ae996f4c536a9dc}\label{classgl_slider_a6d03cb0bf01027ed2ae996f4c536a9dc} 
+\index{glSlider$<$ len, fontFamily $>$@{glSlider$<$ len, fontFamily $>$}!InvalidateMe@{InvalidateMe}}
+\index{InvalidateMe@{InvalidateMe}!glSlider$<$ len, fontFamily $>$@{glSlider$<$ len, fontFamily $>$}}
+\doxysubsubsection{\texorpdfstring{InvalidateMe()}{InvalidateMe()}}
+{\footnotesize\ttfamily template$<$int len, const Font\+Item \texorpdfstring{$\ast$}{*} font\+Family$>$ \\
+void \mbox{\hyperlink{classgl_slider}{gl\+Slider}}$<$ len, font\+Family $>$\+::\+Invalidate\+Me (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classgl_link}{gl\+Link}}.
+
+\Hypertarget{classgl_slider_a0dce6f4c6d9ebc072b3ff527c669e503}\label{classgl_slider_a0dce6f4c6d9ebc072b3ff527c669e503} 
+\index{glSlider$<$ len, fontFamily $>$@{glSlider$<$ len, fontFamily $>$}!InvalidRegion@{InvalidRegion}}
+\index{InvalidRegion@{InvalidRegion}!glSlider$<$ len, fontFamily $>$@{glSlider$<$ len, fontFamily $>$}}
+\doxysubsubsection{\texorpdfstring{InvalidRegion()}{InvalidRegion()}}
+{\footnotesize\ttfamily template$<$int len, const Font\+Item \texorpdfstring{$\ast$}{*} font\+Family$>$ \\
+\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \mbox{\hyperlink{classgl_slider}{gl\+Slider}}$<$ len, font\+Family $>$\+::\+Invalid\+Region (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classgl_widget_link}{gl\+Widget\+Link}}.
+
+\Hypertarget{classgl_slider_a1878bf3955fb4df04f776ac226ac360d}\label{classgl_slider_a1878bf3955fb4df04f776ac226ac360d} 
+\index{glSlider$<$ len, fontFamily $>$@{glSlider$<$ len, fontFamily $>$}!Redraw@{Redraw}}
+\index{Redraw@{Redraw}!glSlider$<$ len, fontFamily $>$@{glSlider$<$ len, fontFamily $>$}}
+\doxysubsubsection{\texorpdfstring{Redraw()}{Redraw()}}
+{\footnotesize\ttfamily template$<$int len, const Font\+Item \texorpdfstring{$\ast$}{*} font\+Family$>$ \\
+virtual void \mbox{\hyperlink{classgl_slider}{gl\+Slider}}$<$ len, font\+Family $>$\+::\+Redraw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classgl_widget_link}{gl\+Widget\+Link}}.
+
+\Hypertarget{classgl_slider_a918ca9c90c4915b0f881c7a586e7f9ac}\label{classgl_slider_a918ca9c90c4915b0f881c7a586e7f9ac} 
+\index{glSlider$<$ len, fontFamily $>$@{glSlider$<$ len, fontFamily $>$}!Touch@{Touch}}
+\index{Touch@{Touch}!glSlider$<$ len, fontFamily $>$@{glSlider$<$ len, fontFamily $>$}}
+\doxysubsubsection{\texorpdfstring{Touch()}{Touch()}}
+{\footnotesize\ttfamily template$<$int len, const Font\+Item \texorpdfstring{$\ast$}{*} font\+Family$>$ \\
+bool \mbox{\hyperlink{classgl_slider}{gl\+Slider}}$<$ len, font\+Family $>$\+::\+Touch (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&}]{point }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classgl_widget_link}{gl\+Widget\+Link}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gl\+STM32\+H7xx/gl\+Slider.\+h\end{DoxyCompactItemize}

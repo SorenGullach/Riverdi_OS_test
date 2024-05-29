@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['touch_0',['Touch',['../classcb_display.html#a085ed844fefb4b808aa4f0d431e561be',1,'cbDisplay']]]
+  ['redraw_0',['Redraw',['../classgl_text.html#a59e9ee707d941be372bf6ac329c84229',1,'glText']]]
 ];

@@ -23,6 +23,7 @@
 #include "glTypes.h"
 #include "glFont.h"
 #include "glChain.h"
+#include "glThemes.h"
 #include <string.h>
 #include <assert.h>
 
@@ -84,7 +85,7 @@ public:
 	// redraw your self
 	virtual void Redraw() = 0;
 	// Called upon touch change
-	virtual void Touch(const glTouchPoint_t &) = 0;
+	virtual bool Touch(const glTouchPoint_t &) = 0;
 	virtual gl2DPoint_t InvalidRegion() 
 	{
 		return _Region;
@@ -105,17 +106,18 @@ public:
 	}
 
 	// called down link to update state
-	void UpdateState(glTouchPoint_t &point)
+	void UpdateState(glTouchPoint_t &point, bool &Handled)
 	{
-		Touch(point); // send touch
-
 		// Update Childs
-		if (ChainChilds.Head() != nullptr)
-			ChainChilds.Head()->UpdateState(point);
+		if (ChainChilds.Head() != nullptr  && !Handled)
+			ChainChilds.Head()->UpdateState(point, Handled);
 
 		// Update widgets
-		if (pNext != nullptr)
-			pNext->UpdateState(point);
+		if (pNext != nullptr  && !Handled)
+			pNext->UpdateState(point, Handled);
+
+		if(!Handled)
+			Handled |= Touch(point); 
 	}
 	
 	void InvalidateMe()
@@ -173,62 +175,6 @@ private:
 	glChain<glWidgetLink> ChainChilds;
 };
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-class glWidgetColor
-{
-public:
-	glWidgetColor(
-		const glColor_t &frontColor,
-		const glColor_t &backColor = glColor_t(glColor_t::eColorOperation::ComplementBackground))
-		: _BackColor(backColor), _FrontColor(frontColor)
-	{
-	}
-
-	virtual glColor_t BackColor()	{ return _BackColor; }
-	virtual glColor_t FrontColor()	{ return _FrontColor; }
-
-	virtual void BackColor(glColor_t color)		{ _BackColor = color; }
-	virtual void FrontColor(glColor_t color)	{ _FrontColor = color; }
-
-protected:
-	// attributes
-	glColor_t _BackColor;
-	glColor_t _FrontColor;
-};
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-class glWidgetBorder
-{
-public:
-	enum class eCornerStyles					{ Angel, Round };
-	
-	glWidgetBorder(
-		const glColor_t BorderColor = glColors::WHITE,
-		const P_t borderWidth = 5,
-		const eCornerStyles cornerStyle = eCornerStyles::Round,
-		const P_t borderRadius = 5)
-		: _BorderWidth(borderWidth)
-		, _BorderColor(BorderColor)
-		, _CornerStyle(cornerStyle)
-		, _CornerRadius(borderRadius)
-	{
-	}
-
-	virtual void BorderColor(glColor_t color)	{ _BorderColor = color; }
-	virtual void BorderWidth(P_t Width) 	{ _BorderWidth = Width; }
-	virtual void Corners(eCornerStyles Style)	{ _CornerStyle = Style; }
-	virtual void CornerRadius(P_t radius)	{ _CornerRadius = radius; }
-
-protected:
-	// attributes
-	P_t _BorderWidth;
-	glColor_t _BorderColor;
-	eCornerStyles _CornerStyle;
-	P_t _CornerRadius;
-};
-
-
 /////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * @class glPixel
@@ -238,16 +184,16 @@ protected:
  * multiple constructors for different ways of initializing the pixel's position and color.
  * It also overrides the Redraw method to plot the pixel on the screen.
  */
-class glPixel : public glWidgetLink, public glWidgetColor, private glVideoMemoryPlot
+class glPixel : public glWidgetLink, public glFrontColorTheme, private glVideoMemoryPlot
 {
 public:
 	glPixel(P_t x, P_t y, const glColor_t &color)
 		: glWidgetLink("Pixel", gl2DPoint_t(x, y, x, y))
-		, glWidgetColor(color, color) {}
+		, glFrontColorTheme(color) {}
 
 	glPixel(const glPoint_t &point, const glColor_t &color)
 		: glWidgetLink("Pixel", gl2DPoint_t(point, point))
-		, glWidgetColor(color, color) {}
+		, glFrontColorTheme(color) {}
 
 protected:
 	// Redraws the pixel widget.
@@ -255,10 +201,10 @@ protected:
 	{
 		if (!ImInvalidated) return;
 		
-		Plot(_Region.LT(), _BackColor);
+		Plot(_Region.LT(), _FrontColor);
 		if (glVideoMemory::lastBand()) ImInvalidated = false;
 	}
-	void Touch(const glTouchPoint_t &) override {}
+	bool Touch(const glTouchPoint_t &) override { return false; }
 };
 
 
@@ -268,10 +214,19 @@ class glPlot2DHelper : public glVideoMemoryPlot
 {
 public:
 	void PlotLine(P_t x0, P_t y0, P_t x1, P_t y1, const glColor_t &color);
+	
 	void PlotCircle(const glPoint_t &center, P_t radius, const glColor_t &color);
 	void PlotCircleFill(const glPoint_t &center, P_t radius, const glColor_t &color);
-	void PlotArc(const gl2DPoint_t &box, const glPoint_t &center, P_t radius, const glColor_t &color);
-	void PlotFillArc(const gl2DPoint_t &box, const glPoint_t &center, P_t radius, const glColor_t &color);
+	
+	void PlotArc(const gl2DPoint_t &region, const glPoint_t &center, P_t radius, const glColor_t &color);
+	void PlotArcFill(const gl2DPoint_t &region, const glPoint_t &center, P_t radius, const glColor_t &color);
+	
+	void PlotRectangle(const gl2DPoint_t &region, const glColor_t &color);
+	void PlotRectangleFill(const gl2DPoint_t &region, const glColor_t &color);
+	void PlotRectangleRound(gl2DPoint_t region, P_t radius, glColor_t color);
+	void PlotRectangleRoundFill(gl2DPoint_t region, P_t radius, glColor_t color);
+	 
+	void PlotBorder(gl2DPoint_t region,	P_t width, P_t radius, glColor_t color);
 private:
 	void PlotLineLow(P_t x0, P_t y0, P_t x1, P_t y1, const glColor_t &color);
 	void PlotLineHigh(P_t x0, P_t y0, P_t x1, P_t y1, const glColor_t &color);
@@ -280,12 +235,12 @@ private:
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-class glLine : private glPlot2DHelper, public glWidgetLink, public glWidgetColor
+class glLine : private glPlot2DHelper, public glWidgetLink, public glFrontColorTheme
 {
 public:
 	glLine(const gl2DPoint_t startEnd, const glColor_t &color)
 		: glWidgetLink("Line", startEnd)
-		, glWidgetColor(color, color) {}
+		, glFrontColorTheme(color) {}
 
 protected:
 	// Initialize widget
@@ -296,30 +251,22 @@ protected:
 	{
 		if (!ImInvalidated) return;
 		
-		PlotLine(_Region.L(), _Region.T(), _Region.R(), _Region.B(), _BackColor);
+		PlotLine(_Region.L(), _Region.T(), _Region.R(), _Region.B(), _FrontColor);
 		if (glVideoMemory::lastBand()) ImInvalidated = false;
 	}
-	void Touch(const glTouchPoint_t &) override {}
+	bool Touch(const glTouchPoint_t &) override { return false; }
 };
 	
-class glRectangle : protected glPlot2DHelper, public glWidgetLink, public glWidgetColor
+class glRectangle : protected glPlot2DHelper, public glWidgetLink, public glFrontColorTheme
 {
 public:
 	glRectangle(const gl2DPoint_t &rect, const glColor_t &color)
 		: glWidgetLink("Rectangle", rect)
-		, glWidgetColor(color, color) {}
+		, glFrontColorTheme(color) {}
 
 	virtual void Draw()
 	{
-		PlotLine(_Region.L(), _Region.T(), _Region.R(), _Region.T(), _BackColor);
-		PlotLine(_Region.R(), _Region.T(), _Region.R(), _Region.B(), _BackColor);
-		PlotLine(_Region.R(), _Region.B(), _Region.L(), _Region.B(), _BackColor);
-		PlotLine(_Region.L(), _Region.B(), _Region.L(), _Region.T(), _BackColor);
-	}
-
-	void Inflate(int d)
-	{
-		_Region = _Region.Inflate(d);		
+		PlotRectangle(_Region, _FrontColor);
 	}
 protected:
 	// Initialize widget
@@ -334,7 +281,7 @@ protected:
 		
 		if (glVideoMemory::lastBand()) ImInvalidated = false;
 	}
-	void Touch(const glTouchPoint_t &) override {}
+	bool Touch(const glTouchPoint_t &) override { return false; }
 };
 
 class glRectangleFill : public glRectangle
@@ -345,24 +292,22 @@ public:
 
 	void Draw() override
 	{
-		for (P_t x = _Region.LT().X; x <= _Region.RB().X; x++)
-			for (P_t y = _Region.LT().Y; y <= _Region.RB().Y; y++)
-				Plot(x, y, _BackColor);
+		PlotRectangleFill(_Region, _FrontColor);
 	}
 };
 
-class glCircle : protected glPlot2DHelper, public glWidgetLink, public glWidgetColor
+class glCircle : protected glPlot2DHelper, public glWidgetLink, public glFrontColorTheme
 {
 public:
 	glCircle(const glPoint_t &center, P_t radius, const glColor_t &color) 
 		: glWidgetLink("Circel", gl2DPoint_t(center.Displace(-radius, -radius), center.Displace(radius, radius)))
-		, glWidgetColor(color, color)
+		, glFrontColorTheme(color)
 		, _Center(center)
 		, _Radius(radius) {}
 
 	virtual void Draw()
 	{
-		PlotCircle(_Center, _Radius, _BackColor);
+		PlotCircle(_Center, _Radius, _FrontColor);
 	}
 
 protected:
@@ -375,7 +320,7 @@ protected:
 		
 		if (glVideoMemory::lastBand()) ImInvalidated = false;
 	}
-	void Touch(const glTouchPoint_t &) override {}
+	bool Touch(const glTouchPoint_t &) override { return false; }
 
 	glPoint_t _Center;
 	P_t _Radius;
@@ -389,7 +334,7 @@ public:
 
 	void Draw() override
 	{
-		PlotCircleFill(_Center, _Radius, _BackColor);
+		PlotCircleFill(_Center, _Radius, _FrontColor);
 	}
 };
 
@@ -402,7 +347,7 @@ public:
 	
 	void Draw() override
 	{
-		PlotArc(_Region, _Center, _Radius, _BackColor);
+		PlotArc(_Region, _Center, _Radius, _FrontColor);
 	}
 };
 
@@ -414,7 +359,7 @@ public:
 	
 	void Draw() override
 	{
-		PlotFillArc(_Region, _Center, _Radius, _BackColor);
+		PlotArcFill(_Region, _Center, _Radius, _FrontColor);
 	}
 };
 
@@ -422,67 +367,32 @@ class glRectangleRound : public glRectangle
 {
 public:
 	glRectangleRound(const gl2DPoint_t &rect, P_t radius, const glColor_t &color)
-		: glRectangle(rect, color) { _Name = "glRectangleRound"; Radius = radius; }
+		: glRectangle(rect, color)
+		, _Radius(radius) 
+	{ _Name = "glRectangleRound"; }
 
 	void Draw() override
 	{
-		assert(Radius <= _Region.Width() && Radius <= _Region.Height());
-		PlotLine(_Region.L() + Radius, _Region.T(), _Region.R() - Radius, _Region.T(), _BackColor);
-		PlotLine(_Region.R(), _Region.T() + Radius, _Region.R(), _Region.B() - Radius, _BackColor);
-		PlotLine(_Region.R() - Radius, _Region.B(), _Region.L() + Radius, _Region.B(), _BackColor);
-		PlotLine(_Region.L(), _Region.B() - Radius, _Region.L(), _Region.T() + Radius, _BackColor);
-
-		gl2DPoint_t b(_Region.L(), _Region.T(), _Region.L() + Radius, _Region.T() + Radius);
-		glPoint_t p(_Region.L() + Radius, _Region.T() + Radius);
-		glArc(b, p, Radius, _BackColor).Draw();
-
-		b = gl2DPoint_t(_Region.R() - Radius, _Region.T(), _Region.R(), _Region.T() + Radius);
-		p = glPoint_t(_Region.R() - Radius, _Region.T() + Radius);
-		glArc(b, p, Radius, _BackColor).Draw();
-
-		b = gl2DPoint_t(_Region.R() - Radius, _Region.B() - Radius, _Region.R(), _Region.B());
-		p = glPoint_t(_Region.R() - Radius, _Region.B() - Radius);
-		glArc(b, p, Radius, _BackColor).Draw();
-
-		b = gl2DPoint_t(_Region.L(), _Region.B() - Radius, _Region.L() + Radius, _Region.B());
-		p = glPoint_t(_Region.L() + Radius, _Region.B() - Radius);
-		glArc(b, p, Radius, _BackColor).Draw();
+		PlotRectangleRound(_Region, _Radius, _FrontColor);
 	}
 private:
-	P_t Radius = 5;
+	P_t _Radius = 5;
 };
 
 class glRectangleRoundFill : public glRectangle
 {
 public:
 	glRectangleRoundFill(const gl2DPoint_t &rect, P_t radius, const glColor_t &color)
-		: glRectangle(rect, color) { _Name = "RectangleRoundFill"; Radius = radius; }
+		: glRectangle(rect, color)
+		, _Radius(radius)
+	{ _Name = "RectangleRoundFill"; }
 
 	void Draw() override
 	{
-		assert(Radius <= _Region.Width() && Radius <= _Region.Height());
-		glRectangleFill(gl2DPoint_t(_Region.L(), _Region.T() + Radius, _Region.R(), _Region.B() - Radius), _BackColor).Draw();
-		
-		glRectangleFill(gl2DPoint_t(_Region.L() + Radius, _Region.T(), _Region.R() - Radius, _Region.T() + Radius), _BackColor).Draw();
-		glRectangleFill(gl2DPoint_t(_Region.L() + Radius, _Region.B() - Radius, _Region.R() - Radius, _Region.B()), _BackColor).Draw();
-	
-		gl2DPoint_t b(_Region.L(), _Region.T(), _Region.L() + Radius, _Region.T() + Radius);
-		glPoint_t p(_Region.L() + Radius, _Region.T() + Radius);
-		glArcFill(b, p, Radius, _BackColor).Draw();
-
-		b = gl2DPoint_t(_Region.R() - Radius, _Region.T(), _Region.R(), _Region.T() + Radius);
-		p = glPoint_t(_Region.R() - Radius, _Region.T() + Radius);
-		glArcFill(b, p, Radius, _BackColor).Draw();
-
-		b = gl2DPoint_t(_Region.R() - Radius, _Region.B() - Radius, _Region.R(), _Region.B());
-		p = glPoint_t(_Region.R() - Radius, _Region.B() - Radius);
-		glArcFill(b, p, Radius, _BackColor).Draw();
-
-		b = gl2DPoint_t(_Region.L(), _Region.B() - Radius, _Region.L() + Radius, _Region.B());
-		p = glPoint_t(_Region.L() + Radius, _Region.B() - Radius);
-		glArcFill(b, p, Radius, _BackColor).Draw();
+		assert(_Radius <= _Region.Width() / 2 || _Radius <= _Region.Height() / 2);
+		PlotRectangleRoundFill(_Region, _Radius, _FrontColor);
 	}
 private:
-	P_t Radius = 5;
+	P_t _Radius = 5;
 };
 

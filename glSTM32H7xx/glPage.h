@@ -22,18 +22,14 @@
 #include "glWidgets.h"
 
 // a GUI consists of pages
-class glPage : public glLink, public glWidgetColor
+class glPage : public glLink, public glFrontColorTheme
 {
 public:
-	glPage(const char *name, glColor_t color)
-		: /*glWidgetLink(name, gl2DPoint_t())
-		,*/ glWidgetColor(color,color)
+	glPage(const char *name, const glColor_t &color)
+		: glFrontColorTheme(color)
 		, _Name(name) 
 	{
 	}
-//	virtual void Init() override
-//	{
-//	}
 	
 	// Add a widget to the page
 	void Add(glWidgetLink *page)
@@ -62,13 +58,14 @@ public:
 	}
 
 	// called down link to update state
-	void UpdateState(glTouchPoint_t &point)
+	void UpdateState(glTouchPoint_t &point, bool &Handled)
 	{
-		Touch(point); // send touch
-
 		// Update widgets
-		if (ChainWidgets.Head() != nullptr)
-			ChainWidgets.Head()->UpdateState(point);
+		if (ChainWidgets.Head() != nullptr && !Handled)
+			ChainWidgets.Head()->UpdateState(point, Handled);
+
+		if(!Handled)
+			Handled |= Touch(point);
 	}
 
 	void InvalidateMe()
@@ -108,42 +105,47 @@ public:
 	{
 		if (!ImInvalidated) return;
 		
-		glRectangleFill(_Region.Intersection(glVideoMemory::InvalidRegion), _BackColor).Draw();
+		glRectangleFill(_Region.Intersection(glVideoMemory::InvalidRegion), _FrontColor).Draw();
 		
 		if(glVideoMemory::lastBand()) ImInvalidated = false;
 	}
-	virtual void Touch(const glTouchPoint_t &point) final
+	
+	virtual bool Touch(const glTouchPoint_t &point) final
 	{
 		if (InSlide)
 		{
 			if (point.TipAction == glTouchPoint_t::eTipAction::Up)
 				InSlide = false;
-			Printf("%s %s\n", _Name, InSlide ? "InSlide" : "");
-			return;
+//			Printf("%s %s\n", _Name, InSlide ? "InSlide" : "");
+//			return true;
 		}
 		if (point.SlideAction == glTouchPoint_t::eSlideAction::Right && 
 			EventAction.U.Slide.Action != glTouchPoint_t::Right) 
 		{
 			InSlide = true;
-			Printf("%s slide right\n", _Name);
+//			Printf("%s slide right\n", _Name);
 			EventAction.EventType = glEvent::eEventType::Slide;
 			EventAction.U.Slide.Action = glTouchPoint_t::Right;
 			Event(EventAction);
+	//		return true;
 		}
 		else if (point.SlideAction == glTouchPoint_t::eSlideAction::Left && 
 			EventAction.U.Slide.Action != glTouchPoint_t::Left) 
 		{
 			InSlide = true;
-			Printf("%s slide left\n", _Name);
+//			Printf("%s slide left\n", _Name);
 			EventAction.EventType = glEvent::eEventType::Slide;
 			EventAction.U.Slide.Action = glTouchPoint_t::Left;
 			Event(EventAction);
+		//	return true;
 		}
+		return false;
 	}
+	
 	// buble event to top
 	void Event(glEvent event)
 	{
-		Printf("%s Event\n", _Name);
+//		Printf("%s Event\n", _Name);
 		EventAction = event;
 	}
 

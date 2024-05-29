@@ -103,8 +103,13 @@ public:
 	glColor_t(const C_t red, const C_t green, const C_t blue, const C_t alpha = 255)
 		: glARGB_t(alpha, red, green, blue) {}
 
+	glColor_t(const glARGB_t &color)
+		: glARGB_t(color)
+		, operation(glColor_t::eColorOperation::Replace) {}
+
 	enum class eColorOperation {
 		Replace,
+		Hollow,
 		Add,
 		Subtract,
 		Complement,
@@ -136,6 +141,9 @@ public:
 		switch (operation) {
 		case eColorOperation::Replace:
 			return *this;
+
+		case eColorOperation::Hollow:
+			return glColor_t(bg);
 
 		case eColorOperation::Add:
 			return Add(bg);
@@ -261,8 +269,7 @@ public:
 			C_t((bg.B + B) / 2),
 			C_t((bg.A + A) / 2));
 	}
-	;
-
+	
 	glColor_t ComplementBackground(const glARGB_t &bg) const 
 	{
 		return glColor_t(
@@ -292,11 +299,6 @@ public:
 			C_t(sin(normalized + 4 * M_PI / 3) * 127 + 128));
 	}
 
-	/**
-	 * @brief Generates a rainbow color based on an index from 0 to 255.
-	 * @param index The index value (0..255).
-	 * @return The generated rainbow color.
-	 */
 	static glColor_t RainbowColorIndex(int index, int max) 
 	{
 		float normalized = index / float(max);

@@ -1,5 +1,6 @@
 var searchData=
 [
   ['cbblanking_0',['cbBlanking',['../classgl_main.html#aa3bbbd92f5f8500d8f81224270a42fbf',1,'glMain::cbBlanking()'],['../classcb_display.html#a54467ed5dfaef5d9fb651921d64eed40',1,'cbDisplay::cbBlanking()']]],
-  ['cbtouch_1',['cbTouch',['../classgl_main.html#ab86832b66f825b77d86d114213373be3',1,'glMain::cbTouch()'],['../classcb_display.html#a2371e3a78b24a19635435b3eda9d9355',1,'cbDisplay::cbTouch()']]]
+  ['cbtouch_1',['cbTouch',['../classgl_main.html#ab86832b66f825b77d86d114213373be3',1,'glMain::cbTouch()'],['../classcb_display.html#a2371e3a78b24a19635435b3eda9d9355',1,'cbDisplay::cbTouch()']]],
+  ['color_2',['Color',['../classgl_color__t.html#a75c00ebf69613751b556e87c3e560819',1,'glColor_t']]]
 ];

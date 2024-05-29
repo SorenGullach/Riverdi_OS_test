@@ -20,49 +20,43 @@
 #pragma once
 
 #include "glWidgets.h"
+#include "glLabel.h"
+#include "glText.h"
+#include "glThemes.h"
 
 template<int len, const FontItem *fontFamily>
-class glLabel : public glWidgetLink, public glWidgetColor, public glWidgetBorder
-{
-public:
-	glLabel(
-		const gl2DPoint_t &region, 
-		const glColor_t &backColor = glColor_t(glColors::LIGHT_GRAY))
-		: glWidgetLink("Label", region)
-		, glWidgetColor(backColor)
-		, glWidgetBorder()
-	{	
-		//_BorderWidth = std::min(pos.Width(), pos.Height()) / 10;
-		assert(_BorderWidth < region.Height() / 2);
-		assert(_BorderWidth < region.Width() / 2);
-	}
-protected:
-	// Called upon touch change
-	virtual void Touch(const glTouchPoint_t &) override
+	class glLabel : public glWidgetLink, public glLabelTheme, private glPlot2DHelper
 	{
-	}
-
-	// redraw your self
-// return true if anything done
-	virtual void Redraw() override
-	{
-		if (!ImInvalidated) return;
-
-//		glRectangleFill(_Region.Inflate(-_BorderWidth), glColors::CYAN).Draw();
-//		glRectangleFill(_Position.Inflate(-BorderWidth), _Color).Draw(invalidRegion);
-
-		for (P_t i = 0; i < _BorderWidth; i++)
+	public:
+		glLabel(const gl2DPoint_t &region, const char *text, const glLabelTheme &theme = glLabelTheme())
+			: glWidgetLink("Label", region)
+			, glLabelTheme(theme)
+			, _Text(region.Inflate(-_BorderWidth), text, fontFamily, theme._TextColor)
 		{
-			if (_CornerStyle == eCornerStyles::Round)
-				glRectangleRound(_Region.Inflate(-i), 2*_BorderWidth - i, _BorderColor).Draw();
-			else
-				glRectangle(_Region.Inflate(-i), _BorderColor).Draw();
+			Add(&_Text);
 		}
+
+	protected:
+	
+		bool Touch(const glTouchPoint_t &) override { return false; }
+
+		// redraw your self
+		virtual void Redraw() override
+		{
+			if (!ImInvalidated) return ;
+
+			PlotRectangleRoundFill(_Region.Inflate(-_BorderWidth + 1), _CornerRadius, _BackColor);
+
+			PlotBorder(_Region, _BorderWidth, _CornerRadius, _BorderColor);
 		
-		if (glVideoMemory::lastBand()) ImInvalidated = false;
-	}
+			if (glVideoMemory::lastBand()) 
+				ImInvalidated = false;
+		}
+	
+		gl2DPoint_t InvalidRegion() override
+		{
+			return _Region.Inflate(-_BorderWidth) ;
+		}
 
-protected:
-}
-;
-
+		glText<len> _Text;
+	};

@@ -1,0 +1,153 @@
+\doxysection{gl\+Widget\+Link Class Reference}
+\hypertarget{classgl_widget_link}{}\label{classgl_widget_link}\index{glWidgetLink@{glWidgetLink}}
+Inheritance diagram for gl\+Widget\+Link\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{classgl_widget_link}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgl_widget_link_a70d61a6a85ded8371a28ccc5c59d2e51}\label{classgl_widget_link_a70d61a6a85ded8371a28ccc5c59d2e51} 
+{\bfseries gl\+Widget\+Link} (char const \texorpdfstring{$\ast$}{*}name, const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&region)
+\item 
+\Hypertarget{classgl_widget_link_a56cefe22ac92a1e095b2687453a65074}\label{classgl_widget_link_a56cefe22ac92a1e095b2687453a65074} 
+void {\bfseries Add} (\mbox{\hyperlink{classgl_widget_link}{gl\+Widget\+Link}} \texorpdfstring{$\ast$}{*}child)
+\item 
+\Hypertarget{classgl_widget_link_ae04e146acf59c50c52d0e45daebf8125}\label{classgl_widget_link_ae04e146acf59c50c52d0e45daebf8125} 
+virtual const char \texorpdfstring{$\ast$}{*} {\bfseries Name} ()
+\item 
+\Hypertarget{classgl_widget_link_ae98c5a994929e9df2ffdbc43a5a2cb21}\label{classgl_widget_link_ae98c5a994929e9df2ffdbc43a5a2cb21} 
+virtual void {\bfseries Name} (const char \texorpdfstring{$\ast$}{*}name)
+\item 
+\Hypertarget{classgl_widget_link_a9178041de749d8d66d6b260a2d44afcf}\label{classgl_widget_link_a9178041de749d8d66d6b260a2d44afcf} 
+virtual \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \& {\bfseries Region} ()
+\item 
+\Hypertarget{classgl_widget_link_accdcb47b287fa7be7b32b77765caf460}\label{classgl_widget_link_accdcb47b287fa7be7b32b77765caf460} 
+virtual void {\bfseries Move\+To} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&region)
+\item 
+virtual void \mbox{\hyperlink{classgl_widget_link_adebc9cfda010593c879d0a3d3cfb6ae7}{Redraw}} ()=0
+\item 
+\Hypertarget{classgl_widget_link_a57fc6856454e9db75a27e5a06025111f}\label{classgl_widget_link_a57fc6856454e9db75a27e5a06025111f} 
+virtual bool {\bfseries Touch} (const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&)=0
+\item 
+\Hypertarget{classgl_widget_link_a9ccc47d4aebba2dd41fb25de72e3579b}\label{classgl_widget_link_a9ccc47d4aebba2dd41fb25de72e3579b} 
+virtual \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Invalid\+Region} ()
+\item 
+void \mbox{\hyperlink{classgl_widget_link_a8787d368f7b9a9ade0674b02037b3da2}{Update\+Look}} ()
+\item 
+void \mbox{\hyperlink{classgl_widget_link_a100ce9c8ad912aebb70b19a9719f7bd5}{Update\+State}} (\mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point, bool \&Handled)
+\item 
+void \mbox{\hyperlink{classgl_widget_link_a076150fac6eabf764194bb3e7c60bee2}{Invalidate\+Me}} ()
+\item 
+void \mbox{\hyperlink{classgl_widget_link_adcca51f096fd7199fa5f1f80792fede9}{Invalidate\+Siblings}} ()
+\item 
+bool \mbox{\hyperlink{classgl_widget_link_adfb23cb2f1906d04c621992fdea54520}{Is\+Invalidated}} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&invalid\+Region)
+\item 
+void \mbox{\hyperlink{classgl_widget_link_afafacbc70939f2aa821a49fd29c9c129}{Event}} (\mbox{\hyperlink{classgl_event}{gl\+Event}} event)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_link}{gl\+Link}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgl_link}{gl\+Link}} \texorpdfstring{$\ast$}{*} {\bfseries Prev} ()
+\item 
+\mbox{\hyperlink{classgl_link}{gl\+Link}} \texorpdfstring{$\ast$}{*} {\bfseries Next} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgl_widget_link_a122222165d4f0396dec85aa0b9f9878c}\label{classgl_widget_link_a122222165d4f0396dec85aa0b9f9878c} 
+char const  \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+\+Name} = "{}gl\+Widget"{}
+\item 
+\Hypertarget{classgl_widget_link_ac8fddc6ce301a050e458c765f9476e71}\label{classgl_widget_link_ac8fddc6ce301a050e458c765f9476e71} 
+bool {\bfseries Im\+Invalidated} = true
+\item 
+\Hypertarget{classgl_widget_link_af886eaa5582e8b67d983e1c2b21575ed}\label{classgl_widget_link_af886eaa5582e8b67d983e1c2b21575ed} 
+\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries \+\_\+\+Region}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classgl_link}{gl\+Link}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgl_link}{gl\+Link}} \texorpdfstring{$\ast$}{*} {\bfseries p\+Next} = nullptr
+\item 
+\mbox{\hyperlink{classgl_link}{gl\+Link}} \texorpdfstring{$\ast$}{*} {\bfseries p\+Prev} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgl_widget_link_afafacbc70939f2aa821a49fd29c9c129}\label{classgl_widget_link_afafacbc70939f2aa821a49fd29c9c129} 
+\index{glWidgetLink@{glWidgetLink}!Event@{Event}}
+\index{Event@{Event}!glWidgetLink@{glWidgetLink}}
+\doxysubsubsection{\texorpdfstring{Event()}{Event()}}
+{\footnotesize\ttfamily void gl\+Widget\+Link\+::\+Event (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgl_event}{gl\+Event}}}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classgl_link}{gl\+Link}}.
+
+\Hypertarget{classgl_widget_link_a076150fac6eabf764194bb3e7c60bee2}\label{classgl_widget_link_a076150fac6eabf764194bb3e7c60bee2} 
+\index{glWidgetLink@{glWidgetLink}!InvalidateMe@{InvalidateMe}}
+\index{InvalidateMe@{InvalidateMe}!glWidgetLink@{glWidgetLink}}
+\doxysubsubsection{\texorpdfstring{InvalidateMe()}{InvalidateMe()}}
+{\footnotesize\ttfamily void gl\+Widget\+Link\+::\+Invalidate\+Me (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classgl_link}{gl\+Link}}.
+
+\Hypertarget{classgl_widget_link_adcca51f096fd7199fa5f1f80792fede9}\label{classgl_widget_link_adcca51f096fd7199fa5f1f80792fede9} 
+\index{glWidgetLink@{glWidgetLink}!InvalidateSiblings@{InvalidateSiblings}}
+\index{InvalidateSiblings@{InvalidateSiblings}!glWidgetLink@{glWidgetLink}}
+\doxysubsubsection{\texorpdfstring{InvalidateSiblings()}{InvalidateSiblings()}}
+{\footnotesize\ttfamily void gl\+Widget\+Link\+::\+Invalidate\+Siblings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classgl_link}{gl\+Link}}.
+
+\Hypertarget{classgl_widget_link_adfb23cb2f1906d04c621992fdea54520}\label{classgl_widget_link_adfb23cb2f1906d04c621992fdea54520} 
+\index{glWidgetLink@{glWidgetLink}!IsInvalidated@{IsInvalidated}}
+\index{IsInvalidated@{IsInvalidated}!glWidgetLink@{glWidgetLink}}
+\doxysubsubsection{\texorpdfstring{IsInvalidated()}{IsInvalidated()}}
+{\footnotesize\ttfamily bool gl\+Widget\+Link\+::\+Is\+Invalidated (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&}]{invalid\+Region }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classgl_link}{gl\+Link}}.
+
+\Hypertarget{classgl_widget_link_adebc9cfda010593c879d0a3d3cfb6ae7}\label{classgl_widget_link_adebc9cfda010593c879d0a3d3cfb6ae7} 
+\index{glWidgetLink@{glWidgetLink}!Redraw@{Redraw}}
+\index{Redraw@{Redraw}!glWidgetLink@{glWidgetLink}}
+\doxysubsubsection{\texorpdfstring{Redraw()}{Redraw()}}
+{\footnotesize\ttfamily virtual void gl\+Widget\+Link\+::\+Redraw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classgl_text_a59e9ee707d941be372bf6ac329c84229}{gl\+Text$<$ length $>$}}, \mbox{\hyperlink{classgl_text_a59e9ee707d941be372bf6ac329c84229}{gl\+Text$<$ 20 $>$}}, and \mbox{\hyperlink{classgl_text_a59e9ee707d941be372bf6ac329c84229}{gl\+Text$<$ len $>$}}.
+
+\Hypertarget{classgl_widget_link_a8787d368f7b9a9ade0674b02037b3da2}\label{classgl_widget_link_a8787d368f7b9a9ade0674b02037b3da2} 
+\index{glWidgetLink@{glWidgetLink}!UpdateLook@{UpdateLook}}
+\index{UpdateLook@{UpdateLook}!glWidgetLink@{glWidgetLink}}
+\doxysubsubsection{\texorpdfstring{UpdateLook()}{UpdateLook()}}
+{\footnotesize\ttfamily void gl\+Widget\+Link\+::\+Update\+Look (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classgl_link}{gl\+Link}}.
+
+\Hypertarget{classgl_widget_link_a100ce9c8ad912aebb70b19a9719f7bd5}\label{classgl_widget_link_a100ce9c8ad912aebb70b19a9719f7bd5} 
+\index{glWidgetLink@{glWidgetLink}!UpdateState@{UpdateState}}
+\index{UpdateState@{UpdateState}!glWidgetLink@{glWidgetLink}}
+\doxysubsubsection{\texorpdfstring{UpdateState()}{UpdateState()}}
+{\footnotesize\ttfamily void gl\+Widget\+Link\+::\+Update\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&}]{point,  }\item[{bool \&}]{Handled }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classgl_link}{gl\+Link}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gl\+STM32\+H7xx/gl\+Widgets.\+h\end{DoxyCompactItemize}

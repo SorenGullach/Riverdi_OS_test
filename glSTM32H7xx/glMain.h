@@ -20,7 +20,6 @@
 #pragma once
 
 #include "glWidgets.h"
-#include "glButton.h"
 #include "TFTDisplay.h"
 #include "TPDisplay.h"
 
@@ -75,12 +74,11 @@ public:
 	void cbTouch(glTouchPoint_t &point) override
 	{
 		if (pCurrentPage == nullptr) return;
-		pCurrentPage->UpdateState(point);
+		bool Handled = false;
+		pCurrentPage->UpdateState(point, Handled);
 		
 		switch (pCurrentPage->EventAction.EventType)
 		{
-		case glEvent::eEventType::Click:
-			break;
 		case glEvent::eEventType::Slide:
 			if (pCurrentPage->EventAction.U.Slide.Action == glTouchPoint_t::Right && pCurrentPage->Prev() != nullptr)			
 			{
@@ -97,6 +95,7 @@ public:
 				//Printf("%s Currentpage\n", pCurrentPage->Name);
 			}
 			break;
+		case glEvent::eEventType::Click:
 		case glEvent::eEventType::None:
 			break;
 		}

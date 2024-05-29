@@ -9,50 +9,48 @@ Inheritance diagram for gl\+Text\texorpdfstring{$<$}{<} length \texorpdfstring{$
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{classgl_text_a38c43732f9359e2181551766b1ce8597}\label{classgl_text_a38c43732f9359e2181551766b1ce8597} 
-{\bfseries gl\+Text} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} pos, const Font\+Item \texorpdfstring{$\ast$}{*}font\+Family, \mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}} color=gl\+Colors\+::\+WHITE)
+\Hypertarget{classgl_text_a75e6d1e9e672a64fd3805ee44d955ff4}\label{classgl_text_a75e6d1e9e672a64fd3805ee44d955ff4} 
+{\bfseries gl\+Text} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&region, const char \texorpdfstring{$\ast$}{*}text, const Font\+Item \texorpdfstring{$\ast$}{*}font\+Family, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&color=gl\+Colors\+::\+WHITE)
 \item 
-\Hypertarget{classgl_text_a03c39c04f9cfd359089482940531cec9}\label{classgl_text_a03c39c04f9cfd359089482940531cec9} 
-{\bfseries gl\+Text} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} pos, const char \texorpdfstring{$\ast$}{*}text, const Font\+Item \texorpdfstring{$\ast$}{*}font\+Family, \mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}} color=gl\+Colors\+::\+WHITE)
+void \mbox{\hyperlink{classgl_text_a19264aab311e7397631f59a4405181be}{Text}} (const char \texorpdfstring{$\ast$}{*}text,...)
+\begin{DoxyCompactList}\small\item\em Set the text for the widget and format it using a variable argument list. \end{DoxyCompactList}\item 
+\Hypertarget{classgl_text_a8abaea29238ed16bb30441322fb1c8e5}\label{classgl_text_a8abaea29238ed16bb30441322fb1c8e5} 
+const char \texorpdfstring{$\ast$}{*} {\bfseries Text} ()
 \item 
-\Hypertarget{classgl_text_a654f5f0f38aebbba20cc8ac37addade3}\label{classgl_text_a654f5f0f38aebbba20cc8ac37addade3} 
-void {\bfseries Text} (const char \texorpdfstring{$\ast$}{*}text)
-\item 
-\Hypertarget{classgl_text_a9f7d30fcf2f1c5f3d3692dc24aaef251}\label{classgl_text_a9f7d30fcf2f1c5f3d3692dc24aaef251} 
-P\+\_\+t {\bfseries Text\+Width} ()
-\item 
-\Hypertarget{classgl_text_a9cbb5da1a41bca3fd5136d91340cce63}\label{classgl_text_a9cbb5da1a41bca3fd5136d91340cce63} 
-P\+\_\+t {\bfseries Text\+Height} ()
-\item 
+\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \mbox{\hyperlink{classgl_text_aa6357b4d292d078d2acbbdf2bbeda454}{Text\+Size}} ()
+\begin{DoxyCompactList}\small\item\em Calculate the total width and height of the text based on the font information. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classgl_text_a59e9ee707d941be372bf6ac329c84229}{Redraw}} () override
+\begin{DoxyCompactList}\small\item\em Redraw the widget if it is marked as invalidated. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \mbox{\hyperlink{classgl_text_a452e6e3872e13a34a24c75c47eb424da}{Invalid\+Region}} () override
 \item 
-void \mbox{\hyperlink{classgl_text_a69cd9af207ab2ca2196417c7ae35c418}{Touch}} (const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&) override
+bool \mbox{\hyperlink{classgl_text_a6ac13f0a21a61f3fad323d2c49ee5504}{Touch}} (const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&) override
 \end{DoxyCompactItemize}
-\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_object}{gl\+Object}}}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_widget_link}{gl\+Widget\+Link}}}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries gl\+Object} (char const \texorpdfstring{$\ast$}{*}name, \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} position, \mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}} color)
+{\bfseries gl\+Widget\+Link} (char const \texorpdfstring{$\ast$}{*}name, const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&region)
 \item 
-void {\bfseries Add} (\mbox{\hyperlink{classgl_object}{gl\+Object}} \texorpdfstring{$\ast$}{*}child)
+void {\bfseries Add} (\mbox{\hyperlink{classgl_widget_link}{gl\+Widget\+Link}} \texorpdfstring{$\ast$}{*}child)
 \item 
-void \mbox{\hyperlink{classgl_object_ab8a7f15f5ca399bb7bc9d3391f7371e8}{Update\+Look}} ()
+virtual const char \texorpdfstring{$\ast$}{*} {\bfseries Name} ()
 \item 
-void \mbox{\hyperlink{classgl_object_af62fd0281f895935bb1b29820deafd3c}{Update\+State}} (\mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point)
+virtual void {\bfseries Name} (const char \texorpdfstring{$\ast$}{*}name)
 \item 
-void \mbox{\hyperlink{classgl_object_a9a626f3cdd6afe3631b2163f2b1e05aa}{Invalidate}} ()
+virtual \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \& {\bfseries Region} ()
 \item 
-bool \mbox{\hyperlink{classgl_object_a03b4a8f29f17d2217423f2112559adbf}{Is\+Invalidated}} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&invalid\+Region)
+virtual void {\bfseries Move\+To} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&region)
 \item 
-void \mbox{\hyperlink{classgl_object_ab6aa600a4c9ef329bb28880aee67d824}{Event}} (\mbox{\hyperlink{classgl_event}{gl\+Event}} event)
-\end{DoxyCompactItemize}
-\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_object_attributes}{gl\+Object\+Attributes}}}
-\begin{DoxyCompactItemize}
+void \mbox{\hyperlink{classgl_widget_link_a8787d368f7b9a9ade0674b02037b3da2}{Update\+Look}} ()
 \item 
-{\bfseries gl\+Object\+Attributes} (char const \texorpdfstring{$\ast$}{*}name, \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} position, \mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}} color)
+void \mbox{\hyperlink{classgl_widget_link_a100ce9c8ad912aebb70b19a9719f7bd5}{Update\+State}} (\mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point, bool \&Handled)
 \item 
-virtual \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Invalid\+Region} ()
+void \mbox{\hyperlink{classgl_widget_link_a076150fac6eabf764194bb3e7c60bee2}{Invalidate\+Me}} ()
 \item 
-\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \& {\bfseries Region} ()
+void \mbox{\hyperlink{classgl_widget_link_adcca51f096fd7199fa5f1f80792fede9}{Invalidate\+Siblings}} ()
+\item 
+bool \mbox{\hyperlink{classgl_widget_link_adfb23cb2f1906d04c621992fdea54520}{Is\+Invalidated}} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&invalid\+Region)
+\item 
+void \mbox{\hyperlink{classgl_widget_link_afafacbc70939f2aa821a49fd29c9c129}{Event}} (\mbox{\hyperlink{classgl_event}{gl\+Event}} event)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_link}{gl\+Link}}}
 \begin{DoxyCompactItemize}
@@ -61,20 +59,29 @@ virtual \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries I
 \item 
 \mbox{\hyperlink{classgl_link}{gl\+Link}} \texorpdfstring{$\ast$}{*} {\bfseries Next} ()
 \end{DoxyCompactItemize}
-\doxysubsubsection*{Additional Inherited Members}
-\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classgl_object_attributes}{gl\+Object\+Attributes}}}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_front_color_theme}{gl\+Front\+Color\+Theme}}}
 \begin{DoxyCompactItemize}
+\item 
+{\bfseries gl\+Front\+Color\+Theme} (const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&front\+Color)
+\item 
+virtual \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Front\+Color} ()
+\item 
+virtual void {\bfseries Front\+Color} (\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} color)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classgl_front_color_theme}{gl\+Front\+Color\+Theme}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries \+\_\+\+Front\+Color}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classgl_widget_link}{gl\+Widget\+Link}}}
+\begin{DoxyCompactItemize}
+\item 
+char const  \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+\+Name} = "{}gl\+Widget"{}
 \item 
 bool {\bfseries Im\+Invalidated} = true
-\end{DoxyCompactItemize}
-\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classgl_object_attributes}{gl\+Object\+Attributes}}}
-\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{structgl_color__t}{gl\+Color\+\_\+t}} {\bfseries \+\_\+\+Color}
-\item 
-char const  \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+\+Name} = "{}gl\+Object"{}
-\item 
-\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries \+\_\+\+Position}
+\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries \+\_\+\+Region}
 \end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classgl_link}{gl\+Link}}}
 \begin{DoxyCompactItemize}
@@ -86,6 +93,17 @@ char const  \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+\+Name} = "{}gl\+Object"
 
 
 \doxysubsection{Member Function Documentation}
+\Hypertarget{classgl_text_a452e6e3872e13a34a24c75c47eb424da}\label{classgl_text_a452e6e3872e13a34a24c75c47eb424da} 
+\index{glText$<$ length $>$@{glText$<$ length $>$}!InvalidRegion@{InvalidRegion}}
+\index{InvalidRegion@{InvalidRegion}!glText$<$ length $>$@{glText$<$ length $>$}}
+\doxysubsubsection{\texorpdfstring{InvalidRegion()}{InvalidRegion()}}
+{\footnotesize\ttfamily template$<$int length$>$ \\
+\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \mbox{\hyperlink{classgl_text}{gl\+Text}}$<$ length $>$\+::\+Invalid\+Region (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classgl_widget_link}{gl\+Widget\+Link}}.
+
 \Hypertarget{classgl_text_a59e9ee707d941be372bf6ac329c84229}\label{classgl_text_a59e9ee707d941be372bf6ac329c84229} 
 \index{glText$<$ length $>$@{glText$<$ length $>$}!Redraw@{Redraw}}
 \index{Redraw@{Redraw}!glText$<$ length $>$@{glText$<$ length $>$}}
@@ -95,18 +113,54 @@ virtual void \mbox{\hyperlink{classgl_text}{gl\+Text}}$<$ length $>$\+::\+Redraw
 
 
 
-Implements \mbox{\hyperlink{classgl_object_attributes}{gl\+Object\+Attributes}}.
+Redraw the widget if it is marked as invalidated. 
 
-\Hypertarget{classgl_text_a69cd9af207ab2ca2196417c7ae35c418}\label{classgl_text_a69cd9af207ab2ca2196417c7ae35c418} 
+
+
+Implements \mbox{\hyperlink{classgl_widget_link}{gl\+Widget\+Link}}.
+
+\Hypertarget{classgl_text_a19264aab311e7397631f59a4405181be}\label{classgl_text_a19264aab311e7397631f59a4405181be} 
+\index{glText$<$ length $>$@{glText$<$ length $>$}!Text@{Text}}
+\index{Text@{Text}!glText$<$ length $>$@{glText$<$ length $>$}}
+\doxysubsubsection{\texorpdfstring{Text()}{Text()}}
+{\footnotesize\ttfamily template$<$int length$>$ \\
+void \mbox{\hyperlink{classgl_text}{gl\+Text}}$<$ length $>$\+::\+Text (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{text,  }\item[{}]{... }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the text for the widget and format it using a variable argument list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & The format string for the text. \\
+\hline
+{\em ...} & Additional arguments for formatting the text. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classgl_text_aa6357b4d292d078d2acbbdf2bbeda454}\label{classgl_text_aa6357b4d292d078d2acbbdf2bbeda454} 
+\index{glText$<$ length $>$@{glText$<$ length $>$}!TextSize@{TextSize}}
+\index{TextSize@{TextSize}!glText$<$ length $>$@{glText$<$ length $>$}}
+\doxysubsubsection{\texorpdfstring{TextSize()}{TextSize()}}
+{\footnotesize\ttfamily template$<$int length$>$ \\
+\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \mbox{\hyperlink{classgl_text}{gl\+Text}}$<$ length $>$\+::\+Text\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculate the total width and height of the text based on the font information. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t} The dimensions (width and height) of the text. 
+\end{DoxyReturn}
+\Hypertarget{classgl_text_a6ac13f0a21a61f3fad323d2c49ee5504}\label{classgl_text_a6ac13f0a21a61f3fad323d2c49ee5504} 
 \index{glText$<$ length $>$@{glText$<$ length $>$}!Touch@{Touch}}
 \index{Touch@{Touch}!glText$<$ length $>$@{glText$<$ length $>$}}
 \doxysubsubsection{\texorpdfstring{Touch()}{Touch()}}
 {\footnotesize\ttfamily template$<$int length$>$ \\
-void \mbox{\hyperlink{classgl_text}{gl\+Text}}$<$ length $>$\+::\+Touch (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+bool \mbox{\hyperlink{classgl_text}{gl\+Text}}$<$ length $>$\+::\+Touch (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
-Implements \mbox{\hyperlink{classgl_object_attributes}{gl\+Object\+Attributes}}.
+Implements \mbox{\hyperlink{classgl_widget_link}{gl\+Widget\+Link}}.
 
 
 

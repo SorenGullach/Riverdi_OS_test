@@ -1,0 +1,291 @@
+\doxysection{gl\+Color.\+h}
+\hypertarget{gl_color_8h_source}{}\label{gl_color_8h_source}\index{glSTM32H7xx/glColor.h@{glSTM32H7xx/glColor.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <algorithm>}\ \textcolor{comment}{//\ For\ std::min\ and\ std::max}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <cmath>}\ \ \ \ \ \textcolor{comment}{//\ For\ sqrtf,\ powf}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <limits>}\ \ \ \ \textcolor{comment}{//\ For\ std::numeric\_limits}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}glColorTable.h"{}}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#ifndef\ M\_PI}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ M\_PI\ 3.14159265358979323846}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{typedef}\ uint8\_t\ C\_t;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ }
+\DoxyCodeLine{00043\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}()}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ :\ B(0)}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ ,\ G(0)}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ ,\ R(0)}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ ,\ \mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}(255)\ \{\}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{structgl_a_r_g_b__t_abf85e177ad30e9d73155cf71e2e2a5cf}{glARGB\_t}}(C\_t\ a,\ C\_t\ r,\ C\_t\ g,\ C\_t\ b)}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ :\ B(b)}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ ,\ G(g)}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ ,\ R(r)}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ ,\ \mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}(a)\ \{\}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ C\_t\ B,\ G,\ R,\ \mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}};\ }
+\DoxyCodeLine{00064\ \}\ \_\_PACKED;}
+\DoxyCodeLine{00065\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}})\ ==\ 4,\ \textcolor{stringliteral}{"{}Wrong\ size"{}});}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}}
+\DoxyCodeLine{00071\ \{}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}{glColor\_t}}()}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}(255,\ 0,\ 0,\ 0)}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ ,\ operation(\mbox{\hyperlink{classgl_color__t}{glColor\_t}}::eColorOperation::Replace)\ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{classgl_color__t_a2712fd1ecfdba2d4ed42be445e3f4ed5}{glColor\_t}}(\textcolor{keyword}{const}\ glColors\ \&color)}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}(}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ 255,}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ (static\_cast<uint32\_t>(color)\ >>\ 16)\ \&\ 0xFF,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ (static\_cast<uint32\_t>(color)\ >>\ 8)\ \&\ 0xFF,}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ (static\_cast<uint32\_t>(color))\ \&\ 0xFF}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ ,\ operation(\mbox{\hyperlink{classgl_color__t}{glColor\_t}}::eColorOperation::Replace)\ \{\}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{classgl_color__t_a7eeffe40cbbfb0bdf9212082107737b8}{glColor\_t}}(\textcolor{keyword}{const}\ C\_t\ red,\ \textcolor{keyword}{const}\ C\_t\ green,\ \textcolor{keyword}{const}\ C\_t\ blue,\ \textcolor{keyword}{const}\ C\_t\ alpha\ =\ 255)}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}(alpha,\ red,\ green,\ blue)\ \{\}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}{glColor\_t}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&color)}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}(color)}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ ,\ operation(\mbox{\hyperlink{classgl_color__t}{glColor\_t}}::eColorOperation::Replace)\ \{\}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{enum\ class}\ eColorOperation\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ Replace,}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ Hollow,}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ Add,}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ Subtract,}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ Complement,}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ Multiply,}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ Screen,}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ Darken,}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ Lighten,}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ Difference,}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ Average,}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ ComplementBackground,}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ AlphaBlend,\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ RainbowIndex,}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ RainbowGradient}
+\DoxyCodeLine{00126\ \ \ \ \ \};}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \mbox{\hyperlink{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}{glColor\_t}}(eColorOperation\ colorOperation)}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}()}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ ,\ operation(colorOperation)\ \{\}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ eColorOperation\ operation\ =\ eColorOperation::Replace;}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00139\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ \mbox{\hyperlink{classgl_color__t_a75c00ebf69613751b556e87c3e560819}{Color}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&bg)\textcolor{keyword}{\ const\ }}
+\DoxyCodeLine{00140\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (operation)\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eColorOperation::Replace:}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eColorOperation::Hollow:}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}{glColor\_t}}(bg);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eColorOperation::Add:}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Add(bg);}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eColorOperation::Subtract:}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Subtract(bg);}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eColorOperation::Complement:}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Complement();}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eColorOperation::Multiply:}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Multiply(bg);}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eColorOperation::Screen:}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Screen(bg);}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eColorOperation::Darken:}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Darken(bg);}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eColorOperation::Lighten:}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Lighten(bg);}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eColorOperation::Difference:}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Difference(bg);}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eColorOperation::Average:}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Average(bg);}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eColorOperation::ComplementBackground:}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ComplementBackground(bg);}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eColorOperation::AlphaBlend:\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ AlphaBlend(bg);}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eColorOperation::RainbowIndex:}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RainbowColorIndex(R,\ 255);}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ eColorOperation::RainbowGradient:}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RainbowColorGradient(R,\ 255);}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}{glColor\_t}}(bg.\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}},\ bg.R,\ bg.G,\ bg.B);\ \textcolor{comment}{//\ Default\ case\ to\ handle\ unexpected\ operation\ values}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00190\ \ \ \ \ \}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ Add(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&bg)\textcolor{keyword}{\ const\ }}
+\DoxyCodeLine{00193\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}{glColor\_t}}(}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(std::min(255,\ \textcolor{keywordtype}{int}(bg.R)\ +\ R)),}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(std::min(255,\ \textcolor{keywordtype}{int}(bg.G)\ +\ G)),}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(std::min(255,\ \textcolor{keywordtype}{int}(bg.B)\ +\ B)),}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(std::min(255,\ \textcolor{keywordtype}{int}(bg.\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}})\ +\ \mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}})));}
+\DoxyCodeLine{00199\ \ \ \ \ \}}
+\DoxyCodeLine{00200\ \ \ \ \ }
+\DoxyCodeLine{00201\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ Subtract(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&bg)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00202\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}{glColor\_t}}(}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(std::max(0,\ \textcolor{keywordtype}{int}(bg.R)\ -\/\ R)),}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(std::max(0,\ \textcolor{keywordtype}{int}(bg.G)\ -\/\ G)),}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(std::max(0,\ \textcolor{keywordtype}{int}(bg.B)\ -\/\ B)),}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(std::max(0,\ \textcolor{keywordtype}{int}(bg.\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}})\ -\/\ \mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}})));}
+\DoxyCodeLine{00208\ \ \ \ \ \}}
+\DoxyCodeLine{00209\ \ \ \ \ }
+\DoxyCodeLine{00210\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ Complement()\textcolor{keyword}{\ const\ }}
+\DoxyCodeLine{00211\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}{glColor\_t}}(}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(255\ -\/\ R),}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(255\ -\/\ G),}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(255\ -\/\ B),}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}});}
+\DoxyCodeLine{00217\ \ \ \ \ \}}
+\DoxyCodeLine{00218\ \ \ \ \ }
+\DoxyCodeLine{00219\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ Multiply(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&bg)\textcolor{keyword}{\ const\ }}
+\DoxyCodeLine{00220\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}{glColor\_t}}(}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t((bg.R\ *\ R)\ /\ 255),}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t((bg.G\ *\ G)\ /\ 255),}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t((bg.B\ *\ B)\ /\ 255),}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t((bg.\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ *\ \mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}})\ /\ 255));}
+\DoxyCodeLine{00226\ \ \ \ \ \}}
+\DoxyCodeLine{00227\ \ \ \ \ }
+\DoxyCodeLine{00228\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ Screen(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&bg)\textcolor{keyword}{\ const\ }}
+\DoxyCodeLine{00229\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}{glColor\_t}}(}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(255\ -\/\ ((255\ -\/\ bg.R)\ *\ (255\ -\/\ R)\ /\ 255)),}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(255\ -\/\ ((255\ -\/\ bg.G)\ *\ (255\ -\/\ G)\ /\ 255)),}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(255\ -\/\ ((255\ -\/\ bg.B)\ *\ (255\ -\/\ B)\ /\ 255)),}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(255\ -\/\ ((255\ -\/\ bg.\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}})\ *\ (255\ -\/\ \mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}})\ /\ 255)));}
+\DoxyCodeLine{00235\ \ \ \ \ \}}
+\DoxyCodeLine{00236\ \ \ \ \ }
+\DoxyCodeLine{00237\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ Darken(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&bg)\textcolor{keyword}{\ const\ }}
+\DoxyCodeLine{00238\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}{glColor\_t}}(}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ std::min(bg.R,\ R),}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ std::min(bg.G,\ G),}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ std::min(bg.B,\ B),}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ std::min(bg.\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}},\ \mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}));}
+\DoxyCodeLine{00244\ \ \ \ \ \}}
+\DoxyCodeLine{00245\ \ \ \ \ }
+\DoxyCodeLine{00246\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ Lighten(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&bg)\textcolor{keyword}{\ const\ }}
+\DoxyCodeLine{00247\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}{glColor\_t}}(}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ std::max(bg.R,\ R),}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ std::max(bg.G,\ G),}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ std::max(bg.B,\ B),}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ std::max(bg.\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}},\ \mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}));}
+\DoxyCodeLine{00253\ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ }
+\DoxyCodeLine{00255\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ Difference(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&bg)\textcolor{keyword}{\ const\ }}
+\DoxyCodeLine{00256\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}{glColor\_t}}(}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(abs(bg.R\ -\/\ R)),}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(abs(bg.G\ -\/\ G)),}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(abs(bg.B\ -\/\ B)),}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(abs(bg.\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ -\/\ \mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}})));}
+\DoxyCodeLine{00262\ \ \ \ \ \}}
+\DoxyCodeLine{00263\ \ \ \ \ }
+\DoxyCodeLine{00264\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ Average(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&bg)\textcolor{keyword}{\ const\ }}
+\DoxyCodeLine{00265\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}{glColor\_t}}(}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t((bg.R\ +\ R)\ /\ 2),}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t((bg.G\ +\ G)\ /\ 2),}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t((bg.B\ +\ B)\ /\ 2),}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t((bg.\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ +\ \mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}})\ /\ 2));}
+\DoxyCodeLine{00271\ \ \ \ \ \}}
+\DoxyCodeLine{00272\ \ \ \ \ }
+\DoxyCodeLine{00273\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ ComplementBackground(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&bg)\textcolor{keyword}{\ const\ }}
+\DoxyCodeLine{00274\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}{glColor\_t}}(}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(255\ -\/\ bg.R),}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(255\ -\/\ bg.G),}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(255\ -\/\ bg.B),}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ bg.\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}});}
+\DoxyCodeLine{00280\ \ \ \ \ \}}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ AlphaBlend(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ \&bg)\textcolor{keyword}{\ const\ }}
+\DoxyCodeLine{00283\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ alpha\ =\ \mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ /\ 255.0f;}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}{glColor\_t}}(}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(bg.R\ *\ (1\ -\/\ alpha)\ +\ R\ *\ alpha),}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(bg.G\ *\ (1\ -\/\ alpha)\ +\ G\ *\ alpha),}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(bg.B\ *\ (1\ -\/\ alpha)\ +\ B\ *\ alpha),}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(bg.\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ *\ (1\ -\/\ alpha)\ +\ \mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}}\ *\ alpha));}
+\DoxyCodeLine{00290\ \ \ \ \ \}}
+\DoxyCodeLine{00291\ \ \ \ \ }
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ RainbowColorGradient(\textcolor{keywordtype}{int}\ index,\ \textcolor{keywordtype}{int}\ max)\ }
+\DoxyCodeLine{00293\ \ \ \ \ \{}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ normalized\ =\ (index*M\_PI)\ /\ (\textcolor{keywordtype}{float})max;}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}{glColor\_t}}(}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ 255,}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(sin(normalized)\ *\ 127\ +\ 128),}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(sin(normalized\ +\ 2\ *\ M\_PI\ /\ 3)\ *\ 127\ +\ 128),}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(sin(normalized\ +\ 4\ *\ M\_PI\ /\ 3)\ *\ 127\ +\ 128));}
+\DoxyCodeLine{00300\ \ \ \ \ \}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ RainbowColorIndex(\textcolor{keywordtype}{int}\ index,\ \textcolor{keywordtype}{int}\ max)\ }
+\DoxyCodeLine{00303\ \ \ \ \ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ normalized\ =\ index\ /\ float(max);}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ r\ =\ std::abs(normalized\ *\ 6.0f\ -\/\ 3.0f)\ -\/\ 1.0f;}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ g\ =\ 2.0f\ -\/\ std::abs(normalized\ *\ 6.0f\ -\/\ 2.0f);}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ b\ =\ 2.0f\ -\/\ std::abs(normalized\ *\ 6.0f\ -\/\ 4.0f);}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}{glColor\_t}}(}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ 255,}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(255\ *\ std::clamp(r,\ 0.0f,\ 1.0f)),}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(255\ *\ std::clamp(g,\ 0.0f,\ 1.0f)),}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ C\_t(255\ *\ std::clamp(b,\ 0.0f,\ 1.0f)));}
+\DoxyCodeLine{00313\ \ \ \ \ \}}
+\DoxyCodeLine{00314\ \ \ \ \ }
+\DoxyCodeLine{00322\ \ \ \ \ \textcolor{keyword}{static}\ glColors\ \mbox{\hyperlink{classgl_color__t_a5400ad73663c22292c6bdfcc139e547c}{FindNearestColor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ \&color)\ }
+\DoxyCodeLine{00323\ \ \ \ \ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ glColors\ nearestColor\ =\ glColors::BLACK;\ \textcolor{comment}{//\ Default\ to\ black}}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ minDistance\ =\ std::numeric\_limits<float>::max();}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Iterate\ through\ all\ colors\ in\ the\ enum\ list}}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ i\ =\ 0;\ i\ <\ glColorTableSize;\ ++i)\ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ glColors\ currentColor\ =\ \textcolor{keyword}{static\_cast<}glColors\textcolor{keyword}{>}(i);}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ colorCurrent(currentColor);}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ distance\ between\ the\ current\ color\ and\ the\ input\ RGB\ color}}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ distance\ =\ sqrtf(powf(colorCurrent.R\ -\/\ color.R,\ 2)\ +\ powf(colorCurrent.G\ -\/\ color.G,\ 2)\ +\ powf(colorCurrent.B\ -\/\ color.B,\ 2));}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ nearest\ color\ if\ a\ closer\ match\ is\ found}}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (distance\ <\ minDistance)\ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ minDistance\ =\ distance;}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nearestColor\ =\ currentColor;}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ nearestColor;}
+\DoxyCodeLine{00343\ \ \ \ \ \}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \};}
+
+\end{DoxyCode}

@@ -23,117 +23,75 @@
 \DoxyCodeLine{00019\ }
 \DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}glPrimitives.h"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}glWidgets.h"{}}}
 \DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}glLabel.h"{}}}
 \DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}glText.h"{}}}
 \DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_button}{glButton}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_object}{glObject}}}
-\DoxyCodeLine{00027\ \{}
-\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classgl_button}{glButton}}()}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Button"{}},\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}())}
-\DoxyCodeLine{00031\ \ \ \ \ \{}
-\DoxyCodeLine{00032\ \ \ \ \ \}}
-\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classgl_button}{glButton}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ pos,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ backColor\ =\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(glColors::BLUE))}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Button"{}},\ pos.Normalize(),\ backColor)\ }
-\DoxyCodeLine{00035\ \ \ \ \ \{}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \_BorderWidth\ =\ std::min(pos.Width(),\ pos.Height())\ /\ 10;}
-\DoxyCodeLine{00037\ \ \ \ \ \}}
-\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classgl_button}{glButton}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ pos,\ P\_t\ borderWidth,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ backColor\ =\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(glColors::BLUE))}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_object}{glObject}}(\textcolor{stringliteral}{"{}Button"{}},\ pos.Normalize(),\ backColor)\ }
-\DoxyCodeLine{00040\ \ \ \ \ \{}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ assert(borderWidth\ <\ pos.Height()\ /\ 2);}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ assert(borderWidth\ <\ pos.Width()\ /\ 2);}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \_BorderWidth\ =\ borderWidth;}
-\DoxyCodeLine{00044\ \ \ \ \ \}}
-\DoxyCodeLine{00045\ }
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ BackColor(\mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ color)\ \ \ \ \{\ \_Color\ =\ color;\ \}}
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ PressedColor(\mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ color)\ \{\ \_PressedColor\ =\ color;\ \}}
-\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ BorderWidth(P\_t\ borderWidth)}
-\DoxyCodeLine{00049\ \ \ \ \ \{}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \_BorderWidth\ =\ borderWidth;}
-\DoxyCodeLine{00051\ \ \ \ \ \}}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00053\ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ Initialize\ object}}
-\DoxyCodeLine{00055\ \textcolor{comment}{//\ \ virtual\ void\ Init()\ override\ \{\}}}
-\DoxyCodeLine{00056\ }
-\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ Touch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&point)\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00058\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_Position.IsInside(point.X,\ point.Y))\ }
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (point.TipAction\ ==\ glTouchPoint\_t::eTipAction::Tip\ \&\&\ !Pressed)}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pressed\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Invalidate();}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (point.TipAction\ !=\ glTouchPoint\_t::eTipAction::Tip\ \&\&\ Pressed)}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Click\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pressed\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Invalidate();}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Pressed)}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pressed\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Invalidate();}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00081\ \ \ \ \ \}}
-\DoxyCodeLine{00082\ }
-\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ redraw\ your\ self}}
-\DoxyCodeLine{00084\ \ \ \ \ \textcolor{comment}{//\ return\ true\ if\ anything\ done}}
-\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Redraw()\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00086\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ImInvalidated)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00026\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ len,\ const\ FontItem\ *fontFamily>}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_button}{glButton}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_widget_link}{glWidgetLink}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_button_theme}{glButtonTheme}},\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classgl_plot2_d_helper}{glPlot2DHelper}}}
+\DoxyCodeLine{00028\ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_button}{glButton}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ \&region,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *text,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classgl_button_theme}{glButtonTheme}}\ \&theme\ =\ \mbox{\hyperlink{classgl_button_theme}{glButtonTheme}}())}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_widget_link}{glWidgetLink}}(\textcolor{stringliteral}{"{}Button"{}},\ region)}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ \mbox{\hyperlink{classgl_button_theme}{glButtonTheme}}(theme)}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ \_Text(region.Inflate(-\/\_BorderWidth),\ text,\ fontFamily,\ theme.\_TextColor)}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ Add(\&\_Text);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00039\ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Touch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&point)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00041\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Handled\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_Region.IsInside(point.X,\ point.Y))\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (point.TipAction\ ==\ glTouchPoint\_t::eTipAction::Tip\ \&\&\ !Pressed)}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pressed\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Handled\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InvalidateMe();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (point.TipAction\ ==\ glTouchPoint\_t::eTipAction::Up\ \&\&\ Pressed)}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_click}{Click}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pressed\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Handled\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InvalidateMe();}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Pressed)}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pressed\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Handled\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InvalidateMe();}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Handled;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ redraw\ your\ self}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Redraw()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00073\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ImInvalidated)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ PlotRectangleRoundFill(\_Region.Inflate(-\/\_BorderWidth\ +\ 1),\ \_CornerRadius,\ Pressed\ ?\ \_PressedColor\ :\ \_BackColor);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ PlotBorder(\_Region,\ \_BorderWidth,\ \_CornerRadius,\ \_BorderColor);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgl_video_memory_a79f28b876830fedd3cc74a256eb2c410}{glVideoMemory::lastBand}}())\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ImInvalidated\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ InvalidRegion()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00085\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_Region.Inflate(-\/\_BorderWidth);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00088\ }
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Pressed)}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(\_Position.Inflate(-\/\_BorderWidth),\ \_PressedColor).Draw();}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}(\_Position.Inflate(-\/\_BorderWidth),\ \_Color).Draw();}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (P\_t\ i\ =\ 0;\ i\ <\ \_BorderWidth;\ i++)}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round}{glRectangleRound}}(\_Position.Inflate(-\/i),\ 2*\_BorderWidth\ -\/\ i,\ \_BorderColor).Draw();}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgl_video_memory_a79f28b876830fedd3cc74a256eb2c410}{glVideoMemory::lastBand}}())\ ImInvalidated\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00100\ \ \ \ \ \}}
-\DoxyCodeLine{00101\ \ \ \ \ }
-\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ InvalidRegion()\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00103\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_Position.Inflate(-\/\_BorderWidth);}
-\DoxyCodeLine{00105\ \ \ \ \ \}}
-\DoxyCodeLine{00106\ }
-\DoxyCodeLine{00107\ \ \ \ \ P\_t\ \_BorderWidth\ =\ 0;}
-\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \_PressedColor\ =\ \{\ 0,\ 255,\ 0\ \};}
-\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ \_BorderColor\ =\ \{\ 255,\ 255,\ 255\ \};}
-\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{bool}\ Click\ =\ \textcolor{keyword}{false},\ Pressed\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00111\ }
-\DoxyCodeLine{00112\ \};}
-\DoxyCodeLine{00113\ }
-\DoxyCodeLine{00114\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ len,\ const\ FontItem\ *fontFamily>}
-\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_button_text}{glButtonText}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_button}{glButton}}}
-\DoxyCodeLine{00116\ \ \ \ \ \{}
-\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_button_text}{glButtonText}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ pos,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *text,\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ textColor\ =\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(glColors::YELLOW),\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}\ backColor\ =\ \mbox{\hyperlink{structgl_color__t}{glColor\_t}}(glColors::BLUE))}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_button}{glButton}}(pos,\ backColor)}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ \_Text(pos.Inflate(-\/\_BorderWidth*2),\ text,\ fontFamily,\ textColor)}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ Add(\&\_Text);}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ BorderWidth(P\_t\ borderWidth)\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00126\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ glButton::BorderWidth(borderWidth);}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \_Text.Region().MoveTo(\_Position.Inflate(-\/\_BorderWidth*2));}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00130\ \ }
-\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_text}{glText<len\ +\ 1>}}\ \_Text;}
-\DoxyCodeLine{00133\ \ \ \ \ \};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_click}{Click}}\ =\ \textcolor{keyword}{false},\ Pressed\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_text}{glText<len>}}\ \_Text;}
+\DoxyCodeLine{00091\ \ \ \ \ \};}
 
 \end{DoxyCode}

@@ -1,0 +1,216 @@
+\doxysection{gl\+Color\+\_\+t Class Reference}
+\hypertarget{classgl_color__t}{}\label{classgl_color__t}\index{glColor\_t@{glColor\_t}}
+
+
+Represents a color with convenience constructors and methods.  
+
+
+
+
+{\ttfamily \#include $<$gl\+Color.\+h$>$}
+
+Inheritance diagram for gl\+Color\+\_\+t\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgl_color__t}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgl_color__t_a57d196072b2c1afd2bf779d8ab595502}\label{classgl_color__t_a57d196072b2c1afd2bf779d8ab595502} 
+enum class {\bfseries e\+Color\+Operation} \{ \newline
+{\bfseries Replace}
+, {\bfseries Hollow}
+, {\bfseries Add}
+, {\bfseries Subtract}
+, \newline
+{\bfseries Complement}
+, {\bfseries Multiply}
+, {\bfseries Screen}
+, {\bfseries Darken}
+, \newline
+{\bfseries Lighten}
+, {\bfseries Difference}
+, {\bfseries Average}
+, {\bfseries Complement\+Background}
+, \newline
+{\bfseries Alpha\+Blend}
+, {\bfseries Rainbow\+Index}
+, {\bfseries Rainbow\+Gradient}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46}\label{classgl_color__t_ad2d6b939cba98bbf9e42b32e6a828d46} 
+{\bfseries gl\+Color\+\_\+t} ()
+\begin{DoxyCompactList}\small\item\em Default constructor initializing the color to black with full opacity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgl_color__t_a2712fd1ecfdba2d4ed42be445e3f4ed5}{gl\+Color\+\_\+t}} (const gl\+Colors \&color)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize color using a predefined color from gl\+Colors enum. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgl_color__t_a7eeffe40cbbfb0bdf9212082107737b8}{gl\+Color\+\_\+t}} (const C\+\_\+t red, const C\+\_\+t green, const C\+\_\+t blue, const C\+\_\+t alpha=255)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize color using specific RGBA values. \end{DoxyCompactList}\item 
+\Hypertarget{classgl_color__t_ad7b0d5adc0277fa8c3a29c2b108be721}\label{classgl_color__t_ad7b0d5adc0277fa8c3a29c2b108be721} 
+{\bfseries gl\+Color\+\_\+t} (const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&color)
+\item 
+\Hypertarget{classgl_color__t_a94d6bd3700483803cc083900a32a07f8}\label{classgl_color__t_a94d6bd3700483803cc083900a32a07f8} 
+{\bfseries gl\+Color\+\_\+t} (e\+Color\+Operation color\+Operation)
+\item 
+\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \mbox{\hyperlink{classgl_color__t_a75c00ebf69613751b556e87c3e560819}{Color}} (const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&bg) const
+\begin{DoxyCompactList}\small\item\em Applies the selected color operation to the background color. \end{DoxyCompactList}\item 
+\Hypertarget{classgl_color__t_a12c595cf0c90ecef9579f88167224752}\label{classgl_color__t_a12c595cf0c90ecef9579f88167224752} 
+\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Add} (const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&bg) const
+\item 
+\Hypertarget{classgl_color__t_ae55fd24347ab8740f59fc833bfd3b36e}\label{classgl_color__t_ae55fd24347ab8740f59fc833bfd3b36e} 
+\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Subtract} (const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&bg) const
+\item 
+\Hypertarget{classgl_color__t_a52643e09f032818bdf72d93b964bd41b}\label{classgl_color__t_a52643e09f032818bdf72d93b964bd41b} 
+\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Complement} () const
+\item 
+\Hypertarget{classgl_color__t_aac191cc9dda5ea7a044cd931bcfef3ba}\label{classgl_color__t_aac191cc9dda5ea7a044cd931bcfef3ba} 
+\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Multiply} (const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&bg) const
+\item 
+\Hypertarget{classgl_color__t_ad77c444fbd8a133220ee43515ef82fb5}\label{classgl_color__t_ad77c444fbd8a133220ee43515ef82fb5} 
+\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Screen} (const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&bg) const
+\item 
+\Hypertarget{classgl_color__t_ae56c20b13e68a0d524f8bad86544ba77}\label{classgl_color__t_ae56c20b13e68a0d524f8bad86544ba77} 
+\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Darken} (const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&bg) const
+\item 
+\Hypertarget{classgl_color__t_a680019af0c931159a0faa9ae2e5ce40d}\label{classgl_color__t_a680019af0c931159a0faa9ae2e5ce40d} 
+\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Lighten} (const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&bg) const
+\item 
+\Hypertarget{classgl_color__t_aa22a956e4531365cce5b8145b9b03f16}\label{classgl_color__t_aa22a956e4531365cce5b8145b9b03f16} 
+\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Difference} (const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&bg) const
+\item 
+\Hypertarget{classgl_color__t_ac36facd81678fd9275176a8d835c46f1}\label{classgl_color__t_ac36facd81678fd9275176a8d835c46f1} 
+\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Average} (const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&bg) const
+\item 
+\Hypertarget{classgl_color__t_a0cc6e2195352478089385bcb4ba52dec}\label{classgl_color__t_a0cc6e2195352478089385bcb4ba52dec} 
+\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Complement\+Background} (const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&bg) const
+\item 
+\Hypertarget{classgl_color__t_a850b0d0dd22ca64c6d82b727b6121001}\label{classgl_color__t_a850b0d0dd22ca64c6d82b727b6121001} 
+\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Alpha\+Blend} (const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&bg) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structgl_a_r_g_b__t_abf85e177ad30e9d73155cf71e2e2a5cf}{gl\+ARGB\+\_\+t}} (C\+\_\+t a, C\+\_\+t r, C\+\_\+t g, C\+\_\+t b)
+\begin{DoxyCompactList}\small\item\em Constructs a color using the provided ARGB components. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgl_color__t_a507df908a70e99dbf577201ae85a5913}\label{classgl_color__t_a507df908a70e99dbf577201ae85a5913} 
+static \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Rainbow\+Color\+Gradient} (int index, int max)
+\item 
+\Hypertarget{classgl_color__t_a411ad0be936a8212a1c7f32345926ba2}\label{classgl_color__t_a411ad0be936a8212a1c7f32345926ba2} 
+static \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Rainbow\+Color\+Index} (int index, int max)
+\item 
+static gl\+Colors \mbox{\hyperlink{classgl_color__t_a5400ad73663c22292c6bdfcc139e547c}{Find\+Nearest\+Color}} (const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&color)
+\begin{DoxyCompactList}\small\item\em Finds the nearest color from the enum list based on an RGB color. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgl_color__t_ac7e14c3ca151b7b49f684a53f0b36bc2}\label{classgl_color__t_ac7e14c3ca151b7b49f684a53f0b36bc2} 
+e\+Color\+Operation {\bfseries operation} = e\+Color\+Operation\+::\+Replace
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}}}
+\begin{DoxyCompactItemize}
+\item 
+C\+\_\+t {\bfseries B}
+\item 
+C\+\_\+t {\bfseries G}
+\item 
+C\+\_\+t {\bfseries R}
+\item 
+C\+\_\+t {\bfseries A}
+\begin{DoxyCompactList}\small\item\em Color channels in ARGB format, fitting LTDC layout. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a color with convenience constructors and methods. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classgl_color__t_a2712fd1ecfdba2d4ed42be445e3f4ed5}\label{classgl_color__t_a2712fd1ecfdba2d4ed42be445e3f4ed5} 
+\index{glColor\_t@{glColor\_t}!glColor\_t@{glColor\_t}}
+\index{glColor\_t@{glColor\_t}!glColor\_t@{glColor\_t}}
+\doxysubsubsection{\texorpdfstring{glColor\_t()}{glColor\_t()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily gl\+Color\+\_\+t\+::gl\+Color\+\_\+t (\begin{DoxyParamCaption}\item[{const gl\+Colors \&}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor to initialize color using a predefined color from gl\+Colors enum. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & The predefined color. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classgl_color__t_a7eeffe40cbbfb0bdf9212082107737b8}\label{classgl_color__t_a7eeffe40cbbfb0bdf9212082107737b8} 
+\index{glColor\_t@{glColor\_t}!glColor\_t@{glColor\_t}}
+\index{glColor\_t@{glColor\_t}!glColor\_t@{glColor\_t}}
+\doxysubsubsection{\texorpdfstring{glColor\_t()}{glColor\_t()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily gl\+Color\+\_\+t\+::gl\+Color\+\_\+t (\begin{DoxyParamCaption}\item[{const C\+\_\+t}]{red,  }\item[{const C\+\_\+t}]{green,  }\item[{const C\+\_\+t}]{blue,  }\item[{const C\+\_\+t}]{alpha = {\ttfamily 255} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor to initialize color using specific RGBA values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em red} & The red component. \\
+\hline
+{\em green} & The green component. \\
+\hline
+{\em blue} & The blue component. \\
+\hline
+{\em alpha} & The alpha component (default is 255 for full opacity). \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgl_color__t_a75c00ebf69613751b556e87c3e560819}\label{classgl_color__t_a75c00ebf69613751b556e87c3e560819} 
+\index{glColor\_t@{glColor\_t}!Color@{Color}}
+\index{Color@{Color}!glColor\_t@{glColor\_t}}
+\doxysubsubsection{\texorpdfstring{Color()}{Color()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} gl\+Color\+\_\+t\+::\+Color (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&}]{bg }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Applies the selected color operation to the background color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bg} & The background color. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting color after applying the operation. 
+\end{DoxyReturn}
+\Hypertarget{classgl_color__t_a5400ad73663c22292c6bdfcc139e547c}\label{classgl_color__t_a5400ad73663c22292c6bdfcc139e547c} 
+\index{glColor\_t@{glColor\_t}!FindNearestColor@{FindNearestColor}}
+\index{FindNearestColor@{FindNearestColor}!glColor\_t@{glColor\_t}}
+\doxysubsubsection{\texorpdfstring{FindNearestColor()}{FindNearestColor()}}
+{\footnotesize\ttfamily static gl\+Colors gl\+Color\+\_\+t\+::\+Find\+Nearest\+Color (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Finds the nearest color from the enum list based on an RGB color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The red component of the color. \\
+\hline
+{\em g} & The green component of the color. \\
+\hline
+{\em b} & The blue component of the color. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The nearest predefined color from the gl\+Colors enum. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gl\+STM32\+H7xx/gl\+Color.\+h\end{DoxyCompactItemize}

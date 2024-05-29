@@ -203,6 +203,29 @@ struct gl2DPoint_t
 			// Return an empty rectangle if there's no intersection
 			return gl2DPoint_t();
 		}
+		
+	}
+	
+	// find center pos
+	gl2DPoint_t Center(const gl2DPoint_t &region) const
+	{
+		return Center(region.Width(), region.Height());
+	}
+	gl2DPoint_t Center(P_t width, P_t height) const
+	{
+		// Initialize variables
+		P_t w = std::min(width, Width());
+		P_t h = std::min(height, Height());
+
+		// Calculate x-coordinate for centering
+		P_t x = L() + (Width() - w) / 2;
+
+		// Calculate y-coordinate for centering
+		P_t y = T() + (Height() - h) / 2;
+
+		// Return new rectangle
+		return gl2DPoint_t(x, y, x + w, y + h);
+		
 	}    
 protected:
 	glPoint_t _LT, _RB;
@@ -348,11 +371,9 @@ public:
 	 * This enum defines the types of events that can be reported: None, Slide, and Click.
 	 */
 	enum class eEventType {
-		None,
-		///< No event.
-		Slide,
-		///< A slide event.
-		Click   ///< A click event.
+		None, ///< No event.
+		Slide, ///< A slide event.
+		Click  ///< A click event.
 	} EventType = eEventType::None; ///< The type of the current event.
 
 	/**

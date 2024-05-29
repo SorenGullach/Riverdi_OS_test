@@ -2,41 +2,69 @@
 \hypertarget{classgl_event}{}\label{classgl_event}\index{glEvent@{glEvent}}
 
 
-gl object to report events  
+A class to report graphical events such as slides and clicks.  
 
 
 
 
-{\ttfamily \#include $<$gl\+Primitives.\+h$>$}
+{\ttfamily \#include $<$gl\+Types.\+h$>$}
 
 \doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 union \mbox{\hyperlink{uniongl_event_1_1u_event}{u\+Event}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Union to store event-\/specific data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{classgl_event_ae63986141ad7b77417913f127b8edfe7}\label{classgl_event_ae63986141ad7b77417913f127b8edfe7} 
-enum class {\bfseries e\+Event\+Type} \{ {\bfseries None}
-, {\bfseries Slide}
-, {\bfseries Click}
+enum class \mbox{\hyperlink{classgl_event_ae63986141ad7b77417913f127b8edfe7}{e\+Event\+Type}} \{ \mbox{\hyperlink{classgl_event_ae63986141ad7b77417913f127b8edfe7a6adf97f83acf6453d4a6a4b1070f3754}{None}}
+, \mbox{\hyperlink{classgl_event_ae63986141ad7b77417913f127b8edfe7a6160a53ece50ce6d4f5ef4452549835e}{Slide}}
+, \mbox{\hyperlink{classgl_event_ae63986141ad7b77417913f127b8edfe7a316853cc3718335f11c048e33b9be98a}{Click}}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Enum to represent the type of event. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{classgl_event_ac6b12daf3096d10ee67fce2a8af6bf1b}\label{classgl_event_ac6b12daf3096d10ee67fce2a8af6bf1b} 
-enum gl\+Event\+::e\+Event\+Type {\bfseries Event\+Type} = e\+Event\+Type\+::\+None
-\item 
+enum \mbox{\hyperlink{classgl_event_ae63986141ad7b77417913f127b8edfe7}{gl\+Event\+::e\+Event\+Type}} {\bfseries Event\+Type} = \mbox{\hyperlink{classgl_event_ae63986141ad7b77417913f127b8edfe7a6adf97f83acf6453d4a6a4b1070f3754}{e\+Event\+Type\+::\+None}}
+\begin{DoxyCompactList}\small\item\em The type of the current event. \end{DoxyCompactList}\item 
 \Hypertarget{classgl_event_a7d529014843c1484dd9d98b6dbf8d48f}\label{classgl_event_a7d529014843c1484dd9d98b6dbf8d48f} 
 union \mbox{\hyperlink{uniongl_event_1_1u_event}{gl\+Event\+::u\+Event}} {\bfseries U}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Union to store the event data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-gl object to report events 
+A class to report graphical events such as slides and clicks. 
+
+This class represents events that can occur in a graphical user interface. It supports events like sliding and clicking, storing relevant event data. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classgl_event_ae63986141ad7b77417913f127b8edfe7}\label{classgl_event_ae63986141ad7b77417913f127b8edfe7} 
+\index{glEvent@{glEvent}!eEventType@{eEventType}}
+\index{eEventType@{eEventType}!glEvent@{glEvent}}
+\doxysubsubsection{\texorpdfstring{eEventType}{eEventType}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{classgl_event_ae63986141ad7b77417913f127b8edfe7}{gl\+Event\+::e\+Event\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Enum to represent the type of event. 
+
+This enum defines the types of events that can be reported\+: None, \doxylink{struct_slide}{Slide}, and \doxylink{struct_click}{Click}. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{None@{None}!glEvent@{glEvent}}\index{glEvent@{glEvent}!None@{None}}}\Hypertarget{classgl_event_ae63986141ad7b77417913f127b8edfe7a6adf97f83acf6453d4a6a4b1070f3754}\label{classgl_event_ae63986141ad7b77417913f127b8edfe7a6adf97f83acf6453d4a6a4b1070f3754} 
+None&No event. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Slide@{Slide}!glEvent@{glEvent}}\index{glEvent@{glEvent}!Slide@{Slide}}}\Hypertarget{classgl_event_ae63986141ad7b77417913f127b8edfe7a6160a53ece50ce6d4f5ef4452549835e}\label{classgl_event_ae63986141ad7b77417913f127b8edfe7a6160a53ece50ce6d4f5ef4452549835e} 
+Slide&A slide event. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Click@{Click}!glEvent@{glEvent}}\index{glEvent@{glEvent}!Click@{Click}}}\Hypertarget{classgl_event_ae63986141ad7b77417913f127b8edfe7a316853cc3718335f11c048e33b9be98a}\label{classgl_event_ae63986141ad7b77417913f127b8edfe7a316853cc3718335f11c048e33b9be98a} 
+Click&A click event. \\
+\hline
+
+\end{DoxyEnumFields}
+
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-gl\+STM32\+H7xx/gl\+Primitives.\+h\end{DoxyCompactItemize}
+gl\+STM32\+H7xx/gl\+Types.\+h\end{DoxyCompactItemize}

@@ -3,7 +3,7 @@
 Inheritance diagram for gl\+Link\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=11.000000cm]{classgl_link}
+\includegraphics[height=12.000000cm]{classgl_link}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Public Member Functions}
@@ -12,14 +12,17 @@ Inheritance diagram for gl\+Link\+:\begin{figure}[H]
 \Hypertarget{classgl_link_a8e023c93db4502a1d0da7a367528c990}\label{classgl_link_a8e023c93db4502a1d0da7a367528c990} 
 virtual void {\bfseries Update\+Look} ()=0
 \item 
-\Hypertarget{classgl_link_a9afc6cc1ba58642d9e12112e349edc2f}\label{classgl_link_a9afc6cc1ba58642d9e12112e349edc2f} 
-virtual void {\bfseries Update\+State} (\mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point)=0
+\Hypertarget{classgl_link_a763fe83367267643ba0e1595593e4e63}\label{classgl_link_a763fe83367267643ba0e1595593e4e63} 
+virtual void {\bfseries Update\+State} (\mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point, bool \&Handled)=0
 \item 
 \Hypertarget{classgl_link_abfc900e628cedefd5c7c6d78064a2d84}\label{classgl_link_abfc900e628cedefd5c7c6d78064a2d84} 
 virtual bool {\bfseries Is\+Invalidated} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&invalid\+Region)=0
 \item 
-\Hypertarget{classgl_link_a4a8b82d90f0b761c37499349f3e292a2}\label{classgl_link_a4a8b82d90f0b761c37499349f3e292a2} 
-virtual void {\bfseries Invalidate} ()=0
+\Hypertarget{classgl_link_a135a23870290b6c9fbf9a757342292c0}\label{classgl_link_a135a23870290b6c9fbf9a757342292c0} 
+virtual void {\bfseries Invalidate\+Me} ()=0
+\item 
+\Hypertarget{classgl_link_a35fe8f7a8982449c92c9aa03fe12d365}\label{classgl_link_a35fe8f7a8982449c92c9aa03fe12d365} 
+virtual void {\bfseries Invalidate\+Siblings} ()=0
 \item 
 \Hypertarget{classgl_link_af61073440e6b3eb1e15c8066f8a18cc3}\label{classgl_link_af61073440e6b3eb1e15c8066f8a18cc3} 
 virtual void {\bfseries Event} (\mbox{\hyperlink{classgl_event}{gl\+Event}} event)=0
@@ -43,10 +46,10 @@ virtual void {\bfseries Event} (\mbox{\hyperlink{classgl_event}{gl\+Event}} even
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{classgl_link_a8ea5eecaebb26d10eb995c2cffafda72}\label{classgl_link_a8ea5eecaebb26d10eb995c2cffafda72} 
-{\footnotesize template$<$class T $>$ }\\class {\bfseries gl\+Chain}
+{\footnotesize template$<$class TC $>$ }\\class {\bfseries gl\+Chain}
 \end{DoxyCompactItemize}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-gl\+STM32\+H7xx/gl\+Primitives.\+h\end{DoxyCompactItemize}
+gl\+STM32\+H7xx/gl\+Chain.\+h\end{DoxyCompactItemize}

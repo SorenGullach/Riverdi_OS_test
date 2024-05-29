@@ -196,6 +196,101 @@ void glPlot2DHelper::PlotLine(P_t x0, P_t y0, P_t x1, P_t y1, const glColor_t &c
 	}
 }
 
+void glPlot2DHelper::PlotRectangle(const gl2DPoint_t &region, const glColor_t &color)
+{
+	PlotLine(region.L(), region.T(), region.R(), region.T(), color);
+	PlotLine(region.R(), region.T(), region.R(), region.B(), color);
+	PlotLine(region.L(), region.B(), region.R(), region.B(), color);
+	PlotLine(region.L(), region.T(), region.L(), region.B(), color);
+}
+
+void glPlot2DHelper::PlotRectangleFill(const gl2DPoint_t &region, const glColor_t &color)
+{
+	for (P_t y = region.T(); y <= region.B(); y++)
+		for (P_t x = region.L(); x <= region.R(); x++)
+			Plot(x, y, color);
+}
+
+void glPlot2DHelper::PlotRectangleRound(gl2DPoint_t region, P_t radius, glColor_t color)
+{
+	if (radius == 0)
+	{
+		PlotRectangle(region, color);
+		return;
+	}
+	if (radius > region.Height() / 2)
+		radius = region.Height() / 2;
+	if(radius > region.Width() / 2)
+		radius = region.Width() / 2;
+	
+	PlotLine(region.L() + radius, region.T(), region.R() - radius, region.T(), color);
+	PlotLine(region.R(), region.T() + radius, region.R(), region.B() - radius, color);
+	PlotLine(region.R() - radius, region.B(), region.L() + radius, region.B(), color);
+	PlotLine(region.L(), region.B() - radius, region.L(), region.T() + radius, color);
+
+	// left top
+	gl2DPoint_t b(region.L(), region.T(), region.L() + radius, region.T() + radius);
+	glPoint_t p(region.L() + radius, region.T() + radius);
+	PlotArc(b, p, radius, color);
+
+	// right top
+	b = gl2DPoint_t(region.R() - radius, region.T(), region.R(), region.T() + radius);
+	p = glPoint_t(region.R() - radius, region.T() + radius);
+	PlotArc(b, p, radius, color);
+
+	// right bottom
+	b = gl2DPoint_t(region.R() - radius, region.B() - radius, region.R(), region.B());
+	p = glPoint_t(region.R() - radius, region.B() - radius);
+	PlotArc(b, p, radius, color);
+
+	// left bottom
+	b = gl2DPoint_t(region.L(), region.B() - radius, region.L() + radius, region.B());
+	p = glPoint_t(region.L() + radius, region.B() - radius);
+	PlotArc(b, p, radius, color);
+}
+
+void glPlot2DHelper::PlotRectangleRoundFill(gl2DPoint_t region, P_t radius, glColor_t color)
+{
+			
+	if (radius == 0)
+	{
+		PlotRectangleFill(region, color);
+		return;
+	}
+	if (radius > region.Height() / 2)
+		radius = region.Height() / 2;
+	if (radius > region.Width() / 2)
+		radius = region.Width() / 2;
+
+	// center + top + bottom
+	PlotRectangleFill(region.Inflate(-radius, 0, -radius, 0), color);
+		
+	// left
+	PlotRectangleFill(gl2DPoint_t(region.L(), region.T() + radius, region.L() + radius, region.B() - radius), color);
+	// right
+	PlotRectangleFill(gl2DPoint_t(region.R() - radius, region.T() + radius, region.R(), region.B() - radius), color);
+
+	// left top
+	gl2DPoint_t b(region.L(), region.T(), region.L() + radius, region.T() + radius);
+	glPoint_t p(region.L() + radius, region.T() + radius);
+	PlotArcFill(b, p, radius, color);
+
+	// right top
+	b = gl2DPoint_t(region.R() - radius, region.T(), region.R(), region.T() + radius);
+	p = glPoint_t(region.R() - radius, region.T() + radius);
+	PlotArcFill(b, p, radius, color);
+
+	// right bottom
+	b = gl2DPoint_t(region.R() - radius, region.B() - radius, region.R(), region.B());
+	p = glPoint_t(region.R() - radius, region.B() - radius);
+	PlotArcFill(b, p, radius, color);
+
+	// left bottom
+	b = gl2DPoint_t(region.L(), region.B() - radius, region.L() + radius, region.B());
+	p = glPoint_t(region.L() + radius, region.B() - radius);
+	PlotArcFill(b, p, radius, color);
+}
+
 /*
 // https://web.archive.org/web/20120422045142/https://banu.com/blog/7/drawing-circles/
 void glPlot2DHelper::PlotCircle(glPoint_t &center, P_t radius, glARGB_t color)
@@ -346,7 +441,7 @@ void glPlot2DHelper::PlotArc(const gl2DPoint_t &box, const glPoint_t &center, P_
  * @param radius The radius of the arc.
  * @param color The color of the arc.
  */
-void glPlot2DHelper::PlotFillArc(const gl2DPoint_t &box, const glPoint_t &center, P_t radius, const glColor_t &color) 
+void glPlot2DHelper::PlotArcFill(const gl2DPoint_t &box, const glPoint_t &center, P_t radius, const glColor_t &color) 
 {
 	int rSquared = radius * radius;
     
@@ -359,3 +454,12 @@ void glPlot2DHelper::PlotFillArc(const gl2DPoint_t &box, const glPoint_t &center
 	}
 }
 
+void glPlot2DHelper::PlotBorder(gl2DPoint_t region, P_t width, P_t radius, glColor_t color)
+{
+	if (radius == 0)
+		for (P_t i = 0; i < width; i++)
+			glRectangle(region.Inflate(-i), color).Draw();
+	else
+		for (P_t i = 0; i < width; i++)
+			glRectangleRound(region.Inflate(-i), radius - i, color).Draw();
+}

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['r_5ft_0',['R_t',['../struct_r__t.html',1,'']]],
-  ['r_5ft_3c_20uint8_5ft_2c_200_2c_2015_20_3e_1',['R_t&lt; uint8_t, 0, 15 &gt;',['../struct_r__t.html',1,'']]],
-  ['readme_2',['README',['../md__r_e_a_d_m_e.html',1,'']]]
+  ['operator_21_3d_0',['operator!=',['../structgl_touch_point__t.html#a47348915ae035c7cf4906454892fb361',1,'glTouchPoint_t']]],
+  ['operator_3d_3d_1',['operator==',['../structgl_touch_point__t.html#a4850bf2affcaeb04c0897b38962ddf34',1,'glTouchPoint_t']]]
 ];

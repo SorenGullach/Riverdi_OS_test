@@ -3,37 +3,47 @@
 Inheritance diagram for gl\+Plot2\+DHelper\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=4.834532cm]{classgl_plot2_d_helper}
+\includegraphics[height=12.000000cm]{classgl_plot2_d_helper}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{classgl_plot2_d_helper_ab82eeb740c426fd0793ecd59f9a4b566}\label{classgl_plot2_d_helper_ab82eeb740c426fd0793ecd59f9a4b566} 
-void {\bfseries Plot\+Line} (P\+\_\+t x0, P\+\_\+t y0, P\+\_\+t x1, P\+\_\+t y1, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&color)
+void \mbox{\hyperlink{classgl_plot2_d_helper_a8783e60e1b75a09de18332d663a99ca7}{Plot\+Line}} (P\+\_\+t x0, P\+\_\+t y0, P\+\_\+t x1, P\+\_\+t y1, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&color)
+\begin{DoxyCompactList}\small\item\em Plots a line on a 2D plane using Bresenham\textquotesingle{}s line algorithm. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgl_plot2_d_helper_af97c6584e6ac0d9dfb0507e9a251089f}{Plot\+Circle}} (const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&center, P\+\_\+t radius, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&color)
+\begin{DoxyCompactList}\small\item\em Plots a circle on a 2D plane using the Midpoint Circle Algorithm. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgl_plot2_d_helper_a242a06a8c1b745d14541a17c86dccd19}{Plot\+Circle\+Fill}} (const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&center, P\+\_\+t radius, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&color)
+\begin{DoxyCompactList}\small\item\em Plots a filled circle on a 2D plane. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgl_plot2_d_helper_a66b99a6646529d523f1f56f11a82c358}{Plot\+Arc}} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&region, const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&center, P\+\_\+t radius, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&color)
+\begin{DoxyCompactList}\small\item\em Plots an arc within a bounding box on a 2D plane. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgl_plot2_d_helper_aa46b0a364625bad7e282258232dc69de}{Plot\+Arc\+Fill}} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&region, const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&center, P\+\_\+t radius, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&color)
+\begin{DoxyCompactList}\small\item\em Plots a filled arc within a bounding box on a 2D plane. \end{DoxyCompactList}\item 
+\Hypertarget{classgl_plot2_d_helper_a0721b5c0980d7a9c7a6b7ac77feedaf8}\label{classgl_plot2_d_helper_a0721b5c0980d7a9c7a6b7ac77feedaf8} 
+void {\bfseries Plot\+Rectangle} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&region, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&color)
 \item 
-\Hypertarget{classgl_plot2_d_helper_afa637624a283e1a60f1e6643c50c729c}\label{classgl_plot2_d_helper_afa637624a283e1a60f1e6643c50c729c} 
-void {\bfseries Plot\+Circle} (\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&center, P\+\_\+t radius, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&color)
+\Hypertarget{classgl_plot2_d_helper_a180ab52bde5656cfbb43ff2441fdb936}\label{classgl_plot2_d_helper_a180ab52bde5656cfbb43ff2441fdb936} 
+void {\bfseries Plot\+Rectangle\+Fill} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&region, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&color)
 \item 
-\Hypertarget{classgl_plot2_d_helper_a679ec2462b058f2926c4aec2922bb2e8}\label{classgl_plot2_d_helper_a679ec2462b058f2926c4aec2922bb2e8} 
-void {\bfseries Plot\+Circle\+Fill} (\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&center, P\+\_\+t radius, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&color)
+\Hypertarget{classgl_plot2_d_helper_a7a333eee85e439d32c25618a44c43c13}\label{classgl_plot2_d_helper_a7a333eee85e439d32c25618a44c43c13} 
+void {\bfseries Plot\+Rectangle\+Round} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} region, P\+\_\+t radius, \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} color)
 \item 
-\Hypertarget{classgl_plot2_d_helper_a5dc913baa731d3a81f3e66b5dfd2f5f1}\label{classgl_plot2_d_helper_a5dc913baa731d3a81f3e66b5dfd2f5f1} 
-void {\bfseries Plot\+Arc} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} box, \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&center, P\+\_\+t radius, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&color)
+\Hypertarget{classgl_plot2_d_helper_a9d1a37b39e78a831a008cadd70938e0a}\label{classgl_plot2_d_helper_a9d1a37b39e78a831a008cadd70938e0a} 
+void {\bfseries Plot\+Rectangle\+Round\+Fill} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} region, P\+\_\+t radius, \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} color)
 \item 
-\Hypertarget{classgl_plot2_d_helper_a7b778bb27019912ba2f2442c53128d9d}\label{classgl_plot2_d_helper_a7b778bb27019912ba2f2442c53128d9d} 
-void {\bfseries Plot\+Fill\+Arc} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} box, \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&center, P\+\_\+t radius, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&color)
+\Hypertarget{classgl_plot2_d_helper_a42597dfa13c95a3fb77b1f37c1bff893}\label{classgl_plot2_d_helper_a42597dfa13c95a3fb77b1f37c1bff893} 
+void {\bfseries Plot\+Border} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} region, P\+\_\+t width, P\+\_\+t radius, \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} color)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_video_memory_plot}{gl\+Video\+Memory\+Plot}}}
 \begin{DoxyCompactItemize}
 \item 
-void {\bfseries Plot} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&box, P\+\_\+t x, P\+\_\+t y, const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&color)
+void {\bfseries Plot} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&box, P\+\_\+t x, P\+\_\+t y, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&color)
 \item 
-void {\bfseries Plot} (P\+\_\+t x, P\+\_\+t y, const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&color)
+void {\bfseries Plot} (P\+\_\+t x, P\+\_\+t y, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&color)
 \item 
-void {\bfseries Plot} (const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&p, const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&color)
+void {\bfseries Plot} (const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&p, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&color)
 \item 
-void {\bfseries Plot} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} box, const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&p, const \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \&color)
+void {\bfseries Plot} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} box, const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&p, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&color)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Static Protected Member Functions inherited from \mbox{\hyperlink{classgl_video_memory}{gl\+Video\+Memory}}}
@@ -72,7 +82,123 @@ static \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries In
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgl_plot2_d_helper_a66b99a6646529d523f1f56f11a82c358}\label{classgl_plot2_d_helper_a66b99a6646529d523f1f56f11a82c358} 
+\index{glPlot2DHelper@{glPlot2DHelper}!PlotArc@{PlotArc}}
+\index{PlotArc@{PlotArc}!glPlot2DHelper@{glPlot2DHelper}}
+\doxysubsubsection{\texorpdfstring{PlotArc()}{PlotArc()}}
+{\footnotesize\ttfamily void gl\+Plot2\+DHelper\+::\+Plot\+Arc (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&}]{box,  }\item[{const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&}]{center,  }\item[{P\+\_\+t}]{radius,  }\item[{const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&}]{color }\end{DoxyParamCaption})}
+
+
+
+Plots an arc within a bounding box on a 2D plane. 
+
+This function plots an arc centered at the given point with the specified radius and color within the given bounding box.
+
+
+\begin{DoxyParams}{Parameters}
+{\em box} & The bounding box where the arc will be plotted. \\
+\hline
+{\em center} & The center point of the arc. \\
+\hline
+{\em radius} & The radius of the arc. \\
+\hline
+{\em color} & The color of the arc. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classgl_plot2_d_helper_aa46b0a364625bad7e282258232dc69de}\label{classgl_plot2_d_helper_aa46b0a364625bad7e282258232dc69de} 
+\index{glPlot2DHelper@{glPlot2DHelper}!PlotArcFill@{PlotArcFill}}
+\index{PlotArcFill@{PlotArcFill}!glPlot2DHelper@{glPlot2DHelper}}
+\doxysubsubsection{\texorpdfstring{PlotArcFill()}{PlotArcFill()}}
+{\footnotesize\ttfamily void gl\+Plot2\+DHelper\+::\+Plot\+Arc\+Fill (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&}]{box,  }\item[{const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&}]{center,  }\item[{P\+\_\+t}]{radius,  }\item[{const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&}]{color }\end{DoxyParamCaption})}
+
+
+
+Plots a filled arc within a bounding box on a 2D plane. 
+
+This function plots a filled arc centered at the given point with the specified radius and color within the given bounding box.
+
+
+\begin{DoxyParams}{Parameters}
+{\em box} & The bounding box where the arc will be plotted. \\
+\hline
+{\em center} & The center point of the arc. \\
+\hline
+{\em radius} & The radius of the arc. \\
+\hline
+{\em color} & The color of the arc. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classgl_plot2_d_helper_af97c6584e6ac0d9dfb0507e9a251089f}\label{classgl_plot2_d_helper_af97c6584e6ac0d9dfb0507e9a251089f} 
+\index{glPlot2DHelper@{glPlot2DHelper}!PlotCircle@{PlotCircle}}
+\index{PlotCircle@{PlotCircle}!glPlot2DHelper@{glPlot2DHelper}}
+\doxysubsubsection{\texorpdfstring{PlotCircle()}{PlotCircle()}}
+{\footnotesize\ttfamily void gl\+Plot2\+DHelper\+::\+Plot\+Circle (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&}]{center,  }\item[{P\+\_\+t}]{radius,  }\item[{const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&}]{color }\end{DoxyParamCaption})}
+
+
+
+Plots a circle on a 2D plane using the Midpoint Circle Algorithm. 
+
+This function plots a circle centered at the given point with the specified radius and color. It uses the Midpoint Circle Algorithm to efficiently plot the circle.
+
+
+\begin{DoxyParams}{Parameters}
+{\em center} & The center point of the circle. \\
+\hline
+{\em radius} & The radius of the circle. \\
+\hline
+{\em color} & The color of the circle. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classgl_plot2_d_helper_a242a06a8c1b745d14541a17c86dccd19}\label{classgl_plot2_d_helper_a242a06a8c1b745d14541a17c86dccd19} 
+\index{glPlot2DHelper@{glPlot2DHelper}!PlotCircleFill@{PlotCircleFill}}
+\index{PlotCircleFill@{PlotCircleFill}!glPlot2DHelper@{glPlot2DHelper}}
+\doxysubsubsection{\texorpdfstring{PlotCircleFill()}{PlotCircleFill()}}
+{\footnotesize\ttfamily void gl\+Plot2\+DHelper\+::\+Plot\+Circle\+Fill (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&}]{center,  }\item[{P\+\_\+t}]{radius,  }\item[{const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&}]{color }\end{DoxyParamCaption})}
+
+
+
+Plots a filled circle on a 2D plane. 
+
+This function plots a filled circle centered at the given point with the specified radius and color.
+
+
+\begin{DoxyParams}{Parameters}
+{\em center} & The center point of the circle. \\
+\hline
+{\em radius} & The radius of the circle. \\
+\hline
+{\em color} & The color of the circle. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classgl_plot2_d_helper_a8783e60e1b75a09de18332d663a99ca7}\label{classgl_plot2_d_helper_a8783e60e1b75a09de18332d663a99ca7} 
+\index{glPlot2DHelper@{glPlot2DHelper}!PlotLine@{PlotLine}}
+\index{PlotLine@{PlotLine}!glPlot2DHelper@{glPlot2DHelper}}
+\doxysubsubsection{\texorpdfstring{PlotLine()}{PlotLine()}}
+{\footnotesize\ttfamily void gl\+Plot2\+DHelper\+::\+Plot\+Line (\begin{DoxyParamCaption}\item[{P\+\_\+t}]{x0,  }\item[{P\+\_\+t}]{y0,  }\item[{P\+\_\+t}]{x1,  }\item[{P\+\_\+t}]{y1,  }\item[{const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&}]{color }\end{DoxyParamCaption})}
+
+
+
+Plots a line on a 2D plane using Bresenham\textquotesingle{}s line algorithm. 
+
+This function plots a line between two points with the specified color. It uses Bresenham\textquotesingle{}s line algorithm to efficiently plot the line.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x0} & The x-\/coordinate of the start point. \\
+\hline
+{\em y0} & The y-\/coordinate of the start point. \\
+\hline
+{\em x1} & The x-\/coordinate of the end point. \\
+\hline
+{\em y1} & The y-\/coordinate of the end point. \\
+\hline
+{\em color} & The color of the line. \\
+\hline
+\end{DoxyParams}
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-gl\+STM32\+H7xx/gl\+Primitives.\+h\item 
-gl\+STM32\+H7xx/gl\+Primitives.\+cpp\end{DoxyCompactItemize}
+gl\+STM32\+H7xx/gl\+Widgets.\+h\item 
+gl\+STM32\+H7xx/gl\+Widgets.\+cpp\end{DoxyCompactItemize}

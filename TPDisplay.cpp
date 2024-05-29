@@ -30,7 +30,7 @@ extern "C" void EXTI3_IRQHandler()
 // figure out how there was pressed
 void CTPDisplay::UpdateState()
 {
-	const P_t SlideDelta = 100;
+	const P_t SlideDelta = 500; // delta pix to change before being a slide
 	switch (TPPoint.TipAction)
 	{
 	case glTouchPoint_t::eTipAction::Up:
@@ -168,7 +168,7 @@ void CTPDisplay::UpdateState()
 	else
 		TPPoint.SlideAction = glTouchPoint_t::None;
 	
-	if (cbClass != nullptr && TPPoint != TPPointOld)
+	if (TPPoint != TPPointOld && cbClass != nullptr)
 	{
 		//Printf(" Touch %d,%d %d,%d %d,%d\n", TPPoint.X, TPPoint.Y, TPPoint.DX, TPPoint.DY, TPPoint.ZX, TPPoint.ZY);
 		cbClass->Touch(TPPoint);

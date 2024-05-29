@@ -1,0 +1,133 @@
+\doxysection{gl\+Chain.\+h}
+\hypertarget{gl_chain_8h_source}{}\label{gl_chain_8h_source}\index{glSTM32H7xx/glChain.h@{glSTM32H7xx/glChain.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ 2024\ Søren Gullach}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ You\ must\ include\ the\ following\ attribution\ in\ all\ copies\ or\ substantial\ portions\ of\ the\ Software:}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ "{}Søren Gullach\ <STM32\_R7\_OS@toolsbox.dk>"{}}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <assert.h>}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_chain}{glChain}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_link}{glLink}}\ }
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ Allow\ glChain\ to\ access\ pNext\ and\ pPrev\ directly}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ TC>}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_chain}{glChain}};}
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//virtual\ void\ Init()\ =\ 0;}}
+\DoxyCodeLine{00035\ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ UpdateLook()\ =\ 0;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ UpdateState(\mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&point,\ \textcolor{keywordtype}{bool}\ \&Handled)\ =\ 0;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ IsInvalidated(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ \&invalidRegion)\ =\ 0;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ InvalidateMe()\ =\ 0;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ InvalidateSiblings()\ =\ 0;}
+\DoxyCodeLine{00041\ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ buble\ event\ to\ top}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Event(\mbox{\hyperlink{classgl_event}{glEvent}}\ event)\ =\ 0;}
+\DoxyCodeLine{00044\ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classgl_link}{glLink}}\ *Prev()\ \{\ \textcolor{keywordflow}{return}\ pPrev;\ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classgl_link}{glLink}}\ *Next()\ \{\ \textcolor{keywordflow}{return}\ pNext;\ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{classgl_link}{glLink}}\ *pNext\ =\ \textcolor{keyword}{nullptr},\ *pPrev\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00050\ \};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ A\ double\ linked\ list}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_chain}{glChain}}\ }
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ a\ link}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Add(T\ *obj)}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!obj)\ \textcolor{keywordflow}{return};\ \textcolor{comment}{//\ Check\ for\ nullptr}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_link}{glLink}}*\ pNewLinkObj\ =\ \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classgl_link}{glLink}}*\textcolor{keyword}{>}(obj);\ \textcolor{comment}{//\ Attempt\ to\ cast\ to\ glLink\ pointer}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!pNewLinkObj)\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assert(\textcolor{keyword}{false}\ \&\&\ \textcolor{stringliteral}{"{}Error:\ Object\ does\ not\ derive\ from\ glLink.\ Cannot\ add\ to\ glChain."{}});}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ pointers}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!pHead)\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pHead\ =\ pNewLinkObj;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pTail\ =\ pNewLinkObj;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pNewLinkObj-\/>pPrev\ =\ pNewLinkObj-\/>pNext\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pTail-\/>pNext\ =\ pNewLinkObj;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pNewLinkObj-\/>pPrev\ =\ pTail;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pNewLinkObj-\/>pNext\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pTail\ =\ pNewLinkObj;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Function\ to\ remove\ an\ widget\ from\ the\ linked\ list}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Remove(T\ *obj)\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!obj)\ \textcolor{keywordflow}{return};\ \textcolor{comment}{//\ Check\ for\ nullptr}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_link}{glLink}}*\ pLinkObj\ =\ \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classgl_link}{glLink}}*\textcolor{keyword}{>}(obj);\ \textcolor{comment}{//\ Attempt\ to\ cast\ to\ glLink\ pointer}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!pLinkObj)\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assert(\textcolor{keyword}{false}\ \&\&\ \textcolor{stringliteral}{"{}Error:\ Object\ does\ not\ derive\ from\ glLink.\ Cannot\ remove\ from\ glChain."{}});}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Search\ for\ the\ widget\ in\ the\ list}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_link}{glLink}}*\ pCurrent\ =\ pHead;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (pCurrent)\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrent\ ==\ pLinkObj)\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ pointers}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrent-\/>pPrev)\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pCurrent-\/>pPrev-\/>pNext\ =\ pCurrent-\/>pNext;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pHead\ =\ pCurrent-\/>pNext;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrent-\/>pNext)\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pCurrent-\/>pNext-\/>pPrev\ =\ pCurrent-\/>pPrev;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pTail\ =\ pCurrent-\/>pPrev;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pCurrent\ =\ pCurrent-\/>pNext;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ widget\ is\ not\ found}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ assert(\textcolor{keyword}{false}\ \&\&\ \textcolor{stringliteral}{"{}Error:\ Object\ not\ found\ in\ glLink.\ Cannot\ remove."{}});}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ T\ *Head()\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T*\textcolor{keyword}{>}(pHead);\ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ T\ *Tail()\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T*\textcolor{keyword}{>}(pTail);\ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_link}{glLink}}*\ pHead\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_link}{glLink}}*\ pTail\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ }
+\DoxyCodeLine{00128\ \ \ \ \ \};}
+\DoxyCodeLine{00129\ }
+
+\end{DoxyCode}

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Riverdi OS Test: glSTM32H7xx/glMain.h Source File</title>
+<title>My Project: glSTM32H7xx/glMain.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Riverdi OS Test
+   <div id="projectname">My Project
    </div>
   </td>
  </tr>
@@ -104,126 +104,131 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;glPrimitives.h&quot;</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;glButton.h&quot;</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;TFTDisplay.h&quot;</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;TPDisplay.h&quot;</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;mutex&gt;</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;glPage.h&quot;</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="foldopen" id="foldopen00031" data-start="{" data-end="};">
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classgl_main.html">   31</a></span><span class="keyword">class </span><a class="code hl_class" href="classgl_main.html">glMain</a> : <span class="keyword">protected</span> <a class="code hl_class" href="classgl_video_memory.html">glVideoMemory</a>, <span class="keyword">private</span> <a class="code hl_class" href="classcb_display.html">cbDisplay</a></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">void</span> Init()</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        Display.Init(<span class="keyword">this</span>); <span class="comment">// the display</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        Touch.Init(<span class="keyword">this</span>); <span class="comment">// for touch control</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="comment">// Find the size of the display + Display buffer</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <a class="code hl_function" href="classgl_video_memory.html#a3fbd6abbb3a2b322e2313bef9d4664a8">glVideoMemory::Init</a>(Display.Width(), Display.Height(), (<a class="code hl_struct" href="structgl_a_r_g_b__t.html">glARGB_t</a> *)SDRAM_START);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="comment">// back color for background</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <a class="code hl_struct" href="structgl_color__t.html">glColor_t</a> bg = <a class="code hl_struct" href="structgl_color__t.html">glColor_t</a>(glColors::GREEN);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        Display.BackgroundColor(bg.R, bg.G, bg.B);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="comment">// layer</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        Display.Layer(1, pVM, 0, 0, 0 + _ScreenWidth, 0 + _ScreenHeight);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="comment">// blending</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        Display.BlendingFactors(1, eBlendingFactor1::F1_CA, eBlendingFactor2::F2_CA, 255);</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <a class="code hl_struct" href="structgl_color__t.html">glColor_t</a> df = <a class="code hl_struct" href="structgl_color__t.html">glColor_t</a>(glColors::RED);</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        Display.DefaultColor(1, df.<a class="code hl_variable" href="structgl_a_r_g_b__t.html#af46d13fc72a0e7d7bee0323f23652095">A</a>, df.R, df.G, df.B);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <a class="code hl_struct" href="structgl_color__t.html">glColor_t</a> ck = <a class="code hl_struct" href="structgl_color__t.html">glColor_t</a>(glColors::BLACK);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        Display.ColorKey(1, ck.R, ck.G, ck.B);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    }</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">void</span> AddPage(<a class="code hl_class" href="classgl_page.html">glPage</a> *page)</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        page-&gt;PosSize(<a class="code hl_struct" href="structgl2_d_point__t.html">gl2DPoint_t</a>(0, 0, Display.Width() - 1, Display.Height() - 1));</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        ChainPages.Add(page);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="comment">//page-&gt;Init();</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">if</span> (pCurrentPage == <span class="keyword">nullptr</span>)</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            pCurrentPage = ChainPages.Head();</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    }</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="comment">// Display to draw on</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <a class="code hl_class" href="class_t_f_t_display.html">TFTDisplay</a> Display;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="comment">// Touch control</span></div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_class" href="class_c_t_p_display.html">CTPDisplay</a> Touch;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <a class="code hl_class" href="classgl_chain.html">glChain&lt;glPage&gt;</a> ChainPages;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <a class="code hl_class" href="classgl_page.html">glPage</a> *pCurrentPage = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00075" data-start="{" data-end="}">
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classgl_main.html#ab86832b66f825b77d86d114213373be3">   75</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classgl_main.html#ab86832b66f825b77d86d114213373be3">cbTouch</a>(<a class="code hl_struct" href="structgl_touch_point__t.html">glTouchPoint_t</a> &amp;point)<span class="keyword"> override</span></div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keywordflow">if</span> (pCurrentPage == <span class="keyword">nullptr</span>) <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        pCurrentPage-&gt;UpdateState(point);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;glWidgets.h&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;TFTDisplay.h&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;TPDisplay.h&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;mutex&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;glPage.h&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classgl_main.html">   30</a></span><span class="keyword">class </span><a class="code hl_class" href="classgl_main.html">glMain</a> : <span class="keyword">protected</span> <a class="code hl_class" href="classgl_video_memory.html">glVideoMemory</a>, <span class="keyword">private</span> <a class="code hl_class" href="classcb_display.html">cbDisplay</a></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> Init()</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        Display.Init(<span class="keyword">this</span>); <span class="comment">// the display</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        Touch.Init(<span class="keyword">this</span>); <span class="comment">// for touch control</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="comment">// Find the size of the display + Display buffer</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <a class="code hl_function" href="classgl_video_memory.html#a3fbd6abbb3a2b322e2313bef9d4664a8">glVideoMemory::Init</a>(Display.Width(), Display.Height(), (<a class="code hl_struct" href="structgl_a_r_g_b__t.html">glARGB_t</a> *)SDRAM_START);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="comment">// back color for background</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <a class="code hl_class" href="classgl_color__t.html">glColor_t</a> bg = <a class="code hl_class" href="classgl_color__t.html">glColor_t</a>(glColors::GREEN);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        Display.BackgroundColor(bg.R, bg.G, bg.B);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="comment">// layer</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        Display.Layer(1, pVM, 0, 0, 0 + _ScreenWidth, 0 + _ScreenHeight);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="comment">// blending</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        Display.BlendingFactors(1, eBlendingFactor1::F1_CA, eBlendingFactor2::F2_CA, 255);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <a class="code hl_class" href="classgl_color__t.html">glColor_t</a> df = <a class="code hl_class" href="classgl_color__t.html">glColor_t</a>(glColors::RED);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        Display.DefaultColor(1, df.<a class="code hl_variable" href="structgl_a_r_g_b__t.html#af46d13fc72a0e7d7bee0323f23652095">A</a>, df.R, df.G, df.B);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <a class="code hl_class" href="classgl_color__t.html">glColor_t</a> ck = <a class="code hl_class" href="classgl_color__t.html">glColor_t</a>(glColors::BLACK);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        Display.ColorKey(1, ck.R, ck.G, ck.B);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordtype">void</span> AddPage(<a class="code hl_class" href="classgl_page.html">glPage</a> *page)</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        page-&gt;MoveTo(<a class="code hl_struct" href="structgl2_d_point__t.html">gl2DPoint_t</a>(0, 0, Display.Width() - 1, Display.Height() - 1));</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        ChainPages.Add(page);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="comment">//page-&gt;Init();</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordflow">if</span> (pCurrentPage == <span class="keyword">nullptr</span>)</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            pCurrentPage = ChainPages.Head();</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="comment">// Display to draw on</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <a class="code hl_class" href="class_t_f_t_display.html">TFTDisplay</a> Display;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="comment">// Touch control</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <a class="code hl_class" href="class_c_t_p_display.html">CTPDisplay</a> Touch;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <a class="code hl_class" href="classgl_chain.html">glChain&lt;glPage&gt;</a> ChainPages;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <a class="code hl_class" href="classgl_page.html">glPage</a> *pCurrentPage = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00074" data-start="{" data-end="}">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classgl_main.html#ab86832b66f825b77d86d114213373be3">   74</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classgl_main.html#ab86832b66f825b77d86d114213373be3">cbTouch</a>(<a class="code hl_struct" href="structgl_touch_point__t.html">glTouchPoint_t</a> &amp;point)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordflow">if</span> (pCurrentPage == <span class="keyword">nullptr</span>) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keywordtype">bool</span> Handled = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        pCurrentPage-&gt;UpdateState(point, Handled);</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keywordflow">switch</span> (pCurrentPage-&gt;EventAction.EventType)</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keywordflow">switch</span> (pCurrentPage-&gt;EventAction.<a class="code hl_variable" href="classgl_event.html#ac6b12daf3096d10ee67fce2a8af6bf1b">EventType</a>)</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        {</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordflow">case</span> glEvent::eEventType::Click:</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keywordflow">case</span> glEvent::eEventType::Slide:</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            <span class="keywordflow">if</span> (pCurrentPage-&gt;EventAction.U.Slide.Action == glTouchPoint_t::Right &amp;&amp; pCurrentPage-&gt;Prev() != <span class="keyword">nullptr</span>)           </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            {</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                ((<a class="code hl_class" href="classgl_page.html">glPage</a> *)pCurrentPage-&gt;Prev())-&gt;Invalidate();</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                pCurrentPage-&gt;EventAction.U.Slide.Action = glTouchPoint_t::None; </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                pCurrentPage = (<a class="code hl_class" href="classgl_page.html">glPage</a> *)(pCurrentPage-&gt;Prev());</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                <span class="comment">//Printf(&quot;%s Currentpage\n&quot;, pCurrentPage-&gt;Name);</span></div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            }</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>            <span class="keywordflow">if</span> (pCurrentPage-&gt;EventAction.U.Slide.Action == glTouchPoint_t::Left &amp;&amp; pCurrentPage-&gt;Next() != <span class="keyword">nullptr</span>)            </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            {</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                ((<a class="code hl_class" href="classgl_page.html">glPage</a> *)pCurrentPage-&gt;Next())-&gt;Invalidate();</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>                pCurrentPage-&gt;EventAction.U.Slide.Action = glTouchPoint_t::None; </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                pCurrentPage = (<a class="code hl_class" href="classgl_page.html">glPage</a> *)(pCurrentPage-&gt;Next());</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                <span class="comment">//Printf(&quot;%s Currentpage\n&quot;, pCurrentPage-&gt;Name);</span></div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>            }</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="keywordflow">case</span> glEvent::eEventType::None:</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        }</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        pCurrentPage-&gt;EventAction.EventType = glEvent::eEventType::None;</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="classgl_event.html#ae63986141ad7b77417913f127b8edfe7a6160a53ece50ce6d4f5ef4452549835e">glEvent::eEventType::Slide</a>:</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <span class="keywordflow">if</span> (pCurrentPage-&gt;EventAction.<a class="code hl_variable" href="classgl_event.html#a7d529014843c1484dd9d98b6dbf8d48f">U</a>.Slide.<a class="code hl_variable" href="uniongl_event_1_1u_event.html#a2a4b08d609e8753710a2973f3f9d62a1">Action</a> == glTouchPoint_t::Right &amp;&amp; pCurrentPage-&gt;Prev() != <span class="keyword">nullptr</span>)           </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            {</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                ((<a class="code hl_class" href="classgl_page.html">glPage</a> *)pCurrentPage-&gt;Prev())-&gt;InvalidateMe();</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                pCurrentPage-&gt;EventAction.<a class="code hl_variable" href="classgl_event.html#a7d529014843c1484dd9d98b6dbf8d48f">U</a>.Slide.<a class="code hl_variable" href="uniongl_event_1_1u_event.html#a2a4b08d609e8753710a2973f3f9d62a1">Action</a> = glTouchPoint_t::None; </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                pCurrentPage = (<a class="code hl_class" href="classgl_page.html">glPage</a> *)(pCurrentPage-&gt;Prev());</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                <span class="comment">//Printf(&quot;%s Currentpage\n&quot;, pCurrentPage-&gt;Name);</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            }</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            <span class="keywordflow">if</span> (pCurrentPage-&gt;EventAction.<a class="code hl_variable" href="classgl_event.html#a7d529014843c1484dd9d98b6dbf8d48f">U</a>.Slide.<a class="code hl_variable" href="uniongl_event_1_1u_event.html#a2a4b08d609e8753710a2973f3f9d62a1">Action</a> == glTouchPoint_t::Left &amp;&amp; pCurrentPage-&gt;Next() != <span class="keyword">nullptr</span>)            </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                ((<a class="code hl_class" href="classgl_page.html">glPage</a> *)pCurrentPage-&gt;Next())-&gt;InvalidateMe();</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                pCurrentPage-&gt;EventAction.<a class="code hl_variable" href="classgl_event.html#a7d529014843c1484dd9d98b6dbf8d48f">U</a>.Slide.<a class="code hl_variable" href="uniongl_event_1_1u_event.html#a2a4b08d609e8753710a2973f3f9d62a1">Action</a> = glTouchPoint_t::None; </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                pCurrentPage = (<a class="code hl_class" href="classgl_page.html">glPage</a> *)(pCurrentPage-&gt;Next());</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>                <span class="comment">//Printf(&quot;%s Currentpage\n&quot;, pCurrentPage-&gt;Name);</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            }</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="classgl_event.html#ae63986141ad7b77417913f127b8edfe7a316853cc3718335f11c048e33b9be98a">glEvent::eEventType::Click</a>:</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="classgl_event.html#ae63986141ad7b77417913f127b8edfe7a6adf97f83acf6453d4a6a4b1070f3754">glEvent::eEventType::None</a>:</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        pCurrentPage-&gt;EventAction.<a class="code hl_variable" href="classgl_event.html#ac6b12daf3096d10ee67fce2a8af6bf1b">EventType</a> = <a class="code hl_enumvalue" href="classgl_event.html#ae63986141ad7b77417913f127b8edfe7a6adf97f83acf6453d4a6a4b1070f3754">glEvent::eEventType::None</a>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    }</div>
 </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classgl_main.html#aa3bbbd92f5f8500d8f81224270a42fbf">  106</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classgl_main.html#aa3bbbd92f5f8500d8f81224270a42fbf">cbBlanking</a>()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordflow">if</span> (pCurrentPage == <span class="keyword">nullptr</span>) <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keywordflow">if</span> (!pCurrentPage-&gt;IsInvalidated(glVideoMemory::InvalidRegion)) <span class="comment">// returns an invalidated region</span></div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <a class="code hl_function" href="classgl_video_memory.html#a1ee38dc72e41940446fe3bf03e54d659">glVideoMemory::LimitRegion</a>();</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        pCurrentPage-&gt;UpdateLook();</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <a class="code hl_function" href="classgl_video_memory.html#aec104053547ef2609fadd975369ca657">glVideoMemory::NextRegion</a>();</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    }</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="foldopen" id="foldopen00105" data-start="{" data-end="}">
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classgl_main.html#aa3bbbd92f5f8500d8f81224270a42fbf">  105</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classgl_main.html#aa3bbbd92f5f8500d8f81224270a42fbf">cbBlanking</a>()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keywordflow">if</span> (pCurrentPage == <span class="keyword">nullptr</span>) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="keywordflow">if</span> (!pCurrentPage-&gt;IsInvalidated(glVideoMemory::InvalidRegion)) <span class="comment">// returns an invalidated region</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <a class="code hl_function" href="classgl_video_memory.html#a1ee38dc72e41940446fe3bf03e54d659">glVideoMemory::LimitRegion</a>();</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        pCurrentPage-&gt;UpdateLook();</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <a class="code hl_function" href="classgl_video_memory.html#aec104053547ef2609fadd975369ca657">glVideoMemory::NextRegion</a>();</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    }</div>
 </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>};</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>};</div>
 </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
 <div class="ttc" id="aclass_c_t_p_display_html"><div class="ttname"><a href="class_c_t_p_display.html">CTPDisplay</a></div><div class="ttdef"><b>Definition</b> TPDisplay.h:66</div></div>
 <div class="ttc" id="aclass_t_f_t_display_html"><div class="ttname"><a href="class_t_f_t_display.html">TFTDisplay</a></div><div class="ttdef"><b>Definition</b> TFTDisplay.h:35</div></div>
-<div class="ttc" id="aclasscb_display_html"><div class="ttname"><a href="classcb_display.html">cbDisplay</a></div><div class="ttdoc">Abstract callback class for display-related events.</div><div class="ttdef"><b>Definition</b> glTypes.h:455</div></div>
-<div class="ttc" id="aclassgl_chain_html"><div class="ttname"><a href="classgl_chain.html">glChain</a></div><div class="ttdef"><b>Definition</b> glPrimitives.h:114</div></div>
-<div class="ttc" id="aclassgl_main_html"><div class="ttname"><a href="classgl_main.html">glMain</a></div><div class="ttdef"><b>Definition</b> glMain.h:32</div></div>
-<div class="ttc" id="aclassgl_main_html_aa3bbbd92f5f8500d8f81224270a42fbf"><div class="ttname"><a href="classgl_main.html#aa3bbbd92f5f8500d8f81224270a42fbf">glMain::cbBlanking</a></div><div class="ttdeci">void cbBlanking() override</div><div class="ttdoc">Pure virtual function to handle blanking events.</div><div class="ttdef"><b>Definition</b> glMain.h:106</div></div>
-<div class="ttc" id="aclassgl_main_html_ab86832b66f825b77d86d114213373be3"><div class="ttname"><a href="classgl_main.html#ab86832b66f825b77d86d114213373be3">glMain::cbTouch</a></div><div class="ttdeci">void cbTouch(glTouchPoint_t &amp;point) override</div><div class="ttdoc">Pure virtual function to handle touch events.</div><div class="ttdef"><b>Definition</b> glMain.h:75</div></div>
+<div class="ttc" id="aclasscb_display_html"><div class="ttname"><a href="classcb_display.html">cbDisplay</a></div><div class="ttdoc">Abstract callback class for display-related events.</div><div class="ttdef"><b>Definition</b> glTypes.h:445</div></div>
+<div class="ttc" id="aclassgl_chain_html"><div class="ttname"><a href="classgl_chain.html">glChain</a></div><div class="ttdef"><b>Definition</b> glChain.h:56</div></div>
+<div class="ttc" id="aclassgl_color__t_html"><div class="ttname"><a href="classgl_color__t.html">glColor_t</a></div><div class="ttdoc">Represents a color with convenience constructors and methods.</div><div class="ttdef"><b>Definition</b> glColor.h:71</div></div>
+<div class="ttc" id="aclassgl_event_html_a7d529014843c1484dd9d98b6dbf8d48f"><div class="ttname"><a href="classgl_event.html#a7d529014843c1484dd9d98b6dbf8d48f">glEvent::U</a></div><div class="ttdeci">union glEvent::uEvent U</div><div class="ttdoc">Union to store the event data.</div></div>
+<div class="ttc" id="aclassgl_event_html_ac6b12daf3096d10ee67fce2a8af6bf1b"><div class="ttname"><a href="classgl_event.html#ac6b12daf3096d10ee67fce2a8af6bf1b">glEvent::EventType</a></div><div class="ttdeci">enum glEvent::eEventType EventType</div><div class="ttdoc">The type of the current event.</div></div>
+<div class="ttc" id="aclassgl_event_html_ae63986141ad7b77417913f127b8edfe7a316853cc3718335f11c048e33b9be98a"><div class="ttname"><a href="classgl_event.html#ae63986141ad7b77417913f127b8edfe7a316853cc3718335f11c048e33b9be98a">glEvent::eEventType::Click</a></div><div class="ttdeci">@ Click</div><div class="ttdoc">A click event.</div></div>
+<div class="ttc" id="aclassgl_event_html_ae63986141ad7b77417913f127b8edfe7a6160a53ece50ce6d4f5ef4452549835e"><div class="ttname"><a href="classgl_event.html#ae63986141ad7b77417913f127b8edfe7a6160a53ece50ce6d4f5ef4452549835e">glEvent::eEventType::Slide</a></div><div class="ttdeci">@ Slide</div><div class="ttdoc">A slide event.</div></div>
+<div class="ttc" id="aclassgl_event_html_ae63986141ad7b77417913f127b8edfe7a6adf97f83acf6453d4a6a4b1070f3754"><div class="ttname"><a href="classgl_event.html#ae63986141ad7b77417913f127b8edfe7a6adf97f83acf6453d4a6a4b1070f3754">glEvent::eEventType::None</a></div><div class="ttdeci">@ None</div><div class="ttdoc">No event.</div></div>
+<div class="ttc" id="aclassgl_main_html"><div class="ttname"><a href="classgl_main.html">glMain</a></div><div class="ttdef"><b>Definition</b> glMain.h:31</div></div>
+<div class="ttc" id="aclassgl_main_html_aa3bbbd92f5f8500d8f81224270a42fbf"><div class="ttname"><a href="classgl_main.html#aa3bbbd92f5f8500d8f81224270a42fbf">glMain::cbBlanking</a></div><div class="ttdeci">void cbBlanking() override</div><div class="ttdoc">Pure virtual function to handle blanking events.</div><div class="ttdef"><b>Definition</b> glMain.h:105</div></div>
+<div class="ttc" id="aclassgl_main_html_ab86832b66f825b77d86d114213373be3"><div class="ttname"><a href="classgl_main.html#ab86832b66f825b77d86d114213373be3">glMain::cbTouch</a></div><div class="ttdeci">void cbTouch(glTouchPoint_t &amp;point) override</div><div class="ttdoc">Pure virtual function to handle touch events.</div><div class="ttdef"><b>Definition</b> glMain.h:74</div></div>
 <div class="ttc" id="aclassgl_page_html"><div class="ttname"><a href="classgl_page.html">glPage</a></div><div class="ttdef"><b>Definition</b> glPage.h:26</div></div>
-<div class="ttc" id="aclassgl_video_memory_html"><div class="ttname"><a href="classgl_video_memory.html">glVideoMemory</a></div><div class="ttdoc">Represents video memory and provides methods to manage it.</div><div class="ttdef"><b>Definition</b> glTypes.h:290</div></div>
-<div class="ttc" id="aclassgl_video_memory_html_a1ee38dc72e41940446fe3bf03e54d659"><div class="ttname"><a href="classgl_video_memory.html#a1ee38dc72e41940446fe3bf03e54d659">glVideoMemory::LimitRegion</a></div><div class="ttdeci">static void LimitRegion()</div><div class="ttdoc">Limits the region to the intersection with the current drawing region.</div><div class="ttdef"><b>Definition</b> glTypes.h:323</div></div>
-<div class="ttc" id="aclassgl_video_memory_html_a3fbd6abbb3a2b322e2313bef9d4664a8"><div class="ttname"><a href="classgl_video_memory.html#a3fbd6abbb3a2b322e2313bef9d4664a8">glVideoMemory::Init</a></div><div class="ttdeci">static void Init(const P_t w, const P_t h, glARGB_t *pvm)</div><div class="ttdoc">Initializes the video memory with the specified dimensions and buffer.</div><div class="ttdef"><b>Definition</b> glTypes.h:346</div></div>
-<div class="ttc" id="aclassgl_video_memory_html_aec104053547ef2609fadd975369ca657"><div class="ttname"><a href="classgl_video_memory.html#aec104053547ef2609fadd975369ca657">glVideoMemory::NextRegion</a></div><div class="ttdeci">static void NextRegion()</div><div class="ttdoc">Moves to the next region to be drawn.</div><div class="ttdef"><b>Definition</b> glTypes.h:331</div></div>
-<div class="ttc" id="astructgl2_d_point__t_html"><div class="ttname"><a href="structgl2_d_point__t.html">gl2DPoint_t</a></div><div class="ttdoc">Represents a 2D rectangular region defined by two points.</div><div class="ttdef"><b>Definition</b> glTypes.h:165</div></div>
-<div class="ttc" id="astructgl_a_r_g_b__t_html"><div class="ttname"><a href="structgl_a_r_g_b__t.html">glARGB_t</a></div><div class="ttdoc">Represents a color in ARGB format.</div><div class="ttdef"><b>Definition</b> glTypes.h:38</div></div>
-<div class="ttc" id="astructgl_a_r_g_b__t_html_af46d13fc72a0e7d7bee0323f23652095"><div class="ttname"><a href="structgl_a_r_g_b__t.html#af46d13fc72a0e7d7bee0323f23652095">glARGB_t::A</a></div><div class="ttdeci">C_t A</div><div class="ttdoc">Color channels in ARGB format, fitting LTDC layout.</div><div class="ttdef"><b>Definition</b> glTypes.h:39</div></div>
-<div class="ttc" id="astructgl_color__t_html"><div class="ttname"><a href="structgl_color__t.html">glColor_t</a></div><div class="ttdoc">Represents a color with convenience constructors and methods.</div><div class="ttdef"><b>Definition</b> glTypes.h:46</div></div>
-<div class="ttc" id="astructgl_touch_point__t_html"><div class="ttname"><a href="structgl_touch_point__t.html">glTouchPoint_t</a></div><div class="ttdoc">Represents a point of touch, with actions and slide directions.</div><div class="ttdef"><b>Definition</b> glTypes.h:370</div></div>
+<div class="ttc" id="aclassgl_video_memory_html"><div class="ttname"><a href="classgl_video_memory.html">glVideoMemory</a></div><div class="ttdoc">Represents video memory and provides methods to manage it.</div><div class="ttdef"><b>Definition</b> glTypes.h:238</div></div>
+<div class="ttc" id="aclassgl_video_memory_html_a1ee38dc72e41940446fe3bf03e54d659"><div class="ttname"><a href="classgl_video_memory.html#a1ee38dc72e41940446fe3bf03e54d659">glVideoMemory::LimitRegion</a></div><div class="ttdeci">static void LimitRegion()</div><div class="ttdoc">Limits the region to the intersection with the current drawing region.</div><div class="ttdef"><b>Definition</b> glTypes.h:271</div></div>
+<div class="ttc" id="aclassgl_video_memory_html_a3fbd6abbb3a2b322e2313bef9d4664a8"><div class="ttname"><a href="classgl_video_memory.html#a3fbd6abbb3a2b322e2313bef9d4664a8">glVideoMemory::Init</a></div><div class="ttdeci">static void Init(const P_t w, const P_t h, glARGB_t *pvm)</div><div class="ttdoc">Initializes the video memory with the specified dimensions and buffer.</div><div class="ttdef"><b>Definition</b> glTypes.h:294</div></div>
+<div class="ttc" id="aclassgl_video_memory_html_aec104053547ef2609fadd975369ca657"><div class="ttname"><a href="classgl_video_memory.html#aec104053547ef2609fadd975369ca657">glVideoMemory::NextRegion</a></div><div class="ttdeci">static void NextRegion()</div><div class="ttdoc">Moves to the next region to be drawn.</div><div class="ttdef"><b>Definition</b> glTypes.h:279</div></div>
+<div class="ttc" id="astructgl2_d_point__t_html"><div class="ttname"><a href="structgl2_d_point__t.html">gl2DPoint_t</a></div><div class="ttdoc">Represents a 2D rectangular region defined by two points.</div><div class="ttdef"><b>Definition</b> glTypes.h:84</div></div>
+<div class="ttc" id="astructgl_a_r_g_b__t_html"><div class="ttname"><a href="structgl_a_r_g_b__t.html">glARGB_t</a></div><div class="ttdoc">Represents a color in ARGB format.</div><div class="ttdef"><b>Definition</b> glColor.h:43</div></div>
+<div class="ttc" id="astructgl_a_r_g_b__t_html_af46d13fc72a0e7d7bee0323f23652095"><div class="ttname"><a href="structgl_a_r_g_b__t.html#af46d13fc72a0e7d7bee0323f23652095">glARGB_t::A</a></div><div class="ttdeci">C_t A</div><div class="ttdoc">Color channels in ARGB format, fitting LTDC layout.</div><div class="ttdef"><b>Definition</b> glColor.h:63</div></div>
+<div class="ttc" id="astructgl_touch_point__t_html"><div class="ttname"><a href="structgl_touch_point__t.html">glTouchPoint_t</a></div><div class="ttdoc">Represents a point of touch, with actions and slide directions.</div><div class="ttdef"><b>Definition</b> glTypes.h:308</div></div>
+<div class="ttc" id="auniongl_event_1_1u_event_html_a2a4b08d609e8753710a2973f3f9d62a1"><div class="ttname"><a href="uniongl_event_1_1u_event.html#a2a4b08d609e8753710a2973f3f9d62a1">glEvent::uEvent::Action</a></div><div class="ttdeci">glTouchPoint_t::eSlideAction Action</div><div class="ttdoc">The action of the slide event.</div><div class="ttdef"><b>Definition</b> glTypes.h:394</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -1,0 +1,129 @@
+\doxysection{gl\+Themes.\+h}
+\hypertarget{gl_themes_8h_source}{}\label{gl_themes_8h_source}\index{glSTM32H7xx/glThemes.h@{glSTM32H7xx/glThemes.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ 2024\ Søren Gullach}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ You\ must\ include\ the\ following\ attribution\ in\ all\ copies\ or\ substantial\ portions\ of\ the\ Software:}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ "{}Søren Gullach\ <STM32\_R7\_OS@toolsbox.dk>"{}}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}glColor.h"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_front_color_theme}{glFrontColorTheme}}}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classgl_front_color_theme}{glFrontColorTheme}}()\ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ :\ \_FrontColor(glColor\_t::eColorOperation::ComplementBackground)\ }
+\DoxyCodeLine{00029\ \ \ \ \ \{\}}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classgl_front_color_theme}{glFrontColorTheme}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ \&frontColor)}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ :\ \_FrontColor(frontColor)}
+\DoxyCodeLine{00032\ \ \ \ \ \{\}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ FrontColor()\ \{\ \textcolor{keywordflow}{return}\ \_FrontColor;\ \}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ FrontColor(\mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ color)\ \{\ \_FrontColor\ =\ color;\ \}}
+\DoxyCodeLine{00036\ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ \_FrontColor;}
+\DoxyCodeLine{00038\ \};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_back_color_theme}{glBackColorTheme}}}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{classgl_back_color_theme}{glBackColorTheme}}()\ \ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ :\ \_BackColor(glColors::BISQUE)\ }
+\DoxyCodeLine{00045\ \ \ \ \ \{\}}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classgl_back_color_theme}{glBackColorTheme}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ \&backColor)}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ :\ \_BackColor(backColor)}
+\DoxyCodeLine{00048\ \ \ \ \ \{\}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ BackColor()\ \ \{\ \textcolor{keywordflow}{return}\ \_BackColor;\ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ BackColor(\mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ color)\ \ \ \ \{\ \_BackColor\ =\ color;\ \}}
+\DoxyCodeLine{00052\ \ \ \ \ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ \_BackColor;}
+\DoxyCodeLine{00054\ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_text_color_theme}{glTextColorTheme}}}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{classgl_text_color_theme}{glTextColorTheme}}()\ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ :\ \_TextColor(glColor\_t::eColorOperation::ComplementBackground)\ }
+\DoxyCodeLine{00061\ \ \ \ \ \{\}}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classgl_text_color_theme}{glTextColorTheme}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ \&textColor)}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ :\ \_TextColor(textColor)}
+\DoxyCodeLine{00064\ \ \ \ \ \{\}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ TextColor()\ \ \{\ \textcolor{keywordflow}{return}\ \_TextColor;\ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ TextColor(\mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ color)\ \ \ \ \{\ \_TextColor\ =\ color;\ \}}
+\DoxyCodeLine{00068\ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ \_TextColor;}
+\DoxyCodeLine{00070\ \};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_label_theme}{glLabelTheme}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_text_color_theme}{glTextColorTheme}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_back_color_theme}{glBackColorTheme}}}
+\DoxyCodeLine{00073\ \{}
+\DoxyCodeLine{00074\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{classgl_label_theme}{glLabelTheme}}()}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_text_color_theme}{glTextColorTheme}}()\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ ,\ \mbox{\hyperlink{classgl_back_color_theme}{glBackColorTheme}}(glColors::AQUA)}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ ,\ \_BorderColor(glColors::WHITE)}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ ,\ \_BorderWidth(0)}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ ,\ \_CornerRadius(0)}
+\DoxyCodeLine{00081\ \ \ \ \ \{\}}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{classgl_label_theme}{glLabelTheme}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ \&textColor,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ \&backColor,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ \&borderColor,\ P\_t\ borderWidth,\ P\_t\ cornerRadius)}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_text_color_theme}{glTextColorTheme}}(textColor)}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ ,\ \mbox{\hyperlink{classgl_back_color_theme}{glBackColorTheme}}(backColor)}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ ,\ \_BorderColor(borderColor)}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ ,\ \_BorderWidth(borderWidth)}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ ,\ \_CornerRadius(cornerRadius)}
+\DoxyCodeLine{00088\ \ \ \ \ \{\}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ BorderColor()\ \ \ \ \{\ \textcolor{keywordflow}{return}\ \_BorderColor;\ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{virtual}\ P\_t\ BorderWidth()\ \ \ \{\ \textcolor{keywordflow}{return}\ \_BorderWidth;\ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{virtual}\ P\_t\ CornerRadius()\ \ \{\ \textcolor{keywordflow}{return}\ \_CornerRadius;\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ BorderColor(\mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ color)\ \ \{\ \_BorderColor\ =\ color;\ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ BorderWidth(P\_t\ width)\ \{\ \_BorderWidth\ =\ width;\ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ CornerRadius(P\_t\ radius)\ \ \ \{\ \_CornerRadius\ =\ radius;\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ \_BorderColor;}
+\DoxyCodeLine{00099\ \ \ \ \ P\_t\ \_BorderWidth;}
+\DoxyCodeLine{00100\ \ \ \ \ P\_t\ \_CornerRadius;}
+\DoxyCodeLine{00101\ \};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_button_theme}{glButtonTheme}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_label_theme}{glLabelTheme}}}
+\DoxyCodeLine{00104\ \{}
+\DoxyCodeLine{00105\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{classgl_button_theme}{glButtonTheme}}()}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_label_theme}{glLabelTheme}}(}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ glColor\_t::eColorOperation::ComplementBackground,}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ glColors::BLUE,}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ glColors::WHITE,}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ 5,}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ 20)\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ ,\ \_PressedColor(\mbox{\hyperlink{classgl_color__t}{glColor\_t}}(glColor\_t::eColorOperation::ComplementBackground).Color(\_BackColor))}
+\DoxyCodeLine{00114\ \ \ \ \ \{\}}
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{classgl_button_theme}{glButtonTheme}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ \&frontColor,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ \&backColor,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ \&borderColor,\ P\_t\ borderWidth,\ P\_t\ cornerRadius)}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_label_theme}{glLabelTheme}}(frontColor,\ backColor,\ borderColor,\ borderWidth,\ cornerRadius)}
+\DoxyCodeLine{00117\ \ \ \ \ \{\}}
+\DoxyCodeLine{00118\ \ \ \ \ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ ReleasedColor(\mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ color)\ \ \ \ \{\ \_BackColor\ =\ color;\ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ PressedColor(\mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ color)\ \{\ \_PressedColor\ =\ color;\ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ \_PressedColor;}
+\DoxyCodeLine{00123\ \};}
+
+\end{DoxyCode}
