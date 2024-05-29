@@ -4,4 +4,4 @@ It is based on the VisualGDB platform. The goal is to make 2 projects one for th
 
 I want to make some sort of platform (Visual studio plugin) to setup the clocksystem (cubeMX clon) and to design the display layout (LVGL clon). If you have any knowlege of making Visual studio plugin please let me know :-)
 
-![The current GL libary](https://github.com/SorenGullach/Riverdi_OS_test/blob/master/html/classgl_link.html)
+![The current GL libary](https://github.com/SorenGullach/Riverdi_OS_test/blob/master/html/classgl_link.png)
