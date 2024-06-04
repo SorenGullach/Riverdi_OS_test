@@ -93,6 +93,7 @@ add_bsp_based_executable(
 		glSTM32H7xx/glThemes.h
 		osSTM32H7xx/DMA2D.h
 		glSTM32H7xx/glVMPlot.h
+		"A GUI for Riverdi STM32.docx"
 	LINKER_SCRIPT STM32H757XI_flash.lds)
 
 target_include_directories(Riverdi_OS_test PRIVATE glSTM32H7xx osSTM32H7xx glSTM32H7xx/Fonts ../../Users/45201/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32H7xxxx/CMSIS_HAL/Device/ST/STM32H7xx/Include $ENV{ToolchainDir}/arm-none-eabi/include/c++/12.3.1/pstl ../../Users/45201/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32H7xxxx/CMSIS_HAL/Core/Include)
