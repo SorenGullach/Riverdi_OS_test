@@ -30,128 +30,117 @@
 \DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_slider}{glSlider}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_widget_link}{glWidgetLink}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_button_theme}{glButtonTheme}},\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classgl_plot2_d_helper}{glPlot2DHelper}}}
 \DoxyCodeLine{00027\ \ \ \ \ \{}
 \DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_slider}{glSlider}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ \&region,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *text,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classgl_button_theme}{glButtonTheme}}\ \&theme\ =\ \mbox{\hyperlink{classgl_button_theme}{glButtonTheme}}())}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_slider}{glSlider}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}\ \&region,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *text,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classgl_button_theme}{glButtonTheme}}\ \&theme\ =\ \mbox{\hyperlink{classgl_button_theme}{glButtonTheme}}())}
 \DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_widget_link}{glWidgetLink}}(\textcolor{stringliteral}{"{}Slider"{}},\ region)}
 \DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ \mbox{\hyperlink{classgl_button_theme}{glButtonTheme}}(theme)}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ \_Text(region.Inflate(-\/\_BorderWidth),\ text,\ fontFamily,\ theme.\_TextColor)}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ \_Text(region.\mbox{\hyperlink{structgl_region__t_acba263052bea9e92a1e02ac8bed5994c}{Inflate}}(-\/\_BorderWidth),\ text,\ fontFamily,\ theme.\_TextColor)}
 \DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ Add(\&\_Text);}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ Horisontal\ =\ region.Height()\ <\ region.Width();}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \_CornerRadius\ =\ std::min(region.Height(),\ region.Width())\ /\ 4;}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ Invalid\ =\ \_Region;}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ Horisontal\ =\ region.\mbox{\hyperlink{structgl_region__t_a12d481ccfda593268fd6e7a21f3340ef}{Height}}()\ <\ region.\mbox{\hyperlink{structgl_region__t_a80c348184d3c58a58855e984c6c56dcd}{Width}}();}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \_CornerRadius\ =\ std::min(region.\mbox{\hyperlink{structgl_region__t_a12d481ccfda593268fd6e7a21f3340ef}{Height}}(),\ region.\mbox{\hyperlink{structgl_region__t_a80c348184d3c58a58855e984c6c56dcd}{Width}}())\ /\ 4;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ CalcCursor(\_Region.\mbox{\hyperlink{structgl_region__t_acba263052bea9e92a1e02ac8bed5994c}{Inflate}}(-\/\_BorderWidth));}
 \DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00039\ }
 \DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{protected}:}
 \DoxyCodeLine{00041\ \ \ \ \ }
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Touch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&point)\textcolor{keyword}{\ override\ }}
-\DoxyCodeLine{00043\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Handled\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_Region.IsInside(point.X,\ point.Y))\ }
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (point.TipAction\ ==\ glTouchPoint\_t::eTipAction::Tip\ \&\&\ !Pressed)}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pressed\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Handled\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InvalidateMe();}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (point.TipAction\ ==\ glTouchPoint\_t::eTipAction::Up\ \&\&\ Pressed)}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_click}{Click}}\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pressed\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Handled\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InvalidateMe();}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (point.TipAction\ ==\ glTouchPoint\_t::eTipAction::Tip\ ||\ }
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ point.TipAction\ ==\ glTouchPoint\_t::eTipAction::Slide)\ \&\&\ }
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pressed)\ }
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ r\ =\ \_Region.Inflate(-\/\_BorderWidth\ +\ 1);}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Horisontal)}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ P\_t\ p\ =\ point.X\ -\/\ r.L();}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p\ !=\ Pos\ \&\&\ p>0)}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pos\ =\ p;}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Pos\ >\ r.Width()\ -\/\ 2*\_CornerRadius)}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pos\ =\ r.Width()\ -\/\ 2*\_CornerRadius;}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ i\ =\ Cursor;\ \textcolor{comment}{//\ old\ invalid\ region}}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Cursor\ =\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(r.L()\ +\ Pos,\ r.T(),\ r.L()\ +\ 2*\_CornerRadius\ +\ Pos,\ r.B());}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Invalid\ =\ i.Union(Cursor).Inflate(10,0,10,0);\ \textcolor{comment}{//\ add\ new\ invalid\ region}}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_Text.\mbox{\hyperlink{classgl_text_a19264aab311e7397631f59a4405181be}{Text}}(\textcolor{stringliteral}{"{}\%d"{}},\ Pos);}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Handled\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ImInvalidated\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ P\_t\ p\ =\ point.Y\ -\/\ r.T();}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p\ !=\ Pos\ \&\&\ p>0)}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pos\ =\ p;}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Pos\ >\ r.Height()\ -\/\ 2*\_CornerRadius)}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pos\ =\ r.Height()\ -\/\ 2*\_CornerRadius;}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ i\ =\ Cursor;\ \textcolor{comment}{//\ old\ invalid\ region}}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Cursor\ =\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(r.L(),\ r.T()\ +\ Pos,\ r.R(),\ r.T()\ +\ 2*\_CornerRadius\ +\ Pos);}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Invalid\ =\ i.Union(Cursor).Inflate(0,10,0,10);\ \textcolor{comment}{//\ add\ new\ invalid\ region}}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_Text.\mbox{\hyperlink{classgl_text_a19264aab311e7397631f59a4405181be}{Text}}(\textcolor{stringliteral}{"{}\%d"{}},\ Pos);}
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Handled\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ImInvalidated\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Pressed)}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pressed\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Handled\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InvalidateMe();}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ }
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Handled;}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00111\ }
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ redraw\ your\ self}}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Redraw()\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00114\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ImInvalidated)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ CalcCursor(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}\ \&r)}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \_InvalidatedRegion\ =\ \_InvalidatedRegion.\mbox{\hyperlink{structgl_region__t_aa44e5c4d6698544a6fa4c3e711297f27}{Union}}(Cursor);\ \textcolor{comment}{//\ old\ invalid\ region}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Horisontal)}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Cursor\ =\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(r.\mbox{\hyperlink{structgl_region__t_a9e374ea5e63b053b8671b99d683eac20}{L}}()\ +\ Pos,\ r.\mbox{\hyperlink{structgl_region__t_ae1c6bf25fbf9883d34099151b3016a26}{T}}(),\ r.\mbox{\hyperlink{structgl_region__t_a9e374ea5e63b053b8671b99d683eac20}{L}}()\ +\ 2*\_CornerRadius\ +\ Pos,\ r.\mbox{\hyperlink{structgl_region__t_aa00fd21ea8ad9da215094909983ba3b9}{B}}());}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Cursor\ =\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(r.\mbox{\hyperlink{structgl_region__t_a9e374ea5e63b053b8671b99d683eac20}{L}}(),\ r.\mbox{\hyperlink{structgl_region__t_ae1c6bf25fbf9883d34099151b3016a26}{T}}()\ +\ Pos,\ r.\mbox{\hyperlink{structgl_region__t_afb635b2ddf463697760e8cbcb1f805ab}{R}}(),\ r.\mbox{\hyperlink{structgl_region__t_ae1c6bf25fbf9883d34099151b3016a26}{T}}()\ +\ 2*\_CornerRadius\ +\ Pos);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \_InvalidatedRegion\ =\ \_InvalidatedRegion.\mbox{\hyperlink{structgl_region__t_aa44e5c4d6698544a6fa4c3e711297f27}{Union}}(Cursor);\ \textcolor{comment}{//\ add\ new\ invalid\ region}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \_Text.\mbox{\hyperlink{classgl_text_a19264aab311e7397631f59a4405181be}{Text}}(\textcolor{stringliteral}{"{}\%d"{}},\ Pos);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ InvalidateChilds();}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Touch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&point)\textcolor{keyword}{\ override\ }}
+\DoxyCodeLine{00055\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Handled\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}\ r\ =\ \_Region.\mbox{\hyperlink{structgl_region__t_acba263052bea9e92a1e02ac8bed5994c}{Inflate}}(-\/\_BorderWidth);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_Region.\mbox{\hyperlink{structgl_region__t_a25b4e6667895b822adb0d90a57290c54}{IsInside}}(point.X,\ point.Y))\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (point.TipAction\ ==\ glTouchPoint\_t::eTipAction::Tip\ \&\&\ !Pressed)}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pressed\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CalcCursor(r);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Handled\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (point.TipAction\ ==\ glTouchPoint\_t::eTipAction::Up\ \&\&\ Pressed)}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_click}{Click}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pressed\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CalcCursor(r);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Handled\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (point.TipAction\ ==\ glTouchPoint\_t::eTipAction::Tip\ ||\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ point.TipAction\ ==\ glTouchPoint\_t::eTipAction::Slide)\ \&\&\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pressed)\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Horisontal)}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ p\ =\ point.X\ -\/\ r.\mbox{\hyperlink{structgl_region__t_a9e374ea5e63b053b8671b99d683eac20}{L}}();}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p\ !=\ Pos\ \&\&\ p\ >\ 0)}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pos\ =\ p;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Pos\ >\ r.\mbox{\hyperlink{structgl_region__t_a80c348184d3c58a58855e984c6c56dcd}{Width}}()\ -\/\ 2*\_CornerRadius)}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pos\ =\ r.\mbox{\hyperlink{structgl_region__t_a80c348184d3c58a58855e984c6c56dcd}{Width}}()\ -\/\ 2*\_CornerRadius;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CalcCursor(r);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Handled\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ p\ =\ point.Y\ -\/\ r.\mbox{\hyperlink{structgl_region__t_ae1c6bf25fbf9883d34099151b3016a26}{T}}();}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p\ !=\ Pos\ \&\&\ p\ >\ 0)}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pos\ =\ p;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Pos\ >\ r.\mbox{\hyperlink{structgl_region__t_a12d481ccfda593268fd6e7a21f3340ef}{Height}}()\ -\/\ 2*\_CornerRadius)}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pos\ =\ r.\mbox{\hyperlink{structgl_region__t_a12d481ccfda593268fd6e7a21f3340ef}{Height}}()\ -\/\ 2*\_CornerRadius;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CalcCursor(r);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Handled\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Pressed)}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pressed\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CalcCursor(r);}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Handled\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Handled;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00116\ }
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ r\ =\ \_Region.Inflate(-\/\_BorderWidth\ +\ 1);}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ PlotRectangleRoundFill(r,\ \_CornerRadius,\ \_BackColor);}
-\DoxyCodeLine{00119\ }
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ PlotRectangleRoundFill(Cursor,\ \_CornerRadius,\ \_PressedColor);}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ redraw\ your\ self}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Redraw()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00119\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_InvalidatedRegion.\mbox{\hyperlink{structgl_region__t_a4a8a5ab4f10562e41c5c6d7cb65c7ed4}{IsEmpty}}())\ \textcolor{keywordflow}{return};}
 \DoxyCodeLine{00121\ }
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ PlotBorder(\_Region,\ \_BorderWidth,\ \_CornerRadius,\ \_BorderColor);}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgl_video_memory_a79f28b876830fedd3cc74a256eb2c410}{glVideoMemory::lastBand}}())\ }
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Invalid\ =\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}();}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ImInvalidated\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00130\ \ \ \ \ }
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ InvalidateMe()\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00132\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ Invalid\ =\ \_Region;}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ glWidgetLink::InvalidateMe();}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00136\ }
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ InvalidRegion()\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00138\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Invalid;}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00141\ }
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_text}{glText<len>}}\ \_Text;}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Horizontal\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ P\_t\ Pos\ =\ 0;}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ Cursor;}
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ Invalid;}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Horisontal;}
-\DoxyCodeLine{00148\ }
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_click}{Click}}\ =\ \textcolor{keyword}{false},\ Pressed\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00150\ \ \ \ \ \};}
-\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}\ r\ =\ \_Region.\mbox{\hyperlink{structgl_region__t_acba263052bea9e92a1e02ac8bed5994c}{Inflate}}(-\/\_BorderWidth\ +\ 1);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ PlotRectangleRoundFill(r,\ \_CornerRadius,\ \_BackColor);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ PlotRectangleRoundFill(Cursor,\ \_CornerRadius,\ \_PressedColor);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ PlotBorder(\_Region,\ \_BorderWidth,\ \_CornerRadius,\ \_BorderColor);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \_InvalidatedRegion.\mbox{\hyperlink{structgl_region__t_ae164ca290effc63b09a5963bdd5a31ef}{Empty}}();}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_text}{glText<len>}}\ \_Text;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Horizontal\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ P\_t\ Pos\ =\ 0;}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}\ Cursor;}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Horisontal;}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_click}{Click}}\ =\ \textcolor{keyword}{false},\ Pressed\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00139\ \ \ \ \ \};}
+\DoxyCodeLine{00140\ }
 
 \end{DoxyCode}

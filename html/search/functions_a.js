@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['redraw_0',['Redraw',['../classgl_text.html#a59e9ee707d941be372bf6ac329c84229',1,'glText']]]
+  ['normalize_0',['Normalize',['../structgl_region__t.html#ae296b0e8ccfaf9fdac6509e8845e5e2f',1,'glRegion_t']]]
 ];

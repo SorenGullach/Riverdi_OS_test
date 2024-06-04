@@ -1,5 +1,14 @@
 \doxysection{gl\+Line Class Reference}
 \hypertarget{classgl_line}{}\label{classgl_line}\index{glLine@{glLine}}
+
+
+endpoints is inclusive  
+
+
+
+
+{\ttfamily \#include $<$gl\+Widgets.\+h$>$}
+
 Inheritance diagram for gl\+Line\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,13 +18,15 @@ Inheritance diagram for gl\+Line\+:\begin{figure}[H]
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{classgl_line_a001eaec5f6de1f7e44d868d0729c5eba}\label{classgl_line_a001eaec5f6de1f7e44d868d0729c5eba} 
-{\bfseries gl\+Line} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} start\+End, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&color)
+\Hypertarget{classgl_line_aa051cc46ba288c0955530406d70ad780}\label{classgl_line_aa051cc46ba288c0955530406d70ad780} 
+{\bfseries gl\+Line} (const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} start, \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} end, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&color)
+\item 
+virtual void \mbox{\hyperlink{classgl_line_a4fbb6905f115fa68fb0143807ba007cf}{Move\+To}} (const \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \&region) override
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_widget_link}{gl\+Widget\+Link}}}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries gl\+Widget\+Link} (char const \texorpdfstring{$\ast$}{*}name, const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&region)
+{\bfseries gl\+Widget\+Link} (char const \texorpdfstring{$\ast$}{*}name, const \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \&region)
 \item 
 void {\bfseries Add} (\mbox{\hyperlink{classgl_widget_link}{gl\+Widget\+Link}} \texorpdfstring{$\ast$}{*}child)
 \item 
@@ -23,21 +34,17 @@ virtual const char \texorpdfstring{$\ast$}{*} {\bfseries Name} ()
 \item 
 virtual void {\bfseries Name} (const char \texorpdfstring{$\ast$}{*}name)
 \item 
-virtual \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \& {\bfseries Region} ()
-\item 
-virtual void {\bfseries Move\+To} (const \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&region)
-\item 
-virtual \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Invalid\+Region} ()
+virtual \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \& {\bfseries Region} ()
 \item 
 void \mbox{\hyperlink{classgl_widget_link_a8787d368f7b9a9ade0674b02037b3da2}{Update\+Look}} ()
 \item 
-void \mbox{\hyperlink{classgl_widget_link_a100ce9c8ad912aebb70b19a9719f7bd5}{Update\+State}} (\mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point, bool \&Handled)
+void \mbox{\hyperlink{classgl_widget_link_ae63f117a21c754b429d7b936f5ad9fe3}{Update\+State}} (const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point, bool \&Handled)
 \item 
-void \mbox{\hyperlink{classgl_widget_link_a076150fac6eabf764194bb3e7c60bee2}{Invalidate\+Me}} ()
+void \mbox{\hyperlink{classgl_widget_link_a7c03f9215852c6776b7571160bfa9b92}{Invalidate\+Childs}} ()
 \item 
-void \mbox{\hyperlink{classgl_widget_link_adcca51f096fd7199fa5f1f80792fede9}{Invalidate\+Siblings}} ()
+void \mbox{\hyperlink{classgl_widget_link_a0b7b64765ec43ee17e5a595ad1469c39}{Invalidate\+Widgets}} ()
 \item 
-bool \mbox{\hyperlink{classgl_widget_link_adfb23cb2f1906d04c621992fdea54520}{Is\+Invalidated}} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&invalid\+Region)
+void \mbox{\hyperlink{classgl_widget_link_afa1bc993ed42f7245cf283135dffe2f5}{Invalidated\+Region}} (\mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \&invalid\+Region)
 \item 
 void \mbox{\hyperlink{classgl_widget_link_afafacbc70939f2aa821a49fd29c9c129}{Event}} (\mbox{\hyperlink{classgl_event}{gl\+Event}} event)
 \end{DoxyCompactItemize}
@@ -64,20 +71,23 @@ virtual void \mbox{\hyperlink{classgl_line_abf4cdeb56477767437dc5b1c9f6ac23c}{Re
 \item 
 bool \mbox{\hyperlink{classgl_line_a646176cfe0197a0ec1f7f043e8cf7423}{Touch}} (const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&) override
 \end{DoxyCompactItemize}
-\doxysubsubsection*{Additional Inherited Members}
-\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classgl_front_color_theme}{gl\+Front\+Color\+Theme}}}
+\doxysubsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries \+\_\+\+Front\+Color}
+\Hypertarget{classgl_line_a0f26f55ee1eefd665b764d4035ad056b}\label{classgl_line_a0f26f55ee1eefd665b764d4035ad056b} 
+\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} {\bfseries \+\_\+\+Start}
+\item 
+\Hypertarget{classgl_line_aba8631d70203249292f89c0cd1628cfc}\label{classgl_line_aba8631d70203249292f89c0cd1628cfc} 
+\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} {\bfseries \+\_\+\+End}
 \end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classgl_widget_link}{gl\+Widget\+Link}}}
 \begin{DoxyCompactItemize}
 \item 
-char const  \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+\+Name} = "{}gl\+Widget"{}
+char const  \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+\+Name} = "{}gl\+Widget\+Link"{}
 \item 
-bool {\bfseries Im\+Invalidated} = true
+\mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} {\bfseries \+\_\+\+Region}
 \item 
-\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries \+\_\+\+Region}
+\mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} {\bfseries \+\_\+\+Invalidated\+Region}
 \end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classgl_link}{gl\+Link}}}
 \begin{DoxyCompactItemize}
@@ -86,9 +96,28 @@ bool {\bfseries Im\+Invalidated} = true
 \item 
 \mbox{\hyperlink{classgl_link}{gl\+Link}} \texorpdfstring{$\ast$}{*} {\bfseries p\+Prev} = nullptr
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classgl_front_color_theme}{gl\+Front\+Color\+Theme}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries \+\_\+\+Front\+Color}
+\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+endpoints is inclusive 
 
 \doxysubsection{Member Function Documentation}
+\Hypertarget{classgl_line_a4fbb6905f115fa68fb0143807ba007cf}\label{classgl_line_a4fbb6905f115fa68fb0143807ba007cf} 
+\index{glLine@{glLine}!MoveTo@{MoveTo}}
+\index{MoveTo@{MoveTo}!glLine@{glLine}}
+\doxysubsubsection{\texorpdfstring{MoveTo()}{MoveTo()}}
+{\footnotesize\ttfamily virtual void gl\+Line\+::\+Move\+To (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \&}]{region }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classgl_widget_link}{gl\+Widget\+Link}}.
+
 \Hypertarget{classgl_line_abf4cdeb56477767437dc5b1c9f6ac23c}\label{classgl_line_abf4cdeb56477767437dc5b1c9f6ac23c} 
 \index{glLine@{glLine}!Redraw@{Redraw}}
 \index{Redraw@{Redraw}!glLine@{glLine}}

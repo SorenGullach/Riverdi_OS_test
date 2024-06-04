@@ -1,16 +1,8 @@
 var searchData=
 [
-  ['text_0',['Text',['../classgl_text.html#a19264aab311e7397631f59a4405181be',1,'glText']]],
-  ['textsize_1',['TextSize',['../classgl_text.html#aa6357b4d292d078d2acbbdf2bbeda454',1,'glText']]],
-  ['tftdisplay_2',['TFTDisplay',['../class_t_f_t_display.html',1,'']]],
-  ['timer_3',['Timer',['../class_timer.html',1,'']]],
-  ['timer15_4',['Timer15',['../class_timer15.html',1,'']]],
-  ['timer16_5',['Timer16',['../class_timer16.html',1,'']]],
-  ['timer17_6',['Timer17',['../class_timer17.html',1,'']]],
-  ['timercapturecompare_7',['TimerCaptureCompare',['../class_timer_capture_compare.html',1,'']]],
-  ['timercapturecompare_3c_20uint16_5ft_2c_201_20_3e_8',['TimerCaptureCompare&lt; uint16_t, 1 &gt;',['../class_timer_capture_compare.html',1,'']]],
-  ['timercapturecompare_3c_20uint16_5ft_2c_202_20_3e_9',['TimerCaptureCompare&lt; uint16_t, 2 &gt;',['../class_timer_capture_compare.html',1,'']]],
-  ['timercounter_10',['TimerCounter',['../class_timer_counter.html',1,'']]],
-  ['timercounter_3c_20uint16_5ft_20_3e_11',['TimerCounter&lt; uint16_t &gt;',['../class_timer_counter.html',1,'']]],
-  ['touch_12',['Touch',['../classcb_display.html#a085ed844fefb4b808aa4f0d431e561be',1,'cbDisplay']]]
+  ['screenheight_0',['ScreenHeight',['../classgl_video_memory.html#ad2a3fbb1c2c576796b960406fa7951b9',1,'glVideoMemory']]],
+  ['screenwidth_1',['ScreenWidth',['../classgl_video_memory.html#ad8382197b985124b688fd84216728f14',1,'glVideoMemory']]],
+  ['slide_2',['Slide',['../struct_slide.html',1,'Slide'],['../classgl_event.html#ae63986141ad7b77417913f127b8edfe7a6160a53ece50ce6d4f5ef4452549835e',1,'glEvent::Slide']]],
+  ['startm2mtransfer_3',['StartM2MTransfer',['../classhw_d_m_a2_d.html#aa1c6f91e2557bd17f0502bee9bda8a4b',1,'hwDMA2D']]],
+  ['stoptransfer_4',['StopTransfer',['../classhw_d_m_a2_d.html#a365278daa9f9f17798f7d52dd81a8c15',1,'hwDMA2D']]]
 ];

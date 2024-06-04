@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['eeventtype_0',['eEventType',['../classgl_event.html#ae63986141ad7b77417913f127b8edfe7',1,'glEvent']]],
-  ['eslideaction_1',['eSlideAction',['../structgl_touch_point__t.html#ab359bc458af91368eeb9b9f6c0478fb4',1,'glTouchPoint_t']]],
-  ['etipaction_2',['eTipAction',['../structgl_touch_point__t.html#a157257461882a3a46a9439f69c293837',1,'glTouchPoint_t']]],
-  ['eventtype_3',['EventType',['../classgl_event.html#ac6b12daf3096d10ee67fce2a8af6bf1b',1,'glEvent']]]
+  ['displace_0',['Displace',['../structgl_point__t.html#a384cc5afe0d187aa31335692660c26f0',1,'glPoint_t::Displace(const int dx, const int dy) const'],['../structgl_point__t.html#a981ec0f8d253aad258cb75ce895256e5',1,'glPoint_t::Displace(const glPoint_t &amp;p) const'],['../structgl_region__t.html#a8429b223a1990ac758c0b57d3ae3505d',1,'glRegion_t::Displace(const int dx, const int dy) const'],['../structgl_region__t.html#a407184adfa026f09af99e61bfba66531',1,'glRegion_t::Displace(const glPoint_t &amp;p) const']]]
 ];

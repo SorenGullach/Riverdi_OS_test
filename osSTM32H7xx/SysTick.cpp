@@ -22,7 +22,7 @@
 #include "RCC.h"
 #include "Hardware.h"
 
-uint32_t hwSysTick::Ticks = 0;
+uint32_t volatile hwSysTick::Ticks = 0;
 
 void hwSysTick::Init()
 {

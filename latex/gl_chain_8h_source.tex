@@ -37,10 +37,10 @@
 \DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//virtual\ void\ Init()\ =\ 0;}}
 \DoxyCodeLine{00035\ \ \ \ \ }
 \DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ UpdateLook()\ =\ 0;}
-\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ UpdateState(\mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&point,\ \textcolor{keywordtype}{bool}\ \&Handled)\ =\ 0;}
-\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ IsInvalidated(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ \&invalidRegion)\ =\ 0;}
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ InvalidateMe()\ =\ 0;}
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ InvalidateSiblings()\ =\ 0;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ UpdateState(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&point,\ \textcolor{keywordtype}{bool}\ \&Handled)\ =\ 0;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ InvalidatedRegion(\mbox{\hyperlink{structgl_region__t}{glRegion\_t}}\ \&invalidRegion)\ =\ 0;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ InvalidateChilds()\ =\ 0;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ InvalidateWidgets()\ =\ 0;}
 \DoxyCodeLine{00041\ \ \ \ \ }
 \DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ buble\ event\ to\ top}}
 \DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Event(\mbox{\hyperlink{classgl_event}{glEvent}}\ event)\ =\ 0;}

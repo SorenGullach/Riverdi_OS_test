@@ -28,7 +28,7 @@ template<int len, const FontItem *fontFamily>
 	class glLabel : public glWidgetLink, public glLabelTheme, private glPlot2DHelper
 	{
 	public:
-		glLabel(const gl2DPoint_t &region, const char *text, const glLabelTheme &theme = glLabelTheme())
+		glLabel(const glRegion_t &region, const char *text, const glLabelTheme &theme = glLabelTheme())
 			: glWidgetLink("Label", region)
 			, glLabelTheme(theme)
 			, _Text(region.Inflate(-_BorderWidth), text, fontFamily, theme._TextColor)
@@ -43,20 +43,14 @@ template<int len, const FontItem *fontFamily>
 		// redraw your self
 		virtual void Redraw() override
 		{
-			if (!ImInvalidated) return ;
+			if (_InvalidatedRegion.IsEmpty()) return ;
 
 			PlotRectangleRoundFill(_Region.Inflate(-_BorderWidth + 1), _CornerRadius, _BackColor);
 
 			PlotBorder(_Region, _BorderWidth, _CornerRadius, _BorderColor);
 		
-			if (glVideoMemory::lastBand()) 
-				ImInvalidated = false;
+			_InvalidatedRegion.Empty();
 		}
-	
-		gl2DPoint_t InvalidRegion() override
-		{
-			return _Region.Inflate(-_BorderWidth) ;
-		}
-
+		
 		glText<len> _Text;
 	};

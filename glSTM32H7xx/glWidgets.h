@@ -20,6 +20,7 @@
 #pragma once
 
 #include "Hardware.h"
+#include "glVMPlot.h"
 #include "glTypes.h"
 #include "glFont.h"
 #include "glChain.h"
@@ -27,48 +28,14 @@
 #include <string.h>
 #include <assert.h>
 
-/// helper class for plotting on the Video memory
-class glVideoMemoryPlot : protected glVideoMemory
-{
-public:
-	// plot in invalid region and box
-	void Plot(const gl2DPoint_t &box, P_t x, P_t y, const glColor_t &color)	
-	{ 
-		gl2DPoint_t IVR = InvalidRegion.Intersection(box);
-		if (IVR.IsInside(x, y))
-		{
-			assert(x < _ScreenWidth && y < _ScreenHeight);
-			pVM[x + y*_ScreenWidth] = color.operation == glColor_t::eColorOperation::Replace ? (glARGB_t)color : color.Color(pVM[x + y*_ScreenWidth]); 
-		}
-	}
-
-	// plot in invalid region
-	void Plot(P_t x, P_t y, const glColor_t &color)
-	{ 
-		if (InvalidRegion.IsInside(x, y))
-		{
-			assert(x < _ScreenWidth && y < _ScreenHeight);
-			if (color.operation == glColor_t::eColorOperation::Replace)
-				pVM[x + y*_ScreenWidth] = (glARGB_t)color; 
-			else
-				pVM[x + y*_ScreenWidth] = color.Color(pVM[x + y*_ScreenWidth]); 
-			//pVM[x + y*_ScreenWidth] = color.operation == glColor_t::eColorOperation::Replace ? (glARGB_t)color : color.Color(pVM[x + y*_ScreenWidth]); 
-		}
-	}
-
-	// plot in invalid region
-	void Plot(const glPoint_t &p, const glColor_t &color) { Plot(p.X, p.Y, color); }
-	// plot in invalid region and box
-	void Plot(const gl2DPoint_t box, const glPoint_t &p, const glColor_t &color)	{ Plot(box, p.X, p.Y, color); }
-};
-
 /////////////////////////////////////////////////////////////////////////////////////////////
 class glWidgetLink : public glLink
 {
 public:
-	glWidgetLink(char const *name, const gl2DPoint_t &region)
+	glWidgetLink(char const *name, const glRegion_t &region)
 		: _Name(name)
-		, _Region(region.Normalize()) {}
+		, _Region(region.Normalize())
+		, _InvalidatedRegion(_Region) {}
 	
 	// Add a widget to the page
 	void Add(glWidgetLink *child)
@@ -79,17 +46,16 @@ public:
 	virtual const char * Name()					{ return _Name; }
 	virtual void Name(const char *name)			{ _Name = name; }
 
-	virtual gl2DPoint_t &Region()						{ return _Region;	}
-	virtual void MoveTo(const gl2DPoint_t &region)		{ _Region = region; }
+	virtual glRegion_t &Region() { return _Region;	}
+	virtual void MoveTo(const glRegion_t &region)
+	{ 
+		_Region = _InvalidatedRegion = region; 
+	}
 
 	// redraw your self
 	virtual void Redraw() = 0;
 	// Called upon touch change
 	virtual bool Touch(const glTouchPoint_t &) = 0;
-	virtual gl2DPoint_t InvalidRegion() 
-	{
-		return _Region;
-	}
 
 	// called down link to redraw
 	void UpdateLook()
@@ -106,57 +72,47 @@ public:
 	}
 
 	// called down link to update state
-	void UpdateState(glTouchPoint_t &point, bool &Handled)
+	void UpdateState(const glTouchPoint_t &point, bool &Handled)
 	{
-		// Update Childs
-		if (ChainChilds.Head() != nullptr  && !Handled)
-			ChainChilds.Head()->UpdateState(point, Handled);
-
 		// Update widgets
 		if (pNext != nullptr  && !Handled)
 			pNext->UpdateState(point, Handled);
 
-		if(!Handled)
+		// Update Childs
+		if (ChainChilds.Head() != nullptr  && !Handled)
+			ChainChilds.Head()->UpdateState(point, Handled);
+
+		if (!Handled)
 			Handled |= Touch(point); 
 	}
 	
-	void InvalidateMe()
+	void InvalidateChilds()
 	{
-		//Printf("%s Invalidate\n", Name);
-		ImInvalidated = true; // this obj
 		if (ChainChilds.Head() != nullptr)
-			ChainChilds.Head()->InvalidateSiblings(); // & all childs
+			ChainChilds.Head()->InvalidateWidgets(); // & all childs
 	}
 
-	void InvalidateSiblings()
+	void InvalidateWidgets()
 	{
-		InvalidateMe();
+		_InvalidatedRegion = _Region;
+		InvalidateChilds();
 		
 		// Update siblings
 		if (pNext != nullptr)
-			pNext->InvalidateSiblings();
+			pNext->InvalidateWidgets();
 	}
 
-	bool IsInvalidated(gl2DPoint_t &invalidRegion)
+	void InvalidatedRegion(glRegion_t &invalidRegion)
 	{
-		bool Invalid = false;
-		if (ImInvalidated)
-		{
-			invalidRegion = invalidRegion.Union(InvalidRegion());
-			Invalid = true; // all childern is also invalid
-		}
-		else if (ChainChilds.Head() != nullptr)
-		{
-			// ask all childs
-			Invalid = ChainChilds.Head()->IsInvalidated(invalidRegion);
-		}
+		invalidRegion = invalidRegion.Union(_InvalidatedRegion);
+		
+		// ask all childs
+		if (ChainChilds.Head() != nullptr)
+			ChainChilds.Head()->InvalidatedRegion(invalidRegion);
 			
+		// ask next widget
 		if (pNext != nullptr)
-		{
-			// ask all objs
-			Invalid |= pNext->IsInvalidated(invalidRegion);
-		}
-		return Invalid;
+			pNext->InvalidatedRegion(invalidRegion);
 	}
 
 	// buble event to top
@@ -167,10 +123,9 @@ public:
 	}
 
 protected:
-	char const *_Name = "glWidget";
-	// is widget invalidated
-	bool ImInvalidated = true;
-	gl2DPoint_t _Region;
+	char const *_Name = "glWidgetLink";
+	glRegion_t _Region;
+	glRegion_t _InvalidatedRegion;
 private:
 	glChain<glWidgetLink> ChainChilds;
 };
@@ -188,21 +143,20 @@ class glPixel : public glWidgetLink, public glFrontColorTheme, private glVideoMe
 {
 public:
 	glPixel(P_t x, P_t y, const glColor_t &color)
-		: glWidgetLink("Pixel", gl2DPoint_t(x, y, x, y))
+		: glWidgetLink("Pixel", glRegion_t(x, y, x + 1, y + 1))
 		, glFrontColorTheme(color) {}
 
 	glPixel(const glPoint_t &point, const glColor_t &color)
-		: glWidgetLink("Pixel", gl2DPoint_t(point, point))
+		: glWidgetLink("Pixel", glRegion_t(point, point.Displace(1, 1)))
 		, glFrontColorTheme(color) {}
 
 protected:
 	// Redraws the pixel widget.
 	virtual void Redraw() override
 	{
-		if (!ImInvalidated) return;
-		
+		if (_InvalidatedRegion.IsEmpty()) return;
 		Plot(_Region.LT(), _FrontColor);
-		if (glVideoMemory::lastBand()) ImInvalidated = false;
+		_InvalidatedRegion.Empty();
 	}
 	bool Touch(const glTouchPoint_t &) override { return false; }
 };
@@ -218,15 +172,15 @@ public:
 	void PlotCircle(const glPoint_t &center, P_t radius, const glColor_t &color);
 	void PlotCircleFill(const glPoint_t &center, P_t radius, const glColor_t &color);
 	
-	void PlotArc(const gl2DPoint_t &region, const glPoint_t &center, P_t radius, const glColor_t &color);
-	void PlotArcFill(const gl2DPoint_t &region, const glPoint_t &center, P_t radius, const glColor_t &color);
+	void PlotArc(const glRegion_t &region, const glPoint_t &center, P_t radius, const glColor_t &color);
+	void PlotArcFill(const glRegion_t &region, const glPoint_t &center, P_t radius, const glColor_t &color);
 	
-	void PlotRectangle(const gl2DPoint_t &region, const glColor_t &color);
-	void PlotRectangleFill(const gl2DPoint_t &region, const glColor_t &color);
-	void PlotRectangleRound(gl2DPoint_t region, P_t radius, glColor_t color);
-	void PlotRectangleRoundFill(gl2DPoint_t region, P_t radius, glColor_t color);
+	void PlotRectangle(const glRegion_t &region, const glColor_t &color);
+	void PlotRectangleFill(const glRegion_t &region, const glColor_t &color);
+	void PlotRectangleRound(glRegion_t region, P_t radius, glColor_t color);
+	void PlotRectangleRoundFill(glRegion_t region, P_t radius, glColor_t color);
 	 
-	void PlotBorder(gl2DPoint_t region,	P_t width, P_t radius, glColor_t color);
+	void PlotBorder(glRegion_t region, P_t width, P_t radius, glColor_t color);
 private:
 	void PlotLineLow(P_t x0, P_t y0, P_t x1, P_t y1, const glColor_t &color);
 	void PlotLineHigh(P_t x0, P_t y0, P_t x1, P_t y1, const glColor_t &color);
@@ -235,32 +189,40 @@ private:
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////
+/// endpoints is inclusive
 class glLine : private glPlot2DHelper, public glWidgetLink, public glFrontColorTheme
 {
 public:
-	glLine(const gl2DPoint_t startEnd, const glColor_t &color)
-		: glWidgetLink("Line", startEnd)
-		, glFrontColorTheme(color) {}
+	glLine(const glPoint_t start, glPoint_t end, const glColor_t &color)
+		: glWidgetLink("Line", glRegion_t(start, end))
+		, glFrontColorTheme(color)
+		, _Start(start)
+		, _End(end) {}
+
+	virtual void MoveTo(const glRegion_t &region) override
+	{
+		_Start = region.LT();
+		_End = region.RB();
+		glWidgetLink::MoveTo(region);
+	}
 
 protected:
-	// Initialize widget
-//	virtual void Init() override {}
-
 	// redraw your self 
 	virtual void Redraw() override
 	{
-		if (!ImInvalidated) return;
+		if (_InvalidatedRegion.IsEmpty()) return;
 		
-		PlotLine(_Region.L(), _Region.T(), _Region.R(), _Region.B(), _FrontColor);
-		if (glVideoMemory::lastBand()) ImInvalidated = false;
+		PlotLine(_Start.X, _Start.Y, _End.X, _End.Y, _FrontColor);
+		_InvalidatedRegion.Empty();
 	}
 	bool Touch(const glTouchPoint_t &) override { return false; }
+	glPoint_t _Start, _End;
 };
 	
 class glRectangle : protected glPlot2DHelper, public glWidgetLink, public glFrontColorTheme
 {
 public:
-	glRectangle(const gl2DPoint_t &rect, const glColor_t &color)
+	glRectangle(const glRegion_t &rect, const glColor_t &color)
 		: glWidgetLink("Rectangle", rect)
 		, glFrontColorTheme(color) {}
 
@@ -275,11 +237,9 @@ protected:
 		// redraw your self
 	virtual void Redraw() override
 	{
-		if (!ImInvalidated) return ;
-
+		if (_InvalidatedRegion.IsEmpty()) return;
 		Draw();
-		
-		if (glVideoMemory::lastBand()) ImInvalidated = false;
+		_InvalidatedRegion.Empty();
 	}
 	bool Touch(const glTouchPoint_t &) override { return false; }
 };
@@ -287,7 +247,7 @@ protected:
 class glRectangleFill : public glRectangle
 {
 public:
-	glRectangleFill(const gl2DPoint_t &rect, const glColor_t &color)
+	glRectangleFill(const glRegion_t &rect, const glColor_t &color)
 		: glRectangle(rect, color) { _Name = "RectangleFill"; }
 
 	void Draw() override
@@ -300,7 +260,7 @@ class glCircle : protected glPlot2DHelper, public glWidgetLink, public glFrontCo
 {
 public:
 	glCircle(const glPoint_t &center, P_t radius, const glColor_t &color) 
-		: glWidgetLink("Circel", gl2DPoint_t(center.Displace(-radius, -radius), center.Displace(radius, radius)))
+		: glWidgetLink("Circel", glRegion_t(center.Displace(-radius, -radius), center.Displace(radius, radius)))
 		, glFrontColorTheme(color)
 		, _Center(center)
 		, _Radius(radius) {}
@@ -314,11 +274,9 @@ protected:
 	// redraw your self
 	void Redraw() override
 	{
-		if (!ImInvalidated) return;
-		
+		if (_InvalidatedRegion.IsEmpty()) return;
 		Draw();
-		
-		if (glVideoMemory::lastBand()) ImInvalidated = false;
+		_InvalidatedRegion.Empty();
 	}
 	bool Touch(const glTouchPoint_t &) override { return false; }
 
@@ -341,7 +299,7 @@ public:
 class glArc : public glCircle
 {
 public:
-	glArc(const gl2DPoint_t &box, const glPoint_t &center, P_t radius, const glColor_t &color) 
+	glArc(const glRegion_t &box, const glPoint_t &center, P_t radius, const glColor_t &color) 
 		: glCircle(center, radius, color)
 		{ _Region = box.Normalize(); _Name = "glArc"; }
 	
@@ -354,7 +312,7 @@ public:
 class glArcFill : public glArc
 {
 public:
-	glArcFill(const gl2DPoint_t &box, const glPoint_t &center, P_t radius, const glColor_t &color) 
+	glArcFill(const glRegion_t &box, const glPoint_t &center, P_t radius, const glColor_t &color) 
 		: glArc(box, center, radius, color) { _Name = "glArcFill"; }
 	
 	void Draw() override
@@ -366,7 +324,7 @@ public:
 class glRectangleRound : public glRectangle
 {
 public:
-	glRectangleRound(const gl2DPoint_t &rect, P_t radius, const glColor_t &color)
+	glRectangleRound(const glRegion_t &rect, P_t radius, const glColor_t &color)
 		: glRectangle(rect, color)
 		, _Radius(radius) 
 	{ _Name = "glRectangleRound"; }
@@ -382,7 +340,7 @@ private:
 class glRectangleRoundFill : public glRectangle
 {
 public:
-	glRectangleRoundFill(const gl2DPoint_t &rect, P_t radius, const glColor_t &color)
+	glRectangleRoundFill(const glRegion_t &rect, P_t radius, const glColor_t &color)
 		: glRectangle(rect, color)
 		, _Radius(radius)
 	{ _Name = "RectangleRoundFill"; }

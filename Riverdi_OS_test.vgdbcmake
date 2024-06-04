@@ -12,6 +12,7 @@
     <SkipImportedProjectChecks>false</SkipImportedProjectChecks>
     <MemoryListSource>DeviceDefinition</MemoryListSource>
     <TroubleshootGeneratedConfigurationFiles>false</TroubleshootGeneratedConfigurationFiles>
+	<MemoryMapOverride>MemoryMap.xml</MemoryMapOverride>
   </Project>
   <Build xsi:type="com.visualgdb.build.cmake">
     <BuildLogMode xsi:nil="true" />

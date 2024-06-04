@@ -1,0 +1,92 @@
+\doxysection{hw\+DMA2D Class Reference}
+\hypertarget{classhw_d_m_a2_d}{}\label{classhw_d_m_a2_d}\index{hwDMA2D@{hwDMA2D}}
+
+
+A class to initialize and control the DMA2D peripheral on STM32\+H7.  
+
+
+
+
+{\ttfamily \#include $<$DMA2\+D.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhw_d_m_a2_d_a55ac838677cd40698ffa267f44f4b6d5}\label{classhw_d_m_a2_d_a55ac838677cd40698ffa267f44f4b6d5} 
+{\bfseries hw\+DMA2D} ()
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classhw_d_m_a2_d}{hw\+DMA2D} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhw_d_m_a2_d_a0781047792f30a65143a74402765c149}{Init}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the DMA2D peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhw_d_m_a2_d_aa1c6f91e2557bd17f0502bee9bda8a4b}{Start\+M2\+MTransfer}} (void \texorpdfstring{$\ast$}{*}dst\+Address, uint32\+\_\+t width, uint32\+\_\+t height, void \texorpdfstring{$\ast$}{*}src\+Address, uint32\+\_\+t lineoffset)
+\begin{DoxyCompactList}\small\item\em Starts a memory-\/to-\/memory transfer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhw_d_m_a2_d_a365278daa9f9f17798f7d52dd81a8c15}{Stop\+Transfer}} ()
+\begin{DoxyCompactList}\small\item\em Stops the current transfer. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classhw_d_m_a2_d_ae9c8d70ad6a1208c9019bfa0afe170a0}{Is\+Transfer\+Complete}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the transfer is complete. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class to initialize and control the DMA2D peripheral on STM32\+H7. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhw_d_m_a2_d_a0781047792f30a65143a74402765c149}\label{classhw_d_m_a2_d_a0781047792f30a65143a74402765c149} 
+\index{hwDMA2D@{hwDMA2D}!Init@{Init}}
+\index{Init@{Init}!hwDMA2D@{hwDMA2D}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily void hw\+DMA2\+D\+::\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initializes the DMA2D peripheral. 
+
+This method enables the DMA2D clock, resets the peripheral, and sets the color mode to ARGB8888 for the foreground, background, and output. \Hypertarget{classhw_d_m_a2_d_ae9c8d70ad6a1208c9019bfa0afe170a0}\label{classhw_d_m_a2_d_ae9c8d70ad6a1208c9019bfa0afe170a0} 
+\index{hwDMA2D@{hwDMA2D}!IsTransferComplete@{IsTransferComplete}}
+\index{IsTransferComplete@{IsTransferComplete}!hwDMA2D@{hwDMA2D}}
+\doxysubsubsection{\texorpdfstring{IsTransferComplete()}{IsTransferComplete()}}
+{\footnotesize\ttfamily bool hw\+DMA2\+D\+::\+Is\+Transfer\+Complete (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the transfer is complete. 
+
+\begin{DoxyReturn}{Returns}
+True if the transfer is complete, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classhw_d_m_a2_d_aa1c6f91e2557bd17f0502bee9bda8a4b}\label{classhw_d_m_a2_d_aa1c6f91e2557bd17f0502bee9bda8a4b} 
+\index{hwDMA2D@{hwDMA2D}!StartM2MTransfer@{StartM2MTransfer}}
+\index{StartM2MTransfer@{StartM2MTransfer}!hwDMA2D@{hwDMA2D}}
+\doxysubsubsection{\texorpdfstring{StartM2MTransfer()}{StartM2MTransfer()}}
+{\footnotesize\ttfamily void hw\+DMA2\+D\+::\+Start\+M2\+MTransfer (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{dst\+Address,  }\item[{uint32\+\_\+t}]{width,  }\item[{uint32\+\_\+t}]{height,  }\item[{void \texorpdfstring{$\ast$}{*}}]{src\+Address,  }\item[{uint32\+\_\+t}]{lineoffset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Starts a memory-\/to-\/memory transfer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dst\+Address} & Destination address. \\
+\hline
+{\em width} & Width of the transfer in pixels. \\
+\hline
+{\em height} & Height of the transfer in lines. \\
+\hline
+{\em src\+Address} & Source address. \\
+\hline
+{\em lineoffset} & Line offset for source and destination. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classhw_d_m_a2_d_a365278daa9f9f17798f7d52dd81a8c15}\label{classhw_d_m_a2_d_a365278daa9f9f17798f7d52dd81a8c15} 
+\index{hwDMA2D@{hwDMA2D}!StopTransfer@{StopTransfer}}
+\index{StopTransfer@{StopTransfer}!hwDMA2D@{hwDMA2D}}
+\doxysubsubsection{\texorpdfstring{StopTransfer()}{StopTransfer()}}
+{\footnotesize\ttfamily void hw\+DMA2\+D\+::\+Stop\+Transfer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Stops the current transfer. 
+
+This method aborts any ongoing transfer by setting the ABORT bit. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+os\+STM32\+H7xx/DMA2\+D.\+h\end{DoxyCompactItemize}

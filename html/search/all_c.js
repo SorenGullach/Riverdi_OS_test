@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['operator_21_3d_0',['operator!=',['../structgl_touch_point__t.html#a47348915ae035c7cf4906454892fb361',1,'glTouchPoint_t']]],
-  ['operator_3d_3d_1',['operator==',['../structgl_touch_point__t.html#a4850bf2affcaeb04c0897b38962ddf34',1,'glTouchPoint_t']]]
+  ['none_0',['None',['../classgl_event.html#ae63986141ad7b77417913f127b8edfe7a6adf97f83acf6453d4a6a4b1070f3754',1,'glEvent']]],
+  ['normalize_1',['Normalize',['../structgl_region__t.html#ae296b0e8ccfaf9fdac6509e8845e5e2f',1,'glRegion_t']]]
 ];

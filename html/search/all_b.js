@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['nextregion_0',['NextRegion',['../classgl_video_memory.html#aec104053547ef2609fadd975369ca657',1,'glVideoMemory']]],
-  ['none_1',['None',['../classgl_event.html#ae63986141ad7b77417913f127b8edfe7a6adf97f83acf6453d4a6a4b1070f3754',1,'glEvent']]]
+  ['memregion_5ft_0',['MemRegion_t',['../struct_mem_region__t.html',1,'']]],
+  ['moveto_1',['MoveTo',['../structgl_region__t.html#a3c21ee1552ebb8bd1453d19ffd1379b9',1,'glRegion_t::MoveTo(const int l, const int t, const int r, const int b)'],['../structgl_region__t.html#afccd930ac31285567814b0fdbdf7dd91',1,'glRegion_t::MoveTo(const glRegion_t &amp;p)']]]
 ];

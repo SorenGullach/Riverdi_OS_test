@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['findnearestcolor_0',['FindNearestColor',['../classgl_color__t.html#a5400ad73663c22292c6bdfcc139e547c',1,'glColor_t']]]
+  ['empty_0',['Empty',['../structgl_region__t.html#ae164ca290effc63b09a5963bdd5a31ef',1,'glRegion_t']]]
 ];

@@ -26,7 +26,7 @@ template<int len, const FontItem *fontFamily>
 	class glSlider : public glWidgetLink, public glButtonTheme, private glPlot2DHelper
 	{
 	public:
-		glSlider(const gl2DPoint_t &region, const char *text, const glButtonTheme &theme = glButtonTheme())
+		glSlider(const glRegion_t &region, const char *text, const glButtonTheme &theme = glButtonTheme())
 			: glWidgetLink("Slider", region)
 			, glButtonTheme(theme)
 			, _Text(region.Inflate(-_BorderWidth), text, fontFamily, theme._TextColor)
@@ -34,65 +34,70 @@ template<int len, const FontItem *fontFamily>
 			Add(&_Text);
 			Horisontal = region.Height() < region.Width();
 			_CornerRadius = std::min(region.Height(), region.Width()) / 4;
-			Invalid = _Region;
+			CalcCursor(_Region.Inflate(-_BorderWidth));
 		}
 
 	protected:
 	
+		void CalcCursor(const glRegion_t &r)
+		{
+			_InvalidatedRegion = _InvalidatedRegion.Union(Cursor); // old invalid region
+			if (Horisontal)
+				Cursor = glRegion_t(r.L() + Pos, r.T(), r.L() + 2*_CornerRadius + Pos, r.B());
+			else
+				Cursor = glRegion_t(r.L(), r.T() + Pos, r.R(), r.T() + 2*_CornerRadius + Pos);
+			_InvalidatedRegion = _InvalidatedRegion.Union(Cursor); // add new invalid region
+			_Text.Text("%d", Pos);
+			InvalidateChilds();
+		}
+		
 		bool Touch(const glTouchPoint_t &point) override 
 		{
 			bool Handled = false;
+			glRegion_t r = _Region.Inflate(-_BorderWidth);
+			
 			if (_Region.IsInside(point.X, point.Y)) 
 			{
 				if (point.TipAction == glTouchPoint_t::eTipAction::Tip && !Pressed)
 				{
 					Pressed = true;
+					CalcCursor(r);
 					Handled = true;
-					InvalidateMe();
 				}
 				if (point.TipAction == glTouchPoint_t::eTipAction::Up && Pressed)
 				{
 					Click = true;
 					Pressed = false;
+					CalcCursor(r);
 					Handled = true;
-					InvalidateMe();
 				}
 				if (
 					(point.TipAction == glTouchPoint_t::eTipAction::Tip || 
 					point.TipAction == glTouchPoint_t::eTipAction::Slide) && 
 					Pressed) 
 				{
-					gl2DPoint_t r = _Region.Inflate(-_BorderWidth + 1);
 					if (Horisontal)
 					{
-						P_t p = point.X - r.L();
-						if (p != Pos && p>0)
+						int p = point.X - r.L();
+						if (p != Pos && p > 0)
 						{
 							Pos = p;
 							if (Pos > r.Width() - 2*_CornerRadius)
 								Pos = r.Width() - 2*_CornerRadius;
-							gl2DPoint_t i = Cursor; // old invalid region
-							Cursor = gl2DPoint_t(r.L() + Pos, r.T(), r.L() + 2*_CornerRadius + Pos, r.B());
-							Invalid = i.Union(Cursor).Inflate(10,0,10,0); // add new invalid region
-							_Text.Text("%d", Pos);
+							CalcCursor(r);
 							Handled = true;
-							ImInvalidated = true;
 						}
 					}
 					else
 					{
-						P_t p = point.Y - r.T();
-						if (p != Pos && p>0)
+						int p = point.Y - r.T();
+						if (p != Pos && p > 0)
 						{
 							Pos = p;
 							if (Pos > r.Height() - 2*_CornerRadius)
 								Pos = r.Height() - 2*_CornerRadius;
-							gl2DPoint_t i = Cursor; // old invalid region
-							Cursor = gl2DPoint_t(r.L(), r.T() + Pos, r.R(), r.T() + 2*_CornerRadius + Pos);
-							Invalid = i.Union(Cursor).Inflate(0,10,0,10); // add new invalid region
-							_Text.Text("%d", Pos);
+							CalcCursor(r);
 							Handled = true;
-							ImInvalidated = true;
 						}
 					}
 				}
@@ -102,8 +107,8 @@ template<int len, const FontItem *fontFamily>
 				if (Pressed)
 				{
 					Pressed = false;
+					CalcCursor(r);
 					Handled = true;
-					InvalidateMe();
 				}
 			}		
 			return Handled;
@@ -112,38 +117,22 @@ template<int len, const FontItem *fontFamily>
 		// redraw your self
 		virtual void Redraw() override
 		{
-			if (!ImInvalidated) return;
+			if (_InvalidatedRegion.IsEmpty()) return;
 
-			gl2DPoint_t r = _Region.Inflate(-_BorderWidth + 1);
+			glRegion_t r = _Region.Inflate(-_BorderWidth + 1);
 			PlotRectangleRoundFill(r, _CornerRadius, _BackColor);
 
 			PlotRectangleRoundFill(Cursor, _CornerRadius, _PressedColor);
 
 			PlotBorder(_Region, _BorderWidth, _CornerRadius, _BorderColor);
 		
-			if (glVideoMemory::lastBand()) 
-			{
-				Invalid = gl2DPoint_t();
-				ImInvalidated = false;
-			}
+			_InvalidatedRegion.Empty();
 		}
-	
-		void InvalidateMe() override
-		{
-			Invalid = _Region;
-			glWidgetLink::InvalidateMe();
-		}
-
-		gl2DPoint_t InvalidRegion() override
-		{
-			return Invalid;
-		}
-
+		
 		glText<len> _Text;
 		bool Horizontal = true;
 		P_t Pos = 0;
-		gl2DPoint_t Cursor;
-		gl2DPoint_t Invalid;
+		glRegion_t Cursor;
 		bool Horisontal;
 
 		bool Click = false, Pressed = false;

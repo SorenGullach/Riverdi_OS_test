@@ -27,7 +27,7 @@ MEMORY
     DTCMRAM (RWX) : ORIGIN = 0x20000000, LENGTH = 128K        /* Internal fast RAM: read/write/execute */
     ITCMRAM (RWX) : ORIGIN = 0x00000000, LENGTH = 64K         /* Internal fast RAM: read/write/execute */
     RAM_D1 (RWX)  : ORIGIN = 0x24000000, LENGTH = 512K        /* Internal RAM: read/write/execute */
-    QSPI (RX)     : ORIGIN = 0x90000000, LENGTH = 128000K     /* External QSPI FLASH: read/execute */
+    QSPI (RX)     : ORIGIN = 0x90000000, LENGTH = 128M        /* External QSPI FLASH: read/execute */
     SHARED (XRW)  : ORIGIN = 0x38000000, LENGTH = 64K         /* Shared SRAM4: execute/read/write */
     BKPSRAM (XRW) : ORIGIN = 0x38800000, LENGTH = 4K          /* Backup SRAM4: execute/read/write */
     SDRAM (RWX)   : ORIGIN = 0xD0000000, LENGTH = 8M          /* External SDRAM: read/write/execute */
@@ -178,8 +178,8 @@ SECTIONS
         . = ALIGN(4);               /* Ensure 4-byte alignment */
         PROVIDE(_ssdram = .);       /* Start address of SDRAM section */
         KEEP(*(.sdram))             /* Keep SDRAM section */
-        . = . + LENGTH(SDRAM);      /* Define length of SDRAM section */
         KEEP(*(.sdram*))            /* Include all .sdram* sections */
+        . = . + LENGTH(SDRAM);      /* Use all (its not dynamic alocated) */
         . = ALIGN(4);               /* Align the end of the section */
         PROVIDE(_esdram = .);       /* End address of SDRAM section */
     } > SDRAM                       /* Place this section in SDRAM */

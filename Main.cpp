@@ -36,9 +36,10 @@ GUIApplication GUI;
 
 int main()
 {
+#ifdef DEBUG
 	DumpChipInfo();
 	DumpMemInfo();
-	
+#endif
 	// Initialize SysTick timer
 	hwSysTick::Init();
 

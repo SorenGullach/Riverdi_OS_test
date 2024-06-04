@@ -1,0 +1,80 @@
+\doxysection{DMA2\+D.\+h}
+\hypertarget{_d_m_a2_d_8h_source}{}\label{_d_m_a2_d_8h_source}\index{osSTM32H7xx/DMA2D.h@{osSTM32H7xx/DMA2D.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ 2024\ Søren Gullach}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ You\ must\ include\ the\ following\ attribution\ in\ all\ copies\ or\ substantial\ portions\ of\ the\ Software:}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ "{}Søren Gullach\ <STM32\_R7\_OS@toolsbox.dk>"{}}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <stm32h7xx.h>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <assert.h>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhw_d_m_a2_d}{hwDMA2D}}\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classhw_d_m_a2_d_a55ac838677cd40698ffa267f44f4b6d5}{hwDMA2D}}()\ \{\}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhw_d_m_a2_d_a0781047792f30a65143a74402765c149}{Init}}()\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Enable\ the\ DMA2D\ clock}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ RCC-\/>AHB3ENR\ |=\ RCC\_AHB3ENR\_DMA2DEN;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset\ the\ DMA2D\ peripheral}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ RCC-\/>AHB3RSTR\ |=\ RCC\_AHB3RSTR\_DMA2DRST;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ RCC-\/>AHB3RSTR\ \&=\ \string~RCC\_AHB3RSTR\_DMA2DRST;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ DMA2D\ mode\ to\ memory-\/to-\/memory}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ DMA2D-\/>CR\ =\ 0;\ \textcolor{comment}{//\ Mode\ 0\ is\ memory-\/to-\/memory}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ color\ mode\ to\ ARGB8888}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ DMA2D-\/>FGPFCCR\ =\ 0x00;\ \textcolor{comment}{//\ fg\ color\ mode\ ARGB8888}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ DMA2D-\/>BGPFCCR\ =\ 0x00;\ \textcolor{comment}{//\ bg\ color\ mode\ ARGB8888}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ DMA2D-\/>OPFCCR\ =\ 0x00;\ \textcolor{comment}{//\ output\ color\ mode\ ARGB8888}}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhw_d_m_a2_d_aa1c6f91e2557bd17f0502bee9bda8a4b}{StartM2MTransfer}}(\textcolor{keywordtype}{void}*\ \ dstAddress,\ uint32\_t\ width,\ uint32\_t\ height,\ \textcolor{keywordtype}{void}*\ srcAddress,\ uint32\_t\ lineoffset)\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ DMA2D\ mode\ to\ memory-\/to-\/memory}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ DMA2D-\/>CR\ =\ 0;\ \textcolor{comment}{//\ Mode\ 0\ is\ memory-\/to-\/memory}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ DMA2D-\/>AMTCR\ =\ (1\ <<\ 0)\ |\ (100\ <<\ 8);\ \textcolor{comment}{//\ Enable\ and\ set\ dead-\/time}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Configure\ source\ and\ destination\ addresses}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ DMA2D-\/>FGMAR\ =\ (int32\_t)srcAddress;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ DMA2D-\/>FGOR\ =\ lineoffset;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ DMA2D-\/>OMAR\ =\ (int32\_t)dstAddress;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ DMA2D-\/>OOR\ =\ lineoffset;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ number\ of\ lines\ and\ pixels\ per\ line}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ DMA2D-\/>NLR\ =\ (height\ <<\ DMA2D\_NLR\_NL\_Pos)\ |\ (width\ <<\ DMA2D\_NLR\_PL\_Pos);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ the\ transfer}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ DMA2D-\/>CR\ |=\ DMA2D\_CR\_START;}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhw_d_m_a2_d_a365278daa9f9f17798f7d52dd81a8c15}{StopTransfer}}()\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Abort\ the\ transfer}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ DMA2D-\/>CR\ |=\ DMA2D\_CR\_ABORT;}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classhw_d_m_a2_d_ae9c8d70ad6a1208c9019bfa0afe170a0}{IsTransferComplete}}()\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ transfer\ is\ complete}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (DMA2D-\/>ISR\ \&\ DMA2D\_ISR\_TCIF)\ !=\ 0;}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \};}
+
+\end{DoxyCode}

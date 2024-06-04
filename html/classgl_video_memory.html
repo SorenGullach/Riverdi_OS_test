@@ -107,7 +107,7 @@ Inheritance diagram for glVideoMemory:</div>
 <area href="classgl_button.html" alt="glButton&lt; len, fontFamily &gt;" shape="rect" coords="880,504,1046,528"/>
 <area href="classgl_circle.html" alt="glCircle" shape="rect" coords="880,560,1046,584"/>
 <area href="classgl_label.html" alt="glLabel&lt; len, fontFamily &gt;" shape="rect" coords="880,616,1046,640"/>
-<area href="classgl_line.html" alt="glLine" shape="rect" coords="880,672,1046,696"/>
+<area href="classgl_line.html" title="endpoints is inclusive" alt="glLine" shape="rect" coords="880,672,1046,696"/>
 <area href="classgl_rectangle.html" alt="glRectangle" shape="rect" coords="880,728,1046,752"/>
 <area href="classgl_slider.html" alt="glSlider&lt; len, fontFamily &gt;" shape="rect" coords="880,784,1046,808"/>
   </map>
@@ -121,53 +121,46 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ad2a3fbb1c2c576796b960406fa7951b9" id="r_ad2a3fbb1c2c576796b960406fa7951b9"><td class="memItemLeft" align="right" valign="top">static P_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2a3fbb1c2c576796b960406fa7951b9">ScreenHeight</a> ()</td></tr>
 <tr class="memdesc:ad2a3fbb1c2c576796b960406fa7951b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the screen height.  <br /></td></tr>
 <tr class="separator:ad2a3fbb1c2c576796b960406fa7951b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79f28b876830fedd3cc74a256eb2c410" id="r_a79f28b876830fedd3cc74a256eb2c410"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79f28b876830fedd3cc74a256eb2c410">lastBand</a> ()</td></tr>
-<tr class="memdesc:a79f28b876830fedd3cc74a256eb2c410"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this is the last band.  <br /></td></tr>
-<tr class="separator:a79f28b876830fedd3cc74a256eb2c410"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ee38dc72e41940446fe3bf03e54d659" id="r_a1ee38dc72e41940446fe3bf03e54d659"><td class="memItemLeft" align="right" valign="top"><a id="a1ee38dc72e41940446fe3bf03e54d659" name="a1ee38dc72e41940446fe3bf03e54d659"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>LimitRegion</b> ()</td></tr>
-<tr class="memdesc:a1ee38dc72e41940446fe3bf03e54d659"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limits the region to the intersection with the current drawing region. <br /></td></tr>
-<tr class="separator:a1ee38dc72e41940446fe3bf03e54d659"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec104053547ef2609fadd975369ca657" id="r_aec104053547ef2609fadd975369ca657"><td class="memItemLeft" align="right" valign="top"><a id="aec104053547ef2609fadd975369ca657" name="aec104053547ef2609fadd975369ca657"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>NextRegion</b> ()</td></tr>
-<tr class="memdesc:aec104053547ef2609fadd975369ca657"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves to the next region to be drawn. <br /></td></tr>
-<tr class="separator:aec104053547ef2609fadd975369ca657"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fbd6abbb3a2b322e2313bef9d4664a8" id="r_a3fbd6abbb3a2b322e2313bef9d4664a8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3fbd6abbb3a2b322e2313bef9d4664a8">Init</a> (const P_t w, const P_t h, <a class="el" href="structgl_a_r_g_b__t.html">glARGB_t</a> *pvm)</td></tr>
-<tr class="memdesc:a3fbd6abbb3a2b322e2313bef9d4664a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the video memory with the specified dimensions and buffer.  <br /></td></tr>
-<tr class="separator:a3fbd6abbb3a2b322e2313bef9d4664a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa59048487c7a60a4031e5475cb3fd142" id="r_aa59048487c7a60a4031e5475cb3fd142"><td class="memItemLeft" align="right" valign="top"><a id="aa59048487c7a60a4031e5475cb3fd142" name="aa59048487c7a60a4031e5475cb3fd142"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>CopyVideoMem</b> ()</td></tr>
+<tr class="separator:aa59048487c7a60a4031e5475cb3fd142"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4b95b7801b8769d5bad54071039e087" id="r_ac4b95b7801b8769d5bad54071039e087"><td class="memItemLeft" align="right" valign="top"><a id="ac4b95b7801b8769d5bad54071039e087" name="ac4b95b7801b8769d5bad54071039e087"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsTransferComplete</b> ()</td></tr>
+<tr class="separator:ac4b95b7801b8769d5bad54071039e087"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe4ceedbbc59aeacf186bfc50be25411" id="r_afe4ceedbbc59aeacf186bfc50be25411"><td class="memItemLeft" align="right" valign="top"><a id="afe4ceedbbc59aeacf186bfc50be25411" name="afe4ceedbbc59aeacf186bfc50be25411"></a>
+static <a class="el" href="structgl_region__t.html">glRegion_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>LimitRegion</b> (const <a class="el" href="structgl_region__t.html">glRegion_t</a> &amp;region)</td></tr>
+<tr class="memdesc:afe4ceedbbc59aeacf186bfc50be25411"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limits the region to the intersection with the current drawing region. <br /></td></tr>
+<tr class="separator:afe4ceedbbc59aeacf186bfc50be25411"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae849de5704353d0306b8be36bcab07da" id="r_ae849de5704353d0306b8be36bcab07da"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae849de5704353d0306b8be36bcab07da">Init</a> (const P_t w, const P_t h, <a class="el" href="structgl_a_r_g_b__t.html">glARGB_t</a> *pvmLTDC, <a class="el" href="structgl_a_r_g_b__t.html">glARGB_t</a> *pvmShadow)</td></tr>
+<tr class="memdesc:ae849de5704353d0306b8be36bcab07da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the video memory with the specified dimensions and buffer.  <br /></td></tr>
+<tr class="separator:ae849de5704353d0306b8be36bcab07da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a605eacf2aa22536649d59ef1421d71fc" id="r_a605eacf2aa22536649d59ef1421d71fc"><td class="memItemLeft" align="right" valign="top"><a id="a605eacf2aa22536649d59ef1421d71fc" name="a605eacf2aa22536649d59ef1421d71fc"></a>
-static P_t&#160;</td><td class="memItemRight" valign="bottom"><b>ls</b></td></tr>
-<tr class="separator:a605eacf2aa22536649d59ef1421d71fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a619ccd5468f27bc464fbd1eec51cf93c" id="r_a619ccd5468f27bc464fbd1eec51cf93c"><td class="memItemLeft" align="right" valign="top"><a id="a619ccd5468f27bc464fbd1eec51cf93c" name="a619ccd5468f27bc464fbd1eec51cf93c"></a>
-static P_t&#160;</td><td class="memItemRight" valign="bottom"><b>yStart</b></td></tr>
-<tr class="separator:a619ccd5468f27bc464fbd1eec51cf93c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a578112529360883795bea888625917ec" id="r_a578112529360883795bea888625917ec"><td class="memItemLeft" align="right" valign="top"><a id="a578112529360883795bea888625917ec" name="a578112529360883795bea888625917ec"></a>
-static P_t&#160;</td><td class="memItemRight" valign="bottom"><b>yEnd</b></td></tr>
-<tr class="separator:a578112529360883795bea888625917ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ed29bb38b8864ef0c940bb65f2a1519" id="r_a9ed29bb38b8864ef0c940bb65f2a1519"><td class="memItemLeft" align="right" valign="top"><a id="a9ed29bb38b8864ef0c940bb65f2a1519" name="a9ed29bb38b8864ef0c940bb65f2a1519"></a>
-static <a class="el" href="structgl2_d_point__t.html">gl2DPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>InvalidRegion</b></td></tr>
-<tr class="separator:a9ed29bb38b8864ef0c940bb65f2a1519"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c602dbc0b4779fa9bc43c4b7abd9e6b" id="r_a6c602dbc0b4779fa9bc43c4b7abd9e6b"><td class="memItemLeft" align="right" valign="top"><a id="a6c602dbc0b4779fa9bc43c4b7abd9e6b" name="a6c602dbc0b4779fa9bc43c4b7abd9e6b"></a>
+static <a class="el" href="structgl_region__t.html">glRegion_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_InvalidRegion</b></td></tr>
+<tr class="separator:a6c602dbc0b4779fa9bc43c4b7abd9e6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a504ef78ac1e8916507e724e31cd8862e" id="r_a504ef78ac1e8916507e724e31cd8862e"><td class="memItemLeft" align="right" valign="top"><a id="a504ef78ac1e8916507e724e31cd8862e" name="a504ef78ac1e8916507e724e31cd8862e"></a>
+static <a class="el" href="structgl_region__t.html">glRegion_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_VideoRegion</b></td></tr>
+<tr class="separator:a504ef78ac1e8916507e724e31cd8862e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a182255b0754888bd78b8d927dd02f7d0" id="r_a182255b0754888bd78b8d927dd02f7d0"><td class="memItemLeft" align="right" valign="top"><a id="a182255b0754888bd78b8d927dd02f7d0" name="a182255b0754888bd78b8d927dd02f7d0"></a>
+static <a class="el" href="classhw_d_m_a2_d.html">hwDMA2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_Dma2D</b></td></tr>
+<tr class="separator:a182255b0754888bd78b8d927dd02f7d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-attribs" name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
-<tr class="memitem:a1cfd71b7f19811798205a3c1787c30a9" id="r_a1cfd71b7f19811798205a3c1787c30a9"><td class="memItemLeft" align="right" valign="top"><a id="a1cfd71b7f19811798205a3c1787c30a9" name="a1cfd71b7f19811798205a3c1787c30a9"></a>
-static <a class="el" href="structgl_a_r_g_b__t.html">glARGB_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>pVM</b></td></tr>
-<tr class="separator:a1cfd71b7f19811798205a3c1787c30a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f985837c895045b5f1439ab4f7a5d7f" id="r_a2f985837c895045b5f1439ab4f7a5d7f"><td class="memItemLeft" align="right" valign="top"><a id="a2f985837c895045b5f1439ab4f7a5d7f" name="a2f985837c895045b5f1439ab4f7a5d7f"></a>
-static P_t&#160;</td><td class="memItemRight" valign="bottom"><b>_ScreenWidth</b></td></tr>
-<tr class="separator:a2f985837c895045b5f1439ab4f7a5d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b110865b3bf12ce2e94cbf4753c5923" id="r_a7b110865b3bf12ce2e94cbf4753c5923"><td class="memItemLeft" align="right" valign="top"><a id="a7b110865b3bf12ce2e94cbf4753c5923" name="a7b110865b3bf12ce2e94cbf4753c5923"></a>
-static P_t&#160;</td><td class="memItemRight" valign="bottom"><b>_ScreenHeight</b></td></tr>
-<tr class="separator:a7b110865b3bf12ce2e94cbf4753c5923"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad94307604bd7bba2bee37c7ba24074aa" id="r_ad94307604bd7bba2bee37c7ba24074aa"><td class="memItemLeft" align="right" valign="top"><a id="ad94307604bd7bba2bee37c7ba24074aa" name="ad94307604bd7bba2bee37c7ba24074aa"></a>
+static <a class="el" href="structgl_a_r_g_b__t.html">glARGB_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>pVMShadow</b></td></tr>
+<tr class="separator:ad94307604bd7bba2bee37c7ba24074aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99867de4f104b47df32002fd03d21f3f" id="r_a99867de4f104b47df32002fd03d21f3f"><td class="memItemLeft" align="right" valign="top"><a id="a99867de4f104b47df32002fd03d21f3f" name="a99867de4f104b47df32002fd03d21f3f"></a>
+static <a class="el" href="structgl_a_r_g_b__t.html">glARGB_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>pVMLTDC</b></td></tr>
+<tr class="separator:a99867de4f104b47df32002fd03d21f3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents video memory and provides methods to manage it. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a3fbd6abbb3a2b322e2313bef9d4664a8" name="a3fbd6abbb3a2b322e2313bef9d4664a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3fbd6abbb3a2b322e2313bef9d4664a8">&#9670;&#160;</a></span>Init()</h2>
+<a id="ae849de5704353d0306b8be36bcab07da" name="ae849de5704353d0306b8be36bcab07da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae849de5704353d0306b8be36bcab07da">&#9670;&#160;</a></span>Init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -188,7 +181,12 @@ static P_t&#160;</td><td class="memItemRight" valign="bottom"><b>_ScreenHeight</
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structgl_a_r_g_b__t.html">glARGB_t</a> *</td>          <td class="paramname"><span class="paramname"><em>pvm</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="structgl_a_r_g_b__t.html">glARGB_t</a> *</td>          <td class="paramname"><span class="paramname"><em>pvmLTDC</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structgl_a_r_g_b__t.html">glARGB_t</a> *</td>          <td class="paramname"><span class="paramname"><em>pvmShadow</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -207,34 +205,6 @@ static P_t&#160;</td><td class="memItemRight" valign="bottom"><b>_ScreenHeight</
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="a79f28b876830fedd3cc74a256eb2c410" name="a79f28b876830fedd3cc74a256eb2c410"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a79f28b876830fedd3cc74a256eb2c410">&#9670;&#160;</a></span>lastBand()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static bool glVideoMemory::lastBand </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Checks if this is the last band. </p>
-<dl class="section return"><dt>Returns</dt><dd>True if this is the last band, false otherwise. </dd></dl>
 
 </div>
 </div>

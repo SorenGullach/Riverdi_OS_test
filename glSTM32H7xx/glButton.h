@@ -27,7 +27,7 @@ template<int len, const FontItem *fontFamily>
 	class glButton : public glWidgetLink, public glButtonTheme, private glPlot2DHelper
 	{
 	public:
-		glButton(const gl2DPoint_t &region, const char *text, const glButtonTheme &theme = glButtonTheme())
+		glButton(const glRegion_t &region, const char *text, const glButtonTheme &theme = glButtonTheme())
 			: glWidgetLink("Button", region)
 			, glButtonTheme(theme)
 			, _Text(region.Inflate(-_BorderWidth), text, fontFamily, theme._TextColor)
@@ -46,14 +46,16 @@ template<int len, const FontItem *fontFamily>
 				{
 					Pressed = true;
 					Handled = true;
-					InvalidateMe();
+					_InvalidatedRegion = _Region.Inflate(-_BorderWidth);
+					InvalidateChilds();
 				}
 				if (point.TipAction == glTouchPoint_t::eTipAction::Up && Pressed)
 				{
 					Click = true;
 					Pressed = false;
 					Handled = true;
-					InvalidateMe();
+					_InvalidatedRegion = _Region.Inflate(-_BorderWidth);
+					InvalidateChilds();
 				}
 			}
 			else
@@ -62,7 +64,8 @@ template<int len, const FontItem *fontFamily>
 				{
 					Pressed = false;
 					Handled = true;
-					InvalidateMe();
+					_InvalidatedRegion = _Region.Inflate(-_BorderWidth);
+					InvalidateChilds();
 				}
 			}
 			return Handled;
@@ -71,21 +74,16 @@ template<int len, const FontItem *fontFamily>
 		// redraw your self
 		virtual void Redraw() override
 		{
-			if (!ImInvalidated) return;
+			if (_InvalidatedRegion.IsEmpty()) return;
 
 			PlotRectangleRoundFill(_Region.Inflate(-_BorderWidth + 1), _CornerRadius, Pressed ? _PressedColor : _BackColor);
 
 			PlotBorder(_Region, _BorderWidth, _CornerRadius, _BorderColor);
 		
-			if (glVideoMemory::lastBand()) 
-				ImInvalidated = false;
+			_InvalidatedRegion.Empty();
 		}
-	
-		gl2DPoint_t InvalidRegion() override
-		{
-			return _Region.Inflate(-_BorderWidth);
-		}
-
+		
 		bool Click = false, Pressed = false;
+		glRegion_t Cursor; 
 		glText<len> _Text;
 	};

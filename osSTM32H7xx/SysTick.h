@@ -33,7 +33,7 @@ public:
 	static void UnitTest() {};
 #endif
 	
-	static uint32_t Ticks;
+	static volatile uint32_t Ticks;
 };
 
 #define osDelay(ms) hwSysTick::Delay(ms)

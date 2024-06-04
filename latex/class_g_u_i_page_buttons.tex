@@ -12,32 +12,30 @@ Inheritance diagram for GUIPage\+Buttons\+:\begin{figure}[H]
 \Hypertarget{class_g_u_i_page_buttons_ad228b3372a2ef754ae53bf35b4c72f07}\label{class_g_u_i_page_buttons_ad228b3372a2ef754ae53bf35b4c72f07} 
 virtual void {\bfseries Init} ()
 \end{DoxyCompactItemize}
-\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_page}{gl\+Page}}}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_page_link}{gl\+Page\+Link}}}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries gl\+Page} (const char \texorpdfstring{$\ast$}{*}name, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&color)
+{\bfseries gl\+Page\+Link} (const char \texorpdfstring{$\ast$}{*}name, const \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} \&color)
 \item 
 void {\bfseries Add} (\mbox{\hyperlink{classgl_widget_link}{gl\+Widget\+Link}} \texorpdfstring{$\ast$}{*}page)
 \item 
-\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Invalid\+Region} ()
+void {\bfseries Move\+To} (\mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} region)
 \item 
-void {\bfseries Move\+To} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} region)
+void \mbox{\hyperlink{classgl_page_link_a9054060c7ffd02c4d3ca8d56d16b064c}{Update\+Look}} ()
 \item 
-void \mbox{\hyperlink{classgl_page_ac2fbbbe51e7db1ec0f2d943aa71e2d1b}{Update\+Look}} ()
+void \mbox{\hyperlink{classgl_page_link_a382bb6e2a2e65098a643cb16d0bc3764}{Update\+State}} (const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point, bool \&Handled)
 \item 
-void \mbox{\hyperlink{classgl_page_aeee63ce86222be2c54301345dbd54006}{Update\+State}} (\mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point, bool \&Handled)
+void \mbox{\hyperlink{classgl_page_link_a7d6f90af8f99f8200c540b9240cf9c7b}{Invalidate\+Childs}} ()
 \item 
-void \mbox{\hyperlink{classgl_page_a8ae6ad41709665942e64e6e5f17b19c0}{Invalidate\+Me}} ()
+void \mbox{\hyperlink{classgl_page_link_a28c7bc52fff7283626ce39ea21fb93a7}{Invalidate\+Widgets}} ()
 \item 
-void \mbox{\hyperlink{classgl_page_ae3b686ac0b9b486fea07c603d69d656c}{Invalidate\+Siblings}} ()
-\item 
-bool \mbox{\hyperlink{classgl_page_ac6a2afdd709d15a7c9481c64d194874b}{Is\+Invalidated}} (\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} \&invalid\+Region)
+void \mbox{\hyperlink{classgl_page_link_a2fa3360c9403a1900132e8b2bee73242}{Invalidated\+Region}} (\mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \&invalid\+Region)
 \item 
 virtual void {\bfseries Redraw} () final
 \item 
 virtual bool {\bfseries Touch} (const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point) final
 \item 
-void \mbox{\hyperlink{classgl_page_a1f8db34ed139d08d073f884273768b38}{Event}} (\mbox{\hyperlink{classgl_event}{gl\+Event}} event)
+void \mbox{\hyperlink{classgl_page_link_affc76bd3bb7c279d2b149f4c1ee2592e}{Event}} (\mbox{\hyperlink{classgl_event}{gl\+Event}} event)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgl_link}{gl\+Link}}}
 \begin{DoxyCompactItemize}
@@ -56,7 +54,7 @@ virtual \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries Front\+
 virtual void {\bfseries Front\+Color} (\mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} color)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
-\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classgl_page}{gl\+Page}}}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classgl_page_link}{gl\+Page\+Link}}}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classgl_event}{gl\+Event}} {\bfseries Event\+Action}
@@ -66,10 +64,12 @@ virtual void {\bfseries Front\+Color} (\mbox{\hyperlink{classgl_color__t}{gl\+Co
 \item 
 \mbox{\hyperlink{classgl_color__t}{gl\+Color\+\_\+t}} {\bfseries \+\_\+\+Front\+Color}
 \end{DoxyCompactItemize}
-\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classgl_page}{gl\+Page}}}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classgl_page_link}{gl\+Page\+Link}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries \+\_\+\+Region}
+\mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} {\bfseries \+\_\+\+Region}
+\item 
+\mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} {\bfseries \+\_\+\+Invalid\+Region}
 \end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classgl_link}{gl\+Link}}}
 \begin{DoxyCompactItemize}

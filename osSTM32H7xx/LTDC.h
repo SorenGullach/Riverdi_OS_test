@@ -74,8 +74,9 @@ public:
 	// 7. Configure the layer1 / 2 parameters by :
 	// 8. Enable layer1 / 2 and if needed the CLUT in the LTDC_LxCR register.
 	void Layer(R_t<uint8_t, 1, 2> l, void *pRGBData, uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1);
-	static uint16_t Height() {	return VACT; }
-	static uint16_t Width() {	return HACT; }
+	static uint16_t Height() { return VACT; }
+	static uint16_t Width() { return HACT; }
+#define LTDC_MEM_SIZE_PIX  ((uint32_t)(HACT*VACT))
 	uint16_t Width(uint16_t w) 
 	{	
 		uint32_t BytesPerPixel = 4; // TODO depend on PixelFormat

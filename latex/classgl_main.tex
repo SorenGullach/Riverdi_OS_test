@@ -12,10 +12,10 @@ Inheritance diagram for gl\+Main\+:\begin{figure}[H]
 \Hypertarget{classgl_main_a5b990ce123dc179bcb527c76787dacfa}\label{classgl_main_a5b990ce123dc179bcb527c76787dacfa} 
 void {\bfseries Init} ()
 \item 
-\Hypertarget{classgl_main_aef8f3d6c0367ddd0382e367f4f6b0439}\label{classgl_main_aef8f3d6c0367ddd0382e367f4f6b0439} 
-void {\bfseries Add\+Page} (\mbox{\hyperlink{classgl_page}{gl\+Page}} \texorpdfstring{$\ast$}{*}page)
+\Hypertarget{classgl_main_adc9d6ae41f0c1b85917fdfff43c3874d}\label{classgl_main_adc9d6ae41f0c1b85917fdfff43c3874d} 
+void {\bfseries Add\+Page} (\mbox{\hyperlink{classgl_page_link}{gl\+Page\+Link}} \texorpdfstring{$\ast$}{*}page)
 \item 
-void \mbox{\hyperlink{classgl_main_ab86832b66f825b77d86d114213373be3}{cb\+Touch}} (\mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point) override
+void \mbox{\hyperlink{classgl_main_a3b99dde2e8881f2e90c8549f13e0e082}{cb\+Touch}} (const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&point) override
 \begin{DoxyCompactList}\small\item\em Pure virtual function to handle touch events. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classgl_main_aa3bbbd92f5f8500d8f81224270a42fbf}{cb\+Blanking}} () override
 \begin{DoxyCompactList}\small\item\em Pure virtual function to handle blanking events. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -27,32 +27,28 @@ static P\+\_\+t \mbox{\hyperlink{classgl_video_memory_ad8382197b985124b688fd8421
 \begin{DoxyCompactList}\small\item\em Gets the screen width. \end{DoxyCompactList}\item 
 static P\+\_\+t \mbox{\hyperlink{classgl_video_memory_ad2a3fbb1c2c576796b960406fa7951b9}{Screen\+Height}} ()
 \begin{DoxyCompactList}\small\item\em Gets the screen height. \end{DoxyCompactList}\item 
-static bool \mbox{\hyperlink{classgl_video_memory_a79f28b876830fedd3cc74a256eb2c410}{last\+Band}} ()
-\begin{DoxyCompactList}\small\item\em Checks if this is the last band. \end{DoxyCompactList}\item 
-static void {\bfseries Limit\+Region} ()
+static void {\bfseries Copy\+Video\+Mem} ()
+\item 
+static bool {\bfseries Is\+Transfer\+Complete} ()
+\item 
+static \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} {\bfseries Limit\+Region} (const \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \&region)
 \begin{DoxyCompactList}\small\item\em Limits the region to the intersection with the current drawing region. \end{DoxyCompactList}\item 
-static void {\bfseries Next\+Region} ()
-\begin{DoxyCompactList}\small\item\em Moves to the next region to be drawn. \end{DoxyCompactList}\item 
-static void \mbox{\hyperlink{classgl_video_memory_a3fbd6abbb3a2b322e2313bef9d4664a8}{Init}} (const P\+\_\+t w, const P\+\_\+t h, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*}pvm)
+static void \mbox{\hyperlink{classgl_video_memory_ae849de5704353d0306b8be36bcab07da}{Init}} (const P\+\_\+t w, const P\+\_\+t h, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*}pvm\+LTDC, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*}pvm\+Shadow)
 \begin{DoxyCompactList}\small\item\em Initializes the video memory with the specified dimensions and buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classgl_video_memory}{gl\+Video\+Memory}}}
 \begin{DoxyCompactItemize}
 \item 
-static \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*} {\bfseries p\+VM}
+static \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*} {\bfseries p\+VMShadow}
 \item 
-static P\+\_\+t {\bfseries \+\_\+\+Screen\+Width}
-\item 
-static P\+\_\+t {\bfseries \+\_\+\+Screen\+Height}
+static \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*} {\bfseries p\+VMLTDC}
 \end{DoxyCompactItemize}
 \begin{DoxyCompactItemize}
 \item 
-static P\+\_\+t {\bfseries ls}
+static \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} {\bfseries \+\_\+\+Invalid\+Region}
 \item 
-static P\+\_\+t {\bfseries y\+Start}
+static \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} {\bfseries \+\_\+\+Video\+Region}
 \item 
-static P\+\_\+t {\bfseries y\+End}
-\item 
-static \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Invalid\+Region}
+static \mbox{\hyperlink{classhw_d_m_a2_d}{hw\+DMA2D}} {\bfseries \+\_\+\+Dma2D}
 \end{DoxyCompactItemize}
 
 
@@ -71,11 +67,11 @@ Pure virtual function to handle blanking events.
 
 Implements \mbox{\hyperlink{classcb_display_a54467ed5dfaef5d9fb651921d64eed40}{cb\+Display}}.
 
-\Hypertarget{classgl_main_ab86832b66f825b77d86d114213373be3}\label{classgl_main_ab86832b66f825b77d86d114213373be3} 
+\Hypertarget{classgl_main_a3b99dde2e8881f2e90c8549f13e0e082}\label{classgl_main_a3b99dde2e8881f2e90c8549f13e0e082} 
 \index{glMain@{glMain}!cbTouch@{cbTouch}}
 \index{cbTouch@{cbTouch}!glMain@{glMain}}
 \doxysubsubsection{\texorpdfstring{cbTouch()}{cbTouch()}}
-{\footnotesize\ttfamily void gl\+Main\+::cb\+Touch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily void gl\+Main\+::cb\+Touch (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_touch_point__t}{gl\+Touch\+Point\+\_\+t}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
@@ -88,7 +84,7 @@ Pure virtual function to handle touch events.
 \end{DoxyParams}
 
 
-Implements \mbox{\hyperlink{classcb_display_a2371e3a78b24a19635435b3eda9d9355}{cb\+Display}}.
+Implements \mbox{\hyperlink{classcb_display_ad950354c066575fce5ef12fa4c9b2b57}{cb\+Display}}.
 
 
 

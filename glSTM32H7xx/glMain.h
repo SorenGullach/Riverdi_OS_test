@@ -27,7 +27,7 @@
 
 #include "glPage.h"
 
-class glMain : protected glVideoMemory, private cbDisplay
+class glMain : protected glVideoMemoryPlot, private cbDisplay
 {
 public:
 	void Init()
@@ -35,14 +35,20 @@ public:
 		Display.Init(this); // the display
 		Touch.Init(this); // for touch control
 		
-		// Find the size of the display + Display buffer
-		glVideoMemory::Init(Display.Width(), Display.Height(), (glARGB_t *)SDRAM_START);
+		uint32_t DisplayMemSize = (Display.Width()*Display.Height() * 4) * 2;
+		Printf("DisplayMem size_t % d", DisplayMemSize);
+		assert(DisplayMemSize <= SDRAM_SIZE);
+		
+		// setup the video memory buffers
+		glVideoMemory::Init(Display.Width(), Display.Height(), 
+			(glARGB_t*)SDRAM_START, (glARGB_t*)(SDRAM_START+DisplayMemSize));
 
 		// back color for background
 		glColor_t bg = glColor_t(glColors::GREEN);
 		Display.BackgroundColor(bg.R, bg.G, bg.B);
 		// layer
-		Display.Layer(1, pVM, 0, 0, 0 + _ScreenWidth, 0 + _ScreenHeight);
+		Display.Layer(1, pVMLTDC, 0, 0, 0 + Display.Width(), 0 + Display.Height());
+		//		Display.Layer(1, pVMShadow, 0, 0, 0 + Display.Width(), 0 + Display.Height()); // good for debug :-)
 		// blending
 		Display.BlendingFactors(1, eBlendingFactor1::F1_CA, eBlendingFactor2::F2_CA, 255);
 		glColor_t df = glColor_t(glColors::RED);
@@ -51,9 +57,9 @@ public:
 		Display.ColorKey(1, ck.R, ck.G, ck.B);
 	}
 	
-	void AddPage(glPage *page)
+	void AddPage(glPageLink *page)
 	{
-		page->MoveTo(gl2DPoint_t(0, 0, Display.Width() - 1, Display.Height() - 1));
+		page->MoveTo(glRegion_t(0, 0, Display.Width(), Display.Height()));
 		ChainPages.Add(page);
 		//page->Init();
 		
@@ -67,31 +73,31 @@ private:
 	// Touch control
 	CTPDisplay Touch;
 	
-	glChain<glPage> ChainPages;
-	glPage *pCurrentPage = nullptr;
+	glChain<glPageLink> ChainPages;
+	glPageLink *pCurrentPage = nullptr;
 	
 public:
-	void cbTouch(glTouchPoint_t &point) override
+	void cbTouch(const glTouchPoint_t &point) override
 	{
 		if (pCurrentPage == nullptr) return;
 		bool Handled = false;
 		pCurrentPage->UpdateState(point, Handled);
-		
+
 		switch (pCurrentPage->EventAction.EventType)
 		{
 		case glEvent::eEventType::Slide:
 			if (pCurrentPage->EventAction.U.Slide.Action == glTouchPoint_t::Right && pCurrentPage->Prev() != nullptr)			
 			{
-				((glPage *)pCurrentPage->Prev())->InvalidateMe();
+				((glPageLink *)pCurrentPage->Prev())->InvalidateChilds();
 				pCurrentPage->EventAction.U.Slide.Action = glTouchPoint_t::None; 
-				pCurrentPage = (glPage *)(pCurrentPage->Prev());
+				pCurrentPage = (glPageLink *)(pCurrentPage->Prev());
 				//Printf("%s Currentpage\n", pCurrentPage->Name);
 			}
 			if (pCurrentPage->EventAction.U.Slide.Action == glTouchPoint_t::Left && pCurrentPage->Next() != nullptr)			
 			{
-				((glPage *)pCurrentPage->Next())->InvalidateMe();
+				((glPageLink *)pCurrentPage->Next())->InvalidateChilds();
 				pCurrentPage->EventAction.U.Slide.Action = glTouchPoint_t::None; 
-				pCurrentPage = (glPage *)(pCurrentPage->Next());
+				pCurrentPage = (glPageLink *)(pCurrentPage->Next());
 				//Printf("%s Currentpage\n", pCurrentPage->Name);
 			}
 			break;
@@ -104,14 +110,26 @@ public:
 
 	void cbBlanking() override
 	{
-		if (pCurrentPage == nullptr) return;
-
-		if (!pCurrentPage->IsInvalidated(glVideoMemory::InvalidRegion)) // returns an invalidated region
+		// wait for done
+		if (!glVideoMemory::IsTransferComplete() || pCurrentPage == nullptr)
 			return;
 
-		glVideoMemory::LimitRegion();
+		// find invalid region
+		glRegion_t IR;
+		pCurrentPage->InvalidatedRegion(IR); // returns an invalidated region
+
+		// if empty do nothing
+		if (IR.IsEmpty()) return;
+		printf("region %s\n", IR.ToString());
+
+		// save region (for Updatelook & CopyVideoMem)
+		glVideoMemoryPlot::InvalidRegion(IR);
+		
+		// update all widgets
 		pCurrentPage->UpdateLook();
-		glVideoMemory::NextRegion();
+		
+		// copy shadow mem to video memory
+		glVideoMemory::CopyVideoMem();
 	}
 };
 

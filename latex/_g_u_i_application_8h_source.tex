@@ -30,218 +30,221 @@
 \DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}glLabel.h"{}}}
 \DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}glSlider.h"{}}}
 \DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_u_i_page_widgets}{GUIPageWidgets}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_page}{glPage}}}
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_u_i_page_widgets}{GUIPageWidgets}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_page_link}{glPageLink}}}
 \DoxyCodeLine{00031\ \{}
 \DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_widgets}{GUIPageWidgets}}()}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_page}{glPage}}(\textcolor{stringliteral}{"{}PageWidgets"{}},\ glColors::BLACK)}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_page_link}{glPageLink}}(\textcolor{stringliteral}{"{}PageWidgets"{}},\ glColors::BLACK)}
 \DoxyCodeLine{00035\ \ \ \ \ \{}
 \DoxyCodeLine{00036\ \ \ \ \ \}}
 \DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ Initialize\ widget}}
 \DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Init()}
 \DoxyCodeLine{00039\ \ \ \ \ \{}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ l1\ =\ \mbox{\hyperlink{classgl_line}{glLine}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ \_Region.Width(),\ \_Region.Height()),\ Cr);}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ l2\ =\ \mbox{\hyperlink{classgl_line}{glLine}}(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(\_Region.Width(),\ 0,\ 0,\ \_Region.Height()),\ Cg);}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ Add(\&p1);}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ Add(\&p2);}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ Add(\&p3);}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ Add(\&p4);}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ Add(\&l1);}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ Add(\&l2);}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ Add(\&r1);}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ Add(\&c1);}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ Add(\&r2);}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ Add(\&a1);}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ Add(\&f1);}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ Add(\&r3);}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ Add(\&fa1);}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ Add(\&r6);}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ Add(\&r5);}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ Add(\&r4);}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ Add(\&rr1);}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ Add(\&rrf1);}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ Add(\&B1);}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ Add(\&B2);}
-\DoxyCodeLine{00063\ \ \ \ \ \}}
-\DoxyCodeLine{00064\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ Cr\ =\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}(glColors::RED);}
-\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ Cg\ =\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}(glColors::GREEN);}
-\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ Cb\ =\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}(glColors::BLUE);}
-\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classgl_pixel}{glPixel}}\ p1\ =\ \{\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(100,\ 100),\ Cr\ \};}
-\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{classgl_pixel}{glPixel}}\ p2\ =\ \{\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(100,\ 101),\ glColors::RED\ \};}
-\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{classgl_pixel}{glPixel}}\ p3\ =\ \{\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(100,\ 102),\ glColors::RED\ \};}
-\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classgl_pixel}{glPixel}}\ p4\ =\ \{\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(100,\ 103),\ glColors::RED\ \};}
-\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{classgl_line}{glLine}}\ l1\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(),\ Cr\ \};}
-\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{classgl_line}{glLine}}\ l2\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(),\ Cg\ \};}
-\DoxyCodeLine{00075\ \ }
-\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}\ r1\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(110,\ 110,\ 400,\ 400),\ Cr\ \};}
-\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{classgl_circle}{glCircle}}\ c1\ =\ \{\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(500,\ 300),\ 100,\ glColors::RED\ \};}
-\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}\ r2\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(200,\ 200,\ 300,\ 300),\ glColors::GREEN\ \};}
-\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{classgl_arc}{glArc}}\ a1\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(200,\ 200,\ 300,\ 300),\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(200,\ 200),\ 50,\ glColors::BLUE\ \};}
-\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{classgl_circle_fill}{glCircleFill}}\ f1\ =\ \{\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(700,\ 300),\ 100,\ glColors::BLUE\ \};}
-\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}\ r3\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(200,\ 450,\ 300,\ 550),\ glColors::BLANCHED\_ALMOND\ \};}
-\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{classgl_arc_fill}{glArcFill}}\ fa1\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(200,\ 450,\ 300,\ 550),\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(300,\ 550),\ 100,\ glColors::BISQUE\ \};}
-\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}\ r4\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(400\ -\/\ 2,\ 450\ -\/\ 2,\ 500\ +\ 2,\ 550\ +\ 2),\ glColors::DARK\_OLIVE\_GREEN\ \};}
-\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}\ r5\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(400\ -\/\ 1,\ 450\ -\/\ 1,\ 500\ +\ 1,\ 550\ +\ 1),\ glColors::LIGHT\_SKY\_BLUE\ \};}
-\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}\ r6\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(400,\ 450,\ 500,\ 550),\ glColors::LAWN\_GREEN\ \};}
-\DoxyCodeLine{00086\ \ \ \ \ }
-\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round}{glRectangleRound}}\ rr1\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(500,\ 10,\ 700,\ 100),\ 30,\ glColors::GREEN\_YELLOW\ \};}
-\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round_fill}{glRectangleRoundFill}}\ rrf1\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(200,\ 10,\ 400,\ 100),\ 30,\ glColors::LIME\_GREEN\ \};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ l1\ =\ \mbox{\hyperlink{classgl_line}{glLine}}(\mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(0,\ 0),\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(\_Region.\mbox{\hyperlink{structgl_region__t_a80c348184d3c58a58855e984c6c56dcd}{Width}}()-\/1,\ \_Region.\mbox{\hyperlink{structgl_region__t_a12d481ccfda593268fd6e7a21f3340ef}{Height}}()-\/1),\ Cr);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ l2.MoveTo(\mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(\_Region.\mbox{\hyperlink{structgl_region__t_a80c348184d3c58a58855e984c6c56dcd}{Width}}()-\/1,\ 0,\ 0,\ \_Region.\mbox{\hyperlink{structgl_region__t_a12d481ccfda593268fd6e7a21f3340ef}{Height}}()-\/1));}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ r7.MoveTo(\mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ \_Region.\mbox{\hyperlink{structgl_region__t_a80c348184d3c58a58855e984c6c56dcd}{Width}}(),\ \_Region.\mbox{\hyperlink{structgl_region__t_a12d481ccfda593268fd6e7a21f3340ef}{Height}}()));\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ Add(\&p1);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ Add(\&p2);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ Add(\&p3);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ Add(\&p4);}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ Add(\&l1);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ Add(\&l2);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ Add(\&r1);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ Add(\&c1);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ Add(\&r2);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ Add(\&a1);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ Add(\&f1);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ Add(\&r3);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ Add(\&fa1);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ Add(\&r6);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ Add(\&r7);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ Add(\&r5);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ Add(\&r4);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ Add(\&rr1);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ Add(\&rrf1);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ Add(\&B1);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ Add(\&B2);}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ Cr\ =\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}(glColors::RED);}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ Cg\ =\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}(glColors::GREEN);}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ Cb\ =\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}(glColors::BLUE);}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{classgl_pixel}{glPixel}}\ p1\ =\ \{\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(100,\ 100),\ Cr\ \};}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classgl_pixel}{glPixel}}\ p2\ =\ \{\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(100,\ 101),\ glColors::RED\ \};}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{classgl_pixel}{glPixel}}\ p3\ =\ \{\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(100,\ 102),\ glColors::RED\ \};}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{classgl_pixel}{glPixel}}\ p4\ =\ \{\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(100,\ 103),\ glColors::RED\ \};}
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{classgl_line}{glLine}}\ l1\ =\ \{\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(),\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(),\ Cr\ \};}
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{classgl_line}{glLine}}\ l2\ =\ \{\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(),\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(),\ Cg\ \};}
+\DoxyCodeLine{00077\ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}\ r1\ =\ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(110,\ 110,\ 400,\ 400),\ Cr\ \};}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{classgl_circle}{glCircle}}\ c1\ =\ \{\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(500,\ 300),\ 100,\ glColors::RED\ \};}
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}\ r2\ =\ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(200,\ 200,\ 300,\ 300),\ glColors::GREEN\ \};}
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{classgl_arc}{glArc}}\ a1\ =\ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(200,\ 200,\ 300,\ 300),\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(200,\ 200),\ 50,\ glColors::BLUE\ \};}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{classgl_circle_fill}{glCircleFill}}\ f1\ =\ \{\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(700,\ 300),\ 100,\ glColors::BLUE\ \};}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}\ r3\ =\ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(200,\ 450,\ 300,\ 550),\ glColors::BLANCHED\_ALMOND\ \};}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{classgl_arc_fill}{glArcFill}}\ fa1\ =\ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(200,\ 450,\ 300,\ 550),\ \mbox{\hyperlink{structgl_point__t}{glPoint\_t}}(300,\ 550),\ 100,\ glColors::BISQUE\ \};}
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}\ r4\ =\ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(400\ -\/\ 2,\ 450\ -\/\ 2,\ 500\ +\ 2,\ 550\ +\ 2),\ glColors::DARK\_OLIVE\_GREEN\ \};}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}\ r5\ =\ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(400\ -\/\ 1,\ 450\ -\/\ 1,\ 500\ +\ 1,\ 550\ +\ 1),\ glColors::LIGHT\_SKY\_BLUE\ \};}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_fill}{glRectangleFill}}\ r6\ =\ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(400,\ 450,\ 500,\ 550),\ glColors::LAWN\_GREEN\ \};}
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle}{glRectangle}}\ r7\ =\ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 1024,\ 600),\ glColors::WHITE\ \};}
 \DoxyCodeLine{00089\ \ \ \ \ }
-\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{classgl_button}{glButton<20,\ Arial\_16\_1>}}\ B1\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 200,\ 100),\ \textcolor{stringliteral}{"{}"{}}\ \};}
-\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{classgl_button}{glButton<20,\ Arial\_31\_1>}}\ B2\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(200,\ 300,\ 500,\ 400),\ \textcolor{stringliteral}{"{}Hello"{}}\ \};}
-\DoxyCodeLine{00092\ \};}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00094\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_u_i_page_texts}{GUIPageTexts}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_page}{glPage}}}
-\DoxyCodeLine{00095\ \{}
-\DoxyCodeLine{00096\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_texts}{GUIPageTexts}}()}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_page}{glPage}}(\textcolor{stringliteral}{"{}PageTexts"{}},\ glColors::CYAN)}
-\DoxyCodeLine{00099\ \ \ \ \ \{}
-\DoxyCodeLine{00100\ \ \ \ \ \}}
-\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//\ Initialize\ widget}}
-\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Init()}
-\DoxyCodeLine{00103\ \ \ \ \ \{}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ P\_t\ xmax\ =\ 0,\ x\ =\ 0,\ y\ =\ 0;}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 18;\ i++)}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ Add(\&glTexts[i]);\ }
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ glTexts[i].Region().MoveTo(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(x,\ y,\ x\ +\ glTexts[i].TextSize().Width(),\ y\ +\ glTexts[i].TextSize().Height()).Inflate(0,\ 0,\ 5,\ 5));}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ y\ =\ glTexts[i].Region().B();}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (glTexts[i].Region().R()\ >\ xmax)\ xmax\ =\ glTexts[i].Region().R();}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (y\ >\ \mbox{\hyperlink{classgl_video_memory_ad2a3fbb1c2c576796b960406fa7951b9}{glVideoMemory::ScreenHeight}}())}
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ xmax;}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ y\ =\ 0;}
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (x\ >\ \mbox{\hyperlink{classgl_video_memory_ad8382197b985124b688fd84216728f14}{glVideoMemory::ScreenWidth}}())}
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ 0;}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glTexts[i].Region().MoveTo(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(x,\ y,\ x\ +\ glTexts[i].TextSize().Width(),\ y\ +\ glTexts[i].TextSize().Height()).Inflate(0,\ 0,\ 5,\ 5));}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ y\ =\ glTexts[i].Region().B();}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00121\ \ \ \ \ \}}
-\DoxyCodeLine{00122\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00123\ \ \ \ \ \mbox{\hyperlink{classgl_text}{glText<20>}}\ glTexts[18]}
-\DoxyCodeLine{00124\ \ \ \ \ \{}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_10\_1"{}},\ Arial\_10\_1\ \},\ \textcolor{comment}{//\ 0}}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_12\_1"{}},\ Arial\_12\_1\ \},}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_14\_1"{}},\ Arial\_14\_1\ \},}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_16\_1"{}},\ Arial\_16\_1\ \},}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_19\_1"{}},\ Arial\_19\_1\ \},}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_22\_1"{}},\ Arial\_22\_1\ \},}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_26\_1"{}},\ Arial\_26\_1\ \},}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_31\_1"{}},\ Arial\_31\_1\ \},}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_37\_1"{}},\ Arial\_37\_1\ \},}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_44\_1"{}},\ Arial\_44\_1\ \},}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_52\_1"{}},\ Arial\_52\_1\ \},\ \textcolor{comment}{//\ 10}}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_62\_1"{}},\ Arial\_62\_1\ \},}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_74\_1"{}},\ Arial\_74\_1\ \},}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_88\_1"{}},\ Arial\_88\_1\ \},}
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_105\_1"{}},\ Arial\_105\_1\ \},}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_126\_1"{}},\ Arial\_126\_1\ \},\ }
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_151\_1"{}},\ Arial\_151\_1\ \},}
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_181\_1"{}},\ Arial\_181\_1,\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}(glColor\_t::eColorOperation::ComplementBackground)\ \},\ \textcolor{comment}{//\ 17}}
-\DoxyCodeLine{00143\ \ \ \ \ \}}
-\DoxyCodeLine{00144\ \ \ \ \ ;}
-\DoxyCodeLine{00145\ \};}
-\DoxyCodeLine{00146\ }
-\DoxyCodeLine{00147\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_u_i_page_buttons}{GUIPageButtons}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_page}{glPage}}}
-\DoxyCodeLine{00148\ \{}
-\DoxyCodeLine{00149\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00150\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_buttons}{GUIPageButtons}}()}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_page}{glPage}}(\textcolor{stringliteral}{"{}PageButtons"{}},\ glColors::LIGHT\_CORAL)}
-\DoxyCodeLine{00152\ \ \ \ \ \{}
-\DoxyCodeLine{00153\ \ \ \ \ \}}
-\DoxyCodeLine{00154\ \ \ \ \ \textcolor{comment}{//\ Initialize\ widget}}
-\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Init()}
-\DoxyCodeLine{00156\ \ \ \ \ \{}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ B1.ReleasedColor(glColors::LAWN\_GREEN);}
-\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ B1.PressedColor(glColors::BURLYWOOD);}
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ B3.CornerRadius(0);}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ B3.Corners(glWidgetBorder::eCornerStyles::Angel);}}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ B3.BorderColor(glColors::RED);}
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ Add(\&B1);}
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ Add(\&B2);}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ Add(\&B3);}
-\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ Add(\&l1);}
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ Add(\&l2);}
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ Add(\&l3);}
-\DoxyCodeLine{00170\ \ \ \ \ \}}
-\DoxyCodeLine{00171\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00172\ \ \ \ \ \mbox{\hyperlink{classgl_button}{glButton<\ 35,\ Arial\_22\_1>}}\ B1\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(100,\ 50,\ 300,\ 150),\ \textcolor{stringliteral}{"{}B1\ rc=LAWN\_GREEN\(\backslash\)npc=BURLYWOOD"{}}\ \};}
-\DoxyCodeLine{00173\ \ \ \ \ \mbox{\hyperlink{classgl_button}{glButton<\ 35,\ Arial\_31\_1>}}\ B2\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(400,\ 50,\ 600,\ 150),\ \textcolor{stringliteral}{"{}B2\ default"{}}\ \};}
-\DoxyCodeLine{00174\ \ \ \ \ \mbox{\hyperlink{classgl_button}{glButton<\ 35,\ Arial\_31\_1>}}\ B3\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(400,\ 200,\ 600,\ 300),\ \textcolor{stringliteral}{"{}B3\ Charp\ corners\(\backslash\)nbc=RED"{}}\ \};}
-\DoxyCodeLine{00175\ \ \ \ \ }
-\DoxyCodeLine{00176\ \ \ \ \ \mbox{\hyperlink{classgl_label}{glLabel<\ 35,\ Arial\_31\_1>}}\ l1\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(100,\ 200,\ 350,\ 250),\ \textcolor{stringliteral}{"{}l1\ Label\ default"{}}\ \};}
-\DoxyCodeLine{00177\ \ \ \ \ \mbox{\hyperlink{classgl_label}{glLabel<\ 35,\ Arial\_31\_1>}}\ l2\ =\ \{}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(100,\ 300,\ 350,\ 350),}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}l2\ Label\ AGUAMARINE"{}},}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_label_theme}{glLabelTheme}}(glColor\_t::eColorOperation::ComplementBackground,\ glColors::AQUAMARINE,\ glColors::WHITE,\ 5,\ 20)}
-\DoxyCodeLine{00181\ \ \ \ \ \};}
-\DoxyCodeLine{00182\ \ \ \ \ \mbox{\hyperlink{classgl_label}{glLabel<\ 35,\ Arial\_31\_1>}}\ l3\ =\ \{\ }
-\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(100,\ 400,\ 350,\ 450),\ }
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}l3\ Label\ GREEN"{}},}
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_label_theme}{glLabelTheme}}(glColor\_t::eColorOperation::ComplementBackground,\ glColors::GREEN,\ glColors::WHITE,\ 5,\ 500)}
-\DoxyCodeLine{00186\ \ \ \ \ \};}
-\DoxyCodeLine{00187\ \};}
-\DoxyCodeLine{00188\ }
-\DoxyCodeLine{00189\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_u_i_page_sliders}{GUIPageSliders}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_page}{glPage}}}
-\DoxyCodeLine{00190\ \{}
-\DoxyCodeLine{00191\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00192\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_sliders}{GUIPageSliders}}()}
-\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_page}{glPage}}(\textcolor{stringliteral}{"{}PageSliders"{}},\ glColors::LIGHT\_GRAY)}
-\DoxyCodeLine{00194\ \ \ \ \ \{}
-\DoxyCodeLine{00195\ \ \ \ \ \}}
-\DoxyCodeLine{00196\ \ \ \ \ \textcolor{comment}{//\ Initialize\ widget}}
-\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Init()}
-\DoxyCodeLine{00198\ \ \ \ \ \{}
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ Add(\&S1);}
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ Add(\&S2);}
-\DoxyCodeLine{00201\ \ \ \ \ \}}
-\DoxyCodeLine{00202\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00203\ \ \ \ \ \mbox{\hyperlink{classgl_slider}{glSlider<\ 35,\ Arial\_31\_1>}}\ S1\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(100,\ 200,\ 500,\ 300),\ \textcolor{stringliteral}{"{}S1\ Slider"{}}\ \};}
-\DoxyCodeLine{00204\ \ \ \ \ \mbox{\hyperlink{classgl_slider}{glSlider<\ 35,\ Arial\_31\_1>}}\ S2\ =\ \{\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(600,\ 100,\ 700,\ 500),\ \textcolor{stringliteral}{"{}S2\ Slider"{}}\ \};}
-\DoxyCodeLine{00205\ \};}
-\DoxyCodeLine{00206\ }
-\DoxyCodeLine{00207\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00208\ \textcolor{comment}{\ *\ This\ is\ the\ "{}main"{}\ class\ for\ controlling\ the\ GUI}}
-\DoxyCodeLine{00209\ \textcolor{comment}{\ *\ handles\ pages\ and\ GUI\ state}}
-\DoxyCodeLine{00210\ \textcolor{comment}{\ *\ reports\ to\ CM4\ and\ other\ code\ of\ GUI\ changes}}
-\DoxyCodeLine{00211\ \textcolor{comment}{\ *\ }}
-\DoxyCodeLine{00212\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00213\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_u_i_application}{GUIApplication}}\ :\ \mbox{\hyperlink{classgl_main}{glMain}}}
-\DoxyCodeLine{00214\ \{}
-\DoxyCodeLine{00215\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00216\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_application}{GUIApplication}}()}
-\DoxyCodeLine{00217\ \ \ \ \ \{}
-\DoxyCodeLine{00218\ \ \ \ \ \}}
-\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordtype}{void}\ Init()}
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round}{glRectangleRound}}\ rr1\ =\ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(500,\ 10,\ 700,\ 100),\ 30,\ glColors::GREEN\_YELLOW\ \};}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{classgl_rectangle_round_fill}{glRectangleRoundFill}}\ rrf1\ =\ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(200,\ 10,\ 400,\ 100),\ 30,\ glColors::LIME\_GREEN\ \};}
+\DoxyCodeLine{00092\ \ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{classgl_button}{glButton<20,\ Arial\_16\_1>}}\ B1\ =\ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 200,\ 100),\ \textcolor{stringliteral}{"{}"{}}\ \};}
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{classgl_button}{glButton<20,\ Arial\_31\_1>}}\ B2\ =\ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(200,\ 300,\ 500,\ 400),\ \textcolor{stringliteral}{"{}Hello"{}}\ \};}
+\DoxyCodeLine{00095\ \};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_u_i_page_texts}{GUIPageTexts}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_page_link}{glPageLink}}}
+\DoxyCodeLine{00098\ \{}
+\DoxyCodeLine{00099\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_texts}{GUIPageTexts}}()}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_page_link}{glPageLink}}(\textcolor{stringliteral}{"{}PageTexts"{}},\ glColors::CYAN)}
+\DoxyCodeLine{00102\ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{//\ Initialize\ widget}}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Init()}
+\DoxyCodeLine{00106\ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ P\_t\ xmax\ =\ 0,\ x\ =\ 0,\ y\ =\ 0;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 18;\ i++)}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ Add(\&glTexts[i]);\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ glTexts[i].Region().\mbox{\hyperlink{structgl_region__t_a3c21ee1552ebb8bd1453d19ffd1379b9}{MoveTo}}(\mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(x,\ y,\ x\ +\ glTexts[i].TextSize().Width(),\ y\ +\ glTexts[i].TextSize().Height()).Inflate(0,\ 0,\ 5,\ 5));}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ y\ =\ glTexts[i].Region().\mbox{\hyperlink{structgl_region__t_aa00fd21ea8ad9da215094909983ba3b9}{B}}();}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (glTexts[i].Region().R()\ >\ xmax)\ xmax\ =\ glTexts[i].Region().\mbox{\hyperlink{structgl_region__t_afb635b2ddf463697760e8cbcb1f805ab}{R}}();}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (y\ >\ \mbox{\hyperlink{classgl_video_memory_ad2a3fbb1c2c576796b960406fa7951b9}{glVideoMemory::ScreenHeight}}())}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ xmax;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ y\ =\ 0;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (x\ >\ \mbox{\hyperlink{classgl_video_memory_ad8382197b985124b688fd84216728f14}{glVideoMemory::ScreenWidth}}())}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ 0;}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glTexts[i].Region().\mbox{\hyperlink{structgl_region__t_a3c21ee1552ebb8bd1453d19ffd1379b9}{MoveTo}}(\mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(x,\ y,\ x\ +\ glTexts[i].TextSize().Width(),\ y\ +\ glTexts[i].TextSize().Height()).Inflate(0,\ 0,\ 5,\ 5));}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ y\ =\ glTexts[i].Region().\mbox{\hyperlink{structgl_region__t_aa00fd21ea8ad9da215094909983ba3b9}{B}}();}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{classgl_text}{glText<20>}}\ glTexts[18]}
+\DoxyCodeLine{00127\ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_10\_1"{}},\ Arial\_10\_1\ \},\ \textcolor{comment}{//\ 0}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_12\_1"{}},\ Arial\_12\_1\ \},}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_14\_1"{}},\ Arial\_14\_1\ \},}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_16\_1"{}},\ Arial\_16\_1\ \},}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_19\_1"{}},\ Arial\_19\_1\ \},}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_22\_1"{}},\ Arial\_22\_1\ \},}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_26\_1"{}},\ Arial\_26\_1\ \},}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_31\_1"{}},\ Arial\_31\_1\ \},}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_37\_1"{}},\ Arial\_37\_1\ \},}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_44\_1"{}},\ Arial\_44\_1\ \},}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_52\_1"{}},\ Arial\_52\_1\ \},\ \textcolor{comment}{//\ 10}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_62\_1"{}},\ Arial\_62\_1\ \},}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_74\_1"{}},\ Arial\_74\_1\ \},}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_88\_1"{}},\ Arial\_88\_1\ \},}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_105\_1"{}},\ Arial\_105\_1\ \},}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_126\_1"{}},\ Arial\_126\_1\ \},\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_151\_1"{}},\ Arial\_151\_1\ \},}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ 0,\ 0),\ \textcolor{stringliteral}{"{}jArial\_181\_1"{}},\ Arial\_181\_1,\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}(glColor\_t::eColorOperation::ComplementBackground)\ \},\ \textcolor{comment}{//\ 17}}
+\DoxyCodeLine{00146\ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \ \ \ \ ;}
+\DoxyCodeLine{00148\ \};}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_u_i_page_buttons}{GUIPageButtons}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_page_link}{glPageLink}}}
+\DoxyCodeLine{00151\ \{}
+\DoxyCodeLine{00152\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00153\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_buttons}{GUIPageButtons}}()}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_page_link}{glPageLink}}(\textcolor{stringliteral}{"{}PageButtons"{}},\ glColors::LIGHT\_CORAL)}
+\DoxyCodeLine{00155\ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{comment}{//\ Initialize\ widget}}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Init()}
+\DoxyCodeLine{00159\ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ B1.ReleasedColor(glColors::LAWN\_GREEN);}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ B1.PressedColor(glColors::BURLYWOOD);}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ B3.CornerRadius(0);}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ B3.Corners(glWidgetBorder::eCornerStyles::Angel);}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ B3.BorderColor(glColors::RED);}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ Add(\&B1);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ Add(\&B2);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ Add(\&B3);}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ Add(\&l1);}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ Add(\&l2);}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ Add(\&l3);}
+\DoxyCodeLine{00173\ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00175\ \ \ \ \ \mbox{\hyperlink{classgl_button}{glButton<\ 35,\ Arial\_22\_1>}}\ B1\ =\ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(100,\ 50,\ 300,\ 150),\ \textcolor{stringliteral}{"{}B1\ rc=LAWN\_GREEN\(\backslash\)npc=BURLYWOOD"{}}\ \};}
+\DoxyCodeLine{00176\ \ \ \ \ \mbox{\hyperlink{classgl_button}{glButton<\ 35,\ Arial\_31\_1>}}\ B2\ =\ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(400,\ 50,\ 600,\ 150),\ \textcolor{stringliteral}{"{}B2\ default"{}}\ \};}
+\DoxyCodeLine{00177\ \ \ \ \ \mbox{\hyperlink{classgl_button}{glButton<\ 35,\ Arial\_31\_1>}}\ B3\ =\ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(400,\ 200,\ 600,\ 300),\ \textcolor{stringliteral}{"{}B3\ Charp\ corners\(\backslash\)nbc=RED"{}}\ \};}
+\DoxyCodeLine{00178\ \ \ \ \ }
+\DoxyCodeLine{00179\ \ \ \ \ \mbox{\hyperlink{classgl_label}{glLabel<\ 35,\ Arial\_31\_1>}}\ l1\ =\ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(100,\ 200,\ 350,\ 250),\ \textcolor{stringliteral}{"{}l1\ Label\ default"{}}\ \};}
+\DoxyCodeLine{00180\ \ \ \ \ \mbox{\hyperlink{classgl_label}{glLabel<\ 35,\ Arial\_31\_1>}}\ l2\ =\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(100,\ 300,\ 350,\ 350),}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}l2\ Label\ AGUAMARINE"{}},}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_label_theme}{glLabelTheme}}(glColor\_t::eColorOperation::ComplementBackground,\ glColors::AQUAMARINE,\ glColors::WHITE,\ 5,\ 20)}
+\DoxyCodeLine{00184\ \ \ \ \ \};}
+\DoxyCodeLine{00185\ \ \ \ \ \mbox{\hyperlink{classgl_label}{glLabel<\ 35,\ Arial\_31\_1>}}\ l3\ =\ \{\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(100,\ 400,\ 350,\ 450),\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}l3\ Label\ GREEN"{}},}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_label_theme}{glLabelTheme}}(glColor\_t::eColorOperation::ComplementBackground,\ glColors::GREEN,\ glColors::WHITE,\ 5,\ 500)}
+\DoxyCodeLine{00189\ \ \ \ \ \};}
+\DoxyCodeLine{00190\ \};}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_u_i_page_sliders}{GUIPageSliders}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_page_link}{glPageLink}}}
+\DoxyCodeLine{00193\ \{}
+\DoxyCodeLine{00194\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00195\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_sliders}{GUIPageSliders}}()}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_page_link}{glPageLink}}(\textcolor{stringliteral}{"{}PageSliders"{}},\ glColors::LIGHT\_GRAY)}
+\DoxyCodeLine{00197\ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{comment}{//\ Initialize\ widget}}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Init()}
+\DoxyCodeLine{00201\ \ \ \ \ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ Add(\&S1);}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ Add(\&S2);}
+\DoxyCodeLine{00204\ \ \ \ \ \}}
+\DoxyCodeLine{00205\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00206\ \ \ \ \ \mbox{\hyperlink{classgl_slider}{glSlider<\ 35,\ Arial\_31\_1>}}\ S1\ =\ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(100,\ 200,\ 500,\ 300),\ \textcolor{stringliteral}{"{}S1\ Slider"{}}\ \};}
+\DoxyCodeLine{00207\ \ \ \ \ \mbox{\hyperlink{classgl_slider}{glSlider<\ 35,\ Arial\_31\_1>}}\ S2\ =\ \{\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(600,\ 100,\ 700,\ 500),\ \textcolor{stringliteral}{"{}S2\ Slider"{}}\ \};}
+\DoxyCodeLine{00208\ \};}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00211\ \textcolor{comment}{\ *\ This\ is\ the\ "{}main"{}\ class\ for\ controlling\ the\ GUI}}
+\DoxyCodeLine{00212\ \textcolor{comment}{\ *\ handles\ pages\ and\ GUI\ state}}
+\DoxyCodeLine{00213\ \textcolor{comment}{\ *\ reports\ to\ CM4\ and\ other\ code\ of\ GUI\ changes}}
+\DoxyCodeLine{00214\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{00215\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00216\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_u_i_application}{GUIApplication}}\ :\ \mbox{\hyperlink{classgl_main}{glMain}}}
+\DoxyCodeLine{00217\ \{}
+\DoxyCodeLine{00218\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00219\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_application}{GUIApplication}}()}
 \DoxyCodeLine{00220\ \ \ \ \ \{}
-\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ glMain::Init();}
-\DoxyCodeLine{00222\ }
-\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ construct\ the\ GUI}}
-\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ glMain::AddPage(\&PageTest);}
-\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ glMain::AddPage(\&PageTexts);}
-\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ glMain::AddPage(\&PageButtons);}
-\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ glMain::AddPage(\&PageSliders);}
-\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ PageTest.Init();}
-\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ PageTexts.Init();\ }
-\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ PageButtons.Init();}
-\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ PageSliders.Init();}
-\DoxyCodeLine{00233\ }
-\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ glMain::UnitTest();}}
-\DoxyCodeLine{00235\ \ \ \ \ \}}
+\DoxyCodeLine{00221\ \ \ \ \ \}}
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keywordtype}{void}\ Init()}
+\DoxyCodeLine{00223\ \ \ \ \ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ glMain::Init();}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ construct\ the\ GUI}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ glMain::AddPage(\&PageTest);}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ glMain::AddPage(\&PageTexts);}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ glMain::AddPage(\&PageButtons);}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ glMain::AddPage(\&PageSliders);}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ PageTest.Init();}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ PageTexts.Init();\ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ PageButtons.Init();}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ PageSliders.Init();}
 \DoxyCodeLine{00236\ }
-\DoxyCodeLine{00237\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00238\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_widgets}{GUIPageWidgets}}\ PageTest;}
-\DoxyCodeLine{00239\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_texts}{GUIPageTexts}}\ PageTexts;}
-\DoxyCodeLine{00240\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_buttons}{GUIPageButtons}}\ PageButtons;}
-\DoxyCodeLine{00241\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_sliders}{GUIPageSliders}}\ PageSliders;}
-\DoxyCodeLine{00242\ \};}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ glMain::UnitTest();}}
+\DoxyCodeLine{00238\ \ \ \ \ \}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00241\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_widgets}{GUIPageWidgets}}\ PageTest;}
+\DoxyCodeLine{00242\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_texts}{GUIPageTexts}}\ PageTexts;}
+\DoxyCodeLine{00243\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_buttons}{GUIPageButtons}}\ PageButtons;}
+\DoxyCodeLine{00244\ \ \ \ \ \mbox{\hyperlink{class_g_u_i_page_sliders}{GUIPageSliders}}\ PageSliders;}
+\DoxyCodeLine{00245\ \};}
 
 \end{DoxyCode}

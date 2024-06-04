@@ -162,31 +162,32 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">// 7. Configure the layer1 / 2 parameters by :</span></div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">// 8. Enable layer1 / 2 and if needed the CLUT in the LTDC_LxCR register.</span></div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span> Layer(<a class="code hl_struct" href="struct_r__t.html">R_t&lt;uint8_t, 1, 2&gt;</a> l, <span class="keywordtype">void</span> *pRGBData, uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1);</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keyword">static</span> uint16_t Height() {  <span class="keywordflow">return</span> VACT; }</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">static</span> uint16_t Width() {   <span class="keywordflow">return</span> HACT; }</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    uint16_t Width(uint16_t w) </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    {   </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        uint32_t BytesPerPixel = 4; <span class="comment">// TODO depend on PixelFormat</span></div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="comment">// LTDC Layerx Color Frame Buffer Length Register</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        uint16_t LinePitch = w * BytesPerPixel;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keywordflow">if</span> ((LinePitch % 64) != 0)</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        {</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            LinePitch += 64 - (LinePitch % 64);</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            assert((LinePitch % 64) == 0 &amp;&amp; <span class="stringliteral">&quot;Wrong line pitch&quot;</span>);</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        }</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordflow">return</span> LinePitch / BytesPerPixel; </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    }</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordtype">void</span> CurrentPos(uint16_t &amp;x, uint16_t &amp;y) </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    { </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        x = (LTDC-&gt;CPSR&amp;LTDC_CPSR_CXPOS_Msk) &gt;&gt; LTDC_CPSR_CXPOS_Pos;</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        y = (LTDC-&gt;CPSR&amp;LTDC_CPSR_CYPOS_Msk) &gt;&gt; LTDC_CPSR_CYPOS_Pos;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    }</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordtype">bool</span> BlankingOverrun() </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    { </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        uint16_t y = (LTDC-&gt;CPSR &amp; LTDC_CPSR_CYPOS_Msk) &gt;&gt; LTDC_CPSR_CYPOS_Pos;</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keywordflow">return</span> y &gt;= VBP &amp;&amp; y &lt; VBP + VACT; </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    }</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>};</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keyword">static</span> uint16_t Height() { <span class="keywordflow">return</span> VACT; }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">static</span> uint16_t Width() { <span class="keywordflow">return</span> HACT; }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="preprocessor">#define LTDC_MEM_SIZE_PIX  ((uint32_t)(HACT*VACT))</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    uint16_t Width(uint16_t w) </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    {   </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        uint32_t BytesPerPixel = 4; <span class="comment">// TODO depend on PixelFormat</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="comment">// LTDC Layerx Color Frame Buffer Length Register</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        uint16_t LinePitch = w * BytesPerPixel;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keywordflow">if</span> ((LinePitch % 64) != 0)</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            LinePitch += 64 - (LinePitch % 64);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            assert((LinePitch % 64) == 0 &amp;&amp; <span class="stringliteral">&quot;Wrong line pitch&quot;</span>);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        }</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keywordflow">return</span> LinePitch / BytesPerPixel; </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    }</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordtype">void</span> CurrentPos(uint16_t &amp;x, uint16_t &amp;y) </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    { </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        x = (LTDC-&gt;CPSR&amp;LTDC_CPSR_CXPOS_Msk) &gt;&gt; LTDC_CPSR_CXPOS_Pos;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        y = (LTDC-&gt;CPSR&amp;LTDC_CPSR_CYPOS_Msk) &gt;&gt; LTDC_CPSR_CYPOS_Pos;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    }</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordtype">bool</span> BlankingOverrun() </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    { </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        uint16_t y = (LTDC-&gt;CPSR &amp; LTDC_CPSR_CYPOS_Msk) &gt;&gt; LTDC_CPSR_CYPOS_Pos;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="keywordflow">return</span> y &gt;= VBP &amp;&amp; y &lt; VBP + VACT; </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>};</div>
 </div>
 <div class="ttc" id="aclasshw_d_s_i_html"><div class="ttname"><a href="classhw_d_s_i.html">hwDSI</a></div><div class="ttdef"><b>Definition</b> DSI.h:30</div></div>
 <div class="ttc" id="aclasshw_l_t_d_c___i_r_qs_html"><div class="ttname"><a href="classhw_l_t_d_c___i_r_qs.html">hwLTDC_IRQs</a></div><div class="ttdef"><b>Definition</b> LTDC.h:36</div></div>

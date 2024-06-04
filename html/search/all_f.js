@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['screenheight_0',['ScreenHeight',['../classgl_video_memory.html#ad2a3fbb1c2c576796b960406fa7951b9',1,'glVideoMemory']]],
-  ['screenwidth_1',['ScreenWidth',['../classgl_video_memory.html#ad8382197b985124b688fd84216728f14',1,'glVideoMemory']]],
-  ['slide_2',['Slide',['../struct_slide.html',1,'Slide'],['../classgl_event.html#ae63986141ad7b77417913f127b8edfe7a6160a53ece50ce6d4f5ef4452549835e',1,'glEvent::Slide']]]
+  ['r_0',['R',['../structgl_region__t.html#afb635b2ddf463697760e8cbcb1f805ab',1,'glRegion_t::R() const'],['../structgl_region__t.html#a8523e3a09497c6f07e3a71df1ca7bfe5',1,'glRegion_t::R(const P_t t)']]],
+  ['r_5ft_1',['R_t',['../struct_r__t.html',1,'']]],
+  ['r_5ft_3c_20uint8_5ft_2c_200_2c_2015_20_3e_2',['R_t&lt; uint8_t, 0, 15 &gt;',['../struct_r__t.html',1,'']]],
+  ['rb_3',['RB',['../structgl_region__t.html#a2f57c52002e1bf94e7636118123568bc',1,'glRegion_t']]],
+  ['readme_4',['README',['../md__r_e_a_d_m_e.html',1,'']]],
+  ['redraw_5',['Redraw',['../classgl_text.html#a59e9ee707d941be372bf6ac329c84229',1,'glText']]],
+  ['rt_6',['RT',['../structgl_region__t.html#a2b92aa76e500c2f70383f6ac1f203700',1,'glRegion_t']]]
 ];

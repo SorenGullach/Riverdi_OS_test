@@ -22,10 +22,10 @@
 #include "glWidgets.h"
 
 // a GUI consists of pages
-class glPage : public glLink, public glFrontColorTheme
+class glPageLink : public glLink, public glFrontColorTheme
 {
 public:
-	glPage(const char *name, const glColor_t &color)
+	glPageLink(const char *name, const glColor_t &color)
 		: glFrontColorTheme(color)
 		, _Name(name) 
 	{
@@ -37,14 +37,10 @@ public:
 		ChainWidgets.Add(page);
 	}
 
-	gl2DPoint_t InvalidRegion() 
-	{
-		return _Region;
-	}
-
-	void MoveTo(gl2DPoint_t region)
+	void MoveTo(glRegion_t region)
 	{
 		_Region = region;
+		_InvalidRegion = _Region;
 	}
 
 	// called down link to redraw
@@ -58,7 +54,7 @@ public:
 	}
 
 	// called down link to update state
-	void UpdateState(glTouchPoint_t &point, bool &Handled)
+	void UpdateState(const glTouchPoint_t &point, bool &Handled)
 	{
 		// Update widgets
 		if (ChainWidgets.Head() != nullptr && !Handled)
@@ -68,46 +64,37 @@ public:
 			Handled |= Touch(point);
 	}
 
-	void InvalidateMe()
+	void InvalidateChilds()
 	{
-		//Printf("%s Invalidate\n", Name);
-		ImInvalidated = true; // this page
+		_InvalidRegion = _Region;
 		if (ChainWidgets.Head() != nullptr)
-			ChainWidgets.Head()->InvalidateSiblings(); // a all widgets
+			ChainWidgets.Head()->InvalidateWidgets(); // and all widgets
 	}
 
-	void InvalidateSiblings()
+	void InvalidateWidgets()
 	{
-		InvalidateMe();
+		InvalidateChilds();
 		
-		// Update siblings
 		if (pNext != nullptr)
-			pNext->InvalidateSiblings();
+			pNext->InvalidateWidgets();
 	}
 
-	bool IsInvalidated(gl2DPoint_t &invalidRegion)
+	void InvalidatedRegion(glRegion_t &invalidRegion)
 	{
-		bool Invalid = false;
-		if (ImInvalidated)
-		{
-			invalidRegion = invalidRegion.Union(InvalidRegion());
-			Invalid = true; // all childern is also invalid
-		}
-		else if (ChainWidgets.Head() != nullptr)
-		{
-			// ask all objs
-			Invalid = ChainWidgets.Head()->IsInvalidated(invalidRegion);
-		}
-		return Invalid;
+		invalidRegion = invalidRegion.Union(_InvalidRegion);
+
+		// ask all widgets
+		if (ChainWidgets.Head() != nullptr)
+			ChainWidgets.Head()->InvalidatedRegion(invalidRegion);
 	}
 
 	virtual void Redraw() final
 	{
-		if (!ImInvalidated) return;
+		if (_InvalidRegion.IsEmpty()) return;
 		
-		glRectangleFill(_Region.Intersection(glVideoMemory::InvalidRegion), _FrontColor).Draw();
+		glRectangleFill(_Region, _FrontColor).Draw();
 		
-		if(glVideoMemory::lastBand()) ImInvalidated = false;
+		_InvalidRegion.Empty();
 	}
 	
 	virtual bool Touch(const glTouchPoint_t &point) final
@@ -151,11 +138,10 @@ public:
 
 	glEvent EventAction;
 protected:
-	gl2DPoint_t _Region;
+	glRegion_t _Region;
+	glRegion_t _InvalidRegion;
 private:
-	char const *_Name = "glWidget";
-	// is widget invalidated
-	bool ImInvalidated = true;
+	char const *_Name = "glPageLink";
 
 	glChain<glWidgetLink> ChainWidgets;
 	bool InSlide = false;

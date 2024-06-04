@@ -1,0 +1,585 @@
+\doxysection{gl\+Region\+\_\+t Struct Reference}
+\hypertarget{structgl_region__t}{}\label{structgl_region__t}\index{glRegion\_t@{glRegion\_t}}
+
+
+Represents a 2D rectangular region defined by two points. R \& B are exclusive L=0 to R=11 is width 10.  
+
+
+
+
+{\ttfamily \#include $<$gl\+Types.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structgl_region__t_ab4294b3614ab1d6e566e6f66d76754c1}\label{structgl_region__t_ab4294b3614ab1d6e566e6f66d76754c1} 
+{\bfseries gl\+Region\+\_\+t} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_region__t_adba47fbdf9636ee26911a1ef60bfff2d}{gl\+Region\+\_\+t}} (const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&lt, const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&rb)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize the 2D point with top-\/left and bottom-\/right points. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_region__t_a633b4454c2451e506ab4d72a22e619ec}{gl\+Region\+\_\+t}} (P\+\_\+t left, P\+\_\+t top, P\+\_\+t right, P\+\_\+t bottom)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize the 2D point with specific coordinates. \end{DoxyCompactList}\item 
+P\+\_\+t \mbox{\hyperlink{structgl_region__t_a9e374ea5e63b053b8671b99d683eac20}{L}} () const
+\begin{DoxyCompactList}\small\item\em Get the left coordinate. \end{DoxyCompactList}\item 
+P\+\_\+t \mbox{\hyperlink{structgl_region__t_ae1c6bf25fbf9883d34099151b3016a26}{T}} () const
+\begin{DoxyCompactList}\small\item\em Get the top coordinate. \end{DoxyCompactList}\item 
+P\+\_\+t \mbox{\hyperlink{structgl_region__t_afb635b2ddf463697760e8cbcb1f805ab}{R}} () const
+\begin{DoxyCompactList}\small\item\em Get the right coordinate. \end{DoxyCompactList}\item 
+P\+\_\+t \mbox{\hyperlink{structgl_region__t_aa00fd21ea8ad9da215094909983ba3b9}{B}} () const
+\begin{DoxyCompactList}\small\item\em Get the bottom coordinate. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structgl_region__t_a077b7cd29214d4719c467c022977bb69}{L}} (const P\+\_\+t t)
+\begin{DoxyCompactList}\small\item\em Set the left coordinate. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structgl_region__t_ab92980cc6d0310cfbe1487d198af6b6b}{T}} (const P\+\_\+t t)
+\begin{DoxyCompactList}\small\item\em Set the top coordinate. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structgl_region__t_a8523e3a09497c6f07e3a71df1ca7bfe5}{R}} (const P\+\_\+t t)
+\begin{DoxyCompactList}\small\item\em Set the right coordinate. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structgl_region__t_ace3fe1a1023b3e9de97be26d9e7c4560}{B}} (const P\+\_\+t t)
+\begin{DoxyCompactList}\small\item\em Set the bottom coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \mbox{\hyperlink{structgl_region__t_a36932ca89c27e405cbddee04fffd8546}{LT}} () const
+\begin{DoxyCompactList}\small\item\em Get the top-\/left point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \mbox{\hyperlink{structgl_region__t_a83b22e35cb47c08b02a8fc89321a93c0}{LB}} () const
+\begin{DoxyCompactList}\small\item\em Get the bottom-\/left point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \mbox{\hyperlink{structgl_region__t_a2b92aa76e500c2f70383f6ac1f203700}{RT}} () const
+\begin{DoxyCompactList}\small\item\em Get the top-\/right point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \mbox{\hyperlink{structgl_region__t_a2f57c52002e1bf94e7636118123568bc}{RB}} () const
+\begin{DoxyCompactList}\small\item\em Get the bottom-\/right point. \end{DoxyCompactList}\item 
+P\+\_\+t \mbox{\hyperlink{structgl_region__t_a80c348184d3c58a58855e984c6c56dcd}{Width}} () const
+\begin{DoxyCompactList}\small\item\em Get the width of the region. \end{DoxyCompactList}\item 
+P\+\_\+t \mbox{\hyperlink{structgl_region__t_a12d481ccfda593268fd6e7a21f3340ef}{Height}} () const
+\begin{DoxyCompactList}\small\item\em Get the height of the region. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structgl_region__t_a4a8a5ab4f10562e41c5c6d7cb65c7ed4}{Is\+Empty}} () const
+\begin{DoxyCompactList}\small\item\em Check if the region is empty. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \mbox{\hyperlink{structgl_region__t_ae296b0e8ccfaf9fdac6509e8845e5e2f}{Normalize}} () const
+\begin{DoxyCompactList}\small\item\em Normalize the region by swapping coordinates if necessary. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structgl_region__t_a25b4e6667895b822adb0d90a57290c54}{Is\+Inside}} (const P\+\_\+t x, const P\+\_\+t y) const
+\begin{DoxyCompactList}\small\item\em Check if a point is inside the region. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structgl_region__t_a06234c323450b965c1d0f46d7ac16bd0}{Is\+Inside}} (const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&p) const
+\begin{DoxyCompactList}\small\item\em Check if a point is inside the region. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \mbox{\hyperlink{structgl_region__t_a8429b223a1990ac758c0b57d3ae3505d}{Displace}} (const int dx, const int dy) const
+\begin{DoxyCompactList}\small\item\em Displace the region by a given offset. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \mbox{\hyperlink{structgl_region__t_a407184adfa026f09af99e61bfba66531}{Displace}} (const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&p) const
+\begin{DoxyCompactList}\small\item\em Displace the region by a given point offset. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structgl_region__t_a3c21ee1552ebb8bd1453d19ffd1379b9}{Move\+To}} (const int l, const int t, const int r, const int b)
+\begin{DoxyCompactList}\small\item\em Move the region to new coordinates. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structgl_region__t_afccd930ac31285567814b0fdbdf7dd91}{Move\+To}} (const \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \&p)
+\begin{DoxyCompactList}\small\item\em Move the region to another region\textquotesingle{}s coordinates. \end{DoxyCompactList}\item 
+\Hypertarget{structgl_region__t_ae164ca290effc63b09a5963bdd5a31ef}\label{structgl_region__t_ae164ca290effc63b09a5963bdd5a31ef} 
+void {\bfseries Empty} ()
+\begin{DoxyCompactList}\small\item\em Empty the region. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \mbox{\hyperlink{structgl_region__t_acba263052bea9e92a1e02ac8bed5994c}{Inflate}} (int d) const
+\begin{DoxyCompactList}\small\item\em Inflate the region by a given amount. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \mbox{\hyperlink{structgl_region__t_ab7678d384109237c2b6daf43a6ac4c35}{Inflate}} (int l, int t, int r, int b) const
+\begin{DoxyCompactList}\small\item\em Inflate the region by specific amounts. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \mbox{\hyperlink{structgl_region__t_aa44e5c4d6698544a6fa4c3e711297f27}{Union}} (const \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \&region) const
+\begin{DoxyCompactList}\small\item\em Get the union of this region and another region. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \mbox{\hyperlink{structgl_region__t_a88c037e3bc4abef696f62a8cc38587d2}{Intersection}} (const \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \&region) const
+\begin{DoxyCompactList}\small\item\em Get the intersection of this region and another region. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \mbox{\hyperlink{structgl_region__t_a4d110f2d64d702863b2dc704cfd9b365}{Center}} (const \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \&region) const
+\begin{DoxyCompactList}\small\item\em Center another region within this region. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \mbox{\hyperlink{structgl_region__t_a69c6b5b751a919f01beebed01a171d13}{Center}} (P\+\_\+t width, P\+\_\+t height) const
+\begin{DoxyCompactList}\small\item\em Center a region of specific width and height within this region. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structgl_region__t_aa7ed4fc4cdca555e0771be03fdbc97d3}\label{structgl_region__t_aa7ed4fc4cdca555e0771be03fdbc97d3} 
+\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} {\bfseries \+\_\+\+LT}
+\begin{DoxyCompactList}\small\item\em The top-\/left point. \end{DoxyCompactList}\item 
+\Hypertarget{structgl_region__t_aa7fb9762e9d78d981a05cb116139a625}\label{structgl_region__t_aa7fb9762e9d78d981a05cb116139a625} 
+\mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} {\bfseries \+\_\+\+RB}
+\begin{DoxyCompactList}\small\item\em The bottom-\/right point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a 2D rectangular region defined by two points. R \& B are exclusive L=0 to R=11 is width 10. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structgl_region__t_adba47fbdf9636ee26911a1ef60bfff2d}\label{structgl_region__t_adba47fbdf9636ee26911a1ef60bfff2d} 
+\index{glRegion\_t@{glRegion\_t}!glRegion\_t@{glRegion\_t}}
+\index{glRegion\_t@{glRegion\_t}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{glRegion\_t()}{glRegion\_t()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily gl\+Region\+\_\+t\+::gl\+Region\+\_\+t (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&}]{lt,  }\item[{const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&}]{rb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor to initialize the 2D point with top-\/left and bottom-\/right points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lt} & The top-\/left point. \\
+\hline
+{\em rb} & The bottom-\/right point. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structgl_region__t_a633b4454c2451e506ab4d72a22e619ec}\label{structgl_region__t_a633b4454c2451e506ab4d72a22e619ec} 
+\index{glRegion\_t@{glRegion\_t}!glRegion\_t@{glRegion\_t}}
+\index{glRegion\_t@{glRegion\_t}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{glRegion\_t()}{glRegion\_t()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily gl\+Region\+\_\+t\+::gl\+Region\+\_\+t (\begin{DoxyParamCaption}\item[{P\+\_\+t}]{left,  }\item[{P\+\_\+t}]{top,  }\item[{P\+\_\+t}]{right,  }\item[{P\+\_\+t}]{bottom }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor to initialize the 2D point with specific coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & The left coordinate. \\
+\hline
+{\em top} & The top coordinate. \\
+\hline
+{\em right} & The right coordinate. \\
+\hline
+{\em bottom} & The bottom coordinate. R \& B are exclusive L=0 to R=11 is width 10 \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structgl_region__t_aa00fd21ea8ad9da215094909983ba3b9}\label{structgl_region__t_aa00fd21ea8ad9da215094909983ba3b9} 
+\index{glRegion\_t@{glRegion\_t}!B@{B}}
+\index{B@{B}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{B()}{B()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily P\+\_\+t gl\+Region\+\_\+t\+::B (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the bottom coordinate. 
+
+\begin{DoxyReturn}{Returns}
+The bottom coordinate. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_ace3fe1a1023b3e9de97be26d9e7c4560}\label{structgl_region__t_ace3fe1a1023b3e9de97be26d9e7c4560} 
+\index{glRegion\_t@{glRegion\_t}!B@{B}}
+\index{B@{B}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{B()}{B()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void gl\+Region\+\_\+t\+::B (\begin{DoxyParamCaption}\item[{const P\+\_\+t}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the bottom coordinate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The new bottom coordinate. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structgl_region__t_a4d110f2d64d702863b2dc704cfd9b365}\label{structgl_region__t_a4d110f2d64d702863b2dc704cfd9b365} 
+\index{glRegion\_t@{glRegion\_t}!Center@{Center}}
+\index{Center@{Center}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{Center()}{Center()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} gl\+Region\+\_\+t\+::\+Center (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \&}]{region }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Center another region within this region. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em region} & The region to center. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The centered region. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_a69c6b5b751a919f01beebed01a171d13}\label{structgl_region__t_a69c6b5b751a919f01beebed01a171d13} 
+\index{glRegion\_t@{glRegion\_t}!Center@{Center}}
+\index{Center@{Center}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{Center()}{Center()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} gl\+Region\+\_\+t\+::\+Center (\begin{DoxyParamCaption}\item[{P\+\_\+t}]{width,  }\item[{P\+\_\+t}]{height }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Center a region of specific width and height within this region. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & The width of the region to center. \\
+\hline
+{\em height} & The height of the region to center. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The centered region. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_a407184adfa026f09af99e61bfba66531}\label{structgl_region__t_a407184adfa026f09af99e61bfba66531} 
+\index{glRegion\_t@{glRegion\_t}!Displace@{Displace}}
+\index{Displace@{Displace}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{Displace()}{Displace()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} gl\+Region\+\_\+t\+::\+Displace (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Displace the region by a given point offset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & The point offset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The displaced region. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_a8429b223a1990ac758c0b57d3ae3505d}\label{structgl_region__t_a8429b223a1990ac758c0b57d3ae3505d} 
+\index{glRegion\_t@{glRegion\_t}!Displace@{Displace}}
+\index{Displace@{Displace}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{Displace()}{Displace()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} gl\+Region\+\_\+t\+::\+Displace (\begin{DoxyParamCaption}\item[{const int}]{dx,  }\item[{const int}]{dy }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Displace the region by a given offset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dx} & The x-\/offset. \\
+\hline
+{\em dy} & The y-\/offset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The displaced region. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_a12d481ccfda593268fd6e7a21f3340ef}\label{structgl_region__t_a12d481ccfda593268fd6e7a21f3340ef} 
+\index{glRegion\_t@{glRegion\_t}!Height@{Height}}
+\index{Height@{Height}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{Height()}{Height()}}
+{\footnotesize\ttfamily P\+\_\+t gl\+Region\+\_\+t\+::\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the height of the region. 
+
+\begin{DoxyReturn}{Returns}
+The height of the region. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_acba263052bea9e92a1e02ac8bed5994c}\label{structgl_region__t_acba263052bea9e92a1e02ac8bed5994c} 
+\index{glRegion\_t@{glRegion\_t}!Inflate@{Inflate}}
+\index{Inflate@{Inflate}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{Inflate()}{Inflate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} gl\+Region\+\_\+t\+::\+Inflate (\begin{DoxyParamCaption}\item[{int}]{d }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Inflate the region by a given amount. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & The amount to inflate by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The inflated region. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_ab7678d384109237c2b6daf43a6ac4c35}\label{structgl_region__t_ab7678d384109237c2b6daf43a6ac4c35} 
+\index{glRegion\_t@{glRegion\_t}!Inflate@{Inflate}}
+\index{Inflate@{Inflate}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{Inflate()}{Inflate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} gl\+Region\+\_\+t\+::\+Inflate (\begin{DoxyParamCaption}\item[{int}]{l,  }\item[{int}]{t,  }\item[{int}]{r,  }\item[{int}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Inflate the region by specific amounts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & The left amount. \\
+\hline
+{\em t} & The top amount. \\
+\hline
+{\em r} & The right amount. \\
+\hline
+{\em b} & The bottom amount. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The inflated region. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_a88c037e3bc4abef696f62a8cc38587d2}\label{structgl_region__t_a88c037e3bc4abef696f62a8cc38587d2} 
+\index{glRegion\_t@{glRegion\_t}!Intersection@{Intersection}}
+\index{Intersection@{Intersection}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{Intersection()}{Intersection()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} gl\+Region\+\_\+t\+::\+Intersection (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \&}]{region }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the intersection of this region and another region. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em region} & The other region. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The intersection of the two regions. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_a4a8a5ab4f10562e41c5c6d7cb65c7ed4}\label{structgl_region__t_a4a8a5ab4f10562e41c5c6d7cb65c7ed4} 
+\index{glRegion\_t@{glRegion\_t}!IsEmpty@{IsEmpty}}
+\index{IsEmpty@{IsEmpty}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{IsEmpty()}{IsEmpty()}}
+{\footnotesize\ttfamily bool gl\+Region\+\_\+t\+::\+Is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if the region is empty. 
+
+\begin{DoxyReturn}{Returns}
+True if the region is empty, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_a06234c323450b965c1d0f46d7ac16bd0}\label{structgl_region__t_a06234c323450b965c1d0f46d7ac16bd0} 
+\index{glRegion\_t@{glRegion\_t}!IsInside@{IsInside}}
+\index{IsInside@{IsInside}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{IsInside()}{IsInside()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool gl\+Region\+\_\+t\+::\+Is\+Inside (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if a point is inside the region. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & The point to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the point is inside the region, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_a25b4e6667895b822adb0d90a57290c54}\label{structgl_region__t_a25b4e6667895b822adb0d90a57290c54} 
+\index{glRegion\_t@{glRegion\_t}!IsInside@{IsInside}}
+\index{IsInside@{IsInside}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{IsInside()}{IsInside()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool gl\+Region\+\_\+t\+::\+Is\+Inside (\begin{DoxyParamCaption}\item[{const P\+\_\+t}]{x,  }\item[{const P\+\_\+t}]{y }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if a point is inside the region. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x-\/coordinate of the point. \\
+\hline
+{\em y} & The y-\/coordinate of the point. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the point is inside the region, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_a9e374ea5e63b053b8671b99d683eac20}\label{structgl_region__t_a9e374ea5e63b053b8671b99d683eac20} 
+\index{glRegion\_t@{glRegion\_t}!L@{L}}
+\index{L@{L}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{L()}{L()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily P\+\_\+t gl\+Region\+\_\+t\+::L (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the left coordinate. 
+
+\begin{DoxyReturn}{Returns}
+The left coordinate. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_a077b7cd29214d4719c467c022977bb69}\label{structgl_region__t_a077b7cd29214d4719c467c022977bb69} 
+\index{glRegion\_t@{glRegion\_t}!L@{L}}
+\index{L@{L}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{L()}{L()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void gl\+Region\+\_\+t\+::L (\begin{DoxyParamCaption}\item[{const P\+\_\+t}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the left coordinate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The new left coordinate. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structgl_region__t_a83b22e35cb47c08b02a8fc89321a93c0}\label{structgl_region__t_a83b22e35cb47c08b02a8fc89321a93c0} 
+\index{glRegion\_t@{glRegion\_t}!LB@{LB}}
+\index{LB@{LB}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{LB()}{LB()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} gl\+Region\+\_\+t\+::\+LB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the bottom-\/left point. 
+
+\begin{DoxyReturn}{Returns}
+The bottom-\/left point. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_a36932ca89c27e405cbddee04fffd8546}\label{structgl_region__t_a36932ca89c27e405cbddee04fffd8546} 
+\index{glRegion\_t@{glRegion\_t}!LT@{LT}}
+\index{LT@{LT}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{LT()}{LT()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} gl\+Region\+\_\+t\+::\+LT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the top-\/left point. 
+
+\begin{DoxyReturn}{Returns}
+The top-\/left point. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_afccd930ac31285567814b0fdbdf7dd91}\label{structgl_region__t_afccd930ac31285567814b0fdbdf7dd91} 
+\index{glRegion\_t@{glRegion\_t}!MoveTo@{MoveTo}}
+\index{MoveTo@{MoveTo}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{MoveTo()}{MoveTo()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void gl\+Region\+\_\+t\+::\+Move\+To (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \&}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Move the region to another region\textquotesingle{}s coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & The region to move to. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structgl_region__t_a3c21ee1552ebb8bd1453d19ffd1379b9}\label{structgl_region__t_a3c21ee1552ebb8bd1453d19ffd1379b9} 
+\index{glRegion\_t@{glRegion\_t}!MoveTo@{MoveTo}}
+\index{MoveTo@{MoveTo}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{MoveTo()}{MoveTo()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void gl\+Region\+\_\+t\+::\+Move\+To (\begin{DoxyParamCaption}\item[{const int}]{l,  }\item[{const int}]{t,  }\item[{const int}]{r,  }\item[{const int}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Move the region to new coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & The new left coordinate. \\
+\hline
+{\em t} & The new top coordinate. \\
+\hline
+{\em r} & The new right coordinate. \\
+\hline
+{\em b} & The new bottom coordinate. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structgl_region__t_ae296b0e8ccfaf9fdac6509e8845e5e2f}\label{structgl_region__t_ae296b0e8ccfaf9fdac6509e8845e5e2f} 
+\index{glRegion\_t@{glRegion\_t}!Normalize@{Normalize}}
+\index{Normalize@{Normalize}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{Normalize()}{Normalize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} gl\+Region\+\_\+t\+::\+Normalize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Normalize the region by swapping coordinates if necessary. 
+
+\begin{DoxyReturn}{Returns}
+A normalized region. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_afb635b2ddf463697760e8cbcb1f805ab}\label{structgl_region__t_afb635b2ddf463697760e8cbcb1f805ab} 
+\index{glRegion\_t@{glRegion\_t}!R@{R}}
+\index{R@{R}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{R()}{R()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily P\+\_\+t gl\+Region\+\_\+t\+::R (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the right coordinate. 
+
+\begin{DoxyReturn}{Returns}
+The right coordinate. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_a8523e3a09497c6f07e3a71df1ca7bfe5}\label{structgl_region__t_a8523e3a09497c6f07e3a71df1ca7bfe5} 
+\index{glRegion\_t@{glRegion\_t}!R@{R}}
+\index{R@{R}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{R()}{R()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void gl\+Region\+\_\+t\+::R (\begin{DoxyParamCaption}\item[{const P\+\_\+t}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the right coordinate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The new right coordinate. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structgl_region__t_a2f57c52002e1bf94e7636118123568bc}\label{structgl_region__t_a2f57c52002e1bf94e7636118123568bc} 
+\index{glRegion\_t@{glRegion\_t}!RB@{RB}}
+\index{RB@{RB}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{RB()}{RB()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} gl\+Region\+\_\+t\+::\+RB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the bottom-\/right point. 
+
+\begin{DoxyReturn}{Returns}
+The bottom-\/right point. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_a2b92aa76e500c2f70383f6ac1f203700}\label{structgl_region__t_a2b92aa76e500c2f70383f6ac1f203700} 
+\index{glRegion\_t@{glRegion\_t}!RT@{RT}}
+\index{RT@{RT}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{RT()}{RT()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgl_point__t}{gl\+Point\+\_\+t}} gl\+Region\+\_\+t\+::\+RT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the top-\/right point. 
+
+\begin{DoxyReturn}{Returns}
+The top-\/right point. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_ae1c6bf25fbf9883d34099151b3016a26}\label{structgl_region__t_ae1c6bf25fbf9883d34099151b3016a26} 
+\index{glRegion\_t@{glRegion\_t}!T@{T}}
+\index{T@{T}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{T()}{T()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily P\+\_\+t gl\+Region\+\_\+t\+::T (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the top coordinate. 
+
+\begin{DoxyReturn}{Returns}
+The top coordinate. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_ab92980cc6d0310cfbe1487d198af6b6b}\label{structgl_region__t_ab92980cc6d0310cfbe1487d198af6b6b} 
+\index{glRegion\_t@{glRegion\_t}!T@{T}}
+\index{T@{T}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{T()}{T()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void gl\+Region\+\_\+t\+::T (\begin{DoxyParamCaption}\item[{const P\+\_\+t}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the top coordinate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The new top coordinate. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structgl_region__t_aa44e5c4d6698544a6fa4c3e711297f27}\label{structgl_region__t_aa44e5c4d6698544a6fa4c3e711297f27} 
+\index{glRegion\_t@{glRegion\_t}!Union@{Union}}
+\index{Union@{Union}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{Union()}{Union()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} gl\+Region\+\_\+t\+::\+Union (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \&}]{region }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the union of this region and another region. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em region} & The other region. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The union of the two regions. 
+\end{DoxyReturn}
+\Hypertarget{structgl_region__t_a80c348184d3c58a58855e984c6c56dcd}\label{structgl_region__t_a80c348184d3c58a58855e984c6c56dcd} 
+\index{glRegion\_t@{glRegion\_t}!Width@{Width}}
+\index{Width@{Width}!glRegion\_t@{glRegion\_t}}
+\doxysubsubsection{\texorpdfstring{Width()}{Width()}}
+{\footnotesize\ttfamily P\+\_\+t gl\+Region\+\_\+t\+::\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the width of the region. 
+
+\begin{DoxyReturn}{Returns}
+The width of the region. 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gl\+STM32\+H7xx/gl\+Types.\+h\end{DoxyCompactItemize}

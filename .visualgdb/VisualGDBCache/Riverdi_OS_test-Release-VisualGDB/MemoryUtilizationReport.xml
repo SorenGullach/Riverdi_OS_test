@@ -3,7 +3,7 @@
   <Memories>
     <MemoryUtilization>
       <MemoryName>FLASH</MemoryName>
-      <Used>555904</Used>
+      <Used>573472</Used>
       <Total>1048576</Total>
     </MemoryUtilization>
     <MemoryUtilization>
@@ -22,9 +22,24 @@
       <Total>524288</Total>
     </MemoryUtilization>
     <MemoryUtilization>
-      <MemoryName>Unknown</MemoryName>
+      <MemoryName>SHARED</MemoryName>
+      <Used>0</Used>
+      <Total>65535</Total>
+    </MemoryUtilization>
+    <MemoryUtilization>
+      <MemoryName>BKPSRAM</MemoryName>
+      <Used>0</Used>
+      <Total>4095</Total>
+    </MemoryUtilization>
+    <MemoryUtilization>
+      <MemoryName>SDRAM</MemoryName>
       <Used>8388608</Used>
-      <Total>0</Total>
+      <Total>8388608</Total>
+    </MemoryUtilization>
+    <MemoryUtilization>
+      <MemoryName>QSPI</MemoryName>
+      <Used>0</Used>
+      <Total>134217728</Total>
     </MemoryUtilization>
   </Memories>
 </MemoryUtilizationReport>

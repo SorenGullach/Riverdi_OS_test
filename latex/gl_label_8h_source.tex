@@ -32,10 +32,10 @@
 \DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl_label}{glLabel}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_widget_link}{glWidgetLink}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl_label_theme}{glLabelTheme}},\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classgl_plot2_d_helper}{glPlot2DHelper}}}
 \DoxyCodeLine{00029\ \ \ \ \ \{}
 \DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_label}{glLabel}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ \&region,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *text,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classgl_label_theme}{glLabelTheme}}\ \&theme\ =\ \mbox{\hyperlink{classgl_label_theme}{glLabelTheme}}())}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_label}{glLabel}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}\ \&region,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *text,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classgl_label_theme}{glLabelTheme}}\ \&theme\ =\ \mbox{\hyperlink{classgl_label_theme}{glLabelTheme}}())}
 \DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgl_widget_link}{glWidgetLink}}(\textcolor{stringliteral}{"{}Label"{}},\ region)}
 \DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ \mbox{\hyperlink{classgl_label_theme}{glLabelTheme}}(theme)}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ \_Text(region.Inflate(-\/\_BorderWidth),\ text,\ fontFamily,\ theme.\_TextColor)}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ \_Text(region.\mbox{\hyperlink{structgl_region__t_acba263052bea9e92a1e02ac8bed5994c}{Inflate}}(-\/\_BorderWidth),\ text,\ fontFamily,\ theme.\_TextColor)}
 \DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ Add(\&\_Text);}
 \DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
@@ -47,22 +47,16 @@
 \DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ redraw\ your\ self}}
 \DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Redraw()\textcolor{keyword}{\ override}}
 \DoxyCodeLine{00045\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ImInvalidated)\ return\ ;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_InvalidatedRegion.\mbox{\hyperlink{structgl_region__t_a4a8a5ab4f10562e41c5c6d7cb65c7ed4}{IsEmpty}}())\ return\ ;}
 \DoxyCodeLine{00047\ }
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ PlotRectangleRoundFill(\_Region.Inflate(-\/\_BorderWidth\ +\ 1),\ \_CornerRadius,\ \_BackColor);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ PlotRectangleRoundFill(\_Region.\mbox{\hyperlink{structgl_region__t_acba263052bea9e92a1e02ac8bed5994c}{Inflate}}(-\/\_BorderWidth\ +\ 1),\ \_CornerRadius,\ \_BackColor);}
 \DoxyCodeLine{00049\ }
 \DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ PlotBorder(\_Region,\ \_BorderWidth,\ \_CornerRadius,\ \_BorderColor);}
 \DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgl_video_memory_a79f28b876830fedd3cc74a256eb2c410}{glVideoMemory::lastBand}}())\ }
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ImInvalidated\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00055\ \ \ \ \ }
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}\ InvalidRegion()\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00057\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_Region.Inflate(-\/\_BorderWidth)\ ;}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_text}{glText<len>}}\ \_Text;}
-\DoxyCodeLine{00062\ \ \ \ \ \};}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \_InvalidatedRegion.\mbox{\hyperlink{structgl_region__t_ae164ca290effc63b09a5963bdd5a31ef}{Empty}}();}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_text}{glText<len>}}\ \_Text;}
+\DoxyCodeLine{00056\ \ \ \ \ \};}
 
 \end{DoxyCode}

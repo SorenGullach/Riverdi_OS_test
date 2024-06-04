@@ -20,13 +20,14 @@
 #pragma once
 
 #include "glWidgets.h"
+#include <stdarg.h>
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 template<int length>
 	class glText : public glWidgetLink, public glFrontColorTheme, private glVideoMemoryPlot
 	{
 	public:
-		glText(const gl2DPoint_t &region, 
+		glText(const glRegion_t &region, 
 			const char *text, 
 			const FontItem *fontFamily, 
 			const glColor_t &color = glColors::WHITE) 
@@ -50,7 +51,8 @@ template<int length>
 			{
 				_Text[0] = '\0'; // Ensure null termination
 				// Mark the widget as invalidated to trigger a redraw
-				ImInvalidated = true;
+				_InvalidatedRegion = _Region;
+				InvalidateChilds();
 				return;
 			}
 			
@@ -75,7 +77,8 @@ template<int length>
 				_Text[length] = '\0'; // Ensure null termination
 
 				// Mark the widget as invalidated to trigger a redraw
-				ImInvalidated = true;
+				_InvalidatedRegion = _Region;
+				InvalidateChilds();
 			}
 		}
 
@@ -87,9 +90,9 @@ template<int length>
 		/**
 		 * @brief Calculate the total width and height of the text based on the font information.
 		 * 
-		 * @return gl2DPoint_t The dimensions (width and height) of the text.
+		 * @return glRegion_t The dimensions (width and height) of the text.
 		 */
-		gl2DPoint_t TextSize()
+		glRegion_t TextSize()
 		{
 			P_t height = FontFamily->h; // Initialize the height counter to the height of one line
 			P_t width = 0; // Initialize the width counter for the current line
@@ -141,7 +144,7 @@ template<int length>
 			if (width > maxWidth) maxWidth = width;
 
 			// Return the dimensions of the text
-			return gl2DPoint_t(0, 0, maxWidth, height);
+			return glRegion_t(0, 0, maxWidth, height);
 		}
 
 		/**
@@ -150,10 +153,10 @@ template<int length>
 		virtual void Redraw() override
 		{
 			// Check if the widget needs to be redrawn
-			if (!ImInvalidated) return;
+			if (_InvalidatedRegion.IsEmpty()) return;
 
 			// Calculate the center position of the widget
-			gl2DPoint_t pos = _Region.Center(TextSize());
+			glRegion_t pos = _Region.Center(TextSize());
 
 			// Initialize the starting position for drawing text
 			P_t xs = pos.L();
@@ -195,16 +198,9 @@ template<int length>
 				xs += f->w;
 			}
 
-			// Check if the last band of video memory is reached and reset the invalidation flag
-			if (glVideoMemory::lastBand())
-				ImInvalidated = false;
+			_InvalidatedRegion.Empty();
 		}
 	
-		gl2DPoint_t InvalidRegion() override
-		{
-			return _Region;
-		}
-
 		bool Touch(const glTouchPoint_t &) override { return false; }
 	private:
 		char _Text[length+1];
@@ -219,7 +215,7 @@ template<int length>
 		 * @param ys Y-coordinate of the starting position to draw the character.
 		 * @param region The 2D point representing the region where the character should be drawn.
 		 */
-		void DrawChar(const FontItem *f, P_t xs, P_t ys, const gl2DPoint_t &region)
+		void DrawChar(const FontItem *f, P_t xs, P_t ys, const glRegion_t &region)
 		{
 			// Buffer to hold pixel data
 			C_t pix[150];

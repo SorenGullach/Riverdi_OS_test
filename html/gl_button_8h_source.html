@@ -113,10 +113,10 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classgl_button.html">   27</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classgl_button.html">glButton</a> : <span class="keyword">public</span> <a class="code hl_class" href="classgl_widget_link.html">glWidgetLink</a>, <span class="keyword">public</span> <a class="code hl_class" href="classgl_button_theme.html">glButtonTheme</a>, <span class="keyword">private</span> <a class="code hl_class" href="classgl_plot2_d_helper.html">glPlot2DHelper</a></div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    {</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <a class="code hl_class" href="classgl_button.html">glButton</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structgl2_d_point__t.html">gl2DPoint_t</a> &amp;region, <span class="keyword">const</span> <span class="keywordtype">char</span> *text, <span class="keyword">const</span> <a class="code hl_class" href="classgl_button_theme.html">glButtonTheme</a> &amp;theme = <a class="code hl_class" href="classgl_button_theme.html">glButtonTheme</a>())</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <a class="code hl_class" href="classgl_button.html">glButton</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structgl_region__t.html">glRegion_t</a> &amp;region, <span class="keyword">const</span> <span class="keywordtype">char</span> *text, <span class="keyword">const</span> <a class="code hl_class" href="classgl_button_theme.html">glButtonTheme</a> &amp;theme = <a class="code hl_class" href="classgl_button_theme.html">glButtonTheme</a>())</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            : <a class="code hl_class" href="classgl_widget_link.html">glWidgetLink</a>(<span class="stringliteral">&quot;Button&quot;</span>, region)</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            , <a class="code hl_class" href="classgl_button_theme.html">glButtonTheme</a>(theme)</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            , _Text(region.Inflate(-_BorderWidth), text, fontFamily, theme._TextColor)</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            , _Text(region.<a class="code hl_function" href="structgl_region__t.html#acba263052bea9e92a1e02ac8bed5994c">Inflate</a>(-_BorderWidth), text, fontFamily, theme._TextColor)</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        {</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            Add(&amp;_Text);</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        }</div>
@@ -126,65 +126,66 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordtype">bool</span> Touch(<span class="keyword">const</span> <a class="code hl_struct" href="structgl_touch_point__t.html">glTouchPoint_t</a> &amp;point)<span class="keyword"> override</span></div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">        </span>{</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            <span class="keywordtype">bool</span> Handled = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>            <span class="keywordflow">if</span> (_Region.IsInside(point.X, point.Y)) </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>            <span class="keywordflow">if</span> (_Region.<a class="code hl_function" href="structgl_region__t.html#a25b4e6667895b822adb0d90a57290c54">IsInside</a>(point.X, point.Y)) </div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            {</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>                <span class="keywordflow">if</span> (point.TipAction == glTouchPoint_t::eTipAction::Tip &amp;&amp; !Pressed)</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                {</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                    Pressed = <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                    Handled = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                    InvalidateMe();</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                }</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                <span class="keywordflow">if</span> (point.TipAction == glTouchPoint_t::eTipAction::Up &amp;&amp; Pressed)</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                {</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                    <a class="code hl_struct" href="struct_click.html">Click</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                    Pressed = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                    Handled = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                    InvalidateMe();</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                }</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            }</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            {</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                <span class="keywordflow">if</span> (Pressed)</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                {</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                    Pressed = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                    Handled = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                    InvalidateMe();</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                }</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            }</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            <span class="keywordflow">return</span> Handled;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        }</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="comment">// redraw your self</span></div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> Redraw()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">        </span>{</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            <span class="keywordflow">if</span> (!ImInvalidated) <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            PlotRectangleRoundFill(_Region.Inflate(-_BorderWidth + 1), _CornerRadius, Pressed ? _PressedColor : _BackColor);</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            PlotBorder(_Region, _BorderWidth, _CornerRadius, _BorderColor);</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="classgl_video_memory.html#a79f28b876830fedd3cc74a256eb2c410">glVideoMemory::lastBand</a>()) </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                ImInvalidated = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        }</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <a class="code hl_struct" href="structgl2_d_point__t.html">gl2DPoint_t</a> InvalidRegion()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="keyword">        </span>{</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            <span class="keywordflow">return</span> _Region.Inflate(-_BorderWidth);</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        }</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordtype">bool</span> <a class="code hl_struct" href="struct_click.html">Click</a> = <span class="keyword">false</span>, Pressed = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <a class="code hl_class" href="classgl_text.html">glText&lt;len&gt;</a> _Text;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    };</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                    _InvalidatedRegion = _Region.<a class="code hl_function" href="structgl_region__t.html#acba263052bea9e92a1e02ac8bed5994c">Inflate</a>(-_BorderWidth);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                    InvalidateChilds();</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                <span class="keywordflow">if</span> (point.TipAction == glTouchPoint_t::eTipAction::Up &amp;&amp; Pressed)</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                    <a class="code hl_struct" href="struct_click.html">Click</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                    Pressed = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                    Handled = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                    _InvalidatedRegion = _Region.<a class="code hl_function" href="structgl_region__t.html#acba263052bea9e92a1e02ac8bed5994c">Inflate</a>(-_BorderWidth);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                    InvalidateChilds();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            }</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                <span class="keywordflow">if</span> (Pressed)</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                    Pressed = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                    Handled = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                    _InvalidatedRegion = _Region.<a class="code hl_function" href="structgl_region__t.html#acba263052bea9e92a1e02ac8bed5994c">Inflate</a>(-_BorderWidth);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                    InvalidateChilds();</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            <span class="keywordflow">return</span> Handled;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        }</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="comment">// redraw your self</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> Redraw()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keyword">        </span>{</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="keywordflow">if</span> (_InvalidatedRegion.<a class="code hl_function" href="structgl_region__t.html#a4a8a5ab4f10562e41c5c6d7cb65c7ed4">IsEmpty</a>()) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            PlotRectangleRoundFill(_Region.<a class="code hl_function" href="structgl_region__t.html#acba263052bea9e92a1e02ac8bed5994c">Inflate</a>(-_BorderWidth + 1), _CornerRadius, Pressed ? _PressedColor : _BackColor);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            PlotBorder(_Region, _BorderWidth, _CornerRadius, _BorderColor);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            _InvalidatedRegion.<a class="code hl_function" href="structgl_region__t.html#ae164ca290effc63b09a5963bdd5a31ef">Empty</a>();</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        }</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keywordtype">bool</span> <a class="code hl_struct" href="struct_click.html">Click</a> = <span class="keyword">false</span>, Pressed = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <a class="code hl_struct" href="structgl_region__t.html">glRegion_t</a> Cursor; </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <a class="code hl_class" href="classgl_text.html">glText&lt;len&gt;</a> _Text;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    };</div>
 </div>
 <div class="ttc" id="aclassgl_button_html"><div class="ttname"><a href="classgl_button.html">glButton</a></div><div class="ttdef"><b>Definition</b> glButton.h:28</div></div>
 <div class="ttc" id="aclassgl_button_theme_html"><div class="ttname"><a href="classgl_button_theme.html">glButtonTheme</a></div><div class="ttdef"><b>Definition</b> glThemes.h:104</div></div>
-<div class="ttc" id="aclassgl_plot2_d_helper_html"><div class="ttname"><a href="classgl_plot2_d_helper.html">glPlot2DHelper</a></div><div class="ttdef"><b>Definition</b> glWidgets.h:214</div></div>
+<div class="ttc" id="aclassgl_plot2_d_helper_html"><div class="ttname"><a href="classgl_plot2_d_helper.html">glPlot2DHelper</a></div><div class="ttdef"><b>Definition</b> glWidgets.h:208</div></div>
 <div class="ttc" id="aclassgl_text_html"><div class="ttname"><a href="classgl_text.html">glText</a></div><div class="ttdef"><b>Definition</b> glText.h:27</div></div>
-<div class="ttc" id="aclassgl_video_memory_html_a79f28b876830fedd3cc74a256eb2c410"><div class="ttname"><a href="classgl_video_memory.html#a79f28b876830fedd3cc74a256eb2c410">glVideoMemory::lastBand</a></div><div class="ttdeci">static bool lastBand()</div><div class="ttdoc">Checks if this is the last band.</div><div class="ttdef"><b>Definition</b> glTypes.h:266</div></div>
-<div class="ttc" id="aclassgl_widget_link_html"><div class="ttname"><a href="classgl_widget_link.html">glWidgetLink</a></div><div class="ttdef"><b>Definition</b> glWidgets.h:67</div></div>
+<div class="ttc" id="aclassgl_widget_link_html"><div class="ttname"><a href="classgl_widget_link.html">glWidgetLink</a></div><div class="ttdef"><b>Definition</b> glWidgets.h:73</div></div>
 <div class="ttc" id="astruct_click_html"><div class="ttname"><a href="struct_click.html">Click</a></div><div class="ttdoc">Structure to store click event data.</div></div>
-<div class="ttc" id="astructgl2_d_point__t_html"><div class="ttname"><a href="structgl2_d_point__t.html">gl2DPoint_t</a></div><div class="ttdoc">Represents a 2D rectangular region defined by two points.</div><div class="ttdef"><b>Definition</b> glTypes.h:84</div></div>
-<div class="ttc" id="astructgl_touch_point__t_html"><div class="ttname"><a href="structgl_touch_point__t.html">glTouchPoint_t</a></div><div class="ttdoc">Represents a point of touch, with actions and slide directions.</div><div class="ttdef"><b>Definition</b> glTypes.h:308</div></div>
+<div class="ttc" id="astructgl_region__t_html"><div class="ttname"><a href="structgl_region__t.html">glRegion_t</a></div><div class="ttdoc">Represents a 2D rectangular region defined by two points. R &amp; B are exclusive L=0 to R=11 is width 10...</div><div class="ttdef"><b>Definition</b> glTypes.h:92</div></div>
+<div class="ttc" id="astructgl_region__t_html_a25b4e6667895b822adb0d90a57290c54"><div class="ttname"><a href="structgl_region__t.html#a25b4e6667895b822adb0d90a57290c54">glRegion_t::IsInside</a></div><div class="ttdeci">bool IsInside(const P_t x, const P_t y) const</div><div class="ttdoc">Check if a point is inside the region.</div><div class="ttdef"><b>Definition</b> glTypes.h:231</div></div>
+<div class="ttc" id="astructgl_region__t_html_a4a8a5ab4f10562e41c5c6d7cb65c7ed4"><div class="ttname"><a href="structgl_region__t.html#a4a8a5ab4f10562e41c5c6d7cb65c7ed4">glRegion_t::IsEmpty</a></div><div class="ttdeci">bool IsEmpty() const</div><div class="ttdoc">Check if the region is empty.</div><div class="ttdef"><b>Definition</b> glTypes.h:211</div></div>
+<div class="ttc" id="astructgl_region__t_html_acba263052bea9e92a1e02ac8bed5994c"><div class="ttname"><a href="structgl_region__t.html#acba263052bea9e92a1e02ac8bed5994c">glRegion_t::Inflate</a></div><div class="ttdeci">glRegion_t Inflate(int d) const</div><div class="ttdoc">Inflate the region by a given amount.</div><div class="ttdef"><b>Definition</b> glTypes.h:285</div></div>
+<div class="ttc" id="astructgl_region__t_html_ae164ca290effc63b09a5963bdd5a31ef"><div class="ttname"><a href="structgl_region__t.html#ae164ca290effc63b09a5963bdd5a31ef">glRegion_t::Empty</a></div><div class="ttdeci">void Empty()</div><div class="ttdoc">Empty the region.</div><div class="ttdef"><b>Definition</b> glTypes.h:278</div></div>
+<div class="ttc" id="astructgl_touch_point__t_html"><div class="ttname"><a href="structgl_touch_point__t.html">glTouchPoint_t</a></div><div class="ttdoc">Represents a point of touch, with actions and slide directions.</div><div class="ttdef"><b>Definition</b> glTypes.h:481</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

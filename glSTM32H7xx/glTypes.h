@@ -24,8 +24,11 @@
 
 #include <stdint.h>
 #include <assert.h>
+#include <cstdio>
 #include "MemoryDefs.h"
 #include "glColor.h"
+
+#include "DMA2D.h"
 
 typedef uint16_t P_t;
 
@@ -75,24 +78,30 @@ struct glPoint_t {
 	 * @return A new displaced point.
 	 */
 	glPoint_t Displace(const glPoint_t &p)  const {    return Displace(p.X, p.Y); }
+	
+	void Empty()
+	{
+		X = Y = 0;
+	}
 };
 
 /**
  * @brief Represents a 2D rectangular region defined by two points.
+ * R & B are exclusive L=0 to R=11 is width 10
  */
-struct gl2DPoint_t
+struct glRegion_t
 {
 	/**
 	 * @brief Default constructor.
 	 */
-	gl2DPoint_t() {}
+	glRegion_t() {}
 
 	/**
 	 * @brief Constructor to initialize the 2D point with top-left and bottom-right points.
 	 * @param lt The top-left point.
 	 * @param rb The bottom-right point.
 	 */
-	gl2DPoint_t(const glPoint_t &lt, const glPoint_t &rb)
+	glRegion_t(const glPoint_t &lt, const glPoint_t &rb)
 		: _LT(lt)
 		, _RB(rb) 
 	{ 
@@ -104,201 +113,273 @@ struct gl2DPoint_t
 	 * @param top The top coordinate.
 	 * @param right The right coordinate.
 	 * @param bottom The bottom coordinate.
+	 * R & B are exclusive L=0 to R=11 is width 10
 	 */
-	gl2DPoint_t(P_t left, P_t top, P_t right, P_t bottom)
+	glRegion_t(P_t left, P_t top, P_t right, P_t bottom)
 		: _LT(left, top)
 		, _RB(right, bottom) 
 	{ 
 	}
 
+	/**
+	 * @brief Get the left coordinate.
+	 * @return The left coordinate.
+	 */
 	P_t L() const { return _LT.X; }
+
+	/**
+	 * @brief Get the top coordinate.
+	 * @return The top coordinate.
+	 */
 	P_t T() const { return _LT.Y; }
-	P_t R() const { return _RB.X; } 
+
+	/**
+	 * @brief Get the right coordinate.
+	 * @return The right coordinate.
+	 */
+	P_t R() const { return _RB.X; }
+
+	/**
+	 * @brief Get the bottom coordinate.
+	 * @return The bottom coordinate.
+	 */
 	P_t B() const { return _RB.Y; }
 
+	/**
+	 * @brief Set the left coordinate.
+	 * @param t The new left coordinate.
+	 */
 	void L(const P_t t) { _LT.X = t; }
+
+	/**
+	 * @brief Set the top coordinate.
+	 * @param t The new top coordinate.
+	 */
 	void T(const P_t t) { _LT.Y = t; }
+
+	/**
+	 * @brief Set the right coordinate.
+	 * @param t The new right coordinate.
+	 */
 	void R(const P_t t) { _RB.X = t; }
+
+	/**
+	 * @brief Set the bottom coordinate.
+	 * @param t The new bottom coordinate.
+	 */
 	void B(const P_t t) { _RB.Y = t; }
 
-	glPoint_t LT() const { return _LT; } 
-	glPoint_t LB() const { return glPoint_t(_LT.X, _RB.Y); } 
-	glPoint_t RT() const { return glPoint_t(_RB.X, _LT.Y); } 
-	glPoint_t RB() const { return _RB; } 
+	/**
+	 * @brief Get the top-left point.
+	 * @return The top-left point.
+	 */
+	glPoint_t LT() const { return _LT; }
 
+	/**
+	 * @brief Get the bottom-left point.
+	 * @return The bottom-left point.
+	 */
+	glPoint_t LB() const { return glPoint_t(_LT.X, _RB.Y); }
+
+	/**
+	 * @brief Get the top-right point.
+	 * @return The top-right point.
+	 */
+	glPoint_t RT() const { return glPoint_t(_RB.X, _LT.Y); }
+
+	/**
+	 * @brief Get the bottom-right point.
+	 * @return The bottom-right point.
+	 */
+	glPoint_t RB() const { return _RB; }
+
+	/**
+	 * @brief Get the width of the region.
+	 * @return The width of the region.
+	 */
 	P_t Width() const { return _RB.X - _LT.X; }
-	P_t Height() const { return _RB.Y - _LT.Y; }
-	bool Empty() const { return Width() == 0 || Height() == 0; }
 
-	gl2DPoint_t Normalize() const 
+	/**
+	 * @brief Get the height of the region.
+	 * @return The height of the region.
+	 */
+	P_t Height() const { return _RB.Y - _LT.Y; }
+
+	/**
+	 * @brief Check if the region is empty.
+	 * @return True if the region is empty, false otherwise.
+	 */
+	bool IsEmpty() const { return Width() == 0 || Height() == 0; }
+
+	/**
+	 * @brief Normalize the region by swapping coordinates if necessary.
+	 * @return A normalized region.
+	 */
+	glRegion_t Normalize() const 
 	{
-		gl2DPoint_t pt = *this;
-		if (pt.L() > pt.R()) { P_t t = pt.R(); pt.R(L()); pt.L(t); }
-		if (pt.T() > pt.B()) { P_t t = pt.B(); pt.B(T()); pt.T(t); }
+		glRegion_t pt = *this;
+		if (pt.L() > pt.R()) { std::swap(pt._LT.X, pt._RB.X); }
+		if (pt.T() > pt.B()) { std::swap(pt._LT.Y, pt._RB.Y); }
 		return pt;
 	}
 
-	bool IsInside(const P_t x, const P_t y) const { return x >= _LT.X && x <= _RB.X && y >= _LT.Y && y <= _RB.Y; }
+	/**
+	 * @brief Check if a point is inside the region.
+	 * @param x The x-coordinate of the point.
+	 * @param y The y-coordinate of the point.
+	 * @return True if the point is inside the region, false otherwise.
+	 */
+	bool IsInside(const P_t x, const P_t y) const 
+	{ 
+		assert(_LT.X <= _RB.X);
+		assert(_LT.Y <= _RB.Y);
+		return x >= _LT.X && x < _RB.X && y >= _LT.Y && y < _RB.Y; 
+	}
+
+	/**
+	 * @brief Check if a point is inside the region.
+	 * @param p The point to check.
+	 * @return True if the point is inside the region, false otherwise.
+	 */
 	bool IsInside(const glPoint_t &p) const { return IsInside(p.X, p.Y); }
 
-	gl2DPoint_t Displace(const int dx, const int dy) const { return gl2DPoint_t(_LT.Displace(dx, dy), _RB.Displace(dx, dy)); }
-	gl2DPoint_t Displace(const glPoint_t &p) const { return Displace(p.X, p.Y); }
+	/**
+	 * @brief Displace the region by a given offset.
+	 * @param dx The x-offset.
+	 * @param dy The y-offset.
+	 * @return The displaced region.
+	 */
+	glRegion_t Displace(const int dx, const int dy) const { return glRegion_t(_LT.Displace(dx, dy), _RB.Displace(dx, dy)); }
 
+	/**
+	 * @brief Displace the region by a given point offset.
+	 * @param p The point offset.
+	 * @return The displaced region.
+	 */
+	glRegion_t Displace(const glPoint_t &p) const { return Displace(p.X, p.Y); }
+
+	/**
+	 * @brief Move the region to new coordinates.
+	 * @param l The new left coordinate.
+	 * @param t The new top coordinate.
+	 * @param r The new right coordinate.
+	 * @param b The new bottom coordinate.
+	 */
 	void MoveTo(const int l, const int t, const int r, const int b) { _LT = glPoint_t(l, t); _RB = glPoint_t(r, b); }
-	void MoveTo(const gl2DPoint_t &p) { _LT = p.LT(), _RB = p.RB(); }
 
-	gl2DPoint_t Inflate(int d) const { return gl2DPoint_t(_LT.Displace(-d, -d), _RB.Displace(d, d)); }
-	gl2DPoint_t Inflate(int l, int t, int r, int b) const { return gl2DPoint_t(_LT.Displace(-l, -t), _RB.Displace(r, b)); }
-	
-	gl2DPoint_t Union(const gl2DPoint_t &region) const
+	/**
+	 * @brief Move the region to another region's coordinates.
+	 * @param p The region to move to.
+	 */
+	void MoveTo(const glRegion_t &p) { _LT = p.LT(), _RB = p.RB(); }
+
+	/**
+	 * @brief Empty the region.
+	 */
+	void Empty() { _LT.Empty(); _RB.Empty(); }
+
+	/**
+	 * @brief Inflate the region by a given amount.
+	 * @param d The amount to inflate by.
+	 * @return The inflated region.
+	 */
+	glRegion_t Inflate(int d) const { return glRegion_t(_LT.Displace(-d, -d), _RB.Displace(d, d)); }
+
+	/**
+	 * @brief Inflate the region by specific amounts.
+	 * @param l The left amount.
+	 * @param t The top amount.
+	 * @param r The right amount.
+	 * @param b The bottom amount.
+	 * @return The inflated region.
+	 */
+	glRegion_t Inflate(int l, int t, int r, int b) const { return glRegion_t(_LT.Displace(-l, -t), _RB.Displace(r, b)); }
+
+	/**
+	 * @brief Get the union of this region and another region.
+	 * @param region The other region.
+	 * @return The union of the two regions.
+	 */
+	glRegion_t Union(const glRegion_t &region) const
 	{
-		if (Empty()) return region;
-		if (region.Empty()) return *this;
+		if (IsEmpty()) return region;
+		if (region.IsEmpty()) return *this;
 
-		gl2DPoint_t Region2 = region.Normalize();
+		glRegion_t Region2 = region.Normalize();
+		glRegion_t ThisNorm = this->Normalize();
 
-		P_t newLeft = _LT.X;
-		P_t newTop = _LT.Y;
-		P_t newRight = _RB.X;
-		P_t newBottom = _RB.Y;
+		P_t newLeft = std::min(ThisNorm.L(), Region2.L());
+		P_t newTop = std::min(ThisNorm.T(), Region2.T());
+		P_t newRight = std::max(ThisNorm.R(), Region2.R());
+		P_t newBottom = std::max(ThisNorm.B(), Region2.B());
 
-		// Calculate the minimum left and top coordinates
-		if (Region2._LT.X < _LT.X) newLeft = Region2._LT.X;
-		if (Region2._LT.Y < _LT.Y) newTop = Region2._LT.Y;
-
-		// Calculate the maximum right and bottom coordinates
-		if (Region2._RB.X > _RB.X) newRight = Region2._RB.X;
-		if (Region2._RB.Y > _RB.Y) newBottom = Region2._RB.Y;
-
-		// Update the position to encompass the other position
-		return gl2DPoint_t(newLeft, newTop, newRight, newBottom);
+		return glRegion_t(newLeft, newTop, newRight, newBottom);
 	}
 
-	gl2DPoint_t Intersection(const gl2DPoint_t &region) const
+	/**
+	 * @brief Get the intersection of this region and another region.
+	 * @param region The other region.
+	 * @return The intersection of the two regions.
+	 */
+	glRegion_t Intersection(const glRegion_t &region) const
 	{
-		if (Empty()) return region;
+		if (IsEmpty() || region.IsEmpty()) return glRegion_t();
 
-		gl2DPoint_t Region2 = region.Normalize();
+		glRegion_t Region2 = region.Normalize();
+		glRegion_t ThisNorm = this->Normalize();
 
-		P_t newLeft = _LT.X;
-		P_t newTop = _LT.Y;
-		P_t newRight = _RB.X;
-		P_t newBottom = _RB.Y;
+		P_t newLeft = std::max(ThisNorm.L(), Region2.L());
+		P_t newTop = std::max(ThisNorm.T(), Region2.T());
+		P_t newRight = std::min(ThisNorm.R(), Region2.R());
+		P_t newBottom = std::min(ThisNorm.B(), Region2.B());
 
-		// Calculate the minimum right and bottom coordinates
-		if (Region2._LT.X > _LT.X) newLeft = Region2._LT.X;
-		if (Region2._LT.Y > _LT.Y) newTop = Region2._LT.Y;
-
-		// Calculate the maximum left and top coordinates
-		if (Region2._RB.X < _RB.X) newRight = Region2._RB.X;
-		if (Region2._RB.Y < _RB.Y) newBottom = Region2._RB.Y;
-
-		// Check if intersection exists
-		if (newLeft < newRight && newTop < newBottom) 
+		if (newLeft < newRight && newTop < newBottom)
 		{
-			return gl2DPoint_t(newLeft, newTop, newRight, newBottom);
+			return glRegion_t(newLeft, newTop, newRight, newBottom);
 		}
-		else 
+		else
 		{
-			// Return an empty rectangle if there's no intersection
-			return gl2DPoint_t();
+			return glRegion_t();
 		}
-		
 	}
-	
-	// find center pos
-	gl2DPoint_t Center(const gl2DPoint_t &region) const
+
+	/**
+	 * @brief Center another region within this region.
+	 * @param region The region to center.
+	 * @return The centered region.
+	 */
+	glRegion_t Center(const glRegion_t &region) const
 	{
 		return Center(region.Width(), region.Height());
 	}
-	gl2DPoint_t Center(P_t width, P_t height) const
+
+	/**
+	 * @brief Center a region of specific width and height within this region.
+	 * @param width The width of the region to center.
+	 * @param height The height of the region to center.
+	 * @return The centered region.
+	 */
+	glRegion_t Center(P_t width, P_t height) const
 	{
-		// Initialize variables
 		P_t w = std::min(width, Width());
 		P_t h = std::min(height, Height());
 
-		// Calculate x-coordinate for centering
 		P_t x = L() + (Width() - w) / 2;
-
-		// Calculate y-coordinate for centering
 		P_t y = T() + (Height() - h) / 2;
 
-		// Return new rectangle
-		return gl2DPoint_t(x, y, x + w, y + h);
-		
-	}    
+		return glRegion_t(x, y, x + w, y + h);
+	}
+	
+	char *ToString()
+	{
+		snprintf(_String, sizeof(_String), "%4u,%4u,%4u,%4u", _LT.X, _LT.Y, _RB.X, _RB.Y);
+		return _String;
+	}
+
 protected:
-	glPoint_t _LT, _RB;
-};
-
-/**
- * @brief Represents video memory and provides methods to manage it.
- */
-class glVideoMemory
-{
-public:
-	/**
-	 * @brief Gets the screen width.
-	 * @return The width of the screen.
-	 */
-	static P_t ScreenWidth() { return _ScreenWidth; }
-
-	/**
-	 * @brief Gets the screen height.
-	 * @return The height of the screen.
-	 */
-	static P_t ScreenHeight() { return _ScreenHeight; }
-protected:
-	// Pointer to graphic buffer
-	static glARGB_t *pVM; 
-	// Width & height of graphic buffer
-	static P_t _ScreenWidth, _ScreenHeight; 
-
-public:
-	// Band drawing control
-	static P_t ls, yStart, yEnd; // Lines to draw on each blanking
-	static gl2DPoint_t InvalidRegion; // Invalid region
-
-	/**
-	 * @brief Checks if this is the last band.
-	 * @return True if this is the last band, false otherwise.
-	 */
-	static bool lastBand() { return yEnd == _ScreenHeight; }
-
-	/**
-	 * @brief Limits the region to the intersection with the current drawing region.
-	 */
-	static void LimitRegion()
-	{
-		InvalidRegion = InvalidRegion.Intersection(gl2DPoint_t(0, yStart, _ScreenWidth - 1, yEnd - 1));
-	}
-
-	/**
-	 * @brief Moves to the next region to be drawn.
-	 */
-	static void NextRegion()
-	{
-		yStart += ls; 
-		if (yStart >= _ScreenHeight) yStart = 0;
-		yEnd = yStart + ls;
-		if (yEnd >= _ScreenHeight) yEnd = _ScreenHeight;
-		InvalidRegion = gl2DPoint_t(0, 0, 0, 0);
-	}
-
-	/**
-	 * @brief Initializes the video memory with the specified dimensions and buffer.
-	 * @param w The width of the screen.
-	 * @param h The height of the screen.
-	 * @param pvm Pointer to the video memory buffer.
-	 */
-	static void Init(const P_t w, const P_t h, glARGB_t *pvm)
-	{
-		pVM = pvm; 
-		_ScreenWidth = w; _ScreenHeight = h;
-		ls = h;
-		yStart = 0, yEnd = yStart + ls;
-		InvalidRegion = gl2DPoint_t(0, 0, 0, 0);
-	}
+	static char _String[25];
+	glPoint_t _LT; ///< The top-left point.
+	glPoint_t _RB; ///< The bottom-right point.
 };
 
 /**
@@ -371,8 +452,10 @@ public:
 	 * This enum defines the types of events that can be reported: None, Slide, and Click.
 	 */
 	enum class eEventType {
-		None, ///< No event.
-		Slide, ///< A slide event.
+		None,
+		///< No event.
+		Slide,
+		///< A slide event.
 		Click  ///< A click event.
 	} EventType = eEventType::None; ///< The type of the current event.
 
@@ -448,10 +531,7 @@ public:
 	/**
 	 * @brief Invoked during the blanking period.
 	 */
-	void Blanking()
-	{
-		cbBlanking();
-	}
+	void Blanking()	{ cbBlanking(); }
 
 	/**
 	 * @brief Invoked when a touch event occurs.
@@ -473,5 +553,5 @@ public:
 	 * @brief Pure virtual function to handle touch events.
 	 * @param tp The touch point.
 	 */
-	virtual void cbTouch(glTouchPoint_t&) = 0;
+	virtual void cbTouch(const glTouchPoint_t&) = 0;
 };

@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['r_5ft_0',['R_t',['../struct_r__t.html',1,'']]],
-  ['r_5ft_3c_20uint8_5ft_2c_200_2c_2015_20_3e_1',['R_t&lt; uint8_t, 0, 15 &gt;',['../struct_r__t.html',1,'']]],
-  ['readme_2',['README',['../md__r_e_a_d_m_e.html',1,'']]],
-  ['redraw_3',['Redraw',['../classgl_text.html#a59e9ee707d941be372bf6ac329c84229',1,'glText']]]
+  ['plotarc_0',['PlotArc',['../classgl_plot2_d_helper.html#a90035f11ae404d3a1965919f2f2d0ee6',1,'glPlot2DHelper']]],
+  ['plotarcfill_1',['PlotArcFill',['../classgl_plot2_d_helper.html#a50c27c39df8c596888b0e57e08be7034',1,'glPlot2DHelper']]],
+  ['plotcircle_2',['PlotCircle',['../classgl_plot2_d_helper.html#af97c6584e6ac0d9dfb0507e9a251089f',1,'glPlot2DHelper']]],
+  ['plotcirclefill_3',['PlotCircleFill',['../classgl_plot2_d_helper.html#a242a06a8c1b745d14541a17c86dccd19',1,'glPlot2DHelper']]],
+  ['plotline_4',['PlotLine',['../classgl_plot2_d_helper.html#a8783e60e1b75a09de18332d663a99ca7',1,'glPlot2DHelper']]],
+  ['plotrectangleround_5',['PlotRectangleRound',['../classgl_plot2_d_helper.html#a70471c069ab4247479dd12e9ba8633fa',1,'glPlot2DHelper']]]
 ];

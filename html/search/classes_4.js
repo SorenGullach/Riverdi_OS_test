@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['memregion_0',['MemRegion',['../struct_mem_region.html',1,'']]]
+  ['memregion_5ft_0',['MemRegion_t',['../struct_mem_region__t.html',1,'']]]
 ];

@@ -85,7 +85,7 @@ Inheritance diagram for glLink:</div>
  <div class="center">
   <img src="classgl_link.png" usemap="#glLink_map" alt=""/>
   <map id="glLink_map" name="glLink_map">
-<area href="classgl_page.html" alt="glPage" shape="rect" coords="0,56,166,80"/>
+<area href="classgl_page_link.html" alt="glPageLink" shape="rect" coords="0,56,166,80"/>
 <area href="classgl_widget_link.html" alt="glWidgetLink" shape="rect" coords="352,56,518,80"/>
 <area href="class_g_u_i_page_buttons.html" alt="GUIPageButtons" shape="rect" coords="176,112,342,136"/>
 <area href="class_g_u_i_page_sliders.html" alt="GUIPageSliders" shape="rect" coords="176,168,342,192"/>
@@ -102,7 +102,7 @@ Inheritance diagram for glLink:</div>
 <area href="classgl_button.html" alt="glButton&lt; len, fontFamily &gt;" shape="rect" coords="528,560,694,584"/>
 <area href="classgl_circle.html" alt="glCircle" shape="rect" coords="528,616,694,640"/>
 <area href="classgl_label.html" alt="glLabel&lt; len, fontFamily &gt;" shape="rect" coords="528,672,694,696"/>
-<area href="classgl_line.html" alt="glLine" shape="rect" coords="528,728,694,752"/>
+<area href="classgl_line.html" title="endpoints is inclusive" alt="glLine" shape="rect" coords="528,728,694,752"/>
 <area href="classgl_pixel.html" title="A graphical pixel widget that inherits from glWidget and glVideoMemoryPlot." alt="glPixel" shape="rect" coords="528,784,694,808"/>
 <area href="classgl_rectangle.html" alt="glRectangle" shape="rect" coords="528,840,694,864"/>
 <area href="classgl_slider.html" alt="glSlider&lt; len, fontFamily &gt;" shape="rect" coords="528,896,694,920"/>
@@ -115,18 +115,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8e023c93db4502a1d0da7a367528c990" id="r_a8e023c93db4502a1d0da7a367528c990"><td class="memItemLeft" align="right" valign="top"><a id="a8e023c93db4502a1d0da7a367528c990" name="a8e023c93db4502a1d0da7a367528c990"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateLook</b> ()=0</td></tr>
 <tr class="separator:a8e023c93db4502a1d0da7a367528c990"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a763fe83367267643ba0e1595593e4e63" id="r_a763fe83367267643ba0e1595593e4e63"><td class="memItemLeft" align="right" valign="top"><a id="a763fe83367267643ba0e1595593e4e63" name="a763fe83367267643ba0e1595593e4e63"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateState</b> (<a class="el" href="structgl_touch_point__t.html">glTouchPoint_t</a> &amp;point, bool &amp;Handled)=0</td></tr>
-<tr class="separator:a763fe83367267643ba0e1595593e4e63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfc900e628cedefd5c7c6d78064a2d84" id="r_abfc900e628cedefd5c7c6d78064a2d84"><td class="memItemLeft" align="right" valign="top"><a id="abfc900e628cedefd5c7c6d78064a2d84" name="abfc900e628cedefd5c7c6d78064a2d84"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsInvalidated</b> (<a class="el" href="structgl2_d_point__t.html">gl2DPoint_t</a> &amp;invalidRegion)=0</td></tr>
-<tr class="separator:abfc900e628cedefd5c7c6d78064a2d84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a135a23870290b6c9fbf9a757342292c0" id="r_a135a23870290b6c9fbf9a757342292c0"><td class="memItemLeft" align="right" valign="top"><a id="a135a23870290b6c9fbf9a757342292c0" name="a135a23870290b6c9fbf9a757342292c0"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>InvalidateMe</b> ()=0</td></tr>
-<tr class="separator:a135a23870290b6c9fbf9a757342292c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35fe8f7a8982449c92c9aa03fe12d365" id="r_a35fe8f7a8982449c92c9aa03fe12d365"><td class="memItemLeft" align="right" valign="top"><a id="a35fe8f7a8982449c92c9aa03fe12d365" name="a35fe8f7a8982449c92c9aa03fe12d365"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>InvalidateSiblings</b> ()=0</td></tr>
-<tr class="separator:a35fe8f7a8982449c92c9aa03fe12d365"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae475785ec672a13f62babab07b7655d2" id="r_ae475785ec672a13f62babab07b7655d2"><td class="memItemLeft" align="right" valign="top"><a id="ae475785ec672a13f62babab07b7655d2" name="ae475785ec672a13f62babab07b7655d2"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateState</b> (const <a class="el" href="structgl_touch_point__t.html">glTouchPoint_t</a> &amp;point, bool &amp;Handled)=0</td></tr>
+<tr class="separator:ae475785ec672a13f62babab07b7655d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66057d0d2b488f116ea9ddc09ae1a791" id="r_a66057d0d2b488f116ea9ddc09ae1a791"><td class="memItemLeft" align="right" valign="top"><a id="a66057d0d2b488f116ea9ddc09ae1a791" name="a66057d0d2b488f116ea9ddc09ae1a791"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>InvalidatedRegion</b> (<a class="el" href="structgl_region__t.html">glRegion_t</a> &amp;invalidRegion)=0</td></tr>
+<tr class="separator:a66057d0d2b488f116ea9ddc09ae1a791"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa09ebaaa07c5fd20e34454359e41adf4" id="r_aa09ebaaa07c5fd20e34454359e41adf4"><td class="memItemLeft" align="right" valign="top"><a id="aa09ebaaa07c5fd20e34454359e41adf4" name="aa09ebaaa07c5fd20e34454359e41adf4"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>InvalidateChilds</b> ()=0</td></tr>
+<tr class="separator:aa09ebaaa07c5fd20e34454359e41adf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87530de017b3e6f1d53f26268bee4de0" id="r_a87530de017b3e6f1d53f26268bee4de0"><td class="memItemLeft" align="right" valign="top"><a id="a87530de017b3e6f1d53f26268bee4de0" name="a87530de017b3e6f1d53f26268bee4de0"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>InvalidateWidgets</b> ()=0</td></tr>
+<tr class="separator:a87530de017b3e6f1d53f26268bee4de0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af61073440e6b3eb1e15c8066f8a18cc3" id="r_af61073440e6b3eb1e15c8066f8a18cc3"><td class="memItemLeft" align="right" valign="top"><a id="af61073440e6b3eb1e15c8066f8a18cc3" name="af61073440e6b3eb1e15c8066f8a18cc3"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Event</b> (<a class="el" href="classgl_event.html">glEvent</a> event)=0</td></tr>
 <tr class="separator:af61073440e6b3eb1e15c8066f8a18cc3"><td class="memSeparator" colspan="2">&#160;</td></tr>

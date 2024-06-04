@@ -39,85 +39,103 @@
 \DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ Display.Init(\textcolor{keyword}{this});\ \textcolor{comment}{//\ the\ display}}
 \DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ Touch.Init(\textcolor{keyword}{this});\ \textcolor{comment}{//\ for\ touch\ control}}
 \DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ size\ of\ the\ display\ +\ Display\ buffer}}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_video_memory_a3fbd6abbb3a2b322e2313bef9d4664a8}{glVideoMemory::Init}}(Display.Width(),\ Display.Height(),\ (\mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}\ *)SDRAM\_START);}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ back\ color\ for\ background}}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ bg\ =\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}(glColors::GREEN);}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ Display.BackgroundColor(bg.R,\ bg.G,\ bg.B);}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ layer}}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ Display.Layer(1,\ pVM,\ 0,\ 0,\ 0\ +\ \_ScreenWidth,\ 0\ +\ \_ScreenHeight);}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ blending}}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ Display.BlendingFactors(1,\ eBlendingFactor1::F1\_CA,\ eBlendingFactor2::F2\_CA,\ 255);}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ df\ =\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}(glColors::RED);}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ Display.DefaultColor(1,\ df.\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}},\ df.R,\ df.G,\ df.B);}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ ck\ =\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}(glColors::BLACK);}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ Display.ColorKey(1,\ ck.R,\ ck.G,\ ck.B);}
-\DoxyCodeLine{00052\ \ \ \ \ \}}
-\DoxyCodeLine{00053\ \ \ \ \ }
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ AddPage(\mbox{\hyperlink{classgl_page}{glPage}}\ *page)}
-\DoxyCodeLine{00055\ \ \ \ \ \{}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ page-\/>MoveTo(\mbox{\hyperlink{structgl2_d_point__t}{gl2DPoint\_t}}(0,\ 0,\ Display.Width()\ -\/\ 1,\ Display.Height()\ -\/\ 1));}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ ChainPages.Add(page);}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{//page-\/>Init();}}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrentPage\ ==\ \textcolor{keyword}{nullptr})}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ pCurrentPage\ =\ ChainPages.Head();}
-\DoxyCodeLine{00062\ \ \ \ \ \}}
-\DoxyCodeLine{00063\ \ \ \ \ }
-\DoxyCodeLine{00064\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ Display\ to\ draw\ on}}
-\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{class_t_f_t_display}{TFTDisplay}}\ Display;}
-\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ Touch\ control}}
-\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{class_c_t_p_display}{CTPDisplay}}\ Touch;}
-\DoxyCodeLine{00069\ \ \ \ \ }
-\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{classgl_chain}{glChain<glPage>}}\ ChainPages;}
-\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{classgl_page}{glPage}}\ *pCurrentPage\ =\ \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{00072\ \ \ \ \ }
-\DoxyCodeLine{00073\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgl_main_ab86832b66f825b77d86d114213373be3}{cbTouch}}(\mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&point)\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00075\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrentPage\ ==\ \textcolor{keyword}{nullptr})\ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Handled\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ pCurrentPage-\/>UpdateState(point,\ Handled);}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (pCurrentPage-\/>EventAction.\mbox{\hyperlink{classgl_event_ac6b12daf3096d10ee67fce2a8af6bf1b}{EventType}})}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classgl_event_ae63986141ad7b77417913f127b8edfe7a6160a53ece50ce6d4f5ef4452549835e}{glEvent::eEventType::Slide}}:}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrentPage-\/>EventAction.\mbox{\hyperlink{classgl_event_a7d529014843c1484dd9d98b6dbf8d48f}{U}}.Slide.\mbox{\hyperlink{uniongl_event_1_1u_event_a2a4b08d609e8753710a2973f3f9d62a1}{Action}}\ ==\ glTouchPoint\_t::Right\ \&\&\ pCurrentPage-\/>Prev()\ !=\ \textcolor{keyword}{nullptr})\ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{classgl_page}{glPage}}\ *)pCurrentPage-\/>Prev())-\/>InvalidateMe();}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pCurrentPage-\/>EventAction.\mbox{\hyperlink{classgl_event_a7d529014843c1484dd9d98b6dbf8d48f}{U}}.Slide.\mbox{\hyperlink{uniongl_event_1_1u_event_a2a4b08d609e8753710a2973f3f9d62a1}{Action}}\ =\ glTouchPoint\_t::None;\ }
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pCurrentPage\ =\ (\mbox{\hyperlink{classgl_page}{glPage}}\ *)(pCurrentPage-\/>Prev());}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Printf("{}\%s\ Currentpage\(\backslash\)n"{},\ pCurrentPage-\/>Name);}}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrentPage-\/>EventAction.\mbox{\hyperlink{classgl_event_a7d529014843c1484dd9d98b6dbf8d48f}{U}}.Slide.\mbox{\hyperlink{uniongl_event_1_1u_event_a2a4b08d609e8753710a2973f3f9d62a1}{Action}}\ ==\ glTouchPoint\_t::Left\ \&\&\ pCurrentPage-\/>Next()\ !=\ \textcolor{keyword}{nullptr})\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{classgl_page}{glPage}}\ *)pCurrentPage-\/>Next())-\/>InvalidateMe();}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pCurrentPage-\/>EventAction.\mbox{\hyperlink{classgl_event_a7d529014843c1484dd9d98b6dbf8d48f}{U}}.Slide.\mbox{\hyperlink{uniongl_event_1_1u_event_a2a4b08d609e8753710a2973f3f9d62a1}{Action}}\ =\ glTouchPoint\_t::None;\ }
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pCurrentPage\ =\ (\mbox{\hyperlink{classgl_page}{glPage}}\ *)(pCurrentPage-\/>Next());}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Printf("{}\%s\ Currentpage\(\backslash\)n"{},\ pCurrentPage-\/>Name);}}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classgl_event_ae63986141ad7b77417913f127b8edfe7a316853cc3718335f11c048e33b9be98a}{glEvent::eEventType::Click}}:}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classgl_event_ae63986141ad7b77417913f127b8edfe7a6adf97f83acf6453d4a6a4b1070f3754}{glEvent::eEventType::None}}:}
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ pCurrentPage-\/>EventAction.\mbox{\hyperlink{classgl_event_ac6b12daf3096d10ee67fce2a8af6bf1b}{EventType}}\ =\ \mbox{\hyperlink{classgl_event_ae63986141ad7b77417913f127b8edfe7a6adf97f83acf6453d4a6a4b1070f3754}{glEvent::eEventType::None}};}
-\DoxyCodeLine{00103\ \ \ \ \ \}}
-\DoxyCodeLine{00104\ }
-\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgl_main_aa3bbbd92f5f8500d8f81224270a42fbf}{cbBlanking}}()\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00106\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrentPage\ ==\ \textcolor{keyword}{nullptr})\ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00108\ }
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!pCurrentPage-\/>IsInvalidated(glVideoMemory::InvalidRegion))\ \textcolor{comment}{//\ returns\ an\ invalidated\ region}}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00111\ }
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_video_memory_a1ee38dc72e41940446fe3bf03e54d659}{glVideoMemory::LimitRegion}}();}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ pCurrentPage-\/>UpdateLook();}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_video_memory_aec104053547ef2609fadd975369ca657}{glVideoMemory::NextRegion}}();}
-\DoxyCodeLine{00115\ \ \ \ \ \}}
-\DoxyCodeLine{00116\ \};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ uint32\_t\ DisplayMemSize\ =\ (Display.Width()*Display.Height()\ *\ 4)\ *\ 2;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ Printf(\textcolor{stringliteral}{"{}DisplayMem\ size\_t\ \%\ d"{}},\ DisplayMemSize);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ assert(DisplayMemSize\ <=\ SDRAM\_SIZE);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ size\ of\ the\ display\ +\ Display\ buffer}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_video_memory_ae849de5704353d0306b8be36bcab07da}{glVideoMemory::Init}}(Display.Width(),\ Display.Height(),\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}*)SDRAM\_START,\ (\mbox{\hyperlink{structgl_a_r_g_b__t}{glARGB\_t}}*)(SDRAM\_START+DisplayMemSize));}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ back\ color\ for\ background}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ bg\ =\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}(glColors::GREEN);}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ Display.BackgroundColor(bg.R,\ bg.G,\ bg.B);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ layer}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ Display.Layer(1,\ pVMLTDC,\ 0,\ 0,\ 0\ +\ \mbox{\hyperlink{classgl_video_memory_ad8382197b985124b688fd84216728f14}{ScreenWidth}}(),\ 0\ +\ \mbox{\hyperlink{classgl_video_memory_ad2a3fbb1c2c576796b960406fa7951b9}{ScreenHeight}}());}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ \ \ \ \ \ Display.Layer(1,\ pVMShadow,\ 0,\ 0,\ 0\ +\ ScreenWidth(),\ 0\ +\ ScreenHeight());\ //\ good\ for\ debug\ :-\/)}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ blending}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ Display.BlendingFactors(1,\ eBlendingFactor1::F1\_CA,\ eBlendingFactor2::F2\_CA,\ 255);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ df\ =\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}(glColors::RED);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ Display.DefaultColor(1,\ df.\mbox{\hyperlink{structgl_a_r_g_b__t_af46d13fc72a0e7d7bee0323f23652095}{A}},\ df.R,\ df.G,\ df.B);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}\ ck\ =\ \mbox{\hyperlink{classgl_color__t}{glColor\_t}}(glColors::BLACK);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ Display.ColorKey(1,\ ck.R,\ ck.G,\ ck.B);}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ AddPage(\mbox{\hyperlink{classgl_page_link}{glPageLink}}\ *page)}
+\DoxyCodeLine{00060\ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ page-\/>MoveTo(\mbox{\hyperlink{structgl_region__t}{glRegion\_t}}(0,\ 0,\ Display.Width(),\ Display.Height()));}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ ChainPages.Add(page);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{comment}{//page-\/>Init();}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrentPage\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ pCurrentPage\ =\ ChainPages.Head();}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//\ Display\ to\ draw\ on}}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{class_t_f_t_display}{TFTDisplay}}\ Display;}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//\ Touch\ control}}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{class_c_t_p_display}{CTPDisplay}}\ Touch;}
+\DoxyCodeLine{00074\ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{classgl_chain}{glChain<glPageLink>}}\ ChainPages;}
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{classgl_page_link}{glPageLink}}\ *pCurrentPage\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00077\ \ \ \ \ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgl_main_a3b99dde2e8881f2e90c8549f13e0e082}{cbTouch}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgl_touch_point__t}{glTouchPoint\_t}}\ \&point)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00080\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00081\ \ \ \ \ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrentPage\ ==\ \textcolor{keyword}{nullptr})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Handled\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ pCurrentPage-\/>UpdateState(point,\ Handled);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (pCurrentPage-\/>EventAction.\mbox{\hyperlink{classgl_event_ac6b12daf3096d10ee67fce2a8af6bf1b}{EventType}})}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classgl_event_ae63986141ad7b77417913f127b8edfe7a6160a53ece50ce6d4f5ef4452549835e}{glEvent::eEventType::Slide}}:}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrentPage-\/>EventAction.\mbox{\hyperlink{classgl_event_a7d529014843c1484dd9d98b6dbf8d48f}{U}}.Slide.\mbox{\hyperlink{uniongl_event_1_1u_event_a2a4b08d609e8753710a2973f3f9d62a1}{Action}}\ ==\ glTouchPoint\_t::Right\ \&\&\ pCurrentPage-\/>Prev()\ !=\ \textcolor{keyword}{nullptr})\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{classgl_page_link}{glPageLink}}\ *)pCurrentPage-\/>Prev())-\/>InvalidateChilds();}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pCurrentPage-\/>EventAction.\mbox{\hyperlink{classgl_event_a7d529014843c1484dd9d98b6dbf8d48f}{U}}.Slide.\mbox{\hyperlink{uniongl_event_1_1u_event_a2a4b08d609e8753710a2973f3f9d62a1}{Action}}\ =\ glTouchPoint\_t::None;\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pCurrentPage\ =\ (\mbox{\hyperlink{classgl_page_link}{glPageLink}}\ *)(pCurrentPage-\/>Prev());}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Printf("{}\%s\ Currentpage\(\backslash\)n"{},\ pCurrentPage-\/>Name);}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrentPage-\/>EventAction.\mbox{\hyperlink{classgl_event_a7d529014843c1484dd9d98b6dbf8d48f}{U}}.Slide.\mbox{\hyperlink{uniongl_event_1_1u_event_a2a4b08d609e8753710a2973f3f9d62a1}{Action}}\ ==\ glTouchPoint\_t::Left\ \&\&\ pCurrentPage-\/>Next()\ !=\ \textcolor{keyword}{nullptr})\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{classgl_page_link}{glPageLink}}\ *)pCurrentPage-\/>Next())-\/>InvalidateChilds();}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pCurrentPage-\/>EventAction.\mbox{\hyperlink{classgl_event_a7d529014843c1484dd9d98b6dbf8d48f}{U}}.Slide.\mbox{\hyperlink{uniongl_event_1_1u_event_a2a4b08d609e8753710a2973f3f9d62a1}{Action}}\ =\ glTouchPoint\_t::None;\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pCurrentPage\ =\ (\mbox{\hyperlink{classgl_page_link}{glPageLink}}\ *)(pCurrentPage-\/>Next());}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Printf("{}\%s\ Currentpage\(\backslash\)n"{},\ pCurrentPage-\/>Name);}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classgl_event_ae63986141ad7b77417913f127b8edfe7a316853cc3718335f11c048e33b9be98a}{glEvent::eEventType::Click}}:}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classgl_event_ae63986141ad7b77417913f127b8edfe7a6adf97f83acf6453d4a6a4b1070f3754}{glEvent::eEventType::None}}:}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ pCurrentPage-\/>EventAction.\mbox{\hyperlink{classgl_event_ac6b12daf3096d10ee67fce2a8af6bf1b}{EventType}}\ =\ \mbox{\hyperlink{classgl_event_ae63986141ad7b77417913f127b8edfe7a6adf97f83acf6453d4a6a4b1070f3754}{glEvent::eEventType::None}};}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgl_main_aa3bbbd92f5f8500d8f81224270a42fbf}{cbBlanking}}()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00112\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pCurrentPage\ ==\ \textcolor{keyword}{nullptr})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgl_region__t}{glRegion\_t}}\ IR;}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ pCurrentPage-\/>InvalidatedRegion(IR);\ \textcolor{comment}{//\ returns\ an\ invalidated\ region}}
 \DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IR.\mbox{\hyperlink{structgl_region__t_a4a8a5ab4f10562e41c5c6d7cb65c7ed4}{IsEmpty}}())}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ glVideoMemory::\_InvalidRegion\ =\ IR;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00123\ \textcolor{comment}{//\ \ \ \ \ \ if\ (!glVideoMemory::IsTransferComplete())}}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ return;}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00126\ \textcolor{comment}{//\ \ \ \ \ \ Printf("{}."{});}}
+\DoxyCodeLine{00127\ \ \ \ \ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ pCurrentPage-\/>UpdateLook();}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ glVideoMemory::CopyVideoMem();}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//\ \ Printf("{}:\(\backslash\)n"{});}}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \};}
+\DoxyCodeLine{00135\ }
 
 \end{DoxyCode}

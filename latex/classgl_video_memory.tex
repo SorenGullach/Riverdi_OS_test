@@ -22,42 +22,37 @@ static P\+\_\+t \mbox{\hyperlink{classgl_video_memory_ad8382197b985124b688fd8421
 \begin{DoxyCompactList}\small\item\em Gets the screen width. \end{DoxyCompactList}\item 
 static P\+\_\+t \mbox{\hyperlink{classgl_video_memory_ad2a3fbb1c2c576796b960406fa7951b9}{Screen\+Height}} ()
 \begin{DoxyCompactList}\small\item\em Gets the screen height. \end{DoxyCompactList}\item 
-static bool \mbox{\hyperlink{classgl_video_memory_a79f28b876830fedd3cc74a256eb2c410}{last\+Band}} ()
-\begin{DoxyCompactList}\small\item\em Checks if this is the last band. \end{DoxyCompactList}\item 
-\Hypertarget{classgl_video_memory_a1ee38dc72e41940446fe3bf03e54d659}\label{classgl_video_memory_a1ee38dc72e41940446fe3bf03e54d659} 
-static void {\bfseries Limit\+Region} ()
+\Hypertarget{classgl_video_memory_aa59048487c7a60a4031e5475cb3fd142}\label{classgl_video_memory_aa59048487c7a60a4031e5475cb3fd142} 
+static void {\bfseries Copy\+Video\+Mem} ()
+\item 
+\Hypertarget{classgl_video_memory_ac4b95b7801b8769d5bad54071039e087}\label{classgl_video_memory_ac4b95b7801b8769d5bad54071039e087} 
+static bool {\bfseries Is\+Transfer\+Complete} ()
+\item 
+\Hypertarget{classgl_video_memory_afe4ceedbbc59aeacf186bfc50be25411}\label{classgl_video_memory_afe4ceedbbc59aeacf186bfc50be25411} 
+static \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} {\bfseries Limit\+Region} (const \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} \&region)
 \begin{DoxyCompactList}\small\item\em Limits the region to the intersection with the current drawing region. \end{DoxyCompactList}\item 
-\Hypertarget{classgl_video_memory_aec104053547ef2609fadd975369ca657}\label{classgl_video_memory_aec104053547ef2609fadd975369ca657} 
-static void {\bfseries Next\+Region} ()
-\begin{DoxyCompactList}\small\item\em Moves to the next region to be drawn. \end{DoxyCompactList}\item 
-static void \mbox{\hyperlink{classgl_video_memory_a3fbd6abbb3a2b322e2313bef9d4664a8}{Init}} (const P\+\_\+t w, const P\+\_\+t h, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*}pvm)
+static void \mbox{\hyperlink{classgl_video_memory_ae849de5704353d0306b8be36bcab07da}{Init}} (const P\+\_\+t w, const P\+\_\+t h, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*}pvm\+LTDC, \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*}pvm\+Shadow)
 \begin{DoxyCompactList}\small\item\em Initializes the video memory with the specified dimensions and buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{classgl_video_memory_a605eacf2aa22536649d59ef1421d71fc}\label{classgl_video_memory_a605eacf2aa22536649d59ef1421d71fc} 
-static P\+\_\+t {\bfseries ls}
+\Hypertarget{classgl_video_memory_a6c602dbc0b4779fa9bc43c4b7abd9e6b}\label{classgl_video_memory_a6c602dbc0b4779fa9bc43c4b7abd9e6b} 
+static \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} {\bfseries \+\_\+\+Invalid\+Region}
 \item 
-\Hypertarget{classgl_video_memory_a619ccd5468f27bc464fbd1eec51cf93c}\label{classgl_video_memory_a619ccd5468f27bc464fbd1eec51cf93c} 
-static P\+\_\+t {\bfseries y\+Start}
+\Hypertarget{classgl_video_memory_a504ef78ac1e8916507e724e31cd8862e}\label{classgl_video_memory_a504ef78ac1e8916507e724e31cd8862e} 
+static \mbox{\hyperlink{structgl_region__t}{gl\+Region\+\_\+t}} {\bfseries \+\_\+\+Video\+Region}
 \item 
-\Hypertarget{classgl_video_memory_a578112529360883795bea888625917ec}\label{classgl_video_memory_a578112529360883795bea888625917ec} 
-static P\+\_\+t {\bfseries y\+End}
-\item 
-\Hypertarget{classgl_video_memory_a9ed29bb38b8864ef0c940bb65f2a1519}\label{classgl_video_memory_a9ed29bb38b8864ef0c940bb65f2a1519} 
-static \mbox{\hyperlink{structgl2_d_point__t}{gl2\+DPoint\+\_\+t}} {\bfseries Invalid\+Region}
+\Hypertarget{classgl_video_memory_a182255b0754888bd78b8d927dd02f7d0}\label{classgl_video_memory_a182255b0754888bd78b8d927dd02f7d0} 
+static \mbox{\hyperlink{classhw_d_m_a2_d}{hw\+DMA2D}} {\bfseries \+\_\+\+Dma2D}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Static Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{classgl_video_memory_a1cfd71b7f19811798205a3c1787c30a9}\label{classgl_video_memory_a1cfd71b7f19811798205a3c1787c30a9} 
-static \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*} {\bfseries p\+VM}
+\Hypertarget{classgl_video_memory_ad94307604bd7bba2bee37c7ba24074aa}\label{classgl_video_memory_ad94307604bd7bba2bee37c7ba24074aa} 
+static \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*} {\bfseries p\+VMShadow}
 \item 
-\Hypertarget{classgl_video_memory_a2f985837c895045b5f1439ab4f7a5d7f}\label{classgl_video_memory_a2f985837c895045b5f1439ab4f7a5d7f} 
-static P\+\_\+t {\bfseries \+\_\+\+Screen\+Width}
-\item 
-\Hypertarget{classgl_video_memory_a7b110865b3bf12ce2e94cbf4753c5923}\label{classgl_video_memory_a7b110865b3bf12ce2e94cbf4753c5923} 
-static P\+\_\+t {\bfseries \+\_\+\+Screen\+Height}
+\Hypertarget{classgl_video_memory_a99867de4f104b47df32002fd03d21f3f}\label{classgl_video_memory_a99867de4f104b47df32002fd03d21f3f} 
+static \mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*} {\bfseries p\+VMLTDC}
 \end{DoxyCompactItemize}
 
 
@@ -65,11 +60,11 @@ static P\+\_\+t {\bfseries \+\_\+\+Screen\+Height}
 Represents video memory and provides methods to manage it. 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classgl_video_memory_a3fbd6abbb3a2b322e2313bef9d4664a8}\label{classgl_video_memory_a3fbd6abbb3a2b322e2313bef9d4664a8} 
+\Hypertarget{classgl_video_memory_ae849de5704353d0306b8be36bcab07da}\label{classgl_video_memory_ae849de5704353d0306b8be36bcab07da} 
 \index{glVideoMemory@{glVideoMemory}!Init@{Init}}
 \index{Init@{Init}!glVideoMemory@{glVideoMemory}}
 \doxysubsubsection{\texorpdfstring{Init()}{Init()}}
-{\footnotesize\ttfamily static void gl\+Video\+Memory\+::\+Init (\begin{DoxyParamCaption}\item[{const P\+\_\+t}]{w,  }\item[{const P\+\_\+t}]{h,  }\item[{\mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{pvm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily static void gl\+Video\+Memory\+::\+Init (\begin{DoxyParamCaption}\item[{const P\+\_\+t}]{w,  }\item[{const P\+\_\+t}]{h,  }\item[{\mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{pvm\+LTDC,  }\item[{\mbox{\hyperlink{structgl_a_r_g_b__t}{gl\+ARGB\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{pvm\+Shadow }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -84,19 +79,6 @@ Initializes the video memory with the specified dimensions and buffer.
 {\em pvm} & Pointer to the video memory buffer. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{classgl_video_memory_a79f28b876830fedd3cc74a256eb2c410}\label{classgl_video_memory_a79f28b876830fedd3cc74a256eb2c410} 
-\index{glVideoMemory@{glVideoMemory}!lastBand@{lastBand}}
-\index{lastBand@{lastBand}!glVideoMemory@{glVideoMemory}}
-\doxysubsubsection{\texorpdfstring{lastBand()}{lastBand()}}
-{\footnotesize\ttfamily static bool gl\+Video\+Memory\+::last\+Band (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
-
-
-
-Checks if this is the last band. 
-
-\begin{DoxyReturn}{Returns}
-True if this is the last band, false otherwise. 
-\end{DoxyReturn}
 \Hypertarget{classgl_video_memory_ad2a3fbb1c2c576796b960406fa7951b9}\label{classgl_video_memory_ad2a3fbb1c2c576796b960406fa7951b9} 
 \index{glVideoMemory@{glVideoMemory}!ScreenHeight@{ScreenHeight}}
 \index{ScreenHeight@{ScreenHeight}!glVideoMemory@{glVideoMemory}}

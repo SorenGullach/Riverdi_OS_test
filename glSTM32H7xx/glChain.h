@@ -34,10 +34,10 @@ public:
 	//virtual void Init() = 0;
 	
 	virtual void UpdateLook() = 0;
-	virtual void UpdateState(glTouchPoint_t &point, bool &Handled) = 0;
-	virtual bool IsInvalidated(gl2DPoint_t &invalidRegion) = 0;
-	virtual void InvalidateMe() = 0;
-	virtual void InvalidateSiblings() = 0;
+	virtual void UpdateState(const glTouchPoint_t &point, bool &Handled) = 0;
+	virtual void InvalidatedRegion(glRegion_t &invalidRegion) = 0;
+	virtual void InvalidateChilds() = 0;
+	virtual void InvalidateWidgets() = 0;
 	
 	// buble event to top
 	virtual void Event(glEvent event) = 0;

@@ -78,30 +78,31 @@
 \DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ 7.\ Configure\ the\ layer1\ /\ 2\ parameters\ by\ :}}
 \DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ 8.\ Enable\ layer1\ /\ 2\ and\ if\ needed\ the\ CLUT\ in\ the\ LTDC\_LxCR\ register.}}
 \DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ Layer(\mbox{\hyperlink{struct_r__t}{R\_t<uint8\_t,\ 1,\ 2>}}\ l,\ \textcolor{keywordtype}{void}\ *pRGBData,\ uint16\_t\ x0,\ uint16\_t\ y0,\ uint16\_t\ x1,\ uint16\_t\ y1);}
-\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ Height()\ \{\ \ \textcolor{keywordflow}{return}\ VACT;\ \}}
-\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ Width()\ \{\ \ \ \textcolor{keywordflow}{return}\ HACT;\ \}}
-\DoxyCodeLine{00079\ \ \ \ \ uint16\_t\ Width(uint16\_t\ w)\ }
-\DoxyCodeLine{00080\ \ \ \ \ \{\ \ \ }
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ uint32\_t\ BytesPerPixel\ =\ 4;\ \textcolor{comment}{//\ TODO\ depend\ on\ PixelFormat}}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ LTDC\ Layerx\ Color\ Frame\ Buffer\ Length\ Register}}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ uint16\_t\ LinePitch\ =\ w\ *\ BytesPerPixel;}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((LinePitch\ \%\ 64)\ !=\ 0)}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ LinePitch\ +=\ 64\ -\/\ (LinePitch\ \%\ 64);}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ assert((LinePitch\ \%\ 64)\ ==\ 0\ \&\&\ \textcolor{stringliteral}{"{}Wrong\ line\ pitch"{}});}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ LinePitch\ /\ BytesPerPixel;\ }
-\DoxyCodeLine{00090\ \ \ \ \ \}}
-\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ CurrentPos(uint16\_t\ \&x,\ uint16\_t\ \&y)\ }
-\DoxyCodeLine{00092\ \ \ \ \ \{\ }
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ x\ =\ (LTDC-\/>CPSR\&LTDC\_CPSR\_CXPOS\_Msk)\ >>\ LTDC\_CPSR\_CXPOS\_Pos;}
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ y\ =\ (LTDC-\/>CPSR\&LTDC\_CPSR\_CYPOS\_Msk)\ >>\ LTDC\_CPSR\_CYPOS\_Pos;}
-\DoxyCodeLine{00095\ \ \ \ \ \}}
-\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{bool}\ BlankingOverrun()\ }
-\DoxyCodeLine{00097\ \ \ \ \ \{\ }
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ uint16\_t\ y\ =\ (LTDC-\/>CPSR\ \&\ LTDC\_CPSR\_CYPOS\_Msk)\ >>\ LTDC\_CPSR\_CYPOS\_Pos;}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ y\ >=\ VBP\ \&\&\ y\ <\ VBP\ +\ VACT;\ }
-\DoxyCodeLine{00100\ \ \ \ \ \}}
-\DoxyCodeLine{00101\ \};}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ Height()\ \{\ \textcolor{keywordflow}{return}\ VACT;\ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ Width()\ \{\ \textcolor{keywordflow}{return}\ HACT;\ \}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ LTDC\_MEM\_SIZE\_PIX\ \ ((uint32\_t)(HACT*VACT))}}
+\DoxyCodeLine{00080\ \ \ \ \ uint16\_t\ Width(uint16\_t\ w)\ }
+\DoxyCodeLine{00081\ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ uint32\_t\ BytesPerPixel\ =\ 4;\ \textcolor{comment}{//\ TODO\ depend\ on\ PixelFormat}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ LTDC\ Layerx\ Color\ Frame\ Buffer\ Length\ Register}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ uint16\_t\ LinePitch\ =\ w\ *\ BytesPerPixel;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((LinePitch\ \%\ 64)\ !=\ 0)}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ LinePitch\ +=\ 64\ -\/\ (LinePitch\ \%\ 64);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ assert((LinePitch\ \%\ 64)\ ==\ 0\ \&\&\ \textcolor{stringliteral}{"{}Wrong\ line\ pitch"{}});}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ LinePitch\ /\ BytesPerPixel;\ }
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ CurrentPos(uint16\_t\ \&x,\ uint16\_t\ \&y)\ }
+\DoxyCodeLine{00093\ \ \ \ \ \{\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ x\ =\ (LTDC-\/>CPSR\&LTDC\_CPSR\_CXPOS\_Msk)\ >>\ LTDC\_CPSR\_CXPOS\_Pos;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ y\ =\ (LTDC-\/>CPSR\&LTDC\_CPSR\_CYPOS\_Msk)\ >>\ LTDC\_CPSR\_CYPOS\_Pos;}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{bool}\ BlankingOverrun()\ }
+\DoxyCodeLine{00098\ \ \ \ \ \{\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ uint16\_t\ y\ =\ (LTDC-\/>CPSR\ \&\ LTDC\_CPSR\_CYPOS\_Msk)\ >>\ LTDC\_CPSR\_CYPOS\_Pos;}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ y\ >=\ VBP\ \&\&\ y\ <\ VBP\ +\ VACT;\ }
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \};}
 
 \end{DoxyCode}

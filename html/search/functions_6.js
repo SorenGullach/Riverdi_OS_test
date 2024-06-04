@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['lastband_0',['lastBand',['../classgl_video_memory.html#a79f28b876830fedd3cc74a256eb2c410',1,'glVideoMemory']]],
-  ['limitregion_1',['LimitRegion',['../classgl_video_memory.html#a1ee38dc72e41940446fe3bf03e54d659',1,'glVideoMemory']]],
-  ['lock_2',['lock',['../class_lock.html#a9274a7e20cd5884ea268698d6db8eed6',1,'Lock']]],
-  ['lock_3',['Lock',['../class_lock.html#a9944623567d8138b95e74fadc7190adb',1,'Lock']]]
+  ['height_0',['Height',['../structgl_region__t.html#a12d481ccfda593268fd6e7a21f3340ef',1,'glRegion_t']]],
+  ['hwdma2d_1',['hwDMA2D',['../classhw_d_m_a2_d.html#a55ac838677cd40698ffa267f44f4b6d5',1,'hwDMA2D']]]
 ];

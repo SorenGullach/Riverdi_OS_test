@@ -34,6 +34,7 @@ void Printf(const char *format, ...)
 void Printf(const char *, ...) {}
 #endif
 
+#ifdef DEBUG
 ID_TypeDef *Chip_Id = (ID_TypeDef *)UID_BASE;
 uint16_t *Chip_FlashSize = (uint16_t *)FLASHSIZE_BASE;
 char *Chip_LineIdentifier = (char *)(0x1FF1E8C0);
@@ -59,7 +60,7 @@ void DumpChipInfo()
 		Chip_LineIdentifier[0]);
 }
 
-typedef struct {
+typedef struct MemRegion_t {
 	const char* name;
 	unsigned long start;
 	unsigned long end;
@@ -162,3 +163,4 @@ void DumpMemInfo1()
 	// Print a footer for the memory dump
 	Printf("Memory Region Information Dump End\n\n");
 }
+#endif
