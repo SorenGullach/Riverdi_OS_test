@@ -36,7 +36,7 @@ public:
 		Touch.Init(this); // for touch control
 		
 		uint32_t DisplayMemSize = (Display.Width()*Display.Height() * 4) * 2;
-		Printf("DisplayMem size_t % d", DisplayMemSize);
+		//Printf("DisplayMem size_t % d\n", DisplayMemSize);
 		assert(DisplayMemSize <= SDRAM_SIZE);
 		
 		// setup the video memory buffers
@@ -48,7 +48,7 @@ public:
 		Display.BackgroundColor(bg.R, bg.G, bg.B);
 		// layer
 		Display.Layer(1, pVMLTDC, 0, 0, 0 + Display.Width(), 0 + Display.Height());
-		//		Display.Layer(1, pVMShadow, 0, 0, 0 + Display.Width(), 0 + Display.Height()); // good for debug :-)
+//		Display.Layer(1, pVMShadow, 0, 0, 0 + Display.Width(), 0 + Display.Height()); // good for debug :-)
 		// blending
 		Display.BlendingFactors(1, eBlendingFactor1::F1_CA, eBlendingFactor2::F2_CA, 255);
 		glColor_t df = glColor_t(glColors::RED);
@@ -117,19 +117,20 @@ public:
 		// find invalid region
 		glRegion_t IR;
 		pCurrentPage->InvalidatedRegion(IR); // returns an invalidated region
-
+		IR = glVideoMemory::LimitRegion(IR);
+		
 		// if empty do nothing
 		if (IR.IsEmpty()) return;
-		printf("region %s\n", IR.ToString());
+		//printf("region %s\n", IR.ToString());
 
-		// save region (for Updatelook & CopyVideoMem)
+		// save region (for Updatelook)
 		glVideoMemoryPlot::InvalidRegion(IR);
 		
 		// update all widgets
 		pCurrentPage->UpdateLook();
 		
 		// copy shadow mem to video memory
-		glVideoMemory::CopyVideoMem();
+		glVideoMemory::CopyRegion(IR);
 	}
 };
 

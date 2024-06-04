@@ -1054,8 +1054,8 @@ void hwSysClock::Reset()
 	RCC->CIER = 0x00000000;
 	}
 ////////////////////////////////////////////////////////////////////////////////////
-#define C1_CLK 480
-//#define C1_CLK 400
+//#define C1_CLK 480
+#define C1_CLK 400
 //#define C1_CLK 300
 //#define C1_CLK 200
 void hwSysClock::Setup()

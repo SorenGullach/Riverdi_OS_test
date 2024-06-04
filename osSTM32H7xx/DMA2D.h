@@ -22,6 +22,8 @@
 #include <stm32h7xx.h>
 #include <assert.h>
 
+#include "RCC.h"
+
 /**
  * @class hwDMA2D
  * @brief A class to initialize and control the DMA2D peripheral on STM32H7.
@@ -65,18 +67,74 @@ public:
 	 * @param srcAddress Source address.
 	 * @param lineoffset Line offset for source and destination.
 	 */
-	void StartM2MTransfer(void*  dstAddress, uint32_t width, uint32_t height, void* srcAddress, uint32_t lineoffset) {
+	void StartM2MTransfer(void*  dstAddress, uint32_t width, uint32_t height, void* srcAddress, uint32_t lineoffset) 
+	{
+		while ((DMA2D->CR & DMA2D_CR_START) != 0) __asm("");
+
 		// Set the DMA2D mode to memory-to-memory
-		DMA2D->CR = 0; // Mode 0 is memory-to-memory
+		DMA2D->CR = 0B000 << DMA2D_CR_MODE_Pos; // 000: Memory - to - memory(FG fetch only)
 
 		// the SDRAM is slow
-		DMA2D->AMTCR = (1 << DMA2D_AMTCR_EN_Pos) | (100 << DMA2D_AMTCR_DT_Pos); // Enable and set dead-time
+		uint8_t deadTime = hwSysClock::C1Clk() / 5'000'000;
+			DMA2D->AMTCR = (1 << DMA2D_AMTCR_EN_Pos) | (deadTime << DMA2D_AMTCR_DT_Pos); // Enable and set dead-time
 			
+		DMA2D->OPFCCR = 0B000; // ARGB8888
+	
 		// Configure source and destination addresses
 		DMA2D->FGMAR = (int32_t)srcAddress;
 		DMA2D->FGOR = lineoffset;
 		DMA2D->OMAR = (int32_t)dstAddress;
 		DMA2D->OOR = lineoffset;
+
+		// Set the number of lines and pixels per line
+		DMA2D->NLR = (height << DMA2D_NLR_NL_Pos) | (width << DMA2D_NLR_PL_Pos);
+
+		// Start the transfer
+		DMA2D->CR |= DMA2D_CR_START;
+	}
+
+	/**
+	 * @brief Starts a register-to-memory transfer to fill a region with a solid color.
+	 *
+	 * This function configures and starts a DMA2D transfer to fill a specified
+	 * region of memory with a given color.
+	 *
+	 * @param dstAddress Pointer to the destination address.
+	 * @param width The width of the region to fill in pixels.
+	 * @param height The height of the region to fill in lines.
+	 * @param lineoffset The line offset for the destination.
+	 * @param A The alpha component of the color.
+	 * @param R The red component of the color.
+	 * @param G The green component of the color.
+	 * @param B The blue component of the color.
+	 */
+	void StartFillTransfer(
+	    void*  dstAddress, 
+		uint32_t width,
+		uint32_t height,
+		uint32_t lineoffset,
+		uint8_t A,
+		uint8_t R,
+		uint8_t G,
+		uint8_t B)
+	{
+		while((DMA2D->CR & DMA2D_CR_START) != 0) __asm("");
+		
+		// Set the DMA2D mode to register-to-memory
+		DMA2D->CR = 0B011 << DMA2D_CR_MODE_Pos; // 011: Register-to-memory (no FG nor BG, only output stage active)
+
+		// The SDRAM is slow, calculate dead time
+//		uint8_t deadTime = hwSysClock::C1Clk() / 5'000'000;
+//		DMA2D->AMTCR = (1 << DMA2D_AMTCR_EN_Pos) | (deadTime << DMA2D_AMTCR_DT_Pos); // Enable and set dead-time
+
+		DMA2D->OPFCCR = 0B000; // ARGB8888
+
+		// Configure destination address and line offset
+		DMA2D->OMAR = (int32_t)dstAddress;
+		DMA2D->OOR = lineoffset;
+    
+		// Set the color
+		DMA2D->OCOLR = (A << DMA2D_OCOLR_ALPHA_1_Pos) | (R << DMA2D_OCOLR_RED_1_Pos) | (G << DMA2D_OCOLR_GREEN_1_Pos) | (B << DMA2D_OCOLR_BLUE_1_Pos);
 
 		// Set the number of lines and pixels per line
 		DMA2D->NLR = (height << DMA2D_NLR_NL_Pos) | (width << DMA2D_NLR_PL_Pos);

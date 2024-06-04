@@ -35,12 +35,47 @@ public:
 	{
 #ifdef USE_DMA2D
 		_Dma2D.Init();
-		_Dma2D.StartM2MTransfer(pVMLTDC, 10, 10, pVMShadow, 0);
+		//		_Dma2D.StartM2MTransfer(pVMLTDC, 10, 10, pVMShadow, 0);
 #endif		
 	}
 	
-	static void CopyVideoMem()
+	/**
+	 * @brief Initializes the video memory with the specified dimensions and buffer.
+	 * @param w The width of the screen.
+	 * @param h The height of the screen.
+	 * @param pvm Pointer to the video memory buffer.
+	 */
+	static void Init(const P_t w, const P_t h, glARGB_t *pvmLTDC, glARGB_t *pvmShadow)
 	{
+		pVMLTDC = pvmLTDC; 
+		pVMShadow = pvmShadow; 
+		_VideoRegion = glRegion_t(0, 0, w, h);
+		FillRegion(_VideoRegion, glColors::BLACK);
+		CopyRegion(_VideoRegion);
+	}
+
+	static void FillRegion(const glRegion_t &region, const glColor_t &color)
+	{
+		P_t orig_width = _VideoRegion.Width();
+		P_t width = region.Width();
+		P_t height = region.Height();
+		P_t y = region.T();
+		P_t x = region.L();
+
+		_Dma2D.StartFillTransfer(
+			&pVMShadow[x+y*orig_width],
+			width,
+			height,
+			orig_width-width,
+			color.A,
+			color.R,
+			color.G,
+			color.B);
+		while (!_Dma2D.IsTransferComplete()) __asm("");
+	}
+	static void CopyRegion(const glRegion_t &region)
+	{
+		printf("region %s\n", region.ToString());
 		//		Printf(",");
 				/*
 				glARGB_t *pStart = pVMLTDC, *pStart1 = pVMShadow, *pEnd = pVMLTDC + _VideoRegion.Width()*_VideoRegion.Height();
@@ -49,25 +84,26 @@ public:
 			*/
 #ifndef USE_DMA2D
 		P_t w = _VideoRegion.Width();
-		P_t xs = _InvalidRegion.L();
-		P_t ys = _InvalidRegion.T();
-		P_t xe = _InvalidRegion.R();
-		P_t ye = _InvalidRegion.B();
+		P_t xs = region.L();
+		P_t ys = region.T();
+		P_t xe = region.R();
+		P_t ye = region.B();
 		for (P_t x = xs; x < xe; x++)
 			for (P_t y = ys; y < ye; y++)
 				pVMLTDC[x + y*w] = pVMShadow[x + y*w]; 
 #endif
 #ifdef USE_DMA2D
-		P_t w = _VideoRegion.Width();
-		P_t ys = 0; //_InvalidRegion.T();
-		uint32_t lineOffset = 0; //w- _InvalidRegion.L(); 
-		P_t hi = _VideoRegion.Height(); // _InvalidRegion.Height();
+		P_t orig_width = _VideoRegion.Width();
+		P_t width = region.Width();
+		P_t height = region.Height();
+		P_t y = region.T();
+		P_t x = region.L();
 		_Dma2D.StartM2MTransfer(
-			&pVMLTDC[ys*w],
-			w,
-			hi,
-			&pVMShadow[ys*w],
-			lineOffset);
+			&pVMLTDC[x + y*orig_width],
+			width,
+			height,
+			&pVMShadow[x + y*orig_width],
+			orig_width-width);
 #endif
 		//		Printf(";");
 	}
@@ -95,19 +131,6 @@ public:
 	static glRegion_t LimitRegion(const glRegion_t &region)
 	{
 		return region.Intersection(_VideoRegion);
-	}
-
-	/**
-	 * @brief Initializes the video memory with the specified dimensions and buffer.
-	 * @param w The width of the screen.
-	 * @param h The height of the screen.
-	 * @param pvm Pointer to the video memory buffer.
-	 */
-	static void Init(const P_t w, const P_t h, glARGB_t *pvmLTDC, glARGB_t *pvmShadow)
-	{
-		pVMLTDC = pvmLTDC; 
-		pVMShadow = pvmShadow; 
-		_VideoRegion = glRegion_t(0, 0, w, h);
 	}
 };
 

@@ -370,7 +370,7 @@ struct glRegion_t
 		return glRegion_t(x, y, x + w, y + h);
 	}
 	
-	char *ToString()
+	char *ToString() const 
 	{
 		snprintf(_String, sizeof(_String), "%4u,%4u,%4u,%4u", _LT.X, _LT.Y, _RB.X, _RB.Y);
 		return _String;

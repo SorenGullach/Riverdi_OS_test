@@ -178,9 +178,10 @@ void glPlot2DHelper::PlotRectangle(const glRegion_t &region, const glColor_t &co
 
 void glPlot2DHelper::PlotRectangleFill(const glRegion_t &region, const glColor_t &color)
 {
-	for (P_t y = region.T(); y < region.B(); y++)
-		for (P_t x = region.L(); x < region.R(); x++)
-			Plot(x, y, color);
+	FillRegion(region, color);
+//	for (P_t y = region.T(); y < region.B(); y++)
+	//	for (P_t x = region.L(); x < region.R(); x++)
+		//	Plot(x, y, color);
 }
 
 /**

@@ -106,7 +106,7 @@ void hwLTDC::Layer(R_t<uint8_t, 1, 2> layer, void *pRGBData, uint16_t x0, uint16
 	uint8_t ConstantAlpha = 255; // used when BFx == Fx_CA
 	eBlendingFactor1 BlendingFactor1 = eBlendingFactor1::F1_CA;
 	eBlendingFactor2 BlendingFactor2 = eBlendingFactor2::F2_CA;
-	uint8_t BackColorAlpha = 255; // used when BFx == Fx_PAXCA
+//	uint8_t BackColorAlpha = 255; // used when BFx == Fx_PAXCA
 
 	LTDC_Layer_TypeDef *pLTDCLayer = LTDC_Layer1;
 	if (layer == 2)
@@ -181,7 +181,7 @@ void hwLTDC::Layer(R_t<uint8_t, 1, 2> layer, void *pRGBData, uint16_t x0, uint16
 	
 	// – If needed, configuring the default color and the blending factors respectively in the
 	// LTDC_LxDCCR and LTDC_LxBFCR registers
-	DefaultColor(layer, 0, 0, 0, BackColorAlpha);
+//	DefaultColor(layer, 0, 0, 0, BackColorAlpha);
 
 	// Specifies the blending factors 
 	BlendingFactors(layer, BlendingFactor1, BlendingFactor2, ConstantAlpha);
